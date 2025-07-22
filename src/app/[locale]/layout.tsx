@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import NavBar from "@/components/NavBar";
 import Providers from "@/components/Providers";
+import Footer from "@/components/Footer";
 
 /*
  ##### loading fonts in nextjs
@@ -45,9 +46,8 @@ export default async function RootLayout({
 					<Providers>
 						<div className="min-h-screen flex flex-col">
 							<NavBar />
-							<main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
-								{children}
-							</main>
+							<main className="flex-1 container mx-auto px-4 py-8">{children}</main>
+							<Footer />
 						</div>
 					</Providers>
 				</NextIntlClientProvider>

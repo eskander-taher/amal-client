@@ -1,6 +1,22 @@
 {
 	"HomePage": {
-		"title": "The website is under development, see you soon ;)"
+		"title": "The website is under development, see you soon ;)",
+		"heroTitle": "Discover Our Latest Financial Reports",
+		"heroDescription": "At Amal Al Khair Holding Group, we provide accurate financial reports and specialized consulting services to support your business growth with confidence and transparency.",
+		"heroButton": "Discover More",
+		"aboutTitle": "About Us",
+		"aboutDescription": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the dates, poultry, and feed sectors. We believe that transparency and quality are the foundation of our success, and we strive to build long-term partnerships that create sustainable value for our community and clients.",
+		"groupTitle": "Amal Al Khair Holding Group",
+		"datesCompanyTitle": "Amal Al Khair Dates Company",
+		"datesCompanyDesc": "Production and export of the finest Saudi dates to local and global markets.",
+		"poultryCompanyTitle": "Amal Al Khair Poultry Company",
+		"poultryCompanyDesc": "Leading in the production of fresh poultry with world-class quality standards.",
+		"feedCompanyTitle": "Amal Al Khair Feed Company",
+		"feedCompanyDesc": "Providing high-quality feed to support the livestock sector.",
+		"investmentCompanyTitle": "Amal Al Khair Investment Company",
+		"investmentCompanyDesc": "Diverse investments supporting sustainable economic development.",
+		"moreButton": "More",
+		"certificationsTitle": "Our Certifications!"
 	},
 	"Navigation": {
 		"home": "Home",
@@ -11,5 +27,24 @@
 		"jobs": "Jobs",
 		"contact": "Contact Us",
 		"searchPlaceholder": "What are you looking for?"
+	},
+	"Footer": {
+		"contactTitle": "Contact Information",
+		"address": "P.O. Box 8524, Riyadh 11492",
+		"phone": "Phone: +966 (11) 460 0005",
+		"whatsapp": "WhatsApp: +966545501010",
+		"faq": "FAQ",
+		"sitemap": "Sitemap",
+		"privacy": "Privacy Policy",
+		"terms": "Terms & Conditions",
+		"contact": "Contact Us",
+		"location": "Our Location",
+		"home": "Home",
+		"about": "About Us",
+		"group": "Amal Al Khair Holding Group",
+		"products": "Our Products",
+		"news": "News & Blogs",
+		"jobs": "Jobs",
+		"rights": "All rights reserved © Amal Al Khair 2025"
 	}
 }
