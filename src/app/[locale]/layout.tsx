@@ -45,7 +45,7 @@ export default async function RootLayout({
 					<Providers>
 						<div className="min-h-screen flex flex-col">
 							<NavBar />
-							<main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+							<main className="flex-1 container mx-auto px-4 py-8 max-w-7xl">
 								{children}
 							</main>
 						</div>

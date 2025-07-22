@@ -3,6 +3,13 @@
 		"title": "The website is under development, see you soon ;)"
 	},
 	"Navigation": {
-		"home": "Home"
+		"home": "Home",
+		"about": "About Us",
+		"group": "Amal Al Khair Holding Group",
+		"products": "Our Products",
+		"news": "News & Blogs",
+		"jobs": "Jobs",
+		"contact": "Contact Us",
+		"searchPlaceholder": "What are you looking for?"
 	}
 }
