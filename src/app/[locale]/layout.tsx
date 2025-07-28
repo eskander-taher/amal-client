@@ -46,7 +46,7 @@ export default async function RootLayout({
 					<Providers>
 						<div className="min-h-screen flex flex-col">
 							<NavBar />
-							<main className="flex-1 container mx-auto px-4 py-8">{children}</main>
+							<main>{children}</main>
 							<Footer />
 						</div>
 					</Providers>

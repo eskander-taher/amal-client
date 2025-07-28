@@ -1,139 +1,144 @@
-import React from "react";
-import { useTranslations } from "next-intl";
-
-const Group: React.FC = () => {
-	const t = useTranslations("HomePage");
-	// SVGs for Group section
-	const datePalmIcon = (
-		<svg
-			width="48"
-			height="48"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			viewBox="0 0 48 48"
-			className="text-black"
-		>
-			<path d="M24 44V28" strokeLinecap="round" />
-			<path d="M24 28C24 18 34 18 34 8" strokeLinecap="round" />
-			<path d="M24 28C24 18 14 18 14 8" strokeLinecap="round" />
-		</svg>
-	);
-	const chickenIcon = (
-		<svg
-			width="48"
-			height="48"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			viewBox="0 0 48 48"
-			className="text-black"
-		>
-			<ellipse cx="24" cy="32" rx="14" ry="10" />
-			<circle cx="24" cy="20" r="8" />
-			<path d="M32 12c2-2 6-2 6 2s-4 4-6 2z" />
-		</svg>
-	);
-	const wheatIcon = (
-		<svg
-			width="48"
-			height="48"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			viewBox="0 0 48 48"
-			className="text-black"
-		>
-			<path d="M24 44V28" strokeLinecap="round" />
-			<path d="M24 28C24 18 34 18 34 8" strokeLinecap="round" />
-			<path d="M24 28C24 18 14 18 14 8" strokeLinecap="round" />
-			<path d="M24 28C24 38 34 38 34 44" strokeLinecap="round" />
-			<path d="M24 28C24 38 14 38 14 44" strokeLinecap="round" />
-		</svg>
-	);
-	const investIcon = (
-		<svg
-			width="48"
-			height="48"
-			fill="none"
-			stroke="currentColor"
-			strokeWidth="2"
-			viewBox="0 0 48 48"
-			className="text-black"
-		>
-			<rect x="8" y="20" width="32" height="20" rx="4" />
-			<path d="M24 20V8" strokeLinecap="round" />
-			<circle cx="24" cy="8" r="4" />
-		</svg>
-	);
-	const companies = [
-		{
-			title: t("datesCompanyTitle"),
-			description: t("datesCompanyDesc"),
-			icon: datePalmIcon,
-			buttonText: t("moreButton"),
-		},
-		{
-			title: t("poultryCompanyTitle"),
-			description: t("poultryCompanyDesc"),
-			icon: chickenIcon,
-			buttonText: t("moreButton"),
-		},
-		{
-			title: t("feedCompanyTitle"),
-			description: t("feedCompanyDesc"),
-			icon: wheatIcon,
-			buttonText: t("moreButton"),
-		},
-		{
-			title: t("investmentCompanyTitle"),
-			description: t("investmentCompanyDesc"),
-			icon: investIcon,
-			buttonText: t("moreButton"),
-		},
-	];
-	return (
-		<section className="py-12 md:py-20 px-4 bg-gray-50">
-			<div className="max-w-6xl mx-auto">
-				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-gray-800 text-center">
-					{t("groupTitle")}
-				</h2>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{companies.map((company, idx) => (
-						<div
-							key={idx}
-							className="bg-white rounded-2xl shadow-sm p-6 flex flex-col items-center hover:shadow-md transition-all group"
-						>
-							<div className="mb-4">{company.icon}</div>
-							<h3 className="font-bold text-lg mb-2 text-gray-800 text-center">
-								{company.title}
-							</h3>
-							<p className="text-gray-600 text-sm text-center mb-4">
-								{company.description}
-							</p>
-							<button className="mt-auto flex items-center gap-1 text-orange-500 font-semibold group-hover:underline">
-								{company.buttonText}
-								<svg
-									width="20"
-									height="20"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									viewBox="0 0 24 24"
-								>
-									<path
-										d="M9 5l7 7-7 7"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</button>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-	);
+const styles: { [key: string]: CSSProperties } = {
+	cardWrapper: {
+		width: "100%",
+		height: "100vh",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "#000",
+	},
+	card: {
+		width: "500px",
+		height: "300px",
+		position: "relative",
+		backgroundColor: "#fff",
+		borderRadius: "8px",
+		overflow: "hidden",
+		boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+		display: "flex",
+		flexDirection: "column",
+	},
+	image: {
+		width: "100%",
+		height: "140px",
+		objectFit: "cover",
+	},
+	content: {
+		padding: "16px",
+		flex: 1,
+	},
+	title: {
+		fontSize: "20px",
+		fontWeight: "bold",
+		marginBottom: "8px",
+	},
+	description: {
+		fontSize: "14px",
+		color: "#555",
+	},
+	ctaContainer: {
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		width: "50px",
+		height: "40px",
+		backgroundColor: "yellow",
+		borderTopRightRadius: "10px",
+		transition: "width 0.3s ease-in-out",
+		cursor: "pointer",
+		overflow: "hidden",
+	},
+	ctaHover: {
+		width: "120px",
+	},
+	ctaContent: {
+		width: "100%",
+		height: "100%",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		fontWeight: "bold",
+	},
+	pseudoAfter: {
+		content: '""',
+		width: "10px",
+		height: "10px",
+		background: "radial-gradient(circle at top right, transparent 70%, yellow 0%)",
+		position: "absolute",
+		top: 0,
+		left: 0,
+		transform: "translateY(-100%)",
+	},
+	pseudoBefore: {
+		content: '""',
+		width: "20px",
+		height: "20px",
+		background: "radial-gradient(circle at top right, transparent 70%, yellow 0%)",
+		position: "absolute",
+		right: 0,
+		bottom: 0,
+		transform: "translateX(100%)",
+	},
 };
 
-export default Group;
+
+type CardData = {
+  image: string;
+  title: string;
+  description: string;
+};
+
+const cards: CardData[] = [
+  {
+    image: '/group/dates.png',
+    title: 'شركة أمل الخير للتمور',
+    description: 'من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.',
+  },
+  {
+    image: '/group/fish.png',
+    title: 'شركة أمل الخير للأسماك',
+    description: 'من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.',
+  },
+  {
+    image: '/group/alaf.png',
+    title: 'شركة أمل الخير للأعلاف',
+    description: 'من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.',
+  },
+  {
+    image: '/group/eggs.png',
+    title: 'شركة أمل الخير للدواجن',
+    description: 'من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.',
+  },
+];
+
+const GroupSection: React.FC = () => {
+  return (
+    <section className="py-16 bg-gray-100 rtl text-right">
+      <h2 className="text-2xl font-semibold text-center mb-12">
+        مجموعة <strong>أمل الخير</strong> القابضة
+      </h2>
+
+      <div className="flex flex-wrap justify-center gap-6">
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className="relative w-64 rounded-lg shadow-md p-6 flex flex-col items-center text-center"
+          >
+            <img src={card.image} alt={card.title} className="w-16 h-16 mb-4 object-contain" />
+            <h3 className="text-lg font-bold mb-2">{card.title}</h3>
+            <p className="text-sm text-gray-600">{card.description}</p>
+
+            {/* Show Corner */}
+            <div className="cta-container absolute bottom-0 left-0">
+              <div className="content w-full h-full flex items-center justify-center font-bold text-sm">
+                المزيد
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default GroupSection;

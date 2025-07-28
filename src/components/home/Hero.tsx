@@ -15,10 +15,10 @@ const Hero: React.FC = () => {
 			/>
 			<div className="relative z-10 flex w-full h-full">
 				<div className="flex flex-col justify-center items-start md:items-start w-full md:w-1/2 h-full py-24 px-4 md:px-16 text-left">
-					<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+					<h1 className="text-4xl text-right md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
 						{t("heroTitle")}
 					</h1>
-					<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl">
+					<p className="text-lg text-right md:text-2xl text-white/90 mb-8 max-w-2xl">
 						{t("heroDescription")}
 					</p>
 					<button className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition-all">
