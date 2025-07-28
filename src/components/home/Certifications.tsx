@@ -39,56 +39,52 @@ export default function Certifications() {
 	}, [hoveredIndex]);
 
 	return (
-		<section
-			ref={sectionRef}
-			className="relative bg-[#353535] text-white pt-5 pb-5 px-4 overflow-visible"
-		>
-			{/* Top static curve */}
+		<section className="bg-white py-12 md:py-20 text-center w-full">
 			<div
-				className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-b-full"
-				style={{
-					width: "300px",
-					height: "20px",
-				}}
-			/>
+				ref={sectionRef}
+				className="relative bg-[#353535] text-white pt-5 pb-5 px-4 overflow-visible w-full"
+			>
+				{/* Top static curve */}
+				<div className="absolute w-80 h-8 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-b-full" />
 
-			{/* Heading */}
-			<div className="text-center mb-10">
-				<h2 className="text-3xl font-bold mb-4">اعتماداتنا !</h2>
-				<p className="text-lg max-w-3xl mx-auto">
-					نفخر في مجموعة أمل الخير القابضة بحصولنا على مجموعة من الإعتمادات و الشهادات
-					المحلية و الإقليمية
-				</p>
-			</div>
+				{/* Heading */}
+				<div className="text-center mb-10">
+					<h2 className="text-3xl font-bold mb-4">اعتماداتنا !</h2>
+					<p className="text-lg max-w-3xl mx-auto">
+						نفخر في مجموعة أمل الخير القابضة بحصولنا على مجموعة من الإعتمادات و الشهادات
+						المحلية و الإقليمية
+					</p>
+				</div>
 
-			{/* Logos */}
-			<div className="relative flex justify-center gap-10 items-center">
-				{logos.map((logo, index) => (
+				{/* Logos */}
+				<div className="relative flex justify-center gap-10 items-center">
+					{logos.map((logo, index) => (
+						<div
+							key={logo.id}
+							ref={(el) => (logoRefs.current[index] = el)}
+							onMouseEnter={() => setHoveredIndex(index)}
+							className={`transition-opacity duration-300 cursor-pointer ${
+								hoveredIndex === index ? "opacity-100" : "opacity-40"
+							}`}
+						>
+							<Image src={logo.src} alt={logo.alt} width={60} height={60} />
+						</div>
+					))}
+				</div>
+
+				{/* Curve */}
+				{hoveredIndex !== null && (
 					<div
-						key={logo.id}
-						ref={(el) => (logoRefs.current[index] = el)}
-						onMouseEnter={() => setHoveredIndex(index)}
-						className={`transition-opacity duration-300 cursor-pointer ${
-							hoveredIndex === index ? "opacity-100" : "opacity-40"
-						}`}
-					>
-						<Image src={logo.src} alt={logo.alt} width={60} height={60} />
-					</div>
-				))}
+						className="absolute bg-white rounded-t-full animate-curve"
+						style={{
+							width: `${curveWidth}px`,
+							left: `${curveX - curveWidth / 2}px`,
+							bottom: "-20px",
+							height: "25px",
+						}}
+					/>
+				)}
 			</div>
-
-			{/* Curve */}
-			{hoveredIndex !== null && (
-				<div
-					className="absolute bg-white rounded-t-full animate-curve"
-					style={{
-						width: `${curveWidth}px`,
-						left: `${curveX - curveWidth / 2}px`,
-						bottom: "-20px",
-						height: "25px",
-					}}
-				/>
-			)}
 		</section>
 	);
 }
