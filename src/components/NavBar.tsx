@@ -56,10 +56,10 @@ export default function NavBar() {
 								<Link
 									key={item.href}
 									href={item.href}
-									className={`px-2 py-2 rounded-lg font-small transition-all duration-200 ${
+									className={`px-2 py-2 rounded-lg  transition-all duration-200 ${
 										isActive
-											? "text-blue-600 font-bold"
-											: "text-gray-700 hover:text-blue-600"
+											? "text-gray-900 font-bold"
+											: "text-gray-700 hover:text-gray-800 font-small"
 									}`}
 								>
 									{item.label}

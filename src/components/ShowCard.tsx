@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, CSSProperties } from "react";
+import Image from "next/image";
 
 const styles: { [key: string]: CSSProperties } = {
 	cardWrapper: {
@@ -91,9 +92,11 @@ const ShowCard: React.FC = () => {
 		<div style={styles.cardWrapper}>
 			<div style={styles.card}>
 				{/* Image */}
-				<img
+				<Image
 					src="https://via.placeholder.com/500x140"
 					alt="Card Top"
+					width={500}
+					height={140}
 					style={styles.image}
 				/>
 

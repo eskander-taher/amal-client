@@ -1,4 +1,6 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
 	const t = useTranslations("Footer");
@@ -39,52 +41,58 @@ export default function Footer() {
 				{/* Links */}
 				<div className="flex-1 flex flex-col md:flex-row justify-center gap-8 text-center">
 					<div className="flex flex-col gap-1">
-						<a href="#faq" className="hover:underline">
+						<Link href="#faq" className="hover:underline">
 							{t("faq")}
-						</a>
-						<a href="#sitemap" className="hover:underline">
+						</Link>
+						<Link href="#sitemap" className="hover:underline">
 							{t("sitemap")}
-						</a>
-						<a href="#privacy" className="hover:underline">
+						</Link>
+						<Link href="#privacy" className="hover:underline">
 							{t("privacy")}
-						</a>
-						<a href="#terms" className="hover:underline">
+						</Link>
+						<Link href="#terms" className="hover:underline">
 							{t("terms")}
-						</a>
-						<a href="#contact" className="hover:underline">
+						</Link>
+						<Link href="#contact" className="hover:underline">
 							{t("contact")}
-						</a>
-						<a href="#location" className="hover:underline">
+						</Link>
+						<Link href="#location" className="hover:underline">
 							{t("location")}
-						</a>
+						</Link>
 					</div>
 					<div className="flex flex-col gap-1">
-						<a href="/" className="hover:underline">
+						<Link href="/" className="hover:underline">
 							{t("home")}
-						</a>
-						<a href="/about" className="hover:underline">
+						</Link>
+						<Link href="/about" className="hover:underline">
 							{t("about")}
-						</a>
-						<a href="/group" className="hover:underline">
+						</Link>
+						<Link href="/group" className="hover:underline">
 							{t("group")}
-						</a>
-						<a href="/products" className="hover:underline">
+						</Link>
+						<Link href="/products" className="hover:underline">
 							{t("products")}
-						</a>
-						<a href="/news" className="hover:underline">
+						</Link>
+						<Link href="/news" className="hover:underline">
 							{t("news")}
-						</a>
-						<a href="/jobs" className="hover:underline">
+						</Link>
+						<Link href="/jobs" className="hover:underline">
 							{t("jobs")}
-						</a>
-						<a href="#contact" className="hover:underline">
+						</Link>
+						<Link href="#contact" className="hover:underline">
 							{t("contact")}
-						</a>
+						</Link>
 					</div>
 				</div>
 				{/* Logo */}
 				<div className="flex-1 flex flex-col items-center md:items-end">
-					<img src="/AMAL_logo.png" alt="Amal Al Khair logo" className="w-28 mb-2" />
+					<Image
+						src="/AMAL_logo.png"
+						alt="Amal Al Khair logo"
+						width={112}
+						height={112}
+						className="mb-2"
+					/>
 					<div className="font-bold text-lg mb-1">AMAL AL KHAIR</div>
 					<div className="text-gray-500 mb-1">HOLDING GROUP</div>
 					{/* Arabic logo text as SVG or styled text if needed */}

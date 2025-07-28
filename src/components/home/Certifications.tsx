@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -61,7 +60,7 @@ export default function Certifications() {
 					{logos.map((logo, index) => (
 						<div
 							key={logo.id}
-							ref={(el) => (logoRefs.current[index] = el)}
+							ref={(el:any) => (logoRefs.current[index] = el)}
 							onMouseEnter={() => setHoveredIndex(index)}
 							className={`transition-opacity duration-300 cursor-pointer ${
 								hoveredIndex === index ? "opacity-100" : "opacity-40"

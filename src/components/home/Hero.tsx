@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useTranslations } from "next-intl";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const Hero: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -21,17 +22,20 @@ const Hero: React.FC = () => {
 					<p className="text-lg text-right md:text-2xl text-white/90 mb-8 max-w-2xl">
 						{t("heroDescription")}
 					</p>
-					<button className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition-all">
-						{t("heroButton")}
-					</button>
+					<div className="bg-white text-black w-50 flex justify-between items-center pl-2 pr-8 font-bold  rounded-full text-lg shadow-lg transition-all cursor-pointer hover:bg-gray-100 hover:shadow-xl w-[200px] h-[50px]">
+						{t("heroButton")}{" "}
+						<button className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 rounded-full w-[43px] h-[43px] flex items-center justify-center">
+							<FaArrowLeftLong className="text-white" />
+						</button>
+					</div>
 				</div>
 				<div className="hidden md:block w-1/2"></div>
 			</div>
 			{/* Bottom static curve */}
-			<div className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-t-full flex justify-center items-top pt-2 gap-3">
-				<div className="w-4 h-4 bg-[#E3A347] rounded-full"></div>
-				<div className="w-4 h-4 bg-[#E2E2E2] rounded-full"></div>
-				<div className="w-4 h-4 bg-[#E2E2E2] rounded-full"></div>
+			<div className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-t-full flex justify-center items-top pt-1 gap-3">
+				<div className="w-3 h-3 bg-[#E3A347] rounded-full"></div>
+				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
+				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
 			</div>
 		</section>
 	);
