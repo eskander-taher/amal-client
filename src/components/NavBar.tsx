@@ -26,18 +26,23 @@ export default function NavBar() {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	return (
-		<nav className="bg-white/90 px-10 py-2 flex backdrop-blur border-b border-gray-200 shadow-sm sticky top-0 z-50">
+		<nav className="bg-white px-10 py-2 flex  shadow-sm sticky top-0 z-50">
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
-				<Link href="/">
-					<Image
-						src={locale == "ar" ? "/amal_big_logo_ar.png" : "/amal_big_logo_en.png"}
-						alt="Amal Al-Khair logo"
-						width={260}
-						height={75}
-						priority
-					/>
-				</Link>
+
+				<div className="relative">
+					{/* Top static curve */}
+					<div className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-b-full z-0" />
+					<Link className="relative z-10" href="/">
+						<Image
+							src={locale == "ar" ? "/amal_big_logo_ar.png" : "/amal_big_logo_en.png"}
+							alt="Amal Al-Khair logo"
+							width={260}
+							height={75}
+							priority
+						/>
+					</Link>
+				</div>
 
 				{/* Navigation Links */}
 				<div className="hidden md:flex items-center space-x-1 space-x-reverse">
