@@ -15,3 +15,8 @@ body, html {
 }
 
 @import "tailwindcss";
+
+.animate-curve {
+  transition: all 0.3s ease-in-out;
+  transform-origin: bottom;
+}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Certifications from "@/components/home/Certifications";
 
 export default function Home() {
 	const t = useTranslations("HomePage");
@@ -25,6 +26,11 @@ export default function Home() {
 						{t("heroButton")}
 					</button>
 				</div>
+			</section>
+
+			{/* About Section */}
+			<section className="bg-white py-12 md:py-20 px-4 text-center">
+				<Certifications />
 			</section>
 
 			{/* About Section */}
