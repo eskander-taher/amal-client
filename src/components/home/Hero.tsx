@@ -22,12 +22,12 @@ const Hero: React.FC = () => {
 					<p className="text-lg text-right md:text-2xl text-white/90 mb-8 max-w-2xl">
 						{t("heroDescription")}
 					</p>
-					<div className="bg-white text-black w-50 flex justify-between items-center pl-2 pr-8 font-bold  rounded-full text-lg shadow-lg transition-all cursor-pointer hover:bg-gray-100 hover:shadow-xl w-[200px] h-[50px]">
-						{t("heroButton")}{" "}
-						<button className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 rounded-full w-[43px] h-[43px] flex items-center justify-center">
-							<FaArrowLeftLong className="text-white" />
-						</button>
-					</div>
+					<button className="bg-white text-black px-4 py-4 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl flex items-center gap-3 group h-14">
+						<span>{t("heroButton")}</span>
+						<div className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+							<FaArrowLeftLong className="text-white text-sm" />
+						</div>
+					</button>
 				</div>
 				<div className="hidden md:block w-1/2"></div>
 			</div>

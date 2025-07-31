@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CountUp from "react-countup";
 import Image from "next/image";
+import Section from "../Section";
 
 type StatData = {
 	image: string;
@@ -33,26 +34,68 @@ const stats: StatData[] = [
 ];
 
 const GroupStatsSection: React.FC = () => {
+	const sectionRef = useRef<HTMLElement>(null);
+	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setIsVisible(true);
+					// Once triggered, we can disconnect the observer
+					observer.disconnect();
+				}
+			},
+			{
+				threshold: 0.3, // Trigger when 30% of the section is visible
+				rootMargin: "0px 0px -50px 0px", // Trigger slightly before the section is fully in view
+			}
+		);
+
+		if (sectionRef.current) {
+			observer.observe(sectionRef.current);
+		}
+
+		return () => observer.disconnect();
+	}, []);
+
 	return (
-		<section className="bg-[#353535] text-white py-16 rtl">
-			<div className="container mx-auto flex flex-wrap justify-center gap-12">
-				{stats.map((stat, index) => (
-					<div key={index} className="flex flex-col items-center text-center">
-						<Image
-							src={stat.image}
-							alt={stat.title}
-							width={64}
-							height={64}
-							className="object-contain"
-						/>
-						<h3 className="text-3xl font-extrabold mb-2">
-							<CountUp end={stat.count} duration={2} separator="," />
-						</h3>
-						<p className="text-sm text-gray-300">{stat.title}</p>
-					</div>
-				))}
+		<Section ref={sectionRef} className="bg-[#353535] text-white">
+			<div className="w-full">
+				<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+					{stats.map((stat, index) => (
+						<div
+							key={index}
+							className="flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
+						>
+							<div className="h-28 w-28 lg:h-32 lg:w-32 flex items-center justify-center mb-4 lg:mb-6 bg-white/10 rounded-full p-6 group-hover:bg-white/20 transition-colors duration-300">
+								<Image
+									src={stat.image}
+									alt={stat.title}
+									width={112}
+									height={112}
+									className="object-contain max-h-full max-w-full"
+								/>
+							</div>
+							<div className="space-y-2">
+								<h3 className="text-2xl lg:text-4xl xl:text-5xl font-black text-white">
+									<CountUp
+										end={stat.count}
+										duration={5}
+										separator=","
+										start={isVisible ? undefined : 0}
+										delay={isVisible ? index * 0.2 : 0} // Stagger the animations
+									/>
+								</h3>
+								<p className="text-sm lg:text-base text-gray-300 font-medium leading-relaxed">
+									{stat.title}
+								</p>
+							</div>
+						</div>
+					))}
+				</div>
 			</div>
-		</section>
+		</Section>
 	);
 };
 

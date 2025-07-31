@@ -4,6 +4,7 @@ import About from "@/components/home/About";
 import Group from "@/components/home/Group";
 import GroupStatsSection from "@/components/home/GroupStatsSection";
 import NewsSection from "@/components/home/NewsSections";
+import NewsletterSection from "@/components/home/NewsletterSection";
 
 export default function Home() {
 	return (
@@ -25,6 +26,9 @@ export default function Home() {
 
 			{/* Group stats Section */}
 			<GroupStatsSection />
+
+			{/* Newsletter Section */}
+			<NewsletterSection />
 
 			{/* right static curve */}
 			<div className="fixed top-1/2 right-0 h-64 w-5 bg-white rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2 shadow-lg">

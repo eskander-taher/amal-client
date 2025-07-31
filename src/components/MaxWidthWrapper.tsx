@@ -35,7 +35,7 @@ export default function MaxWidthWrapper({
   children,
   className,
   maxWidth = "7xl",
-  padding = "md",
+  padding = "none",
   center = true
 }: MaxWidthWrapperProps) {
   return (
