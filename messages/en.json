@@ -18,6 +18,46 @@
 		"moreButton": "More",
 		"certificationsTitle": "Our Certifications!"
 	},
+	"Group": {
+		"title": "Amal Al Khair Holding Group",
+		"datesCompany": {
+			"title": "Amal Al Khair Dates Company",
+			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
+		},
+		"fishCompany": {
+			"title": "Amal Al Khair Fish Company",
+			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
+		},
+		"feedCompany": {
+			"title": "Amal Al Khair Feed Company",
+			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
+		},
+		"poultryCompany": {
+			"title": "Amal Al Khair Poultry Company",
+			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
+		}
+	},
+	"GroupStats": {
+		"datesCompany": "Amal Al Khair Dates Company",
+		"fishCompany": "Amal Al Khair Fish Company",
+		"feedCompany": "Amal Al Khair Feed Company",
+		"poultryCompany": "Amal Al Khair Poultry Company"
+	},
+	"News": {
+		"title": "Latest News!",
+		"moreNews": "More News",
+		"newsItems": {
+			"storeOpening": {
+				"title": "Amal Al Khair Dates Store Opening",
+				"description": "Amal Al Khair launches its first online store featuring all its products and offers payment services via credit cards, Mada cards, or cash on delivery, as well as many other services..."
+			}
+		}
+	},
+	"Newsletter": {
+		"title": "Join Our Newsletter",
+		"description": "Get the latest news and updates from Amal Al Khair Holding Group",
+		"placeholder": "Enter your email address"
+	},
 	"Navigation": {
 		"home": "Home",
 		"about": "About Us",

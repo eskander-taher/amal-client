@@ -2,47 +2,44 @@ import "./style.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
 import Section from "../Section";
+import { useTranslations } from "next-intl";
 
 type CardData = {
 	image: string;
-	title: string;
-	description: string;
+	titleKey: string;
+	descriptionKey: string;
 };
 
-const cards: CardData[] = [
-	{
-		image: "/group/dates.png",
-		title: "شركة أمل الخير للتمور",
-		description:
-			"من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.",
-	},
-	{
-		image: "/group/fish.png",
-		title: "شركة أمل الخير للأسماك",
-		description:
-			"من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.",
-	},
-	{
-		image: "/group/alaf.png",
-		title: "شركة أمل الخير للأعلاف",
-		description:
-			"من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.",
-	},
-	{
-		image: "/group/eggs.png",
-		title: "شركة أمل الخير للدواجن",
-		description:
-			"من أوائل المشاريع المعتمدة لمنطقة الباحة بالمملكة، باستخدام أجود السلالات، وقد تم تصدير المنتج للعديد من الدول. 100% ذاوية.",
-	},
-];
-
 const GroupSection: React.FC = () => {
+	const t = useTranslations("Group");
+
+	const cards: CardData[] = [
+		{
+			image: "/group/dates.png",
+			titleKey: "datesCompany.title",
+			descriptionKey: "datesCompany.description",
+		},
+		{
+			image: "/group/fish.png",
+			titleKey: "fishCompany.title",
+			descriptionKey: "fishCompany.description",
+		},
+		{
+			image: "/group/alaf.png",
+			titleKey: "feedCompany.title",
+			descriptionKey: "feedCompany.description",
+		},
+		{
+			image: "/group/eggs.png",
+			titleKey: "poultryCompany.title",
+			descriptionKey: "poultryCompany.description",
+		},
+	];
+
 	return (
 		<Section className="bg-gray-200">
 			<div className="w-full">
-				<h2 className="text-2xl font-semibold text-center mb-12">
-					مجموعة أمل الخير القابضة
-				</h2>
+				<h2 className="text-2xl font-semibold text-center mb-12">{t("title")}</h2>
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 					{cards.map((card, index) => (
@@ -52,13 +49,13 @@ const GroupSection: React.FC = () => {
 						>
 							<Image
 								src={card.image}
-								alt={card.title}
+								alt={t(card.titleKey)}
 								width={64}
 								height={64}
 								className="invert mb-4 object-contain"
 							/>
-							<h3 className="text-lg font-bold mb-2">{card.title}</h3>
-							<p className="text-sm text-gray-600 mb-10">{card.description}</p>
+							<h3 className="text-lg font-bold mb-2">{t(card.titleKey)}</h3>
+							<p className="text-sm text-gray-600 mb-10">{t(card.descriptionKey)}</p>
 
 							{/* More Corner */}
 							<div className="cta-container">

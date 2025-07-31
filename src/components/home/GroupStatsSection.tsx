@@ -3,39 +3,41 @@ import React, { useRef, useState, useEffect } from "react";
 import CountUp from "react-countup";
 import Image from "next/image";
 import Section from "../Section";
+import { useTranslations } from "next-intl";
 
 type StatData = {
 	image: string;
 	count: number;
-	title: string;
+	titleKey: string;
 };
 
-const stats: StatData[] = [
-	{
-		image: "/group/dates.png",
-		count: 9695,
-		title: "شركة أمل الخير للتمور",
-	},
-	{
-		image: "/group/fish.png",
-		count: 206768,
-		title: "شركة أمل الخير للأسماك",
-	},
-	{
-		image: "/group/alaf.png",
-		count: 156077,
-		title: "شركة أمل الخير للأعلاف",
-	},
-	{
-		image: "/group/eggs.png",
-		count: 65876,
-		title: "شركة أمل الخير للدواجن",
-	},
-];
-
 const GroupStatsSection: React.FC = () => {
+	const t = useTranslations("GroupStats");
 	const sectionRef = useRef<HTMLElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
+
+	const stats: StatData[] = [
+		{
+			image: "/group/dates.png",
+			count: 9695,
+			titleKey: "datesCompany",
+		},
+		{
+			image: "/group/fish.png",
+			count: 206768,
+			titleKey: "fishCompany",
+		},
+		{
+			image: "/group/alaf.png",
+			count: 156077,
+			titleKey: "feedCompany",
+		},
+		{
+			image: "/group/eggs.png",
+			count: 65876,
+			titleKey: "poultryCompany",
+		},
+	];
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -71,7 +73,7 @@ const GroupStatsSection: React.FC = () => {
 							<div className="h-28 w-28 lg:h-32 lg:w-32 flex items-center justify-center mb-4 lg:mb-6 bg-white/10 rounded-full p-6 group-hover:bg-white/20 transition-colors duration-300">
 								<Image
 									src={stat.image}
-									alt={stat.title}
+									alt={t(stat.titleKey)}
 									width={112}
 									height={112}
 									className="object-contain max-h-full max-w-full"
@@ -88,7 +90,7 @@ const GroupStatsSection: React.FC = () => {
 									/>
 								</h3>
 								<p className="text-sm lg:text-base text-gray-300 font-medium leading-relaxed">
-									{stat.title}
+									{t(stat.titleKey)}
 								</p>
 							</div>
 						</div>

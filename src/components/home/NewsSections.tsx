@@ -2,43 +2,43 @@ import "./news-style.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
 import Section from "../Section";
+import { useTranslations } from "next-intl";
 
 type NewsCard = {
 	date: string;
 	image: string;
-	title: string;
-	description: string;
+	titleKey: string;
+	descriptionKey: string;
 };
 
-const news: NewsCard[] = [
-	{
-		date: "16 Feb 2025",
-		image: "/image_shape_mask.png",
-		title: "افتتاح متجر أمل الخير للتمور",
-		description:
-			"شركة أمل الخير تطلق المتجر الإلكتروني الأول لها على الإنترنت يشمل جميع منتجاتها وتقدم خدمة الدفع عبر البطاقات الائتمانية وبطاقه مدى أو الدفع نقداً عند الاستلام، كما يُقدّم العديد من ...",
-	},
-	{
-		date: "16 Feb 2025",
-		image: "/image_shape_mask.png",
-		title: "افتتاح متجر أمل الخير للتمور",
-		description:
-			"شركة أمل الخير تطلق المتجر الإلكتروني الأول لها على الإنترنت يشمل جميع منتجاتها وتقدم خدمة الدفع عبر البطاقات الائتمانية وبطاقه مدى أو الدفع نقداً عند الاستلام، كما يُقدّم العديد من ...",
-	},
-	{
-		date: "16 Feb 2025",
-		image: "/image_shape_mask.png",
-		title: "افتتاح متجر أمل الخير للتمور",
-		description:
-			"شركة أمل الخير تطلق المتجر الإلكتروني الأول لها على الإنترنت يشمل جميع منتجاتها وتقدم خدمة الدفع عبر البطاقات الائتمانية وبطاقه مدى أو الدفع نقداً عند الاستلام، كما يُقدّم العديد من ...",
-	},
-];
-
 const NewsSection: React.FC = () => {
+	const t = useTranslations("News");
+
+	const news: NewsCard[] = [
+		{
+			date: "16 Feb 2025",
+			image: "/image_shape_mask.png",
+			titleKey: "newsItems.storeOpening.title",
+			descriptionKey: "newsItems.storeOpening.description",
+		},
+		{
+			date: "16 Feb 2025",
+			image: "/image_shape_mask.png",
+			titleKey: "newsItems.storeOpening.title",
+			descriptionKey: "newsItems.storeOpening.description",
+		},
+		{
+			date: "16 Feb 2025",
+			image: "/image_shape_mask.png",
+			titleKey: "newsItems.storeOpening.title",
+			descriptionKey: "newsItems.storeOpening.description",
+		},
+	];
+
 	return (
 		<Section className="relative bg-white rtl text-right">
 			<div className="w-full">
-				<h2 className="text-3xl font-bold text-center mb-12">آخر الأخبار!</h2>
+				<h2 className="text-3xl font-bold text-center mb-12">{t("title")}</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{news.map((item, index) => (
 						<div
@@ -48,7 +48,7 @@ const NewsSection: React.FC = () => {
 							<div className="w-full h-48">
 								<Image
 									src={item.image}
-									alt={item.title}
+									alt={t(item.titleKey)}
 									width={320}
 									height={192}
 									className="w-full h-full object-cover"
@@ -58,8 +58,10 @@ const NewsSection: React.FC = () => {
 								{item.date}
 							</span>
 							<div className="p-5">
-								<h3 className="text-lg font-bold mb-2">{item.title}</h3>
-								<p className="text-sm text-gray-600 mb-6">{item.description}</p>
+								<h3 className="text-lg font-bold mb-2">{t(item.titleKey)}</h3>
+								<p className="text-sm text-gray-600 mb-6">
+									{t(item.descriptionKey)}
+								</p>
 								{/* Show Corner */}
 								<div className="cta-container">
 									<div className="content">
@@ -73,7 +75,7 @@ const NewsSection: React.FC = () => {
 			</div>
 			{/* Bottom static curve */}
 			<div className="absolute w-64 h-8 bottom-0 left-0 transform translate-x-1/2 translate-y-1/2 bg-[#353535] rounded-t-full flex justify-center items-top pt-2 gap-3">
-				<h3 className="absolute cursor-pointer -translate-y-[150%]">المزيد من الأخبار</h3>
+				<h3 className="absolute cursor-pointer -translate-y-[150%]">{t("moreNews")}</h3>
 			</div>
 		</Section>
 	);
