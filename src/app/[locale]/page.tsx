@@ -5,6 +5,7 @@ import Group from "@/components/home/Group";
 import GroupStatsSection from "@/components/home/GroupStatsSection";
 import NewsSection from "@/components/home/NewsSections";
 import NewsletterSection from "@/components/home/NewsletterSection";
+import ProductsSection from "@/components/home/Products";
 
 export default function Home() {
 	return (
@@ -20,6 +21,9 @@ export default function Home() {
 
 			{/* Certifications Section */}
 			<Certifications />
+
+			{/* Products Section */}
+			<ProductsSection />
 
 			{/* News Section */}
 			<NewsSection />

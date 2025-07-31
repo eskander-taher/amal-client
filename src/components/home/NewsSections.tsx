@@ -51,7 +51,7 @@ const NewsSection: React.FC = () => {
 									alt={t(item.titleKey)}
 									width={320}
 									height={192}
-									className="w-full h-full object-cover"
+									className="w-full h-full"
 								/>
 							</div>
 							<span className=" top-2 left-6 absolute text-xs font-bold text-gray-500 block mb-2">

@@ -37,6 +37,28 @@
 			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
 		}
 	},
+	"Products": {
+		"title": "Our Featured Products",
+		"subtitle": "Discover our most popular and high-quality products that have earned the trust of customers worldwide",
+		"learnMore": "Learn More",
+		"featuredBadge": "Featured",
+		"featured1": {
+			"title": "Premium Ajwa Dates",
+			"description": "Our signature Ajwa dates from Madinah, known for their exceptional taste and nutritional benefits. Perfect for export and local markets."
+		},
+		"featured2": {
+			"title": "Fresh Tilapia Fish",
+			"description": "Premium tilapia fish raised in our state-of-the-art aquaculture facilities, ensuring the highest quality and freshness for our customers."
+		},
+		"featured3": {
+			"title": "Premium Poultry Feed",
+			"description": "Nutritionally balanced feed formulated specifically for optimal growth and health of broiler chickens and laying hens."
+		},
+		"featured4": {
+			"title": "Fresh Farm Eggs",
+			"description": "Grade A fresh eggs from our free-range chickens, produced under strict quality control and food safety standards."
+		}
+	},
 	"GroupStats": {
 		"datesCompany": "Amal Al Khair Dates Company",
 		"fishCompany": "Amal Al Khair Fish Company",
