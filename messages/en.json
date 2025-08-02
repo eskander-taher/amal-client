@@ -90,6 +90,15 @@
 		"contact": "Contact Us",
 		"searchPlaceholder": "What are you looking for?"
 	},
+	"Breadcrumbs": {
+		"home": "Home",
+		"about": "About Us",
+		"group": "Amal Al Khair Holding Group",
+		"products": "Our Products",
+		"news": "News & Blogs",
+		"jobs": "Jobs",
+		"contact": "Contact Us"
+	},
 	"Footer": {
 		"contactTitle": "Contact Information",
 		"address": "P.O. Box 8524, Riyadh 11492",

@@ -1,4 +1,4 @@
-import Header from "@/components/about/Header";
+import Hero from "@/components/Hero";
 import Aboutus from "@/components/about/Aboutus";
 import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
@@ -12,7 +12,7 @@ export default function AboutPage() {
       <div className="absolute inset-0 z-0 bg-[url('/bg.jpg')] bg-repeat opacity-3" />
 
       <div className="relative z-10 w-full">
-        <Header />
+        <Hero title="حول امل الخير"/>
         <Aboutus />
         <CompanyOverview />
         <DateCompanySection />
