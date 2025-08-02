@@ -86,7 +86,7 @@ export default function Hero({
 	const breadcrumbs = generateBreadcrumbs();
 
 	return (
-		<section className={`relative flex items-center min-h-[60vh] ${className}`}>
+		<section className={`relative min-h-[60vh] ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image src={image} alt={imageAlt} fill className="object-cover" priority />
@@ -95,57 +95,65 @@ export default function Hero({
 			</div>
 
 			{/* Content */}
-			<div className="relative z-10 container mx-auto px-4 py-16 md:py-24">
+			<div className="relative z-10 h-full min-h-[60vh] flex flex-col justify-between">
 				{/* Title and Subtitle */}
-				<div className="max-w-4xl">
-					<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-						{title}
-					</h1>
-					{subtitle && (
-						<p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-							{subtitle}
-						</p>
-					)}
+				<div className="container mx-auto px-4 py-16 md:py-24">
+					<div className="max-w-4xl">
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+							{title}
+						</h1>
+						{subtitle && (
+							<p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+								{subtitle}
+							</p>
+						)}
+					</div>
 				</div>
 
 				{/* Breadcrumb */}
 				{showBreadcrumb && (
-					<nav className="absolute bottom-0" aria-label="Breadcrumb">
-						<ol className="flex items-center space-x-2 text-sm text-white/80">
-							{breadcrumbs.map((breadcrumb, index) => (
-								<li key={breadcrumb.href} className="flex items-center">
-									{index > 0 && (
-										<ChevronRight className="w-4 h-4 mx-2 text-white/60" />
-									)}
-									{breadcrumb.isActive ? (
-										<span className="text-white font-medium">
-											{breadcrumb.label}
-										</span>
-									) : (
-										<Link
-											href={breadcrumb.href}
-											className="flex underline items-center hover:text-white transition-colors duration-200"
-										>
-											{breadcrumb.label}
-										</Link>
-									)}
+					<div className="container mx-auto px-4">
+						<nav aria-label="Breadcrumb">
+							<ol className="flex items-center space-x-5 text-sm text-white/80">
+								{breadcrumbs.map((breadcrumb, index) => (
+									<li key={breadcrumb.href} className="flex items-center">
+										{index > 0 && (
+											<ChevronRight className="w-4 h-4 mx-2 text-white/60" />
+										)}
+										{breadcrumb.isActive ? (
+											<span className="text-white font-medium">
+												{breadcrumb.label}
+											</span>
+										) : (
+											<p className="relative flex-col pb-10">
+												<Link
+													href={breadcrumb.href}
+													className="flex  relative items-center hover:text-white transition-colors duration-200"
+												>
+													{breadcrumb.label}
+												</Link>
+											</p>
+										)}
+									</li>
+								))}
+								<li>
+									<p className="relative flex-col pb-10">
+										<p className="flex  relative items-center hover:text-white transition-colors duration-200">
+											{title}
+										</p>
+										<div
+											className="absolute bg-white rounded-t-full animate-curve"
+											style={{
+												width: `100%`,
+												bottom: "0px",
+												height: "10px",
+											}}
+										/>
+									</p>
 								</li>
-							))}
-							<li key={title} className="flex items-center">
-								<div className="relative flex items-center transition-colors duration-200">
-									{title}
-									<div
-										className="absolute bg-white rounded-t-full animate-curve"
-										style={{
-											width: `100%`,
-											bottom: "-150px",
-											height: "25px",
-										}}
-									/>
-								</div>
-							</li>
-						</ol>
-					</nav>
+							</ol>
+						</nav>
+					</div>
 				)}
 			</div>
 		</section>
