@@ -13,7 +13,6 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
         <h1 className="text-white text-4xl md:text-6xl font-bold text-center">
-          شركة أمل الخير للدواجن
         </h1>
       </div>
     </section>
