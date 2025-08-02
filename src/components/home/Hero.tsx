@@ -7,13 +7,12 @@ const Hero: React.FC = () => {
 	const t = useTranslations("HomePage");
 	return (
 		<section className="relative w-full min-h-[60vh] flex items-center justify-center bg-black">
-			<Image
-				src="/hero.jpg"
-				alt="Professional Team Hero"
-				fill
-				className="object-cover object-center opacity-70"
-				priority
-			/>
+			{/* Background Image */}
+			<div className="absolute inset-0 z-0">
+				<Image src="/hero.jpg" alt="hero background image" fill className="object-cover" priority />
+				{/* Overlay */}
+				<div className="absolute inset-0 bg-black/40" />
+			</div>
 			<div className="relative z-10 flex w-full h-full">
 				<div className="flex flex-col justify-center items-start md:items-start w-full md:w-1/2 h-full py-24 px-4 md:px-16 text-left">
 					<h1 className="text-4xl text-right md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">

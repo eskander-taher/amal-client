@@ -1,16 +1,8 @@
 import React from "react";
+import Hero from "@/components/Hero";
 
 export default function GroupPage() {
 	return (
-		<div
-			style={{
-				minHeight: "60vh",
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-			}}
-		>
-			<h1>Group Page (Dummy)</h1>
-		</div>
+		<Hero title="مجموعة امل الخير"/>
 	);
 }

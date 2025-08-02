@@ -86,7 +86,7 @@ export default function Hero({
 	const breadcrumbs = generateBreadcrumbs();
 
 	return (
-		<div className={`relative ${className}`}>
+		<section className={`relative flex items-center min-h-[60vh] ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image src={image} alt={imageAlt} fill className="object-cover" priority />
@@ -110,7 +110,7 @@ export default function Hero({
 
 				{/* Breadcrumb */}
 				{showBreadcrumb && (
-					<nav className="mb-6 absolute bottom-0" aria-label="Breadcrumb">
+					<nav className="absolute bottom-0" aria-label="Breadcrumb">
 						<ol className="flex items-center space-x-2 text-sm text-white/80">
 							{breadcrumbs.map((breadcrumb, index) => (
 								<li key={breadcrumb.href} className="flex items-center">
@@ -124,18 +124,30 @@ export default function Hero({
 									) : (
 										<Link
 											href={breadcrumb.href}
-											className="flex items-center hover:text-white transition-colors duration-200"
+											className="flex underline items-center hover:text-white transition-colors duration-200"
 										>
-											{index === 0 && <Home className="w-4 h-4 mr-1" />}
 											{breadcrumb.label}
 										</Link>
 									)}
 								</li>
 							))}
+							<li key={title} className="flex items-center">
+								<div className="relative flex items-center transition-colors duration-200">
+									{title}
+									<div
+										className="absolute bg-white rounded-t-full animate-curve"
+										style={{
+											width: `100%`,
+											bottom: "-150px",
+											height: "25px",
+										}}
+									/>
+								</div>
+							</li>
 						</ol>
 					</nav>
 				)}
 			</div>
-		</div>
+		</section>
 	);
 }
