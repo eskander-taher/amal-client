@@ -1,13 +1,13 @@
-import "./style.css";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
+import CardLink from "../CardLink";
 
 type CardData = {
 	image: string;
 	titleKey: string;
 	descriptionKey: string;
+	href: string;
 };
 
 const GroupSection: React.FC = () => {
@@ -18,21 +18,25 @@ const GroupSection: React.FC = () => {
 			image: "/group/dates.png",
 			titleKey: "datesCompany.title",
 			descriptionKey: "datesCompany.description",
+			href: "/group/dates",
 		},
 		{
 			image: "/group/fish.png",
 			titleKey: "fishCompany.title",
 			descriptionKey: "fishCompany.description",
+			href: "/group/fish",
 		},
 		{
 			image: "/group/alaf.png",
 			titleKey: "feedCompany.title",
 			descriptionKey: "feedCompany.description",
+			href: "/group/feed",
 		},
 		{
 			image: "/group/eggs.png",
 			titleKey: "poultryCompany.title",
 			descriptionKey: "poultryCompany.description",
+			href: "/group/poultry",
 		},
 	];
 
@@ -45,7 +49,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<div
 							key={index}
-							className="relative w-full h-[350px] rounded-lg bg-white p-6 flex flex-col items-center text-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+							className="relative w-full h-[350px] rounded-lg bg-white p-6 flex flex-col items-center text-center transition-shadow duration-300"
 						>
 							<Image
 								src={card.image}
@@ -57,12 +61,7 @@ const GroupSection: React.FC = () => {
 							<h3 className="text-lg font-bold mb-2">{t(card.titleKey)}</h3>
 							<p className="text-sm text-gray-600 mb-10">{t(card.descriptionKey)}</p>
 
-							{/* More Corner */}
-							<div className="cta-container">
-								<div className="content">
-									<FaArrowLeftLong />
-								</div>
-							</div>
+							<CardLink href={card.href} />
 						</div>
 					))}
 				</div>
