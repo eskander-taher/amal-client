@@ -10,6 +10,7 @@ import ProductsSection from "@/components/home/Products";
 export default function Home() {
 	return (
 		<div className="relative flex flex-col gap-0">
+
 			{/* Hero Section */}
 			<Hero />
 

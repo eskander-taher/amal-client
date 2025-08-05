@@ -88,7 +88,11 @@
 		"news": "News & Blogs",
 		"jobs": "Jobs",
 		"contact": "Contact Us",
-		"searchPlaceholder": "What are you looking for?"
+		"searchPlaceholder": "What are you looking for?",
+		"dates": "Dates",
+		"fish": "Fish",
+		"feed": "Feed",
+		"poultry": "Poultry"
 	},
 	"Breadcrumbs": {
 		"home": "Home",

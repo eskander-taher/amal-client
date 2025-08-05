@@ -3,6 +3,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
+import CardLink from "../CardLink";
 
 type NewsCard = {
 	date: string;
@@ -62,12 +63,7 @@ const NewsSection: React.FC = () => {
 								<p className="text-sm text-gray-600 mb-6">
 									{t(item.descriptionKey)}
 								</p>
-								{/* Show Corner */}
-								<div className="cta-container">
-									<div className="content">
-										<FaArrowLeftLong />
-									</div>
-								</div>
+								<CardLink backgroundColor="#fff" />
 							</div>
 						</div>
 					))}
