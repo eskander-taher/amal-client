@@ -80,8 +80,6 @@ export default function NavBar() {
 
 										{submenuOpen === item.href && (
 											<>
-												{/* Invisible bridge to prevent gap */}
-												<div className="absolute top-full left-0 w-full h-2 bg-transparent" />
 												<div className="absolute top-full left-0 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
 													{item.submenu.map((subItem) => {
 														const isSubActive =
