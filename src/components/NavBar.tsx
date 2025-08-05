@@ -76,26 +76,13 @@ export default function NavBar() {
 											}`}
 										>
 											{item.label}
-											<svg
-												className="w-4 h-4 ml-1"
-												fill="none"
-												stroke="currentColor"
-												viewBox="0 0 24 24"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth="2"
-													d="M19 9l-7 7-7-7"
-												/>
-											</svg>
 										</button>
 
 										{submenuOpen === item.href && (
 											<>
 												{/* Invisible bridge to prevent gap */}
 												<div className="absolute top-full left-0 w-full h-2 bg-transparent" />
-												<div className="absolute top-full left-0 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+												<div className="absolute top-full left-0 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
 													{item.submenu.map((subItem) => {
 														const isSubActive =
 															subItem.href === pathname;
