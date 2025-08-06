@@ -6,42 +6,53 @@ import GroupStatsSection from "@/components/home/GroupStatsSection";
 import NewsSection from "@/components/home/NewsSections";
 import NewsletterSection from "@/components/home/NewsletterSection";
 import ProductsSection from "@/components/home/Products";
+import SideNavigation from "@/components/SideNavigation";
 
 export default function Home() {
 	return (
 		<div className="relative flex flex-col gap-0">
 			{/* Hero Section */}
-			<Hero />
+			<section id="hero">
+				<Hero />
+			</section>
 
 			{/* About Section */}
-			<About />
+			<section id="about">
+				<About />
+			</section>
 
 			{/* Group/Services Section */}
-			<Group />
+			<section id="group">
+				<Group />
+			</section>
 
 			{/* Certifications Section */}
-			<Certifications />
+			<section id="certifications">
+				<Certifications />
+			</section>
 
 			{/* Products Section */}
-			<ProductsSection />
+			<section id="products">
+				<ProductsSection />
+			</section>
 
 			{/* News Section */}
-			<NewsSection />
+			<section id="news">
+				<NewsSection />
+			</section>
 
 			{/* Group stats Section */}
-			<GroupStatsSection />
+			<section id="stats">
+				<GroupStatsSection />
+			</section>
 
 			{/* Newsletter Section */}
-			<NewsletterSection />
+			<section id="newsletter">
+				<NewsletterSection />
+			</section>
 
-			{/* right static curve */}
-			<div className="fixed top-1/2 right-0 h-64 w-5 bg-white rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2 shadow-lg">
-				<div className="w-3 h-3 bg-[#E3A347] rounded-full"></div>
-				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
-				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
-				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
-				<div className="w-3 h-3 bg-[#E2E2E2] rounded-full"></div>
-			</div>
+			{/* Functional Side Navigation */}
+			<SideNavigation />
 		</div>
 	);
 }
