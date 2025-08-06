@@ -87,11 +87,13 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="relative w-full h-[350px] rounded-lg bg-white p-6 flex flex-col items-center text-center"
+							className="relative w-full h-[400px] rounded-lg bg-white p-6 flex flex-col"
 							whileHover="hover"
 							whileTap={{ scale: 0.98 }}
 						>
+							{/* Image Section - Fixed height for alignment */}
 							<motion.div
+								className="h-32 flex items-center justify-center mb-6"
 								initial={{ opacity: 0, scale: 0.5 }}
 								animate={
 									isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }
@@ -102,18 +104,23 @@ const GroupSection: React.FC = () => {
 								<Image
 									src={card.image}
 									alt={t(card.titleKey)}
-									width={64}
-									height={64}
-									className="invert mb-4 object-contain"
+									width={120}
+									height={120}
+									className="invert object-contain"
 								/>
 							</motion.div>
 
-							<motion.h3 className="text-lg font-bold mb-2" variants={titleVariants}>
+							{/* Title Section - Fixed height for alignment */}
+							<motion.h3
+								className="text-lg font-bold mb-4 h-12 flex items-center justify-center text-center"
+								variants={titleVariants}
+							>
 								{t(card.titleKey)}
 							</motion.h3>
 
+							{/* Description Section - Flexible height */}
 							<motion.p
-								className="text-sm text-gray-600 mb-10 flex-1"
+								className="text-sm text-gray-600 flex-1 text-center leading-relaxed"
 								initial={{ opacity: 0 }}
 								animate={isInView ? { opacity: 1 } : { opacity: 0 }}
 								transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
@@ -121,7 +128,8 @@ const GroupSection: React.FC = () => {
 								{t(card.descriptionKey)}
 							</motion.p>
 
-							<div>
+							{/* Card Link - Fixed position at bottom */}
+							<div className="mt-4">
 								<CardLink href={card.href} />
 							</div>
 						</motion.div>

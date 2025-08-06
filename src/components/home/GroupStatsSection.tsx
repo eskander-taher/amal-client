@@ -70,7 +70,7 @@ const GroupStatsSection: React.FC = () => {
 							key={index}
 							className="flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
 						>
-							<div className="h-28 w-28 lg:h-32 lg:w-32 flex items-center justify-center mb-4 lg:mb-6 bg-white/10 rounded-full p-6 group-hover:bg-white/20 transition-colors duration-300">
+							<div className="h-28 w-28 lg:h-32 lg:w-32 flex items-center justify-center mb-4 lg:mb-6 rounded-full p-6 group-hover:bg-white/20 transition-colors duration-300">
 								<Image
 									src={stat.image}
 									alt={t(stat.titleKey)}
