@@ -54,7 +54,7 @@ const SideNavigation: React.FC = () => {
 	};
 
 	return (
-		<div className="fixed top-1/2 right-0 h-64 w-5 bg-white rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2 shadow-lg z-50">
+		<div className="fixed top-1/2 right-0 h-64 w-5 bg-transparent rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2 shadow-lg z-50">
 			{sections.map((section) => (
 				<button
 					key={section.id}
