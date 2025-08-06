@@ -87,7 +87,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="relative w-full h-[400px] rounded-lg bg-white p-6 flex flex-col"
+							className="relative w-full h-[400px] rounded-lg bg-white p-6 flex flex-col hover:scale-105 transition-transform duration-300"
 							whileHover="hover"
 							whileTap={{ scale: 0.98 }}
 						>

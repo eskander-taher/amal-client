@@ -47,7 +47,7 @@ const ProductsSection: React.FC = () => {
 					{products.map((product, index) => (
 						<div
 							key={index}
-							className="relative w-full h-[320px] rounded-lg bg-white p-4 flex flex-col hover:shadow-lg transition-shadow duration-300"
+							className="relative w-full h-[320px] rounded-lg bg-white p-4 flex flex-col hover:scale-105 transition-all duration-300"
 						>
 							{/* Image Section - Fixed height for alignment */}
 							<div className="h-48 flex items-center justify-center mb-4 overflow-hidden">
