@@ -83,7 +83,7 @@ export default function Certifications() {
 			{/* Curve */}
 			{hoveredIndex !== null && (
 				<div
-					className="absolute bg-white rounded-t-full animate-curve"
+					className="absolute bg-gray-200 rounded-t-full animate-curve"
 					style={{
 						width: `${curveWidth}px`,
 						left: `${curveX - curveWidth / 2}px`,

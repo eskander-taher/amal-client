@@ -3,6 +3,15 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
 
-const config: NextConfig = {};
+const config: NextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "**",
+			},
+		],
+	},
+};
 
 export default withNextIntl(config);

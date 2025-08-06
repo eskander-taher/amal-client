@@ -1,90 +1,82 @@
 "use client";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
 import Section from "../Section";
-import { useTranslations } from "next-intl";
+import CardLink from "../CardLink";
 
-type ProductCard = {
+type ProductData = {
 	image: string;
-	titleKey: string;
-	featured: boolean;
+	title: string;
+	href: string;
 };
 
 const ProductsSection: React.FC = () => {
-	const t = useTranslations("Products");
-
-	const products: ProductCard[] = [
+	const products: ProductData[] = [
 		{
-			image: "/group/dates.png",
-			titleKey: "featured1.title",
-			featured: true,
+			image: "/products/product1.png",
+			title: "صدور دجاج الطازج - مكعبات",
+			href: "/products/1",
 		},
 		{
-			image: "/group/fish.png",
-			titleKey: "featured2.title",
-			featured: true,
+			image: "/products/product2.png",
+			title: "فيليه صدر دجاج طازج",
+			href: "/products/2",
 		},
 		{
-			image: "/group/alaf.png",
-			titleKey: "featured3.title",
-			featured: true,
+			image: "/products/product3.png",
+			title: "دجاجة تاجة كاملة عباء الكيس",
+			href: "/products/3",
 		},
 		{
-			image: "/group/eggs.png",
-			titleKey: "featured4.title",
-			featured: true,
+			image: "/products/product4.png",
+			title: "دجاجة كاملة متبله بنكهة البراني",
+			href: "/products/4",
 		},
 	];
 
 	return (
-		<Section className="bg-white">
+		<Section className="bg-gray-200">
 			<div className="w-full">
 				<div className="text-center mb-12">
-					<h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-						{t("title")}
-					</h2>
-					<p className="text-lg text-gray-600 max-w-3xl mx-auto">{t("subtitle")}</p>
+					<h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">منتجاتنا</h2>
+					<p className="text-lg text-gray-600 max-w-3xl mx-auto">
+						اكتشف مجموعة منتجاتنا المميزة والعالية الجودة
+					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{products.map((product, index) => (
 						<div
 							key={index}
-							className="group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+							className="relative w-full h-[320px] rounded-lg bg-white p-4 flex flex-col hover:shadow-lg transition-shadow duration-300"
 						>
-							{/* Featured Badge */}
-							{product.featured && (
-								<div className="absolute top-4 right-4 z-10">
-									<span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg">
-										{t("featuredBadge")}
-									</span>
-								</div>
-							)}
-
-							{/* Product Image */}
-							<div className="relative h-48 bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+							{/* Image Section - Fixed height for alignment */}
+							<div className="h-48 flex items-center justify-center mb-4 overflow-hidden">
 								<Image
 									src={product.image}
-									alt={t(product.titleKey)}
-									width={120}
-									height={120}
-									className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+									alt={product.title}
+									width={140}
+									height={140}
+									className="object-contain hover:scale-110 transition-transform duration-300"
+									onError={(e) => {
+										console.error(`Failed to load image: ${product.image}`);
+										// Fallback to a different image if the product image fails
+										const target = e.target as HTMLImageElement;
+										target.src = "/AMAL_logo.png";
+									}}
+									onLoad={() => {
+										console.log(`Successfully loaded image: ${product.image}`);
+									}}
 								/>
 							</div>
 
-							{/* Product Info */}
-							<div className="p-6">
-								<h3 className="text-xl font-bold text-gray-900 mb-4">
-									{t(product.titleKey)}
-								</h3>
+							{/* Title Section - Fixed height for alignment */}
+							<h3 className="text-base font-bold mb-4 h-10 flex items-center justify-center text-center">
+								{product.title}
+							</h3>
 
-								{/* CTA Button */}
-								<div className="flex items-center justify-between">
-									<button className="flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
-										<FaArrowLeftLong className="ml-2 text-xs" />
-										{t("learnMore")}
-									</button>
-								</div>
+							{/* Card Link - Fixed position at bottom */}
+							<div className="mt-auto">
+								<CardLink href={product.href} />
 							</div>
 						</div>
 					))}
