@@ -4,7 +4,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
 
-export default function NewsletterSection() {
+export default function Newsletter() {
 	const t = useTranslations("Newsletter");
 	const [email, setEmail] = useState("");
 
@@ -16,7 +16,10 @@ export default function NewsletterSection() {
 	};
 
 	return (
-		<Section className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-8 lg:py-12">
+		<Section
+			id="newsletter"
+			className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-8 lg:py-12"
+		>
 			<div className="w-full">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
 					{/* Arabic Text - Right Side */}

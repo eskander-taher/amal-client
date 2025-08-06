@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "@/components/Hero";
 import About from "@/components/products/About";
 import Products from "@/components/products/Products";
-import NewsletterSection from "@/components/home/NewsletterSection";
+import NewsletterSection from "@/components/home/Newsletter";
 
 export default function ProductsPage() {
 	return (

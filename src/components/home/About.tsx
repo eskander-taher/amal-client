@@ -7,7 +7,7 @@ const About: React.FC = () => {
 	const locale = useLocale();
 
 	return (
-		<Section className="relative">
+		<Section id="about" className="relative">
 			<div className="w-full flex gap-20">
 				<Image
 					src={locale == "ar" ? "/about.svg" : "/amal_big_logo_en.png"}

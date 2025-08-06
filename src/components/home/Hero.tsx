@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
 	const currentSlideData = carouselSlides[currentSlide];
 
 	return (
-		<section className="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
+		<section id="hero" className="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (
 				<div

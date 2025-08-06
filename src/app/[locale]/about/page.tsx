@@ -4,7 +4,7 @@ import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import DateCompanySection from "@/components/about/DateCompanySection";
 import ContactSection from "@/components/about/ContactSection";
-import NewsletterSection from "@/components/home/NewsletterSection";
+import NewsletterSection from "@/components/home/Newsletter";
 
 export default function AboutPage() {
   return (

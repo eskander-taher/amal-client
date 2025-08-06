@@ -9,7 +9,7 @@ type ProductData = {
 	href: string;
 };
 
-const ProductsSection: React.FC = () => {
+const Products: React.FC = () => {
 	const products: ProductData[] = [
 		{
 			image: "/products/product1.png",
@@ -34,7 +34,7 @@ const ProductsSection: React.FC = () => {
 	];
 
 	return (
-		<Section className="bg-gray-200">
+		<Section id="products" className="bg-gray-200">
 			<div className="w-full">
 				<div className="text-center mb-12">
 					<h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">منتجاتنا</h2>
@@ -86,4 +86,4 @@ const ProductsSection: React.FC = () => {
 	);
 };
 
-export default ProductsSection;
+export default Products;

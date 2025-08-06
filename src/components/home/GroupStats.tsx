@@ -11,7 +11,7 @@ type StatData = {
 	titleKey: string;
 };
 
-const GroupStatsSection: React.FC = () => {
+const GroupStats: React.FC = () => {
 	const t = useTranslations("GroupStats");
 	const sectionRef = useRef<HTMLElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
@@ -62,7 +62,7 @@ const GroupStatsSection: React.FC = () => {
 	}, []);
 
 	return (
-		<Section ref={sectionRef} className="bg-[#353535] text-white">
+		<Section id="stats" ref={sectionRef} className="bg-[#353535] text-white">
 			<div className="w-full">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 					{stats.map((stat, index) => (
@@ -101,4 +101,4 @@ const GroupStatsSection: React.FC = () => {
 	);
 };
 
-export default GroupStatsSection;
+export default GroupStats;

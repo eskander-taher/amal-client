@@ -1,5 +1,4 @@
-import "./news-style.css";
-import { FaArrowLeftLong } from "react-icons/fa6";
+
 import Image from "next/image";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
@@ -12,7 +11,7 @@ type NewsCard = {
 	descriptionKey: string;
 };
 
-const NewsSection: React.FC = () => {
+const News: React.FC = () => {
 	const t = useTranslations("News");
 
 	const news: NewsCard[] = [
@@ -37,7 +36,7 @@ const NewsSection: React.FC = () => {
 	];
 
 	return (
-		<Section className="relative bg-white rtl text-right">
+		<Section id="news" className="relative bg-white rtl text-right">
 			<div className="w-full">
 				<h2 className="text-3xl font-bold text-center mb-12">{t("title")}</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -77,4 +76,4 @@ const NewsSection: React.FC = () => {
 	);
 };
 
-export default NewsSection;
+export default News;

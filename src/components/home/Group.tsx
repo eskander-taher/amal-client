@@ -67,7 +67,7 @@ const GroupSection: React.FC = () => {
 	};
 
 	return (
-		<Section className="bg-gray-200">
+		<Section id="group" className="bg-gray-200">
 			<div className="w-full" ref={ref}>
 				<motion.h2
 					className="text-2xl font-semibold text-center mb-12"

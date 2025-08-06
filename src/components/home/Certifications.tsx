@@ -39,7 +39,7 @@ export default function Certifications() {
 	}, [hoveredIndex]);
 
 	return (
-		<Section ref={sectionRef} className="bg-[#353535] text-white relative">
+		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
 			{/* Top static curve */}
 			<div className="absolute w-80 h-8 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-b-full" />
 
