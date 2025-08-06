@@ -33,6 +33,39 @@ body, html {
   }
 }
 
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes navbarBlur {
+  from {
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 1);
+  }
+  to {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
@@ -45,4 +78,152 @@ body, html {
 .animate-fade-in-delay-2 {
   animation: fadeIn 0.8s ease-out 0.4s forwards;
   opacity: 0;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+/* Navbar Blur Effects */
+.navbar-blur {
+  animation: navbarBlur 0.3s ease-out forwards;
+}
+
+/* Glass morphism effects */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect-strong {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Navbar transparency effects */
+.navbar-transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.navbar-solid {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Hero full height adjustments */
+.hero-full-height {
+  min-height: 100vh;
+  height: 100vh;
+}
+
+/* Smooth text color transitions */
+.text-transition {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Enhanced backdrop blur for better performance */
+.backdrop-blur-enhanced {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Navbar curve slide animations */
+@keyframes slideDownCurve {
+  from {
+    transform: translate(-50%, -32px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpCurve {
+  from {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -32px);
+    opacity: 0;
+  }
+}
+
+.navbar-curve-slide-down {
+  animation: slideDownCurve 0.5s ease-out forwards;
+}
+
+.navbar-curve-slide-up {
+  animation: slideUpCurve 0.5s ease-out forwards;
+}
+
+/* Smooth curve transitions */
+.navbar-curve-transition {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Delayed curve animations */
+.delay-0 {
+  transition-delay: 0ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+/* Enhanced curve slide animations with delays */
+@keyframes slideDownCurveDelayed {
+  0% {
+    transform: translate(-50%, -32px);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -32px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpCurveDelayed {
+  0% {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -32px);
+    opacity: 0;
+  }
+}
+
+.navbar-curve-slide-down-delayed {
+  animation: slideDownCurveDelayed 0.7s ease-out forwards;
+}
+
+.navbar-curve-slide-up-delayed {
+  animation: slideUpCurveDelayed 0.7s ease-out forwards;
 }

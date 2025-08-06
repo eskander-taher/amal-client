@@ -3,7 +3,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 
 const getNavItems = (t: (key: string) => string) => {
@@ -34,15 +34,39 @@ export default function NavBar() {
 	const navItems = getNavItems(t);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [submenuOpen, setSubmenuOpen] = useState<string | null>(null);
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	// Scroll detection
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.scrollY;
+			setIsScrolled(scrollTop > 10);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	return (
-		<nav className="bg-white px-10 py-2 flex  shadow-sm sticky top-0 z-50">
+		<nav
+			className={`px-10 py-2 flex shadow-sm fixed top-0 w-full z-50 transition-all duration-300  ${
+				isScrolled
+					? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20"
+					: "bg-transparent delay-200"
+			}`}
+		>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
 
 				<div className="relative">
 					{/* Top static curve */}
-					<div className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-b-full z-0" />
+					<div
+						className={`absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 rounded-b-full z-0 transition-all duration-500 ease-out ${
+							isScrolled
+								? "bg-white/95 backdrop-blur-md translate-y-1/2 opacity-100 delay-200"
+								: "bg-transparent -translate-y-8 opacity-0"
+						}`}
+					/>
 					<Link className="relative z-10" href="/">
 						<Image
 							src={locale == "ar" ? "/amal_big_logo_ar.png" : "/amal_big_logo_en.png"}
@@ -71,8 +95,12 @@ export default function NavBar() {
 										<button
 											className={`px-2 py-2 rounded-lg transition-all duration-200 flex items-center ${
 												isActive
-													? "text-gray-900 font-bold"
-													: "text-gray-700 hover:text-gray-800 font-small"
+													? isScrolled
+														? "text-gray-900 font-bold"
+														: "text-white font-bold"
+													: isScrolled
+													? "text-gray-700 hover:text-gray-800 font-small"
+													: "text-white/90 hover:text-white font-small"
 											}`}
 										>
 											{item.label}
@@ -80,7 +108,13 @@ export default function NavBar() {
 
 										{submenuOpen === item.href && (
 											<>
-												<div className="absolute top-full left-0 w-full bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+												<div
+													className={`absolute top-full left-0 w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ${
+														isScrolled
+															? "bg-white/95 backdrop-blur-md border-white/20"
+															: "bg-white/90 backdrop-blur-md border-white/20"
+													}`}
+												>
 													{item.submenu.map((subItem) => {
 														const isSubActive =
 															subItem.href === pathname;
@@ -107,8 +141,12 @@ export default function NavBar() {
 										href={item.href}
 										className={`px-2 py-2 rounded-lg transition-all duration-200 ${
 											isActive
-												? "text-gray-900 font-bold"
-												: "text-gray-700 hover:text-gray-800 font-small"
+												? isScrolled
+													? "text-gray-900 font-bold"
+													: "text-white font-bold"
+												: isScrolled
+												? "text-gray-700 hover:text-gray-800 font-small"
+												: "text-white/90 hover:text-white font-small"
 										}`}
 									>
 										{item.label}
@@ -125,7 +163,11 @@ export default function NavBar() {
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}
-							className="border border-gray-300 rounded-md py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm"
+							className={`border rounded-md py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm transition-all duration-300 ${
+								isScrolled
+									? "border-gray-300 bg-white"
+									: "border-white/30 bg-white/20 backdrop-blur-sm text-white placeholder-white/70"
+							}`}
 						/>
 						<span
 							className={`absolute inset-y-0 flex items-center pl-1 ${
@@ -133,7 +175,9 @@ export default function NavBar() {
 							}`}
 						>
 							<svg
-								className="w-5 h-5 text-gray-400"
+								className={`w-5 h-5 transition-colors duration-300 ${
+									isScrolled ? "text-gray-400" : "text-white/70"
+								}`}
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -152,12 +196,18 @@ export default function NavBar() {
 
 				{/* Hamburger for Mobile */}
 				<button
-					className="md:hidden p-2 border border-gray-300 rounded-lg"
+					className={`md:hidden p-2 border rounded-lg transition-all duration-300 ${
+						isScrolled
+							? "border-gray-300 bg-white"
+							: "border-white/30 bg-white/20 backdrop-blur-sm"
+					}`}
 					onClick={() => setMenuOpen((v) => !v)}
 					aria-label="Open menu"
 				>
 					<svg
-						className="w-6 h-6 text-blue-700"
+						className={`w-6 h-6 transition-colors duration-300 ${
+							isScrolled ? "text-blue-700" : "text-white"
+						}`}
 						fill="none"
 						stroke="currentColor"
 						strokeWidth="2"
@@ -174,7 +224,13 @@ export default function NavBar() {
 
 			{/* Mobile Menu */}
 			{menuOpen && (
-				<div className="md:hidden mt-4 bg-white rounded-xl shadow-lg border border-gray-100 p-4">
+				<div
+					className={`md:hidden mt-4 rounded-xl shadow-lg border p-4 transition-all duration-300 ${
+						isScrolled
+							? "bg-white/95 backdrop-blur-md border-white/20"
+							: "bg-white/90 backdrop-blur-md border-white/20"
+					}`}
+				>
 					{navItems.map((item) => {
 						const isActive =
 							item.href === pathname ||
