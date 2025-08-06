@@ -26,16 +26,6 @@ export default function LanguageSwitcher() {
 		return routing.locales[nextIndex];
 	};
 
-	// const getFlag = (locale: "ar" | "en") => {
-	// 	switch (locale) {
-	// 		case "en":
-	// 			return "🇾🇪";
-	// 		case "ar":
-	// 			return "🇺🇸";
-	// 		default:
-	// 			return "🏳️";
-	// 	}
-	// };
 
 	const getLocaleName = (locale: "ar" | "en") => {
 		switch (locale) {
@@ -51,10 +41,9 @@ export default function LanguageSwitcher() {
 	return (
 		<button
 			onClick={() => switchToLocale(getNextLocale())}
-			className="mx-2 flex items-center space-x-2 px-3 py-2 bg-white hover:bg-gray-50 border-none transition-all duration-200 hover:shadow-md cursor-pointer"
+			className="mx-2 flex items-center space-x-2 px-3 py-2 bg-white hover:bg-gray-50 border-none transition-all duration-200 hover:shadow-md cursor-pointer rounded-md"
 			title={`Switch to ${getLocaleName(getNextLocale() as "ar" | "en")}`}
 		>
-			{/* <span className="text-lg">{getFlag(currentLocale as "ar" | "en")}</span> */}
 			<span className="text-sm font-medium text-gray-700 hidden sm:inline">
 				{getLocaleName(currentLocale as "ar" | "en")}
 			</span>

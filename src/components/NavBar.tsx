@@ -109,24 +109,29 @@ export default function NavBar() {
 										{submenuOpen === item.href && (
 											<>
 												<div
-													className={`absolute top-full left-0 w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ${
+													className={`absolute top-full left-0 w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
 														isScrolled
 															? "bg-white/95 backdrop-blur-md border-white/20"
 															: "bg-white/90 backdrop-blur-md border-white/20"
-													}`}
+													} animate-submenu-slide-down origin-top`}
 												>
-													{item.submenu.map((subItem) => {
+													{item.submenu.map((subItem, subIndex) => {
 														const isSubActive =
 															subItem.href === pathname;
 														return (
 															<Link
 																key={subItem.href}
 																href={subItem.href}
-																className={`block px-4 py-2 text-sm ${
+																className={`block px-4 py-2 text-sm transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item ${
 																	isSubActive
 																		? "bg-blue-50 text-blue-700 font-medium"
 																		: "text-gray-700 hover:bg-gray-50"
 																}`}
+																style={{
+																	animationDelay: `${
+																		subIndex * 50
+																	}ms`,
+																}}
 															>
 																{subItem.label}
 															</Link>
