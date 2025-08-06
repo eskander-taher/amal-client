@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { FaArrowLeftLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const Hero: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -128,9 +129,14 @@ const Hero: React.FC = () => {
 			</button>
 
 			{/* Bottom static curve */}
-			<div className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 bg-white rounded-t-full flex justify-center items-top pt-1 gap-3 z-30">
+			<motion.div
+				className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 bg-white rounded-t-full flex justify-center items-top pt-1 gap-3 z-30"
+				initial={{ y: 50, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
+			>
 				{carouselSlides.map((_, index) => (
-					<button
+					<motion.button
 						key={index}
 						onClick={() => goToSlide(index)}
 						className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
@@ -139,9 +145,14 @@ const Hero: React.FC = () => {
 								: "bg-gray-200 hover:bg-gray-200/70"
 						}`}
 						aria-label={`Go to slide ${index + 1}`}
+						initial={{ scale: 0 }}
+						animate={{ scale: 1 }}
+						transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+						whileHover={{ scale: 1.2 }}
+						whileTap={{ scale: 0.9 }}
 					/>
 				))}
-			</div>
+			</motion.div>
 		</section>
 	);
 };

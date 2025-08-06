@@ -268,3 +268,29 @@ body, html {
   transform: translateX(5px);
   background-color: rgba(59, 130, 246, 0.1);
 }
+
+/* Logo contrast effects */
+.logo-white {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease-out;
+}
+
+.logo-normal {
+  filter: brightness(1) contrast(1);
+  transition: filter 0.3s ease-out;
+}
+
+.logo-enhanced {
+  filter: brightness(1.1) contrast(1.2);
+  transition: filter 0.3s ease-out;
+}
+
+/* Logo hover effects */
+.logo-hover {
+  transition: all 0.3s ease-out;
+}
+
+.logo-hover:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}

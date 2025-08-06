@@ -74,6 +74,9 @@ export default function NavBar() {
 							width={260}
 							height={75}
 							priority
+							className={`transition-all duration-300 logo-hover ${
+								isScrolled ? "logo-enhanced" : "logo-white"
+							}`}
 						/>
 					</Link>
 				</div>
