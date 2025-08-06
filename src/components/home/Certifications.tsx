@@ -66,7 +66,7 @@ export default function Certifications() {
 								hoveredIndex === index ? "opacity-100" : "opacity-60"
 							}`}
 						>
-							<div className="h-20 w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 flex items-center justify-center bg-white/10 rounded-full p-4 group-hover:bg-white/20 transition-colors duration-300">
+							<div className="h-20 w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 flex items-center justify-center  rounded-full p-4 group-hover:bg-white/20 transition-colors duration-300">
 								<Image
 									src={logo.src}
 									alt={logo.alt}

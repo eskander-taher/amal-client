@@ -137,7 +137,7 @@ export default function Hero({
 									</li>
 								))}
 								<li>
-									<p className="relative flex-col pb-10">
+									<div className="relative flex-col pb-10">
 										<p className="flex  relative items-center hover:text-white transition-colors duration-200">
 											{title}
 										</p>
@@ -149,7 +149,7 @@ export default function Hero({
 												height: "10px",
 											}}
 										/>
-									</p>
+									</div>
 								</li>
 							</ol>
 						</nav>
