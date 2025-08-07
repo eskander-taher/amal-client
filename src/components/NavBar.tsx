@@ -11,13 +11,13 @@ const getNavItems = (t: (key: string) => string) => {
 		{ href: "/", label: t("home") },
 		{ href: "/about", label: t("about") },
 		{
-			href: "/group",
+			href: "#",
 			label: t("group"),
 			submenu: [
-				{ href: "/group/dates", label: t("dates") },
-				{ href: "/group/fish", label: t("fish") },
-				{ href: "/group/feed", label: t("feed") },
-				{ href: "/group/poultry", label: t("poultry") },
+				{ href: "/dates", label: t("dates") },
+				{ href: "/fish", label: t("fish") },
+				{ href: "/feed", label: t("feed") },
+				{ href: "/poultry", label: t("poultry") },
 			],
 		},
 		{ href: "/products", label: t("products") },
