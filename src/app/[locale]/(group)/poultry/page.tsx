@@ -18,16 +18,17 @@ export default function PoultryPage() {
 							<h3 className="text-xl font-semibold mb-4">Poultry Excellence</h3>
 							<p className="text-gray-600">
 								Our modern poultry facilities produce high-quality chicken meat and
-								eggs using advanced farming techniques and strict quality control
+								poultry using advanced farming techniques and strict quality control
 								measures.
 							</p>
 						</div>
 
 						<div className="bg-white p-6 rounded-lg shadow-md">
-							<h3 className="text-xl font-semibold mb-4">Fresh Farm Eggs</h3>
+							<h3 className="text-xl font-semibold mb-4">Fresh Farm poultry</h3>
 							<p className="text-gray-600">
-								We produce Grade A fresh eggs from our free-range chickens, ensuring
-								the highest quality and nutritional value for our customers.
+								We produce Grade A fresh poultry from our free-range chickens,
+								ensuring the highest quality and nutritional value for our
+								customers.
 							</p>
 						</div>
 					</div>

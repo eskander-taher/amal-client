@@ -32,13 +32,13 @@ const GroupSection: React.FC = () => {
 			href: "/group/fish",
 		},
 		{
-			image: "/group/alaf.png",
+			image: "/group/feed.png",
 			titleKey: "feedCompany.title",
 			descriptionKey: "feedCompany.description",
 			href: "/group/feed",
 		},
 		{
-			image: "/group/eggs.png",
+			image: "/group/poultry.png",
 			titleKey: "poultryCompany.title",
 			descriptionKey: "poultryCompany.description",
 			href: "/group/poultry",

@@ -28,12 +28,12 @@ const GroupStats: React.FC = () => {
 			titleKey: "fishCompany",
 		},
 		{
-			image: "/group/alaf.png",
+			image: "/group/feed.png",
 			count: 156077,
 			titleKey: "feedCompany",
 		},
 		{
-			image: "/group/eggs.png",
+			image: "/group/poultry.png",
 			count: 65876,
 			titleKey: "poultryCompany",
 		},

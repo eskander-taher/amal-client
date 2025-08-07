@@ -3,7 +3,7 @@ export interface Product {
 	image: string;
 	title: string;
 	description: string;
-	category: "dates" | "poultry" | "fish" | "feed" | "eggs";
+	category: "dates" | "poultry" | "fish" | "feed" | "poultry";
 	featured: boolean;
 	price?: string;
 	weight?: string;
@@ -99,7 +99,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "premium-feed",
-		image: "/group/alaf.png",
+		image: "/group/feed.png",
 		title: "أعلاف دواجن مميزة",
 		description:
 			"أعلاف متوازنة غذائياً مصممة خصيصاً للنمو الأمثل وصحة دجاج التسمين والدجاج البياض.",
@@ -116,15 +116,15 @@ export const productsData: Product[] = [
 		},
 	},
 	{
-		id: "fresh-eggs",
-		image: "/group/eggs.png",
+		id: "fresh-poultry",
+		image: "/group/poultry.png",
 		title: "بيض مزرعة طازج",
 		description:
 			"بيض طازج من الدرجة الأولى من دجاجنا الحر، منتج تحت رقابة جودة صارمة ومعايير سلامة الغذاء.",
-		category: "eggs",
+		category: "poultry",
 		featured: true,
 		price: "15 SAR",
-		weight: "30 eggs",
+		weight: "30 poultry",
 		brand: "Amal Al Khair Poultry",
 		nutritionalInfo: {
 			servingSize: "100g",
@@ -150,7 +150,7 @@ export const productsData: Product[] = [
 		},
 		specifications: {
 			brand: "Amal Al Khair Poultry",
-			weight: "30 eggs",
+			weight: "30 poultry",
 			origin: "Saudi Arabia",
 			certification: "Grade A",
 		},
@@ -255,7 +255,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "broiler-feed",
-		image: "/group/alaf.png",
+		image: "/group/feed.png",
 		title: "علف التسمين",
 		description: "علف متخصص لدجاج التسمين مصمم للنمو الأمثل والصحة مع تغذية متوازنة.",
 		category: "feed",

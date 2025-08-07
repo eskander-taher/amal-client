@@ -14,46 +14,46 @@ const ProductsSection: React.FC = () => {
   const t = useTranslations("Products");
 
   const products: ProductCard[] = [
-    {
-      image: "/group/dates.png",
-      titleKey: "featured1.title",
-      featured: true,
-    },
-    {
-      image: "/group/fish.png",
-      titleKey: "featured2.title",
-      featured: true,
-    },
-    {
-      image: "/group/alaf.png",
-      titleKey: "featured3.title",
-      featured: true,
-    },
-    {
-      image: "/group/eggs.png",
-      titleKey: "featured4.title",
-      featured: true,
-    },
-    {
-      image: "/group/alaf.png",
-      titleKey: "featured3.title",
-      featured: true,
-    },
-    {
-      image: "/group/eggs.png",
-      titleKey: "featured4.title",
-      featured: true,
-    },
-    {
-      image: "/group/alaf.png",
-      titleKey: "featured3.title",
-      featured: true,
-    },
-    {
-      image: "/group/eggs.png",
-      titleKey: "featured4.title",
-      featured: true,
-    },
+		{
+			image: "/group/dates.png",
+			titleKey: "featured1.title",
+			featured: true,
+		},
+		{
+			image: "/group/fish.png",
+			titleKey: "featured2.title",
+			featured: true,
+		},
+		{
+			image: "/group/feed.png",
+			titleKey: "featured3.title",
+			featured: true,
+		},
+		{
+			image: "/group/poultry.png",
+			titleKey: "featured4.title",
+			featured: true,
+		},
+		{
+			image: "/group/feed.png",
+			titleKey: "featured3.title",
+			featured: true,
+		},
+		{
+			image: "/group/poultry.png",
+			titleKey: "featured4.title",
+			featured: true,
+		},
+		{
+			image: "/group/feed.png",
+			titleKey: "featured3.title",
+			featured: true,
+		},
+		{
+			image: "/group/poultry.png",
+			titleKey: "featured4.title",
+			featured: true,
+		},
   ];
   return (
     <Section className="bg-white">
