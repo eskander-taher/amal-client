@@ -9,9 +9,17 @@ import { useLocale } from "next-intl";
 const getNavItems = (t: (key: string) => string) => {
 	return [
 		{ href: "/", label: t("home") },
-		{ href: "/about", label: t("about") },
 		{
-			href: "#",
+			href: "/about",
+			label: t("about"),
+			submenu: [
+				{ href: "/about", label: t("about") },
+				{ href: "/presidents", label: t("presidents") },
+				{ href: "/certifications", label: t("certifications") },
+			],
+		},
+		{
+			href: "/group",
 			label: t("group"),
 			submenu: [
 				{ href: "/dates", label: t("dates") },
@@ -83,12 +91,12 @@ export default function NavBar() {
 
 				{/* Navigation Links */}
 				<div className="hidden md:flex items-center space-x-1 space-x-reverse">
-					{navItems.map((item) => {
+					{navItems.map((item, index) => {
 						const isActive =
 							item.href === pathname ||
 							(item.submenu && item.submenu.some((sub) => sub.href === pathname));
 						return (
-							<div key={item.href} className="relative">
+							<div key={index} className="relative">
 								{item.submenu ? (
 									<div
 										className="relative"
@@ -112,11 +120,15 @@ export default function NavBar() {
 										{submenuOpen === item.href && (
 											<>
 												<div
-													className={`absolute top-full left-0 w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
+													className={`absolute top-full left-0 min-w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
 														isScrolled
 															? "bg-white/95 backdrop-blur-md border-white/20"
 															: "bg-white/90 backdrop-blur-md border-white/20"
 													} animate-submenu-slide-down origin-top`}
+													style={{
+														width: "max-content",
+														minWidth: "100%",
+													}}
 												>
 													{item.submenu.map((subItem, subIndex) => {
 														const isSubActive =
@@ -125,7 +137,7 @@ export default function NavBar() {
 															<Link
 																key={subItem.href}
 																href={subItem.href}
-																className={`block px-4 py-2 text-sm transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item ${
+																className={`block px-4 py-2 text-sm transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item whitespace-nowrap ${
 																	isSubActive
 																		? "bg-blue-50 text-blue-700 font-medium"
 																		: "text-gray-700 hover:bg-gray-50"

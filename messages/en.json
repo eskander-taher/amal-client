@@ -92,7 +92,9 @@
 		"dates": "Dates",
 		"fish": "Fish",
 		"feed": "Feed",
-		"poultry": "Poultry"
+		"poultry": "Poultry",
+		"presidents": "Words of Presidents",
+		"certifications": "Certifications & Awards"
 	},
 	"Breadcrumbs": {
 		"home": "Home",
@@ -102,6 +104,61 @@
 		"news": "News & Blogs",
 		"jobs": "Jobs",
 		"contact": "Contact Us"
+	},
+	"Presidents": {
+		"title": "Words of Presidents",
+		"subtitle": "Words of Board Presidents",
+		"description": "We present to you the words of current and former board presidents, which reflect our vision and journey in serving the community",
+		"currentPresident": {
+			"title": "Current Board President",
+			"period": "2020 - Present",
+			"message": "\"We at Amal Al-Khair Group believe in the importance of social responsibility and always strive to provide the best services to the community through our diverse projects in various sectors.\""
+		},
+		"formerPresident": {
+			"title": "Former Board President",
+			"period": "2015 - 2020",
+			"message": "\"It has been a wonderful journey in developing Amal Al-Khair Group and expanding the scope of our work to serve the community better.\""
+		},
+		"foundingPresident": {
+			"title": "Founding Board President",
+			"period": "2010 - 2015",
+			"message": "\"Our dream was to create a strong commercial group that serves the community and develops the local economy, and today we are proud of what we have achieved.\""
+		}
+	},
+	"Certifications": {
+		"title": "Certifications & Awards",
+		"subtitle": "Quality Certificates and Awards",
+		"description": "We are proud to have received many certificates and awards that reflect our commitment to quality and excellence in all our work",
+		"iso9001": {
+			"title": "ISO 9001:2015",
+			"category": "Quality Management",
+			"description": "International quality management system certificate that confirms our commitment to global quality standards in all our operations"
+		},
+		"haccp": {
+			"title": "HACCP",
+			"category": "Food Safety",
+			"description": "Hazard Analysis and Critical Control Points system to ensure food safety in all our products"
+		},
+		"bestCompany": {
+			"title": "Best Company",
+			"category": "Excellence Award",
+			"description": "Best company award in the agricultural and food sector for 2023 from the Ministry of Commerce and Industry"
+		},
+		"iso14001": {
+			"title": "ISO 14001",
+			"category": "Environmental Management",
+			"description": "Environmental management system certificate that confirms our commitment to environmental protection and sustainable development"
+		},
+		"foodSafety": {
+			"title": "Food Safety Award",
+			"category": "Quality Excellence",
+			"description": "Excellence award in food safety from the Saudi Food and Drug Authority for 2023"
+		},
+		"innovation": {
+			"title": "Innovation Award",
+			"category": "Technical Excellence",
+			"description": "Technical innovation award in the agricultural sector from the Ministry of Environment, Water and Agriculture"
+		}
 	},
 	"Footer": {
 		"contactTitle": "Contact Information",
