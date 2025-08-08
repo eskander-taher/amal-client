@@ -14,31 +14,30 @@ const Hero: React.FC = () => {
 	const carouselSlides = [
 		{
 			src: "/hero.jpg",
-			alt: "Hero background image",
-			title: t("heroTitle"),
-			description: t("heroDescription"),
-			buttonText: t("heroButton"),
+			alt: "صورة خلفية للترحيب",
+			title: "مرحبًا بكم في متجرنا",
+			description: "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك.",
+			buttonText: "تسوق الآن",
 		},
 		{
 			src: "/bg.jpg",
-			alt: "Background image",
+			alt: "صورة خلفية",
 			title: "اكتشف منتجاتنا",
-			description:
-				"استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية احتياجاتك وتجاوز توقعاتك.",
+			description: "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك.",
 			buttonText: "تسوق الآن",
 		},
 		{
 			src: "/about.jpg",
-			alt: "About background image",
+			alt: "صورة عن الشركة",
 			title: "عن شركتنا",
-			description: "تعرف على مهمتنا وقيمنا والتزامنا بتقديم التميز في كل ما نقوم به.",
+			description: "تعرف على مهمتنا وقيمنا والتزامنا بالتميز في كل ما نقوم به.",
 			buttonText: "اعرف المزيد",
 		},
 		{
 			src: "/products/product1.png",
-			alt: "Product image",
+			alt: "صورة منتج",
 			title: "جودة متميزة",
-			description: "اختبر الفرق مع منتجاتنا عالية الجودة التي تصمد أمام اختبار الزمن.",
+			description: "اختبر الفرق مع منتجاتنا التي تصمد أمام اختبار الزمن.",
 			buttonText: "عرض المنتجات",
 		},
 	];
@@ -96,10 +95,10 @@ const Hero: React.FC = () => {
 						key={currentSlide}
 						className="transition-all duration-700 ease-in-out animate-fade-in"
 					>
-						<h1 className="text-4xl text-right md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
 							{currentSlideData.title}
 						</h1>
-						<p className="text-lg text-right md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">
+						<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">
 							{currentSlideData.description}
 						</p>
 						<button className="bg-white text-black px-4 py-4 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl flex items-center gap-3 group h-14 animate-fade-in-delay-2">

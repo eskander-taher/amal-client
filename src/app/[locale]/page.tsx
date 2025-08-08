@@ -17,11 +17,8 @@ export default function Home() {
 			<Certifications />
 			<Products />
 			<News />
-
 			<GroupStats />
-
 			<Newsletter />
-
 			{/* Functional Side Navigation */}
 			<SideNavigation />
 		</div>
