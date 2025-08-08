@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { FaArrowLeftLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Section from "../Section";
+import { Link } from "@/i18n/navigation";
 
 const Hero: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -14,31 +15,35 @@ const Hero: React.FC = () => {
 	const carouselSlides = [
 		{
 			src: "/hero.jpg",
-			alt: "صورة خلفية للترحيب",
-			title: "مرحبًا بكم في متجرنا",
+			alt: "مجموعة أمل الخير القابضة",
+			title: "مرحبًا بكم في مجموعة أمل الخير القابضة",
 			description: "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك.",
-			buttonText: "تسوق الآن",
+			buttonText: "المزيد",
+			href: "/about",
 		},
 		{
-			src: "/bg.jpg",
+			src: "/products/product1.png",
 			alt: "صورة خلفية",
 			title: "اكتشف منتجاتنا",
 			description: "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك.",
-			buttonText: "تسوق الآن",
+			buttonText: "المزيد",
+			href: "/products",
 		},
 		{
 			src: "/about.jpg",
 			alt: "صورة عن الشركة",
 			title: "عن شركتنا",
 			description: "تعرف على مهمتنا وقيمنا والتزامنا بالتميز في كل ما نقوم به.",
-			buttonText: "اعرف المزيد",
+			buttonText: "المزيد",
+			href: "/about",
 		},
 		{
 			src: "/products/product1.png",
 			alt: "صورة منتج",
 			title: "جودة متميزة",
 			description: "اختبر الفرق مع منتجاتنا التي تصمد أمام اختبار الزمن.",
-			buttonText: "عرض المنتجات",
+			buttonText: "المزيد",
+			href: "/products",
 		},
 	];
 
@@ -101,12 +106,15 @@ const Hero: React.FC = () => {
 						<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">
 							{currentSlideData.description}
 						</p>
-						<button className="bg-white text-black px-4 py-4 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl flex items-center gap-3 group h-14 animate-fade-in-delay-2">
-							<span>{currentSlideData.buttonText}</span>
+						<Link
+							href={currentSlideData.href}
+							className="bg-white flex justify-between items-center text-black w-25 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl flex group p-1 animate-fade-in-delay-2"
+						>
+							<p>{currentSlideData.buttonText}</p>
 							<div className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
 								<FaArrowLeftLong className="text-white text-sm" />
 							</div>
-						</button>
+						</Link>
 					</div>
 				</div>
 				<div className="hidden md:block w-1/2"></div>
