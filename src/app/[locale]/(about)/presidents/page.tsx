@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import React from "react";
 import { useTranslations } from "next-intl";
-import Newsletter from "@/components/home/Newsletter";
 
 export default function PresidentsPage() {
 	const t = useTranslations("Presidents");
@@ -75,7 +74,6 @@ export default function PresidentsPage() {
 				</div>
 				<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2/3 w-[60%] h-8 bg-gray-200 rounded-t-full pt-2 gap-3" />
 			</section>
-			<Newsletter />
 		</>
 	);
 }

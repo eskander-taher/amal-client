@@ -4,7 +4,6 @@ import About from "@/components/home/About";
 import Group from "@/components/home/Group";
 import GroupStats from "@/components/home/GroupStats";
 import News from "@/components/home/News";
-import Newsletter from "@/components/home/Newsletter";
 import Products from "@/components/home/Products";
 import SideNavigation from "@/components/SideNavigation";
 
@@ -18,7 +17,6 @@ export default function Home() {
 			<Products />
 			<News />
 			<GroupStats />
-			<Newsletter />
 			{/* Functional Side Navigation */}
 			<SideNavigation />
 		</div>
