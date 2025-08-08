@@ -110,14 +110,16 @@
 		"subtitle": "Words of Board Presidents",
 		"description": "We present to you the words of current and former board presidents, which reflect our vision and journey in serving the community",
 		"currentPresident": {
+			"name": "Mr. Hussam Al-Khair",
 			"title": "Current Board President",
 			"period": "2020 - Present",
-			"message": "\"We at Amal Al-Khair Group believe in the importance of social responsibility and always strive to provide the best services to the community through our diverse projects in various sectors.\""
+			"message": "\"We at Amal Al-Khair Group believe in the importance of social responsibility and always strive to provide the best services to the community through our diverse projects in various sectors. Our commitment to excellence drives us to continuously innovate and improve our services, ensuring that we remain at the forefront of our industry while maintaining our core values of integrity, quality, and community service.\""
 		},
 		"formerPresident": {
+			"name": "Mr. Abdullah Al-Rashid",
 			"title": "Former Board President",
 			"period": "2015 - 2020",
-			"message": "\"It has been a wonderful journey in developing Amal Al-Khair Group and expanding the scope of our work to serve the community better.\""
+			"message": "\"It has been a wonderful journey in developing Amal Al-Khair Group and expanding the scope of our work to serve the community better. During my tenure, we focused on building strong foundations for sustainable growth, establishing key partnerships, and implementing strategic initiatives that have positioned the company for long-term success. The achievements we accomplished together as a team continue to inspire and guide the organization's future direction.\""
 		},
 		"foundingPresident": {
 			"title": "Founding Board President",

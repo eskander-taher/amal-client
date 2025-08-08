@@ -6,71 +6,74 @@ export default function PresidentsPage() {
 	const t = useTranslations("Presidents");
 
 	return (
-		<div className="relative min-h-[60vh] flex flex-col items-center justify-center overflow-hidden">
-			<div className="absolute inset-0 z-0 bg-[url('/bg.jpg')] bg-repeat opacity-3" />
+		<>
+			<Hero
+				title={t("title")}
+				image="/presidents/hero.jpg"
+				imageAlt="Presidents hero background"
+			/>
 
-			<div className="relative z-10 w-full">
-				<Hero title={t("title")} />
+			{/* First President Section */}
+			<section className="py-16 bg-white">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						{/* Right Image */}
+						
+							<div className="relative">
+								<img
+									src="/presidents/mr_hussam.jpg"
+									alt={t("currentPresident.name")}
+									className="w-full"
+								/>
+							</div>
+						
 
-				{/* Presidents Content Section */}
-				<section className="py-16 bg-white">
-					<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-						<div className="text-center mb-12">
+						{/* Left Content */}
+						<div >
 							<h2 className="text-3xl font-bold text-gray-900 mb-4">
-								{t("subtitle")}
+								{t("currentPresident.name")}
 							</h2>
-							<p className="text-lg text-gray-600 max-w-3xl mx-auto">
-								{t("description")}
+							<h3 className="text-xl text-gray-600 font-semibold mb-6">
+								{t("currentPresident.title")} | {t("currentPresident.period")}
+							</h3>
+							<p className="text-gray-700 leading-relaxed text-lg">
+								{t("currentPresident.message")}
 							</p>
 						</div>
+					</div>
+				</div>
+			</section>
 
-						{/* Presidents Grid */}
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							{/* President Card 1 */}
-							<div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-								<div className="text-center mb-4">
-									<div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-									<h3 className="text-xl font-semibold text-gray-900">
-										{t("currentPresident.title")}
-									</h3>
-									<p className="text-gray-600">{t("currentPresident.period")}</p>
-								</div>
-								<div className="text-gray-700 text-right leading-relaxed">
-									<p>{t("currentPresident.message")}</p>
-								</div>
-							</div>
-
-							{/* President Card 2 */}
-							<div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-								<div className="text-center mb-4">
-									<div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-									<h3 className="text-xl font-semibold text-gray-900">
-										{t("formerPresident.title")}
-									</h3>
-									<p className="text-gray-600">{t("formerPresident.period")}</p>
-								</div>
-								<div className="text-gray-700 text-right leading-relaxed">
-									<p>{t("formerPresident.message")}</p>
-								</div>
-							</div>
-
-							{/* President Card 3 */}
-							<div className="bg-gray-50 rounded-lg p-6 shadow-sm">
-								<div className="text-center mb-4">
-									<div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-									<h3 className="text-xl font-semibold text-gray-900">
-										{t("foundingPresident.title")}
-									</h3>
-									<p className="text-gray-600">{t("foundingPresident.period")}</p>
-								</div>
-								<div className="text-gray-700 text-right leading-relaxed">
-									<p>{t("foundingPresident.message")}</p>
-								</div>
+			{/* Second President Section */}
+			<section className="py-16 bg-gray-50">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+						{/* Right Image */}
+						<div>
+							<div className="relative">
+								<img
+									src="/presidents/mr_hussam.jpg"
+									alt={t("formerPresident.name")}
+									className="w-full"
+								/>
 							</div>
 						</div>
+
+						{/* Left Content */}
+						<div>
+							<h2 className="text-3xl font-bold text-gray-900 mb-4">
+								{t("formerPresident.name")}
+							</h2>
+							<h3 className="text-xl text-gray-600 font-semibold mb-6">
+								{t("formerPresident.title")} | {t("formerPresident.period")}
+							</h3>
+							<p className="text-gray-700 leading-relaxed text-lg">
+								{t("formerPresident.message")}
+							</p>
+						</div>
 					</div>
-				</section>
-			</div>
-		</div>
+				</div>
+			</section>
+		</>
 	);
 }

@@ -60,7 +60,7 @@ const GroupStats: React.FC = () => {
 
 		return () => observer.disconnect();
 	}, []);
-
+	
 	return (
 		<Section id="stats" ref={sectionRef} className="bg-[#353535] text-white">
 			<div className="w-full">

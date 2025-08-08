@@ -5,6 +5,7 @@ import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
+import Section from "./Section";
 
 interface HeroProps {
 	title: string;
@@ -86,7 +87,7 @@ export default function Hero({
 	const breadcrumbs = generateBreadcrumbs();
 
 	return (
-		<section className={`relative min-h-[60vh] ${className}`}>
+		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 xl:p-0  ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image src={image} alt={imageAlt} fill className="object-cover" priority />
@@ -156,6 +157,6 @@ export default function Hero({
 					</div>
 				)}
 			</div>
-		</section>
+		</Section>
 	);
 }

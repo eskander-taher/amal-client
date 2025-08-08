@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { FaArrowLeftLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import Section from "../Section";
 
 const Hero: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -67,7 +68,7 @@ const Hero: React.FC = () => {
 	const currentSlideData = carouselSlides[currentSlide];
 
 	return (
-		<section id="hero" className="relative w-full h-screen flex items-center justify-center bg-black overflow-hidden">
+		<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (
 				<div
@@ -90,7 +91,7 @@ const Hero: React.FC = () => {
 
 			{/* Content */}
 			<div className="relative z-10 flex w-full h-full">
-				<div className="flex flex-col justify-center items-start md:items-start w-full md:w-1/2 h-full py-24 px-4 md:px-16 text-left">
+				<div className="flex flex-col justify-center w-full md:w-1/2 h-screen pb-[15%]">
 					<div
 						key={currentSlide}
 						className="transition-all duration-700 ease-in-out animate-fade-in"
@@ -153,7 +154,7 @@ const Hero: React.FC = () => {
 					/>
 				))}
 			</motion.div>
-		</section>
+		</Section>
 	);
 };
 

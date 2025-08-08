@@ -10,7 +10,7 @@ import SideNavigation from "@/components/SideNavigation";
 
 export default function Home() {
 	return (
-		<div className="relative flex flex-col gap-0">
+		<div className="relative">
 			<Hero />
 			<About />
 			<Group />
