@@ -14,8 +14,9 @@ const About: React.FC = () => {
 			<motion.div
 				initial={{ x: 50, opacity: 0 }}
 				whileInView={{ x: 0, opacity: 1 }}
-				transition={{duration: 1}}
+				transition={{ duration: 1 }}
 				className="w-full flex gap-20"
+				viewport={{ once: true }}
 			>
 				<Image
 					src={locale == "ar" ? "/about.svg" : "/amal_big_logo_en.png"}

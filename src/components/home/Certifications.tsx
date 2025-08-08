@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "../Section";
+import { motion } from "framer-motion";
 
 const logos = [
 	{ id: 1, src: "/images/logo1.png", alt: "Logo 1" },
@@ -41,7 +42,13 @@ export default function Certifications() {
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
 			{/* Top static curve */}
-			<div className="absolute w-80 h-8 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-b-full" />
+			<motion.div
+				initial={{ y: -50 }}
+				whileInView={{ y: 0 }}
+				transition={{ ease: "easeOut", duration: 1 }}
+				viewport={{ once: true }}
+				className="absolute w-80 h-8 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-b-full"
+			/>
 
 			<div className="w-full">
 				{/* Heading */}
@@ -82,7 +89,11 @@ export default function Certifications() {
 
 			{/* Curve */}
 			{hoveredIndex !== null && (
-				<div
+				<motion.div
+					initial={{ y: 50 }}
+					whileInView={{ y: 0 }}
+					transition={{ ease: "easeOut", duration: 1 }}
+					viewport={{ once: true }}
 					className="absolute bg-gray-200 rounded-t-full animate-curve"
 					style={{
 						width: `${curveWidth}px`,

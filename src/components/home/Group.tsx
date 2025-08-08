@@ -55,6 +55,7 @@ const GroupSection: React.FC = () => {
 							initial={{ x: -300, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: index / 2, ease: "easeInOut" }}
+							viewport={{ once: true }}
 						>
 							{/* Image Section - Fixed height for alignment */}
 							<div className="h-32 flex items-center justify-center mb-6">
@@ -68,14 +69,14 @@ const GroupSection: React.FC = () => {
 							</div>
 
 							{/* Title Section - Fixed height for alignment */}
-							<motion.h3 className="text-lg font-bold mb-4 h-12 flex items-center justify-center text-center">
+							<h3 className="text-lg font-bold mb-4 h-12 flex items-center justify-center text-center">
 								{t(card.titleKey)}
-							</motion.h3>
+							</h3>
 
 							{/* Description Section - Flexible height */}
-							<motion.p className="text-sm text-gray-600 flex-1 text-center leading-relaxed">
+							<p className="text-sm text-gray-600 flex-1 text-center leading-relaxed">
 								{t(card.descriptionKey)}
-							</motion.p>
+							</p>
 
 							{/* Card Link - Fixed position at bottom */}
 							<div className="mt-4">
