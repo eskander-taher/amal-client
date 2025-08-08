@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
 						priority={index === 0}
 					/>
 					{/* Overlay */}
-					<div className="absolute inset-0 bg-black/40" />
+					<div className="absolute inset-0 z-10 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.9)_100%)]" />
 				</div>
 			))}
 
@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
 						key={currentSlide}
 						className="transition-all duration-700 ease-in-out animate-fade-in"
 					>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-relaxed">
 							{currentSlideData.title}
 						</h1>
 						<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">

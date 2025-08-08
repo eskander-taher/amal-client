@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import React from "react";
 import { useTranslations } from "next-intl";
+import Newsletter from "@/components/home/Newsletter";
 
 export default function PresidentsPage() {
 	const t = useTranslations("Presidents");
@@ -18,23 +19,22 @@ export default function PresidentsPage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 						{/* Right Image */}
-						
-							<div className="relative">
-								<img
-									src="/presidents/mr_hussam.jpg"
-									alt={t("currentPresident.name")}
-									className="w-full"
-								/>
-							</div>
-						
+
+						<div className="relative">
+							<img
+								src="/presidents/mr_hussam.png"
+								alt={t("currentPresident.name")}
+								className="w-full"
+							/>
+						</div>
 
 						{/* Left Content */}
-						<div >
+						<div>
 							<h2 className="text-3xl font-bold text-gray-900 mb-4">
 								{t("currentPresident.name")}
 							</h2>
 							<h3 className="text-xl text-gray-600 font-semibold mb-6">
-								{t("currentPresident.title")} | {t("currentPresident.period")}
+								{t("currentPresident.title")}
 							</h3>
 							<p className="text-gray-700 leading-relaxed text-lg">
 								{t("currentPresident.message")}
@@ -45,14 +45,14 @@ export default function PresidentsPage() {
 			</section>
 
 			{/* Second President Section */}
-			<section className="py-16 bg-gray-50">
+			<section className="relative py-16 bg-gray-200">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 						{/* Right Image */}
 						<div>
 							<div className="relative">
 								<img
-									src="/presidents/mr_hussam.jpg"
+									src="/presidents/mr_hussam.png"
 									alt={t("formerPresident.name")}
 									className="w-full"
 								/>
@@ -65,7 +65,7 @@ export default function PresidentsPage() {
 								{t("formerPresident.name")}
 							</h2>
 							<h3 className="text-xl text-gray-600 font-semibold mb-6">
-								{t("formerPresident.title")} | {t("formerPresident.period")}
+								{t("formerPresident.title")}
 							</h3>
 							<p className="text-gray-700 leading-relaxed text-lg">
 								{t("formerPresident.message")}
@@ -73,7 +73,9 @@ export default function PresidentsPage() {
 						</div>
 					</div>
 				</div>
+				<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2/3 w-[60%] h-8 bg-gray-200 rounded-t-full pt-2 gap-3" />
 			</section>
+			<Newsletter />
 		</>
 	);
 }

@@ -13,7 +13,7 @@ const getNavItems = (t: (key: string) => string) => {
 			href: "/about",
 			label: t("about"),
 			submenu: [
-				{ href: "/about", label: t("about") },
+				{ href: "/about", label: t("about_amal") },
 				{ href: "/presidents", label: t("presidents") },
 				{ href: "/certifications", label: t("certifications") },
 			],
