@@ -20,25 +20,25 @@ const GroupSection: React.FC = () => {
 			image: "/group/dates.png",
 			titleKey: "datesCompany.title",
 			descriptionKey: "datesCompany.description",
-			href: "/group/dates",
+			href: "/dates",
 		},
 		{
 			image: "/group/fish.png",
 			titleKey: "fishCompany.title",
 			descriptionKey: "fishCompany.description",
-			href: "/group/fish",
+			href: "/fish",
 		},
 		{
 			image: "/group/feed.png",
 			titleKey: "feedCompany.title",
 			descriptionKey: "feedCompany.description",
-			href: "/group/feed",
+			href: "/feed",
 		},
 		{
 			image: "/group/poultry.png",
 			titleKey: "poultryCompany.title",
 			descriptionKey: "poultryCompany.description",
-			href: "/group/poultry",
+			href: "/poultry",
 		},
 	];
 
