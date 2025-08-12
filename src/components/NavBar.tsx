@@ -22,10 +22,10 @@ const getNavItems = (t: (key: string) => string) => {
 			href: "/group",
 			label: t("group"),
 			submenu: [
+				{ href: "/poultry", label: t("poultry") },
 				{ href: "/dates", label: t("dates") },
 				{ href: "/fish", label: t("fish") },
 				{ href: "/feed", label: t("feed") },
-				{ href: "/poultry", label: t("poultry") },
 			],
 		},
 		{ href: "/products", label: t("products") },
@@ -120,7 +120,9 @@ export default function NavBar() {
 										{submenuOpen === item.href && (
 											<>
 												<div
-													className={`absolute top-full left-0 min-w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
+													className={`absolute top-full min-w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
+														locale === "ar" ? "right-0" : "left-0"
+													} ${
 														isScrolled
 															? "bg-white/95 backdrop-blur-md border-white/20"
 															: "bg-white/90 backdrop-blur-md border-white/20"
@@ -287,7 +289,7 @@ export default function NavBar() {
 											</svg>
 										</button>
 										{submenuOpen === item.href && (
-											<div className="ml-4 mt-2 space-y-1">
+											<div className={`${locale === "ar" ? "mr-4" : "ml-4"} mt-2 space-y-1`}>
 												{item.submenu.map((subItem) => {
 													const isSubActive = subItem.href === pathname;
 													return (

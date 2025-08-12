@@ -6,7 +6,7 @@ import AboutImageSection from "@/components/about/AboutImageSection";
 import DateCompanySection from "@/components/about/DateCompanySection";
 import ContactSection from "@/components/about/ContactSection";
 
-export default function AboutPage() {
+export default function page() {
   return (
 		<div className="relative flex flex-col gap-0">
 			<Hero title="حول امل الخير" />
