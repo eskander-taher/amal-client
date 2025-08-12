@@ -75,6 +75,16 @@
 			}
 		}
 	},
+	"Recipes": {
+		"title": "Amal Al Khair Recipes",
+		"moreRecipes": "More Recipes",
+		"recipesItems": {
+			"datesRecipe": {
+				"title": "Traditional Date Cake",
+				"description": "A delicious traditional cake made with premium Amal Al Khair dates, perfect for family gatherings and special occasions."
+			}
+		}
+	},
 	"Newsletter": {
 		"title": "Join Our Newsletter",
 		"description": "Get the latest news and updates from Amal Al Khair Holding Group",
@@ -87,6 +97,7 @@
 		"group": "Amal Al Khair Holding Group",
 		"products": "Our Products",
 		"news": "News & Blogs",
+		"recipes": "Recipes",
 		"jobs": "Jobs",
 		"contact": "Contact Us",
 		"searchPlaceholder": "What are you looking for?",

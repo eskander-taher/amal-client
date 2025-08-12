@@ -29,7 +29,14 @@ const getNavItems = (t: (key: string) => string) => {
 			],
 		},
 		{ href: "/products", label: t("products") },
-		{ href: "/news", label: t("news") },
+		{
+			href: "/news",
+			label: t("news"),
+			submenu: [
+				{ href: "/news", label: t("news") },
+				{ href: "/recipes", label: t("recipes") },
+			],
+		},
 		{ href: "/jobs", label: t("jobs") },
 		{ href: "/contact", label: t("contact") },
 	];

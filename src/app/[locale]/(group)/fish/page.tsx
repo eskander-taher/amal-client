@@ -1,39 +1,97 @@
-import React from "react";
 import Hero from "@/components/Hero";
+import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import ProductCard from "@/components/ProdcutCard";
 
-export default function FishPage() {
+type ProductData = {
+	image: string;
+	title: string;
+	href: string;
+};
+
+export default function page() {
 	const t = useTranslations("Group.fishCompany");
 
+	const products: ProductData[] = [
+		{
+			image: "/products/product1.png",
+			title: "سمك البلطي الطازج",
+			href: "/products/1",
+		},
+		{
+			image: "/products/product2.png",
+			title: "سمك السلمون الطازج",
+			href: "/products/2",
+		},
+		{
+			image: "/products/product3.png",
+			title: "سمك البوري الطازج",
+			href: "/products/3",
+		},
+		{
+			image: "/products/product1.png",
+			title: "سمك البلطي الطازج",
+			href: "/products/1",
+		},
+		{
+			image: "/products/product4.png",
+			title: "سمك القاروص الطازج",
+			href: "/products/4",
+		},
+		{
+			image: "/products/product3.png",
+			title: "سمك البوري الطازج",
+			href: "/products/3",
+		},
+		{
+			image: "/products/product2.png",
+			title: "سمك السلمون الطازج",
+			href: "/products/2",
+		},
+		{
+			image: "/products/product4.png",
+			title: "سمك القاروص الطازج",
+			href: "/products/4",
+		},
+	];
 	return (
 		<div>
-			<Hero title={t("title")} />
-			<div className="container mx-auto px-4 py-8">
-				<div className="max-w-4xl mx-auto">
-					<h2 className="text-3xl font-bold mb-6">{t("title")}</h2>
-					<p className="text-lg text-gray-700 mb-8">{t("description")}</p>
-
-					<div className="grid md:grid-cols-2 gap-8">
-						<div className="bg-white p-6 rounded-lg shadow-md">
-							<h3 className="text-xl font-semibold mb-4">Aquaculture Excellence</h3>
-							<p className="text-gray-600">
-								Our state-of-the-art aquaculture facilities produce premium quality
-								fish using sustainable farming practices. We focus on tilapia and
-								other freshwater species.
-							</p>
-						</div>
-
-						<div className="bg-white p-6 rounded-lg shadow-md">
-							<h3 className="text-xl font-semibold mb-4">Quality Assurance</h3>
-							<p className="text-gray-600">
-								Every fish we produce undergoes rigorous quality control measures to
-								ensure the highest standards of freshness, safety, and nutritional
-								value for our customers.
-							</p>
-						</div>
+			<Hero title={t("title")} image="/group/fish.png" />
+			<Section>
+				<div className="flex justify-start gap-10 items-center">
+					<Image
+						src="/group/fish.png"
+						alt="Fish Company Logo"
+						width={500}
+						height={500}
+						className="invert object-contain"
+					/>
+					<div>
+						<h2 className="text-3xl font-bold text-gray-900 mb-4">{t("title")}</h2>
+						<p>{t("description")}</p>
 					</div>
 				</div>
-			</div>
+			</Section>
+			<section className="py-16">
+				<div className="w-full">
+					<Image
+						src="/group/fish.png"
+						alt="About Amal Al-Khair Fish"
+						width={1920}
+						height={800}
+						className="w-full h-auto"
+						priority
+					/>
+				</div>
+			</section>
+			<Section className="bg-gray-200">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					{products.map((product, index) => (
+						<ProductCard key={index} product={product} />
+					))}
+				</div>
+			</Section>
 		</div>
 	);
 }

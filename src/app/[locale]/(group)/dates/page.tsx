@@ -1,39 +1,97 @@
-import React from "react";
 import Hero from "@/components/Hero";
+import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import ProductCard from "@/components/ProdcutCard";
 
-export default function DatesPage() {
+type ProductData = {
+	image: string;
+	title: string;
+	href: string;
+};
+
+export default function page() {
 	const t = useTranslations("Group.datesCompany");
 
+	const products: ProductData[] = [
+		{
+			image: "/products/product1.png",
+			title: "تمور العجوة المميزة",
+			href: "/products/1",
+		},
+		{
+			image: "/products/product2.png",
+			title: "تمور السكري الذهبية",
+			href: "/products/2",
+		},
+		{
+			image: "/products/product3.png",
+			title: "تمور الصقعي الطازجة",
+			href: "/products/3",
+		},
+		{
+			image: "/products/product1.png",
+			title: "تمور الخضري المميزة",
+			href: "/products/1",
+		},
+		{
+			image: "/products/product4.png",
+			title: "تمور البرحي الطازجة",
+			href: "/products/4",
+		},
+		{
+			image: "/products/product3.png",
+			title: "تمور الصقعي الطازجة",
+			href: "/products/3",
+		},
+		{
+			image: "/products/product2.png",
+			title: "تمور السكري الذهبية",
+			href: "/products/2",
+		},
+		{
+			image: "/products/product4.png",
+			title: "تمور البرحي الطازجة",
+			href: "/products/4",
+		},
+	];
 	return (
 		<div>
-			<Hero title={t("title")} />
-			<div className="container mx-auto px-4 py-8">
-				<div className="max-w-4xl mx-auto">
-					<h2 className="text-3xl font-bold mb-6">{t("title")}</h2>
-					<p className="text-lg text-gray-700 mb-8">{t("description")}</p>
-
-					<div className="grid md:grid-cols-2 gap-8">
-						<div className="bg-white p-6 rounded-lg shadow-md">
-							<h3 className="text-xl font-semibold mb-4">Our Dates Production</h3>
-							<p className="text-gray-600">
-								We specialize in producing premium quality dates using traditional
-								and modern farming techniques. Our dates are grown in the fertile
-								regions of Saudi Arabia, ensuring the highest quality and taste.
-							</p>
-						</div>
-
-						<div className="bg-white p-6 rounded-lg shadow-md">
-							<h3 className="text-xl font-semibold mb-4">Export Services</h3>
-							<p className="text-gray-600">
-								Our dates are exported to various international markets, maintaining
-								strict quality control standards throughout the entire process from
-								farm to customer.
-							</p>
-						</div>
+			<Hero title={t("title")} image="/group/dates.png" />
+			<Section>
+				<div className="flex justify-start gap-10 items-center">
+					<Image
+						src="/group/dates.png"
+						alt="Dates Company Logo"
+						width={500}
+						height={500}
+						className="invert object-contain"
+					/>
+					<div>
+						<h2 className="text-3xl font-bold text-gray-900 mb-4">{t("title")}</h2>
+						<p>{t("description")}</p>
 					</div>
 				</div>
-			</div>
+			</Section>
+			<section className="py-16">
+				<div className="w-full">
+					<Image
+						src="/group/dates.png"
+						alt="About Amal Al-Khair Dates"
+						width={1920}
+						height={800}
+						className="w-full h-auto"
+						priority
+					/>
+				</div>
+			</section>
+			<Section className="bg-gray-200">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					{products.map((product, index) => (
+						<ProductCard key={index} product={product} />
+					))}
+				</div>
+			</Section>
 		</div>
 	);
 }
