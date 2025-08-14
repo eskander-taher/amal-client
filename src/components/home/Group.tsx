@@ -17,16 +17,10 @@ const GroupSection: React.FC = () => {
 
 	const cards: CardData[] = [
 		{
-			image: "/group/dates.png",
-			titleKey: "datesCompany.title",
-			descriptionKey: "datesCompany.description",
-			href: "/dates",
-		},
-		{
-			image: "/group/fish.png",
-			titleKey: "fishCompany.title",
-			descriptionKey: "fishCompany.description",
-			href: "/fish",
+			image: "/group/poultry.png",
+			titleKey: "poultryCompany.title",
+			descriptionKey: "poultryCompany.description",
+			href: "/poultry",
 		},
 		{
 			image: "/group/feed.png",
@@ -35,10 +29,16 @@ const GroupSection: React.FC = () => {
 			href: "/feed",
 		},
 		{
-			image: "/group/poultry.png",
-			titleKey: "poultryCompany.title",
-			descriptionKey: "poultryCompany.description",
-			href: "/poultry",
+			image: "/group/fish.png",
+			titleKey: "fishCompany.title",
+			descriptionKey: "fishCompany.description",
+			href: "/fish",
+		},
+		{
+			image: "/group/dates.png",
+			titleKey: "datesCompany.title",
+			descriptionKey: "datesCompany.description",
+			href: "/dates",
 		},
 	];
 

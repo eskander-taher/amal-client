@@ -23,9 +23,9 @@ const getNavItems = (t: (key: string) => string) => {
 			label: t("group"),
 			submenu: [
 				{ href: "/poultry", label: t("poultry") },
-				{ href: "/dates", label: t("dates") },
-				{ href: "/fish", label: t("fish") },
 				{ href: "/feed", label: t("feed") },
+				{ href: "/fish", label: t("fish") },
+				{ href: "/dates", label: t("dates") },
 			],
 		},
 		{ href: "/products", label: t("products") },

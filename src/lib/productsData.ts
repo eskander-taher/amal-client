@@ -3,7 +3,7 @@ export interface Product {
 	image: string;
 	title: string;
 	description: string;
-	category: "dates" | "poultry" | "fish" | "feed" | "poultry";
+	category: "poultry" | "feed" | "fish" | "dates";
 	featured: boolean;
 	price?: string;
 	weight?: string;

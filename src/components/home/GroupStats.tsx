@@ -18,14 +18,9 @@ const GroupStats: React.FC = () => {
 
 	const stats: StatData[] = [
 		{
-			image: "/group/dates.png",
-			count: 9695,
-			titleKey: "datesCompany",
-		},
-		{
-			image: "/group/fish.png",
-			count: 206768,
-			titleKey: "fishCompany",
+			image: "/group/poultry.png",
+			count: 65876,
+			titleKey: "poultryCompany",
 		},
 		{
 			image: "/group/feed.png",
@@ -33,9 +28,14 @@ const GroupStats: React.FC = () => {
 			titleKey: "feedCompany",
 		},
 		{
-			image: "/group/poultry.png",
-			count: 65876,
-			titleKey: "poultryCompany",
+			image: "/group/fish.png",
+			count: 206768,
+			titleKey: "fishCompany",
+		},
+		{
+			image: "/group/dates.png",
+			count: 9695,
+			titleKey: "datesCompany",
 		},
 	];
 

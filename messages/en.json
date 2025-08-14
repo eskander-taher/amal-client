@@ -5,14 +5,16 @@
 		"heroDescription": "At Amal Al Khair Holding Group, we provide accurate financial reports and specialized consulting services to support your business growth with confidence and transparency.",
 		"heroButton": "Discover More",
 		"aboutTitle": "About Us",
-		"aboutDescription": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the dates, poultry, and feed sectors. We believe that transparency and quality are the foundation of our success, and we strive to build long-term partnerships that create sustainable value for our community and clients.",
+		"aboutDescription": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the poultry, feed, fish, and dates sectors. We believe that transparency and quality are the foundation of our success, and we strive to build long-term partnerships that create sustainable value for our community and clients.",
 		"groupTitle": "Amal Al Khair Holding Group",
-		"datesCompanyTitle": "Amal Al Khair Dates Company",
-		"datesCompanyDesc": "Production and export of the finest Saudi dates to local and global markets.",
 		"poultryCompanyTitle": "Amal Al Khair Poultry Company",
 		"poultryCompanyDesc": "Leading in the production of fresh poultry with world-class quality standards.",
 		"feedCompanyTitle": "Amal Al Khair Feed Company",
 		"feedCompanyDesc": "Providing high-quality feed to support the livestock sector.",
+		"fishCompanyTitle": "Amal Al Khair Fish Company",
+		"fishCompanyDesc": "Leading in aquaculture and fish farming with sustainable practices.",
+		"datesCompanyTitle": "Amal Al Khair Dates Company",
+		"datesCompanyDesc": "Production and export of the finest Saudi dates to local and global markets.",
 		"investmentCompanyTitle": "Amal Al Khair Investment Company",
 		"investmentCompanyDesc": "Diverse investments supporting sustainable economic development.",
 		"moreButton": "More",
@@ -20,20 +22,20 @@
 	},
 	"Group": {
 		"title": "Amal Al Khair Holding Group",
-		"datesCompany": {
-			"title": "Amal Al Khair Dates Company",
-			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
-		},
-		"fishCompany": {
-			"title": "Amal Al Khair Fish Company",
+		"poultryCompany": {
+			"title": "Amal Al Khair Poultry Company",
 			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
 		},
 		"feedCompany": {
 			"title": "Amal Al Khair Feed Company",
 			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
 		},
-		"poultryCompany": {
-			"title": "Amal Al Khair Poultry Company",
+		"fishCompany": {
+			"title": "Amal Al Khair Fish Company",
+			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
+		},
+		"datesCompany": {
+			"title": "Amal Al Khair Dates Company",
 			"description": "One of the first approved projects in the Al Baha region of the Kingdom, using the finest varieties, and the product has been exported to many countries. 100% organic."
 		}
 	},
@@ -43,27 +45,27 @@
 		"learnMore": "Learn More",
 		"featuredBadge": "Featured",
 		"featured1": {
-			"title": "Premium Ajwa Dates",
-			"description": "Our signature Ajwa dates from Madinah, known for their exceptional taste and nutritional benefits. Perfect for export and local markets."
+			"title": "Fresh Farm Poultry",
+			"description": "Grade A fresh poultry from our free-range chickens, produced under strict quality control and food safety standards."
 		},
 		"featured2": {
-			"title": "Fresh Tilapia Fish",
-			"description": "Premium tilapia fish raised in our state-of-the-art aquaculture facilities, ensuring the highest quality and freshness for our customers."
-		},
-		"featured3": {
 			"title": "Premium Poultry Feed",
 			"description": "Nutritionally balanced feed formulated specifically for optimal growth and health of broiler chickens and laying hens."
 		},
+		"featured3": {
+			"title": "Fresh Tilapia Fish",
+			"description": "Premium tilapia fish raised in our state-of-the-art aquaculture facilities, ensuring the highest quality and freshness for our customers."
+		},
 		"featured4": {
-			"title": "Fresh Farm poultry",
-			"description": "Grade A fresh poultry from our free-range chickens, produced under strict quality control and food safety standards."
+			"title": "Premium Ajwa Dates",
+			"description": "Our signature Ajwa dates from Madinah, known for their exceptional taste and nutritional benefits. Perfect for export and local markets."
 		}
 	},
 	"GroupStats": {
-		"datesCompany": "Amal Al Khair Dates Company",
-		"fishCompany": "Amal Al Khair Fish Company",
+		"poultryCompany": "Amal Al Khair Poultry Company",
 		"feedCompany": "Amal Al Khair Feed Company",
-		"poultryCompany": "Amal Al Khair Poultry Company"
+		"fishCompany": "Amal Al Khair Fish Company",
+		"datesCompany": "Amal Al Khair Dates Company"
 	},
 	"News": {
 		"title": "Latest News!",
