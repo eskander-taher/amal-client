@@ -59,7 +59,7 @@ const SideNavigation: React.FC = () => {
 			initial={{ x: 50, opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}
 			transition={{ duration: 0.8, ease: "easeOut"}}
-			className="fixed top-1/2 right-0 h-64 w-5 bg-transparent rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2 shadow-lg z-50"
+			className="hidden md:block fixed top-1/2 right-30 h-64 w-5 bg-transparent rounded-l-full flex flex-col justify-center items-center gap-3 transform -translate-y-1/2  z-50"
 		>
 			{sections.map((section) => (
 				<button

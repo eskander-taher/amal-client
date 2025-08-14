@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
 
 			{/* Bottom static curve */}
 			<motion.div
-				className="absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 bg-white rounded-t-full flex justify-center items-top pt-1 gap-3 z-30"
+				className="absolute w-60 h-8 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 bg-white rounded-t-full flex justify-center items-start pt-2 gap-3 z-30"
 				initial={{ y: 50, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
@@ -147,7 +147,7 @@ const Hero: React.FC = () => {
 					<motion.button
 						key={index}
 						onClick={() => goToSlide(index)}
-						className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+						className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
 							index === currentSlide
 								? "bg-[#E3A347] scale-125"
 								: "bg-gray-200 hover:bg-gray-200/70"
