@@ -2,82 +2,91 @@ import Hero from "@/components/Hero";
 import React from "react";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
-import CardLink from "@/components/CardLink";
-import Image from "next/image";
+import RecipeCard from "@/components/RecipeCard";
 
-type RecipeCard = {
+type RecipeData = {
 	date: string;
 	image: string;
 	title: string;
 	description: string;
+	href: string;
 };
 
 export default function () {
 	const t = useTranslations("Recipes");
 
-	const recipes: RecipeCard[] = [
+	const recipes: RecipeData[] = [
 		{
-			date: "16 فبراير 2025",
-			image: "/image_shape_mask.png",
+			date: "45 دقيقة",
+			image: "/poultry.jpg",
 			title: "كيكة التمر التقليدية",
 			description:
 				"وصفة تقليدية لذيذة لكيكة التمر المصنوعة من أجود أنواع تمور أمل الخير، مثالية للعائلة والمناسبات الخاصة.",
+			href: "/recipes/traditional-date-cake",
 		},
 		{
-			date: "02 يناير 2025",
-			image: "/image_shape_mask.png",
+			date: "30 دقيقة",
+			image: "/poultry.jpg",
 			title: "سمك البلطي المشوي بالبهارات",
 			description:
 				"وصفة صحية ولذيذة لسمك البلطي المشوي مع البهارات العربية التقليدية، مصنوع من أسماك أمل الخير الطازجة.",
+			href: "/recipes/spiced-tilapia",
 		},
 		{
-			date: "18 ديسمبر 2024",
-			image: "/image_shape_mask.png",
+			date: "60 دقيقة",
+			image: "/poultry.jpg",
 			title: "دجاج مشوي بالليمون والأعشاب",
 			description:
 				"وصفة دجاج مشوي شهية مع الليمون والأعشاب الطازجة، مصنوعة من دجاج أمل الخير عالي الجودة.",
+			href: "/recipes/lemon-herb-chicken",
 		},
 		{
-			date: "10 نوفمبر 2024",
-			image: "/image_shape_mask.png",
+			date: "15 دقيقة",
+			image: "/poultry.jpg",
 			title: "سلطة التمر والجوز",
 			description:
 				"سلطة صحية ومغذية تجمع بين حلاوة التمر ومقرمش الجوز، مثالية كوجبة خفيفة أو حلوى صحية.",
+			href: "/recipes/date-walnut-salad",
 		},
 		{
-			date: "25 أكتوبر 2024",
-			image: "/image_shape_mask.png",
+			date: "40 دقيقة",
+			image: "/poultry.jpg",
 			title: "أرز بالدجاج والتمر",
 			description:
 				"وصفة أرز شهية مع الدجاج والتمر، تجمع بين النكهات التقليدية والحديثة بطريقة فريدة.",
+			href: "/recipes/chicken-date-rice",
 		},
 		{
-			date: "13 سبتمبر 2024",
-			image: "/image_shape_mask.png",
+			date: "35 دقيقة",
+			image: "/poultry.jpg",
 			title: "شوربة السمك بالخضروات",
 			description:
 				"شوربة سمك دافئة ومغذية مع الخضروات الطازجة، مصنوعة من أسماك أمل الخير عالية الجودة.",
+			href: "/recipes/fish-vegetable-soup",
 		},
 		{
-			date: "30 أغسطس 2024",
-			image: "/image_shape_mask.png",
+			date: "90 دقيقة",
+			image: "/poultry.jpg",
 			title: "مربى التمر المنزلي",
 			description:
 				"وصفة مربى تمر طبيعية 100% مصنوعة من تمور أمل الخير، خالية من المواد الحافظة والسكريات المضافة.",
+			href: "/recipes/homemade-date-jam",
 		},
 		{
-			date: "15 يوليو 2024",
-			image: "/image_shape_mask.png",
+			date: "50 دقيقة",
+			image: "/poultry.jpg",
 			title: "دجاج بالكاري والتمر",
 			description:
 				"وصفة دجاج بالكاري مع إضافة التمر للحلاوة الطبيعية، طبق غني بالنكهات والفوائد الصحية.",
+			href: "/recipes/curry-chicken-dates",
 		},
 		{
-			date: "01 يونيو 2024",
-			image: "/image_shape_mask.png",
+			date: "25 دقيقة",
+			image: "/poultry.jpg",
 			title: "سمك مشوي بالليمون والثوم",
 			description:
 				"وصفة سمك مشوي بسيطة ولذيذة مع الليمون والثوم، تبرز نكهة السمك الطازج الطبيعية.",
+			href: "/recipes/lemon-garlic-fish",
 		},
 	];
 
@@ -85,31 +94,19 @@ export default function () {
 		<>
 			<Hero title={t("title")} imageAlt="Recipes hero image." image="/news-hero.jpg" />
 
-			<Section>
+			<Section className="bg-gray-200">
 				<div className="container mx-auto px-4 py-10">
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 						{recipes.map((item, index) => (
-							<div
+							<RecipeCard
 								key={index}
-								className="bg-[#F2F2EF] flex flex-col justify-center items-center rounded-xl overflow-hidden  hover:scale-[1.02] transition-transform duration-300"
-							>
-								<div className="w-full h-48 overflow-hidden">
-									<Image
-										src={item.image}
-										alt={item.title}
-										width={350}
-										height={200}
-									/>
-								</div>
-								<div className="p-5 relative">
-									<span className="absolute top-3 left-5 text-xs font-bold text-gray-500">
-										{item.date}
-									</span>
-									<h3 className="text-lg font-bold mb-2 mt-8">{item.title}</h3>
-									<p className="text-sm text-gray-600 mb-4">{item.description}</p>
-									<CardLink backgroundColor="#fff" />
-								</div>
-							</div>
+								image={item.image}
+								imageAlt={item.title}
+								title={item.title}
+								description={item.description}
+								href={item.href}
+								badgeText={item.date}
+							/>
 						))}
 					</div>
 				</div>
