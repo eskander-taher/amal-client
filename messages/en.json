@@ -61,6 +61,24 @@
 			"description": "Our signature Ajwa dates from Madinah, known for their exceptional taste and nutritional benefits. Perfect for export and local markets."
 		}
 	},
+	"ProductPages": {
+		"poultry_products": {
+			"title": "Poultry Products",
+			"description": "Discover our premium poultry products including fresh chicken, turkey, and other poultry items."
+		},
+		"feed_products": {
+			"title": "Feed Products",
+			"description": "Explore our comprehensive range of animal feed products for all types of livestock."
+		},
+		"fish_products": {
+			"title": "Fish Products",
+			"description": "Fresh and high-quality fish products from our sustainable aquaculture operations."
+		},
+		"dates_products": {
+			"title": "Dates Products",
+			"description": "Premium dates and date-based products from the finest varieties."
+		}
+	},
 	"GroupStats": {
 		"poultryCompany": "Amal Al Khair Poultry Company",
 		"feedCompany": "Amal Al Khair Feed Company",
@@ -108,7 +126,15 @@
 		"feed": "Feed",
 		"poultry": "Poultry",
 		"presidents": "Words of Presidents",
-		"certifications": "Food quality and safety"
+		"certifications": "Food quality and safety",
+		"poultry_products": "Poultry Products",
+		"feed_products": "Feed Products",
+		"fish_products": "Fish Products",
+		"dates_products": "Dates Products",
+		"poultry_company": "Amal Al Khair Poultry Company",
+		"feed_company": "Amal Al Khair Feed Company",
+		"fish_company": "Amal Al Khair Fish Company",
+		"dates_company": "Amal Al Khair Dates Company"
 	},
 	"Breadcrumbs": {
 		"home": "Home",
@@ -117,7 +143,15 @@
 		"products": "Our Products",
 		"news": "News & Blogs",
 		"jobs": "Jobs",
-		"contact": "Contact Us"
+		"contact": "Contact Us",
+		"poultry_products": "Poultry Products",
+		"feed_products": "Feed Products",
+		"fish_products": "Fish Products",
+		"dates_products": "Dates Products",
+		"poultry_company": "Amal Al Khair Poultry Company",
+		"feed_company": "Amal Al Khair Feed Company",
+		"fish_company": "Amal Al Khair Fish Company",
+		"dates_company": "Amal Al Khair Dates Company"
 	},
 	"Presidents": {
 		"title": "Words of Presidents",

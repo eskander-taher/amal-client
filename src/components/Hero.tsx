@@ -69,6 +69,30 @@ export default function Hero({
 				case "contact":
 					label = t("contact");
 					break;
+				case "poultry":
+					label = t("poultry_company");
+					break;
+				case "feed":
+					label = t("feed_company");
+					break;
+				case "fish":
+					label = t("fish_company");
+					break;
+				case "dates":
+					label = t("dates_company");
+					break;
+				case "poultry-products":
+					label = t("poultry_products");
+					break;
+				case "feed-products":
+					label = t("feed_products");
+					break;
+				case "fish-products":
+					label = t("fish_products");
+					break;
+				case "dates-products":
+					label = t("dates_products");
+					break;
 				default:
 					// Capitalize first letter for unknown segments
 					label = segment.charAt(0).toUpperCase() + segment.slice(1);
