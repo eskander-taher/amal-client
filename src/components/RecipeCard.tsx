@@ -19,7 +19,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 	badgeText,
 }) => {
 	return (
-		<div className="bg-white p-3 rounded-lg overflow-hidden  relative">
+		<div className="bg-white p-3 rounded-lg overflow-hidden relative hover:scale-[1.02] transition-transform duration-300">
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image
@@ -49,7 +49,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 						<span className="text-xs text-gray-500 font-semibold mb-3">{badgeText}</span>
 						{/* Top pseudo-element equivalent */}
 						<div
-							className="absolute top-0 left-0 -translate-x-full  w-5 h-5"
+							className="absolute top-0 left-0 -translate-x-full  w-2 h-2"
 							style={{
 								background: `radial-gradient(circle at bottom left, transparent 70%, white 0%)`,
 							}}
@@ -75,7 +75,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 										flex items-center justify-center
 										overflow-visible
 										bg-white
-										rounded-t-xl
+										rounded-t-lg
 									"
 					
 				>
