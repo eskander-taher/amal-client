@@ -7,6 +7,7 @@ import News from "@/components/home/News";
 import Products from "@/components/home/Products";
 import SideNavigation from "@/components/SideNavigation";
 
+
 export default function Home() {
 	return (
 		<div className="relative">
