@@ -73,9 +73,9 @@ export default function NavBar() {
 
 	return (
 		<nav
-			className={`px-10 py-2 flex shadow-sm fixed top-0 w-full z-50 transition-all duration-300  ${
+			className={`px-10 py-2 flex  fixed top-0 w-full z-50 transition-all duration-300  ${
 				isScrolled
-					? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20"
+					? "bg-white"
 					: "bg-transparent delay-200"
 			}`}
 		>
@@ -87,7 +87,7 @@ export default function NavBar() {
 					<div
 						className={`absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 rounded-b-full z-0 transition-all duration-500 ease-out ${
 							isScrolled
-								? "bg-white/95 backdrop-blur-md translate-y-1/2 opacity-100 delay-200"
+								? "bg-white translate-y-1/2 opacity-100 delay-200"
 								: "bg-transparent -translate-y-8 opacity-0"
 						}`}
 					/>

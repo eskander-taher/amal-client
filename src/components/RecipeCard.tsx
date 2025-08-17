@@ -19,7 +19,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 	badgeText,
 }) => {
 	return (
-		<div className="bg-white p-3 rounded-lg overflow-hidden relative hover:scale-[1.02] transition-transform duration-300">
+		<div className="bg-white p-3 rounded-lg overflow-hidden relative">
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image
