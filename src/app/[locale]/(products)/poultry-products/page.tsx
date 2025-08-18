@@ -14,39 +14,14 @@ type ProductData = {
 export default function PoultryProductsPage() {
 	const t = useTranslations("ProductPages.poultry_products");
 
-	const products: ProductData[] = productCards
+	const baseProducts: ProductData[] = productCards
 		.filter((p) => p.category === "poultry")
 		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
+
+	const products: ProductData[] = Array.from({ length: 12 }, (_, i) => baseProducts[i % baseProducts.length]);
 	return (
 		<div>
-			<Hero title={t("title")} image="/group/poultry_hero.png" />
-			<Section>
-				<div className="flex justify-start gap-10 items-center">
-					<Image
-						src="/group/poultry.png"
-						alt="Poultry Company Logo"
-						width={500}
-						height={500}
-						className="invert object-contain"
-					/>
-					<div>
-						<h2 className="text-3xl font-bold text-gray-900 mb-4">{t("title")}</h2>
-						<p>{t("description")}</p>
-					</div>
-				</div>
-			</Section>
-			<section className="py-16">
-				<div className="w-full">
-					<Image
-						src="/group/poultry2.jpg"
-						alt="About Amal Al-Khair"
-						width={1920}
-						height={800}
-						className="w-full h-auto"
-						priority
-					/>
-				</div>
-			</section>
+			<Hero title={t("title")} image="/placeholder.jpg" />
 			<Section className="bg-gray-200">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{products.map((product, index) => (

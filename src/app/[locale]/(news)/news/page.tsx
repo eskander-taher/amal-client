@@ -22,9 +22,9 @@ export default function () {
 
 	return (
 		<>
-			<Hero title={t("title")} imageAlt="News hero image." image="/news-hero.jpg" />
+			<Hero title={t("title")} imageAlt="News hero image." image="/placeholder.jpg" />
 
-			<Section className="bg-gray-200">
+			<Section>
 				<div className="container mx-auto px-4 py-10">
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 						{news.map((item, index) => (
@@ -36,6 +36,8 @@ export default function () {
 								description={item.description}
 								href={item.href}
 								badgeText={item.date}
+								cardBackgroundColor="#F2F2EF"
+								cardLinkBackgroundColor="white"
 							/>
 						))}
 					</div>
