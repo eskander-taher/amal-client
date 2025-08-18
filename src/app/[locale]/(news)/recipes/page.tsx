@@ -26,7 +26,7 @@ export default function () {
 
 	return (
 		<>
-			<Hero title={t("title")} imageAlt="Recipes hero image." image="/news-hero.jpg" />
+			<Hero title={t("title")} imageAlt="Recipes hero image." image="/placeholder.jpg" />
 
 			<Section className="bg-gray-200">
 				<div className="container mx-auto px-4 py-10">

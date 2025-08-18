@@ -19,7 +19,7 @@ export default function page() {
 		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
-			<Hero title={t("title")} image="/group/poultry_hero.png" />
+			<Hero title={t("title")} image="/placeholder.jpg" />
 			<Section>
 				<div className="flex justify-start gap-10 items-center">
 					<Image
@@ -38,7 +38,7 @@ export default function page() {
 			<section className="py-16">
 				<div className="w-full">
 					<Image
-						src="/group/poultry2.jpg"
+						src="/placeholder.jpg"
 						alt="About Amal Al-Khair"
 						width={1920}
 						height={800}

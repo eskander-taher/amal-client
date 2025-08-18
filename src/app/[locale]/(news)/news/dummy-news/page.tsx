@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Page() {
 	return (
 		<>
-			<Hero title="خبر تجريبي" imageAlt="Dummy news hero image" image="/news-hero.jpg" />
+			<Hero title="خبر تجريبي" imageAlt="Dummy news hero image" image="/placeholder.jpg" />
 
 			<Section>
 				<div className="prose max-w-none rtl text-right text-gray-800">

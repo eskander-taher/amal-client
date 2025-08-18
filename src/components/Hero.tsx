@@ -113,7 +113,8 @@ export default function Hero({
 
 	const breadcrumbs = generateBreadcrumbs();
 
-	console.log(breadcrumbs);
+	const isProductPage = pathname.endsWith("products");;
+
 	return (
 		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 xl:p-0  ${className}`}>
 			{/* Background Image */}
@@ -155,7 +156,7 @@ export default function Hero({
 											</Link>
 											{breadcrumb.isActive && (
 												<div
-													className="absolute bg-white rounded-t-full animate-curve"
+													className={`absolute bg-${isProductPage ? "gray-200" : "white"} rounded-t-full animate-curve`}
 													style={{
 														width: `100%`,
 														bottom: "0px",
