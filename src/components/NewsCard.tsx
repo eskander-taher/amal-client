@@ -8,6 +8,8 @@ interface NewsCardProps {
 	description: string;
 	href: string;
 	badgeText?: string;
+	cardLinkBackgroundColor?: string;
+	cardBackgroundColor?: string;
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({
@@ -17,9 +19,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	description,
 	href,
 	badgeText,
+	cardLinkBackgroundColor,
+	cardBackgroundColor,
 }) => {
 	return (
-		<div className="bg-white p-3 rounded-lg overflow-hidden relative">
+		<div
+			className="bg-white p-3 rounded-lg overflow-hidden relative"
+			style={{ backgroundColor: cardBackgroundColor }}
+		>
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image
@@ -44,15 +51,17 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						"
 						style={{
 							borderBottomRightRadius: "10px",
-							backgroundColor: "white",
+							backgroundColor: cardBackgroundColor,
 						}}
 					>
-						<span className="text-xs text-gray-500 font-semibold mb-3">{badgeText}</span>
+						<span className="text-xs text-gray-500 font-semibold mb-3">
+							{badgeText}
+						</span>
 						{/* Top pseudo-element equivalent */}
 						<div
 							className="absolute bottom-0 left-0 translate-y-full w-5 h-5"
 							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, white 0%)`,
+								background: `radial-gradient(circle at bottom right, transparent 70%, ${cardBackgroundColor} 0%)`,
 							}}
 						/>
 
@@ -60,7 +69,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						<div
 							className="absolute top-0 right-0 translate-x-full w-3 h-3"
 							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, white 0%)`,
+								background: `radial-gradient(circle at bottom right, transparent 70%, ${cardBackgroundColor} 0%)`,
 							}}
 						/>
 					</div>
@@ -75,15 +84,17 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						w-[60%]
 						flex items-center justify-center
 						overflow-visible
-						bg-white
 						rounded-tl-xl
 					"
+					style={{
+						backgroundColor: cardBackgroundColor,
+					}}
 				>
 					{/* Top pseudo-element equivalent */}
 					<div
 						className="absolute bottom-0 left-0 -translate-x-full w-2 h-2"
 						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, white 0%)`,
+							background: `radial-gradient(circle at top left, transparent 70%, ${cardBackgroundColor} 0%)`,
 						}}
 					/>
 
@@ -91,7 +102,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 					<div
 						className="absolute top-0 right-0 -translate-y-full  w-2 h-2"
 						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, white 0%)`,
+							background: `radial-gradient(circle at top left, transparent 70%, ${cardBackgroundColor} 0%)`,
 						}}
 					/>
 				</div>
@@ -107,7 +118,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 			</div>
 
 			{/* Card Link - positioned absolutely at bottom */}
-			<CardLink href={href} />
+			<CardLink href={href} backgroundColor={cardLinkBackgroundColor} />
 		</div>
 	);
 };
