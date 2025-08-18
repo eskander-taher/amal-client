@@ -6,17 +6,6 @@ import React from "react";
 export default function JobsPage() {
   return (
     <Section>
-
-      <div
-        style={{
-          minHeight: "60vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h1>Jobs Page (Dummy)</h1>
-      </div>
       <div className="px-4 py-12">
       <HeadingParagraph
         title="انضم لعائلة أمل الخير"
