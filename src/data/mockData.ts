@@ -1,6 +1,6 @@
 // Centralized mock data for News, Products, and Recipes
 import type { Category } from "@/types";
-import type { News } from "@/types";
+// import type { News } from "@/types";
 
 export const newsCards = [
   {
@@ -139,5 +139,4 @@ export const featuredProducts = [
   { image: "/group/feed.png", titleKey: "featured2.title" },
   { image: "/group/poultry.png", titleKey: "featured1.title" },
 ];
-
 

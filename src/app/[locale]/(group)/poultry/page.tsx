@@ -11,7 +11,7 @@ type ProductData = {
 	href: string;
 };
 
-export default function page() {
+export default function Page() {
 	const t = useTranslations("Group.poultryCompany");
 
 	const products: ProductData[] = productCards

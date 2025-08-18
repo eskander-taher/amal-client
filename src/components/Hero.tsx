@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
-import { ChevronRight, Home } from "lucide-react";
+// import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
 import Section from "./Section";
 import { routing } from "@/i18n/routing";
@@ -146,7 +146,7 @@ export default function Hero({
 						<nav aria-label="Breadcrumb">
 							<ol className="flex items-center space-x-5 text-sm text-white/80">
 								{breadcrumbs.map((breadcrumb, index) => (
-									<li key={breadcrumb.href} className="flex items-center">
+									<li key={index} className="flex items-center">
 										<div className="relative flex-col pb-10">
 											<Link
 												href={breadcrumb.href}

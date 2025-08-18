@@ -8,7 +8,7 @@ import type { ProductCardItem } from "@/types";
 
 type ProductData = ProductCardItem;
 
-export default function page() {
+export default function Page() {
 	const t = useTranslations("Group.datesCompany");
 
 	const products: ProductData[] = productCards
