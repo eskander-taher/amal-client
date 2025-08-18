@@ -110,6 +110,7 @@ export default function Hero({
 
 	const breadcrumbs = generateBreadcrumbs();
 
+	console.log(breadcrumbs);
 	return (
 		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 xl:p-0  ${className}`}>
 			{/* Background Image */}
@@ -142,40 +143,26 @@ export default function Hero({
 							<ol className="flex items-center space-x-5 text-sm text-white/80">
 								{breadcrumbs.map((breadcrumb, index) => (
 									<li key={breadcrumb.href} className="flex items-center">
-										{index > 0 && (
-											<ChevronRight className="w-4 h-4 mx-2 text-white/60" />
-										)}
-										{breadcrumb.isActive ? (
-											<span className="text-white font-medium">
+										<div className="relative flex-col pb-10">
+											<Link
+												href={breadcrumb.href}
+												className="flex  relative items-center hover:text-white transition-colors duration-200"
+											>
 												{breadcrumb.label}
-											</span>
-										) : (
-											<p className="relative flex-col pb-10">
-												<Link
-													href={breadcrumb.href}
-													className="flex  relative items-center hover:text-white transition-colors duration-200"
-												>
-													{breadcrumb.label}
-												</Link>
-											</p>
-										)}
+											</Link>
+											{breadcrumb.isActive && (
+												<div
+													className="absolute bg-white rounded-t-full animate-curve"
+													style={{
+														width: `100%`,
+														bottom: "0px",
+														height: "10px",
+													}}
+												/>	
+											)}
+										</div>
 									</li>
 								))}
-								<li>
-									<div className="relative flex-col pb-10">
-										<p className="flex  relative items-center hover:text-white transition-colors duration-200">
-											{title}
-										</p>
-										<div
-											className="absolute bg-white rounded-t-full animate-curve"
-											style={{
-												width: `100%`,
-												bottom: "0px",
-												height: "10px",
-											}}
-										/>
-									</div>
-								</li>
 							</ol>
 						</nav>
 					</div>

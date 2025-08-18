@@ -62,7 +62,7 @@ const News: React.FC = () => {
 								<p className="text-sm text-gray-600 mb-6">
 									{t(item.descriptionKey)}
 								</p>
-								<CardLink backgroundColor="#fff" />
+								<CardLink href="/news/dummy-news" backgroundColor="#fff" />
 							</div>
 						</div>
 					))}

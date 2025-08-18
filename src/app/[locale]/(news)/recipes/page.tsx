@@ -22,7 +22,7 @@ export default function () {
 			title: "كيكة التمر التقليدية",
 			description:
 				"وصفة تقليدية لذيذة لكيكة التمر المصنوعة من أجود أنواع تمور أمل الخير، مثالية للعائلة والمناسبات الخاصة.",
-			href: "/recipes/traditional-date-cake",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "30 دقيقة",
@@ -30,7 +30,7 @@ export default function () {
 			title: "سمك البلطي المشوي بالبهارات",
 			description:
 				"وصفة صحية ولذيذة لسمك البلطي المشوي مع البهارات العربية التقليدية، مصنوع من أسماك أمل الخير الطازجة.",
-			href: "/recipes/spiced-tilapia",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "60 دقيقة",
@@ -38,7 +38,7 @@ export default function () {
 			title: "دجاج مشوي بالليمون والأعشاب",
 			description:
 				"وصفة دجاج مشوي شهية مع الليمون والأعشاب الطازجة، مصنوعة من دجاج أمل الخير عالي الجودة.",
-			href: "/recipes/lemon-herb-chicken",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "15 دقيقة",
@@ -46,7 +46,7 @@ export default function () {
 			title: "سلطة التمر والجوز",
 			description:
 				"سلطة صحية ومغذية تجمع بين حلاوة التمر ومقرمش الجوز، مثالية كوجبة خفيفة أو حلوى صحية.",
-			href: "/recipes/date-walnut-salad",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "40 دقيقة",
@@ -54,7 +54,7 @@ export default function () {
 			title: "أرز بالدجاج والتمر",
 			description:
 				"وصفة أرز شهية مع الدجاج والتمر، تجمع بين النكهات التقليدية والحديثة بطريقة فريدة.",
-			href: "/recipes/chicken-date-rice",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "35 دقيقة",
@@ -62,7 +62,7 @@ export default function () {
 			title: "شوربة السمك بالخضروات",
 			description:
 				"شوربة سمك دافئة ومغذية مع الخضروات الطازجة، مصنوعة من أسماك أمل الخير عالية الجودة.",
-			href: "/recipes/fish-vegetable-soup",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "90 دقيقة",
@@ -70,7 +70,7 @@ export default function () {
 			title: "مربى التمر المنزلي",
 			description:
 				"وصفة مربى تمر طبيعية 100% مصنوعة من تمور أمل الخير، خالية من المواد الحافظة والسكريات المضافة.",
-			href: "/recipes/homemade-date-jam",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "50 دقيقة",
@@ -78,7 +78,7 @@ export default function () {
 			title: "دجاج بالكاري والتمر",
 			description:
 				"وصفة دجاج بالكاري مع إضافة التمر للحلاوة الطبيعية، طبق غني بالنكهات والفوائد الصحية.",
-			href: "/recipes/curry-chicken-dates",
+			href: "/recipes/yogurt-apple-cake",
 		},
 		{
 			date: "25 دقيقة",
@@ -86,7 +86,7 @@ export default function () {
 			title: "سمك مشوي بالليمون والثوم",
 			description:
 				"وصفة سمك مشوي بسيطة ولذيذة مع الليمون والثوم، تبرز نكهة السمك الطازج الطبيعية.",
-			href: "/recipes/lemon-garlic-fish",
+			href: "/recipes/yogurt-apple-cake",
 		},
 	];
 

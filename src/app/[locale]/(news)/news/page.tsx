@@ -22,7 +22,7 @@ export default function () {
 			title: "افتتاح فرع جديد لمجموعة جمال بغلف في الرياض",
 			description:
 				"يسر مجموعة جمال بغلف الإعلان عن افتتاح فرع جديد في مدينة الرياض ضمن خطتها التوسعية لتقديم خدمات أفضل للعملاء في مختلف مناطق المملكة.",
-			href: "/news/new-branch-opening",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "02 يناير 2025",
@@ -30,7 +30,7 @@ export default function () {
 			title: "توقيع اتفاقية شراكة استراتيجية مع شركة دولية",
 			description:
 				"أعلنت المجموعة عن توقيع اتفاقية شراكة مع إحدى الشركات العالمية لتعزيز قدراتها في مجالات التحول الرقمي والخدمات اللوجستية.",
-			href: "/news/strategic-partnership",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "18 ديسمبر 2024",
@@ -38,7 +38,7 @@ export default function () {
 			title: "رعاية فعالية المسؤولية الاجتماعية في جدة",
 			description:
 				"شاركت المجموعة في رعاية فعالية مجتمعية تهدف إلى دعم فئات مختلفة من المجتمع، ضمن إطار التزامها بالمسؤولية الاجتماعية.",
-			href: "/news/social-responsibility-event",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "10 نوفمبر 2024",
@@ -46,7 +46,7 @@ export default function () {
 			title: "إطلاق مبادرة لدعم رواد الأعمال السعوديين",
 			description:
 				"أطلقت المجموعة مبادرة جديدة تهدف إلى تمكين رواد الأعمال السعوديين من خلال ورش عمل ودورات تدريبية وفرص تمويل.",
-			href: "/news/entrepreneurship-initiative",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "25 أكتوبر 2024",
@@ -54,7 +54,7 @@ export default function () {
 			title: "المجموعة تحصل على جائزة التميز في الخدمة",
 			description:
 				"تسلمت المجموعة جائزة التميز في الخدمة لعام 2024 تقديرًا لجودتها العالية والتزامها برضا العملاء.",
-			href: "/news/excellence-award",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "13 سبتمبر 2024",
@@ -62,7 +62,7 @@ export default function () {
 			title: "تدشين مركز خدمات جديد في المنطقة الشرقية",
 			description:
 				"افتتحت المجموعة مركز خدمات جديدًا في الدمام لتلبية احتياجات العملاء وتقديم خدمات أسرع وأكثر كفاءة.",
-			href: "/news/new-service-center",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "30 أغسطس 2024",
@@ -70,7 +70,7 @@ export default function () {
 			title: "البدء في مشروع رقمي لتطوير البنية التحتية",
 			description:
 				"أعلنت المجموعة عن بدء تنفيذ مشروع رقمي شامل لتحسين البنية التحتية التقنية وزيادة الكفاءة التشغيلية.",
-			href: "/news/digital-infrastructure-project",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "15 يوليو 2024",
@@ -78,7 +78,7 @@ export default function () {
 			title: "زيارة وفد من المستثمرين لمقر المجموعة",
 			description:
 				"استقبلت المجموعة وفدًا من كبار المستثمرين المحليين والدوليين لبحث فرص التعاون والاستثمار.",
-			href: "/news/investor-delegation-visit",
+			href: "/news/dummy-news",
 		},
 		{
 			date: "01 يونيو 2024",
@@ -86,7 +86,7 @@ export default function () {
 			title: "إطلاق حملة توظيف جديدة في عدة مدن",
 			description:
 				"أطلقت المجموعة حملة توظيف واسعة تشمل عدة مدن في المملكة بهدف استقطاب الكفاءات السعودية الشابة.",
-			href: "/news/recruitment-campaign",
+			href: "/news/dummy-news",
 		},
 	];
 
