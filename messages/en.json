@@ -121,6 +121,19 @@
 				}
 			}
 		},
+		"workEnvironment": {
+			"title": "Work Environment",
+			"subtitle": "Fostering positive communication and understanding among employees through regular public meetings.",
+			"items": {
+				"item1": "Fostering positive communication and understanding among employees through regular public meetings.",
+				"item2": "Supporting employees' roles and ensuring a stable career path.",
+				"item3": "Evaluating employee performance and rewarding outstanding individuals both financially and morally.",
+				"item4": "Establishing policies to encourage employees and reviewing wages periodically.",
+				"item5": "Applying internationally approved standards for occupational health and safety within the work environment.",
+				"item6": "Applying internationally approved standards for occupational health and safety within the work environment.",
+				"item7": "Fostering positive communication and understanding among employees through regular public meetings."
+			}
+		},
 		"workWithUs": {
 			"title": "Working with Amal Al Khair",
 			"description": "Our employees are our greatest asset. Attracting the right people, training them, and providing the resources they need to meet our standards as a world-class food company is a top priority for Amal Al Khair."

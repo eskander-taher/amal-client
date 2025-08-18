@@ -4,6 +4,8 @@ import Hero from "@/components/Hero";
 import JobCardList from "@/components/jobs/JobCardList";
 import WorkWithUs from "@/components/jobs/WorkWithUs";
 import HiringProcess from "@/components/jobs/HiringProcess";
+import WorkEnvironment from "@/components/jobs/WorkEnvironment";
+import JoinFamilyCTA from "@/components/jobs/JoinFamilyCTA";
 
 export default function page() {
 	return (
@@ -15,6 +17,8 @@ export default function page() {
 			<JobCardList />
 			<WorkWithUs />
 			<HiringProcess />
+			<JoinFamilyCTA />
+			<WorkEnvironment />
 		</div>
 	);
 }
