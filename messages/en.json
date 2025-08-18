@@ -95,6 +95,12 @@
 			}
 		}
 	},
+	"Jobs": {
+		"workWithUs": {
+			"title": "Working with Amal Al Khair",
+			"description": "Our employees are our greatest asset. Attracting the right people, training them, and providing the resources they need to meet our standards as a world-class food company is a top priority for Amal Al Khair."
+		}
+	},
 	"Recipes": {
 		"title": "Amal Al Khair Recipes",
 		"moreRecipes": "More Recipes",

@@ -1,20 +1,18 @@
-import JobForm from "@/components/jobs/Form";
-import Section from "@/components/Section";
-import HeadingParagraph from "@/components/ui/HeadingParagraph";
 import React from "react";
+import Hero from "@/components/Hero";
 
-export default function JobsPage() {
-  return (
-    <Section>
-      <div className="px-4 py-12">
-      <HeadingParagraph
-        title="انضم لعائلة أمل الخير"
-        text="مرحبًا بكم في صفحة خدمة العملاء. فريقنا متواجد للرد على استفساراتكم وتقديم المساعدة التي تحتاجونها، سواء كان لديكم تساؤل حول منتجاتنا، أو كنتم بحاجة إلى المساعدة في إتمام إجراءٍ ما. يسعدنا الاستماع إليكم للحصول على مساعدة فورية أو للتواصل معنا عبر الهاتف. نحرص على خدمة عملائنا كما ينبغي، كما يمكنكم مراسلتنا عبر البريد الإلكتروني أو لجان الدعم. نحن نسعى جاهدين للرد على جميع الاستفسارات في أسرع وقت ممكن. نراكم دائمًا في أولوياتنا القصوى."
-        align="center"
-        width="lg"
-      />
-    </div>
-      <JobForm />
-    </Section>
-  );
+import JobCardList from "@/components/jobs/JobCardList";
+import WorkWithUs from "@/components/jobs/WorkWithUs";
+
+export default function page() {
+	return (
+		<div>
+			<Hero
+				title="فرص العمل في امل الخير - تعزيز وتطوير المهارات الشخصية"
+				subtitle="موّظفونا هم أهم الأصول لدينا فاجتذاب الأشخاص المناسبين وتدريبهم وتوفير الموارد التي يحتاجونها لتلبية متطلباتنا كشركة أغذية عالمية المستوى يشكل أولوية رئيسية لامل الخير."
+			/>
+			<JobCardList />
+			<WorkWithUs />
+		</div>
+	);
 }
