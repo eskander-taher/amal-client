@@ -96,6 +96,31 @@
 		}
 	},
 	"Jobs": {
+		"hiringProcess": {
+			"title": "Hiring Process",
+			"steps": {
+				"step1": {
+					"title": "Create an Account",
+					"description": "Start by creating your personal account to apply.",
+					"icon": "icon-create-account"
+				},
+				"step2": {
+					"title": "Search Jobs",
+					"description": "Browse available jobs and find the right fit.",
+					"icon": "icon-search-jobs"
+				},
+				"step3": {
+					"title": "Apply to a Job",
+					"description": "Choose a suitable job and submit your application.",
+					"icon": "icon-apply-job"
+				},
+				"step4": {
+					"title": "Get the Job",
+					"description": "Upon acceptance, enjoy starting your career.",
+					"icon": "icon-get-job"
+				}
+			}
+		},
 		"workWithUs": {
 			"title": "Working with Amal Al Khair",
 			"description": "Our employees are our greatest asset. Attracting the right people, training them, and providing the resources they need to meet our standards as a world-class food company is a top priority for Amal Al Khair."

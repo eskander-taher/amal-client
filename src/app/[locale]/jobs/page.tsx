@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 
 import JobCardList from "@/components/jobs/JobCardList";
 import WorkWithUs from "@/components/jobs/WorkWithUs";
+import HiringProcess from "@/components/jobs/HiringProcess";
 
 export default function page() {
 	return (
@@ -13,6 +14,7 @@ export default function page() {
 			/>
 			<JobCardList />
 			<WorkWithUs />
+			<HiringProcess />
 		</div>
 	);
 }
