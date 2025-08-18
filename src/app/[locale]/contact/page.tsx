@@ -1,7 +1,14 @@
-import React from 'react'
+// app/contact/page.tsx
+import React from "react";
+import { ContactHero, ContactIntro, ContactForm, ContactInfo } from "@/components/contact";
 
-export default function page() {
+export default function ContactPage() {
   return (
-	<div>page</div>
-  )
+    <section className="w-full" dir="rtl">
+      <ContactHero />
+      <ContactIntro />
+      <ContactForm />
+      <ContactInfo />
+    </section>
+  );
 }
