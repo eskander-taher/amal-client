@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
+import { productCards } from "@/data/mockData";
 
 type ProductData = {
 	image: string;
@@ -13,48 +14,9 @@ type ProductData = {
 export default function FishProductsPage() {
 	const t = useTranslations("ProductPages.fish_products");
 
-	const products: ProductData[] = [
-		{
-			image: "/products/product1.png",
-			title: "سمك السلمون الطازج",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product2.png",
-			title: "سمك التونة الطازجة",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product3.png",
-			title: "سمك الهامور الطازج",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product1.png",
-			title: "سمك الكنعد الطازج",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product4.png",
-			title: "سمك الشعري الطازج",
-			href: "/products/4",
-		},
-		{
-			image: "/products/product3.png",
-			title: "سمك الهامور الطازج",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product2.png",
-			title: "سمك التونة الطازجة",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product4.png",
-			title: "سمك الشعري الطازج",
-			href: "/products/4",
-		},
-	];
+	const products: ProductData[] = productCards
+		.filter((p) => p.category === "fish")
+		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
 			<Hero title={t("title")} image="/group/fish.png" />

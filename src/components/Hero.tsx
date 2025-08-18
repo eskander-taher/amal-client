@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
 import Section from "./Section";
+import { routing } from "@/i18n/routing";
 
 interface HeroProps {
 	title: string;
@@ -30,6 +31,9 @@ export default function Hero({
 	// Generate breadcrumb items based on current path
 	const generateBreadcrumbs = () => {
 		const segments = pathname.split("/").filter(Boolean);
+		const isFirstSegmentLocale =
+			segments.length > 0 && routing.locales.some((loc) => loc === segments[0]);
+		const routeSegments = isFirstSegmentLocale ? segments.slice(1) : segments;
 		const breadcrumbs = [];
 
 		// Always add home
@@ -40,13 +44,10 @@ export default function Hero({
 		});
 
 		// Add other segments
-		for (let i = 0; i < segments.length; i++) {
-			const segment = segments[i];
-			const isLast = i === segments.length - 1;
-			const href = "/" + segments.slice(0, i + 1).join("/");
-
-			// Skip locale segment (first segment)
-			if (i === 0) continue;
+		for (let i = 0; i < routeSegments.length; i++) {
+			const segment = routeSegments[i];
+			const isLast = i === routeSegments.length - 1;
+			const href = "/" + routeSegments.slice(0, i + 1).join("/");
 
 			// Map segment to translation key
 			let label = segment;
@@ -94,8 +95,10 @@ export default function Hero({
 					label = t("dates_products");
 					break;
 				default:
-					// Capitalize first letter for unknown segments
-					label = segment.charAt(0).toUpperCase() + segment.slice(1);
+					// For unknown segments, if it's the last one (dynamic page), use the page title; otherwise, fallback to capitalized segment
+					label = isLast
+						? title
+						: segment.charAt(0).toUpperCase() + segment.slice(1);
 			}
 
 			breadcrumbs.push({

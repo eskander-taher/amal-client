@@ -1,15 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import CardLink from "./CardLink";
-
-type Product = {
-	image: string;
-	title: string;
-	href: string;
-};
+import type { ProductCardItem } from "@/types";
 
 type ProductCardProps = {
-	product: Product;
+	product: ProductCardItem;
 };
 
 export default function ProductCard({ product }: ProductCardProps) {

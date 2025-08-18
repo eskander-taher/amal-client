@@ -35,3 +35,10 @@ export type Product = {
 	// القيم الغذائية (اختياري)
 	nutritionFacts?: NutritionFacts;
 };
+
+// Lightweight product card shape used across grid UIs
+export type ProductCardItem = {
+    image: string;
+    title: string;
+    href: string;
+};

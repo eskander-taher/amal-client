@@ -2,37 +2,20 @@
 import Section from "../Section";
 import { useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
+import { newsCards } from "@/data/mockData";
+import type { NewsListCard } from "@/types";
 
-type NewsCard = {
-	date: string;
-	image: string;
-	titleKey: string;
-	descriptionKey: string;
-};
+type NewsCard = Pick<NewsListCard, "date" | "image" | "titleKey" | "descriptionKey">;
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
 
-	const news: NewsCard[] = [
-		{
-			date: "16 Feb 2025",
-			image: "/image_shape_mask.png",
-			titleKey: "newsItems.storeOpening.title",
-			descriptionKey: "newsItems.storeOpening.description",
-		},
-		{
-			date: "16 Feb 2025",
-			image: "/image_shape_mask.png",
-			titleKey: "newsItems.storeOpening.title",
-			descriptionKey: "newsItems.storeOpening.description",
-		},
-		{
-			date: "16 Feb 2025",
-			image: "/image_shape_mask.png",
-			titleKey: "newsItems.storeOpening.title",
-			descriptionKey: "newsItems.storeOpening.description",
-		},
-	];
+	const news: NewsCard[] = newsCards.map((n) => ({
+		date: n.date,
+		image: n.image,
+		titleKey: n.titleKey,
+		descriptionKey: n.descriptionKey,
+	}));
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">

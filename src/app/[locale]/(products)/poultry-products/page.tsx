@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
+import { productCards } from "@/data/mockData";
 
 type ProductData = {
 	image: string;
@@ -13,48 +14,9 @@ type ProductData = {
 export default function PoultryProductsPage() {
 	const t = useTranslations("ProductPages.poultry_products");
 
-	const products: ProductData[] = [
-		{
-			image: "/products/product1.png",
-			title: "صدور دجاج الطازج - مكعبات",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product2.png",
-			title: "فيليه صدر دجاج طازج",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product3.png",
-			title: "دجاجة تاجة كاملة عباء الكيس",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product1.png",
-			title: "صدور دجاج الطازج - مكعبات",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product4.png",
-			title: "دجاجة كاملة متبله بنكهة البراني",
-			href: "/products/4",
-		},
-		{
-			image: "/products/product3.png",
-			title: "دجاجة تاجة كاملة عباء الكيس",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product2.png",
-			title: "فيليه صدر دجاج طازج",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product4.png",
-			title: "دجاجة كاملة متبله بنكهة البراني",
-			href: "/products/4",
-		},
-	];
+	const products: ProductData[] = productCards
+		.filter((p) => p.category === "poultry")
+		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
 			<Hero title={t("title")} image="/group/poultry_hero.png" />

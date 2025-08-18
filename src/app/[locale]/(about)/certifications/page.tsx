@@ -6,6 +6,7 @@ import Certifications from "@/components/home/Certifications";
 
 export default function page() {
 	const t = useTranslations("Certifications");
+	
 	return (
 		<>
 			<Hero

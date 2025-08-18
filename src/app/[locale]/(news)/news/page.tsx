@@ -3,92 +3,22 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
+import { newsCards } from "@/data/mockData";
+import type { News } from "@/types";
 
-type NewsData = {
-	date: string;
-	image: string;
-	title: string;
-	description: string;
-	href: string;
-};
+type NewsData = News & { image: string; date: string };
 
 export default function () {
 	const t = useTranslations("News");
 
-	const news: NewsData[] = [
-		{
-			date: "16 فبراير 2025",
-			image: "/poultry.jpg",
-			title: "افتتاح فرع جديد لمجموعة جمال بغلف في الرياض",
-			description:
-				"يسر مجموعة جمال بغلف الإعلان عن افتتاح فرع جديد في مدينة الرياض ضمن خطتها التوسعية لتقديم خدمات أفضل للعملاء في مختلف مناطق المملكة.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "02 يناير 2025",
-			image: "/poultry.jpg",
-			title: "توقيع اتفاقية شراكة استراتيجية مع شركة دولية",
-			description:
-				"أعلنت المجموعة عن توقيع اتفاقية شراكة مع إحدى الشركات العالمية لتعزيز قدراتها في مجالات التحول الرقمي والخدمات اللوجستية.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "18 ديسمبر 2024",
-			image: "/poultry.jpg",
-			title: "رعاية فعالية المسؤولية الاجتماعية في جدة",
-			description:
-				"شاركت المجموعة في رعاية فعالية مجتمعية تهدف إلى دعم فئات مختلفة من المجتمع، ضمن إطار التزامها بالمسؤولية الاجتماعية.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "10 نوفمبر 2024",
-			image: "/poultry.jpg",
-			title: "إطلاق مبادرة لدعم رواد الأعمال السعوديين",
-			description:
-				"أطلقت المجموعة مبادرة جديدة تهدف إلى تمكين رواد الأعمال السعوديين من خلال ورش عمل ودورات تدريبية وفرص تمويل.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "25 أكتوبر 2024",
-			image: "/poultry.jpg",
-			title: "المجموعة تحصل على جائزة التميز في الخدمة",
-			description:
-				"تسلمت المجموعة جائزة التميز في الخدمة لعام 2024 تقديرًا لجودتها العالية والتزامها برضا العملاء.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "13 سبتمبر 2024",
-			image: "/poultry.jpg",
-			title: "تدشين مركز خدمات جديد في المنطقة الشرقية",
-			description:
-				"افتتحت المجموعة مركز خدمات جديدًا في الدمام لتلبية احتياجات العملاء وتقديم خدمات أسرع وأكثر كفاءة.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "30 أغسطس 2024",
-			image: "/poultry.jpg",
-			title: "البدء في مشروع رقمي لتطوير البنية التحتية",
-			description:
-				"أعلنت المجموعة عن بدء تنفيذ مشروع رقمي شامل لتحسين البنية التحتية التقنية وزيادة الكفاءة التشغيلية.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "15 يوليو 2024",
-			image: "/poultry.jpg",
-			title: "زيارة وفد من المستثمرين لمقر المجموعة",
-			description:
-				"استقبلت المجموعة وفدًا من كبار المستثمرين المحليين والدوليين لبحث فرص التعاون والاستثمار.",
-			href: "/news/dummy-news",
-		},
-		{
-			date: "01 يونيو 2024",
-			image: "/poultry.jpg",
-			title: "إطلاق حملة توظيف جديدة في عدة مدن",
-			description:
-				"أطلقت المجموعة حملة توظيف واسعة تشمل عدة مدن في المملكة بهدف استقطاب الكفاءات السعودية الشابة.",
-			href: "/news/dummy-news",
-		},
-	];
+	const news: NewsData[] = newsCards.map((n) => ({
+		date: n.date,
+		image: n.image,
+		title: "خبر تجريبي",
+		description: "نص تجريبي للخبر.",
+		href: n.href,
+		imageUrl: n.image,
+	}));
 
 	return (
 		<>

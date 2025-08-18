@@ -3,58 +3,17 @@ import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
+import { productCards } from "@/data/mockData";
+import type { ProductCardItem } from "@/types";
 
-type ProductData = {
-	image: string;
-	title: string;
-	href: string;
-};
+type ProductData = ProductCardItem;
 
 export default function page() {
 	const t = useTranslations("Group.datesCompany");
 
-	const products: ProductData[] = [
-		{
-			image: "/products/product1.png",
-			title: "تمور العجوة المميزة",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product2.png",
-			title: "تمور السكري الذهبية",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product3.png",
-			title: "تمور الصقعي الطازجة",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product1.png",
-			title: "تمور الخضري المميزة",
-			href: "/products/1",
-		},
-		{
-			image: "/products/product4.png",
-			title: "تمور البرحي الطازجة",
-			href: "/products/4",
-		},
-		{
-			image: "/products/product3.png",
-			title: "تمور الصقعي الطازجة",
-			href: "/products/3",
-		},
-		{
-			image: "/products/product2.png",
-			title: "تمور السكري الذهبية",
-			href: "/products/2",
-		},
-		{
-			image: "/products/product4.png",
-			title: "تمور البرحي الطازجة",
-			href: "/products/4",
-		},
-	];
+	const products: ProductData[] = productCards
+		.filter((p) => p.category === "dates")
+		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
 			<Hero title={t("title")} image="/group/dates.png" />
