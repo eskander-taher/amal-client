@@ -1,10 +1,11 @@
 "use client";
-import { Link, usePathname } from "@/i18n/navigation";
+import {  usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
+import { TransitionLink } from "./TransitionLink";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -74,9 +75,7 @@ export default function NavBar() {
 	return (
 		<nav
 			className={`px-10 py-2 flex  fixed top-0 w-full z-50 transition-all duration-300  ${
-				isScrolled
-					? "bg-white"
-					: "bg-transparent delay-200"
+				isScrolled ? "bg-white" : "bg-transparent delay-200"
 			}`}
 		>
 			<div className="flex w-full items-center justify-between">
@@ -91,7 +90,7 @@ export default function NavBar() {
 								: "bg-transparent -translate-y-8 opacity-0"
 						}`}
 					/>
-					<Link className="relative z-10" href="/">
+					<TransitionLink className="relative z-10" href="/">
 						<Image
 							src={locale == "ar" ? "/amal_big_logo_ar.png" : "/amal_big_logo_en.png"}
 							alt="Amal Al-Khair logo"
@@ -102,7 +101,7 @@ export default function NavBar() {
 								isScrolled ? "logo-enhanced" : "logo-white"
 							}`}
 						/>
-					</Link>
+					</TransitionLink>
 				</div>
 
 				{/* Navigation Links */}
@@ -152,7 +151,7 @@ export default function NavBar() {
 														const isSubActive =
 															subItem.href === pathname;
 														return (
-															<Link
+															<TransitionLink
 																key={subItem.href}
 																href={subItem.href}
 																className={`block px-4 py-2 text-sm transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item whitespace-nowrap ${
@@ -167,7 +166,7 @@ export default function NavBar() {
 																}}
 															>
 																{subItem.label}
-															</Link>
+															</TransitionLink>
 														);
 													})}
 												</div>
@@ -175,7 +174,7 @@ export default function NavBar() {
 										)}
 									</div>
 								) : (
-									<Link
+									<TransitionLink
 										href={item.href}
 										className={`px-2 py-2 rounded-lg transition-all duration-200 ${
 											isActive
@@ -188,7 +187,7 @@ export default function NavBar() {
 										}`}
 									>
 										{item.label}
-									</Link>
+									</TransitionLink>
 								)}
 							</div>
 						);
@@ -305,11 +304,15 @@ export default function NavBar() {
 											</svg>
 										</button>
 										{submenuOpen === item.href && (
-											<div className={`${locale === "ar" ? "mr-4" : "ml-4"} mt-2 space-y-1`}>
+											<div
+												className={`${
+													locale === "ar" ? "mr-4" : "ml-4"
+												} mt-2 space-y-1`}
+											>
 												{item.submenu.map((subItem) => {
 													const isSubActive = subItem.href === pathname;
 													return (
-														<Link
+														<TransitionLink
 															key={subItem.href}
 															href={subItem.href}
 															className={`block px-4 py-2 rounded-lg text-sm ${
@@ -320,14 +323,14 @@ export default function NavBar() {
 															onClick={() => setMenuOpen(false)}
 														>
 															{subItem.label}
-														</Link>
+														</TransitionLink>
 													);
 												})}
 											</div>
 										)}
 									</div>
 								) : (
-									<Link
+									<TransitionLink
 										href={item.href}
 										className={`block px-4 py-3 rounded-lg font-medium mb-1 ${
 											isActive
@@ -337,7 +340,7 @@ export default function NavBar() {
 										onClick={() => setMenuOpen(false)}
 									>
 										{item.label}
-									</Link>
+									</TransitionLink>
 								)}
 							</div>
 						);
