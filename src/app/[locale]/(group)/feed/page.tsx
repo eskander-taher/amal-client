@@ -15,42 +15,42 @@ export default function Page() {
 
 	const products: ProductData[] = [
 		{
-			image: "/products/product1.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف دواجن مميزة",
 			href: "/products/1",
 		},
 		{
-			image: "/products/product2.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف مواشي عالية الجودة",
 			href: "/products/2",
 		},
 		{
-			image: "/products/product3.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف بياض متخصصة",
 			href: "/products/3",
 		},
 		{
-			image: "/products/product1.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف دواجن مميزة",
 			href: "/products/1",
 		},
 		{
-			image: "/products/product4.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف تسمين عالية البروتين",
 			href: "/products/4",
 		},
 		{
-			image: "/products/product3.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف بياض متخصصة",
 			href: "/products/3",
 		},
 		{
-			image: "/products/product2.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف مواشي عالية الجودة",
 			href: "/products/2",
 		},
 		{
-			image: "/products/product4.png",
+			image: "/square_placeholder.jpg",
 			title: "أعلاف تسمين عالية البروتين",
 			href: "/products/4",
 		},

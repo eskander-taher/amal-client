@@ -87,25 +87,25 @@ export type ProductCardData = {
 
 export const productCards: ReadonlyArray<ProductCardData> = [
   // Poultry
-  { image: "/products/product1.png", title: "صدور دجاج الطازج - مكعبات", href: "/products/1", category: "poultry" },
-  { image: "/products/product2.png", title: "فيليه صدر دجاج طازج", href: "/products/2", category: "poultry" },
-  { image: "/products/product3.png", title: "دجاجة تاجة كاملة عباء الكيس", href: "/products/3", category: "poultry" },
-  { image: "/products/product4.png", title: "دجاجة كاملة متبله بنكهة البراني", href: "/products/4", category: "poultry" },
+  { image: "/square_placeholder.jpg", title: "صدور دجاج الطازج - مكعبات", href: "/products/1", category: "poultry" },
+  { image: "/square_placeholder.jpg", title: "فيليه صدر دجاج طازج", href: "/products/2", category: "poultry" },
+  { image: "/square_placeholder.jpg", title: "دجاجة تاجة كاملة عباء الكيس", href: "/products/3", category: "poultry" },
+  { image: "/square_placeholder.jpg", title: "دجاجة كاملة متبله بنكهة البراني", href: "/products/4", category: "poultry" },
   // Feed
-  { image: "/products/product1.png", title: "علف الدجاج البياض", href: "/products/1", category: "feed" },
-  { image: "/products/product2.png", title: "علف الدجاج اللاحم", href: "/products/2", category: "feed" },
-  { image: "/products/product3.png", title: "علف الأبقار الحلوب", href: "/products/3", category: "feed" },
-  { image: "/products/product4.png", title: "علف الأسماك", href: "/products/4", category: "feed" },
+  { image: "/square_placeholder.jpg", title: "علف الدجاج البياض", href: "/products/1", category: "feed" },
+  { image: "/square_placeholder.jpg", title: "علف الدجاج اللاحم", href: "/products/2", category: "feed" },
+  { image: "/square_placeholder.jpg", title: "علف الأبقار الحلوب", href: "/products/3", category: "feed" },
+  { image: "/square_placeholder.jpg", title: "علف الأسماك", href: "/products/4", category: "feed" },
   // Fish
-  { image: "/products/product1.png", title: "سمك السلمون الطازج", href: "/products/1", category: "fish" },
-  { image: "/products/product2.png", title: "سمك التونة الطازجة", href: "/products/2", category: "fish" },
-  { image: "/products/product3.png", title: "سمك الهامور الطازج", href: "/products/3", category: "fish" },
-  { image: "/products/product4.png", title: "سمك الشعري الطازج", href: "/products/4", category: "fish" },
+  { image: "/square_placeholder.jpg", title: "سمك السلمون الطازج", href: "/products/1", category: "fish" },
+  { image: "/square_placeholder.jpg", title: "سمك التونة الطازجة", href: "/products/2", category: "fish" },
+  { image: "/square_placeholder.jpg", title: "سمك الهامور الطازج", href: "/products/3", category: "fish" },
+  { image: "/square_placeholder.jpg", title: "سمك الشعري الطازج", href: "/products/4", category: "fish" },
   // Dates
-  { image: "/products/product1.png", title: "تمور العجوة المميزة", href: "/products/1", category: "dates" },
-  { image: "/products/product2.png", title: "تمور السكري الذهبية", href: "/products/2", category: "dates" },
-  { image: "/products/product3.png", title: "تمور الصقعي الطازجة", href: "/products/3", category: "dates" },
-  { image: "/products/product4.png", title: "تمور البرحي الطازجة", href: "/products/4", category: "dates" },
+  { image: "/square_placeholder.jpg", title: "تمور العجوة المميزة", href: "/products/1", category: "dates" },
+  { image: "/square_placeholder.jpg", title: "تمور السكري الذهبية", href: "/products/2", category: "dates" },
+  { image: "/square_placeholder.jpg", title: "تمور الصقعي الطازجة", href: "/products/3", category: "dates" },
+  { image: "/square_placeholder.jpg", title: "تمور البرحي الطازجة", href: "/products/4", category: "dates" },
 ];
 
 export const featuredProducts = [

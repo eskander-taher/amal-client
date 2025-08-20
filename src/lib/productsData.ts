@@ -175,7 +175,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "chicken-breast",
-		image: "/products/product1.png",
+		image: "/square_placeholder.jpg",
 		title: "صدر دجاج",
 		description:
 			"صدر دجاج طازج متبل بنكهة البرياني، جاهز للطبخ بطعم لذيذ لتدعمكم بالتغذية الصحية.",

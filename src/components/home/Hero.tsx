@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
       href: "/about",
     },
     {
-      src: "/products/product1.png",
+      src: "/square_placeholder.jpg",
       alt: "صورة خلفية",
       title: "اكتشف منتجاتنا",
       description: "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك.",
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
       href: "/about",
     },
     {
-      src: "/products/product1.png",
+      src: "/square_placeholder.jpg",
       alt: "صورة منتج",
       title: "جودة متميزة",
       description: "اختبر الفرق مع منتجاتنا التي تصمد أمام اختبار الزمن.",

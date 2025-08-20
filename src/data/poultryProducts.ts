@@ -92,7 +92,7 @@ export const poultryProducts: Product[] = [
 		brand: "Amal Al Khair Poultry",
 		category: "poultry",
 		weight: "500 جم",
-		imageUrl: "/products/product1.png",
+		imageUrl: "/square_placeholder.jpg",
 		nutritionFacts: chickenBreastNutrition,
 	},
 	{
@@ -101,7 +101,7 @@ export const poultryProducts: Product[] = [
 		brand: "Amal Al Khair Poultry",
 		category: "poultry",
 		weight: "450 جم",
-		imageUrl: "/products/product2.png",
+		imageUrl: "/square_placeholder.jpg",
 		nutritionFacts: chickenFilletNutrition,
 	},
 	{
@@ -110,7 +110,7 @@ export const poultryProducts: Product[] = [
 		brand: "Amal Al Khair Poultry",
 		category: "poultry",
 		weight: "1000 جم",
-		imageUrl: "/products/product3.png",
+		imageUrl: "/square_placeholder.jpg",
 		nutritionFacts: wholeChickenNutrition,
 	},
 	{
@@ -119,7 +119,7 @@ export const poultryProducts: Product[] = [
 		brand: "Amal Al Khair Poultry",
 		category: "poultry",
 		weight: "400 جم",
-		imageUrl: "/products/product4.png",
+		imageUrl: "/square_placeholder.jpg",
 		nutritionFacts: chickenWingsNutrition,
 	},
 	{
@@ -128,7 +128,7 @@ export const poultryProducts: Product[] = [
 		brand: "Amal Al Khair Poultry",
 		category: "poultry",
 		weight: "500 جم",
-		imageUrl: "/products/product1.png",
+		imageUrl: "/square_placeholder.jpg",
 		nutritionFacts: mincedChickenNutrition,
 	},
 ];

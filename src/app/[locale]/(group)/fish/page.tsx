@@ -15,42 +15,42 @@ export default function Page() {
 
   const products: ProductData[] = [
     {
-      image: "/products/product1.png",
+      image: "/square_placeholder.jpg",
       title: "سمك البلطي الطازج",
       href: "/products/1",
     },
     {
-      image: "/products/product2.png",
+      image: "/square_placeholder.jpg",
       title: "سمك السلمون الطازج",
       href: "/products/2",
     },
     {
-      image: "/products/product3.png",
+      image: "/square_placeholder.jpg",
       title: "سمك البوري الطازج",
       href: "/products/3",
     },
     {
-      image: "/products/product1.png",
+      image: "/square_placeholder.jpg",
       title: "سمك البلطي الطازج",
       href: "/products/1",
     },
     {
-      image: "/products/product4.png",
+      image: "/square_placeholder.jpg",
       title: "سمك القاروص الطازج",
       href: "/products/4",
     },
     {
-      image: "/products/product3.png",
+      image: "/square_placeholder.jpg",
       title: "سمك البوري الطازج",
       href: "/products/3",
     },
     {
-      image: "/products/product2.png",
+      image: "/square_placeholder.jpg",
       title: "سمك السلمون الطازج",
       href: "/products/2",
     },
     {
-      image: "/products/product4.png",
+      image: "/square_placeholder.jpg",
       title: "سمك القاروص الطازج",
       href: "/products/4",
     },

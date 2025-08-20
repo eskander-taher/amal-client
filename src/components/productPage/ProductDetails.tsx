@@ -10,7 +10,7 @@ export default function ProductDetails() {
           {/* Image */}
           <div className="flex justify-center">
             <Image
-              src="/products/product1.png"
+              				src="/square_placeholder.jpg"
               alt="دجاجة كاملة متبلة"
               width={300}
               height={400}
