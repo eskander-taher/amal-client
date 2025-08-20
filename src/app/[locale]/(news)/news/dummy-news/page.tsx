@@ -21,7 +21,7 @@ export default function Page() {
 				<div className="grid grid-cols-1 gap-4">
 					<div className="w-full">
 						<Image
-							src="/hero.jpg"
+							src="/placeholder.jpg"
 							alt="صورة خبر كاملة العرض"
 							width={1280}
 							height={720}
@@ -30,14 +30,14 @@ export default function Page() {
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						<Image
-							src="/about.jpg"
+							src="/square_placeholder.jpg"
 							alt="صورة جانبية 1"
 							width={800}
 							height={600}
 							className="w-full h-auto rounded-lg object-cover"
 						/>
 						<Image
-							src="/poultry.jpg"
+							src="/square_placeholder.jpg"
 							alt="صورة جانبية 2"
 							width={800}
 							height={600}
@@ -58,7 +58,7 @@ export default function Page() {
 
 			<Section className="py-6">
 				<Image
-					src="/news-hero.jpg"
+					src="/placeholder.jpg"
 					alt="صورة إضافية"
 					width={1200}
 					height={600}
