@@ -22,7 +22,7 @@ export default function NewsPage() {
 
   return (
     <>
-      <Hero title={t("title")} imageAlt="News hero image." image="/placeholder.jpg" />
+      <Hero title={t("title")} imageAlt="News hero image." image="/news-hero.jpg" />
 
       <Section>
         <div className="container mx-auto px-4 py-10">

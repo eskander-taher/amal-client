@@ -9,7 +9,7 @@ import ContactSection from "@/components/about/ContactSection";
 export default function page() {
   return (
 		<div className="relative flex flex-col gap-0">
-			<Hero title="حول امل الخير" />
+			<Hero title="حول امل الخير" image="/about-hero.jpg" />
 			<Aboutus />
 			<AboutImageSection />
 			<CompanyOverview />

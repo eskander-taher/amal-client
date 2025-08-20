@@ -113,7 +113,10 @@ export default function Hero({
 
 	const breadcrumbs = generateBreadcrumbs();
 
-	const isProductPage = pathname.endsWith("products") || pathname.endsWith("jobs");
+	const isProductPage =
+		pathname.endsWith("products") ||
+		pathname.endsWith("jobs") ||
+		pathname.endsWith("certifications");
 
 	return (
 		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 xl:p-0  ${className}`}>

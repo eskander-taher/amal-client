@@ -19,7 +19,7 @@ export default function Page() {
 		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
-			<Hero title={t("title")} image="/placeholder.jpg" />
+			<Hero title={t("title")} image="/poultry-hero.png" />
 			<Section>
 				<div className="flex justify-start gap-10 items-center">
 					<Image

@@ -26,26 +26,26 @@ export default function RecipesPage() {
   });
 
   return (
-    <>
-      <Hero title={t("title")} imageAlt="Recipes hero image." image="/placeholder.jpg" />
+		<>
+			<Hero title={t("title")} imageAlt="Recipes hero image." image="/recipes-hero.png" />
 
-      <Section className="bg-gray-200">
-        <div className="container mx-auto px-4 py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {recipes.map((item, index) => (
-              <RecipeCard
-                key={index}
-                image={item.image}
-                imageAlt={item.title}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                badgeText={item.date}
-              />
-            ))}
-          </div>
-        </div>
-      </Section>
-    </>
+			<Section className="bg-gray-200">
+				<div className="container mx-auto px-4 py-10">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+						{recipes.map((item, index) => (
+							<RecipeCard
+								key={index}
+								image={item.image}
+								imageAlt={item.title}
+								title={item.title}
+								description={item.description}
+								href={item.href}
+								badgeText={item.date}
+							/>
+						))}
+					</div>
+				</div>
+			</Section>
+		</>
   );
 }

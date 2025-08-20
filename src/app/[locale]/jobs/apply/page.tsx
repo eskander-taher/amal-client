@@ -7,7 +7,7 @@ import React from "react";
 export default function JobsPage() {
   return (
     <div>
-      <Hero title="انضم لعائلتنـــــــــــا" />
+      <Hero title="انضم لعائلتنـــــــــــا" image="/jobs-hero.png"/>
       <Section>
         <div className="px-4 py-12">
           <HeadingParagraph
