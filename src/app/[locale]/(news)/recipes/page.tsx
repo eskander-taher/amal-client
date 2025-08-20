@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
 import RecipeCard from "@/components/RecipeCard";
-import { recipeCards } from "@/data/mockData";
+
 
 type RecipeData = {
   date: string;
@@ -16,13 +16,14 @@ type RecipeData = {
 export default function RecipesPage() {
   const t = useTranslations("Recipes");
 
-  const recipes: RecipeData[] = recipeCards.map((r) => ({
-    date: r.duration,
-    image: r.image,
-    title: r.title,
-    description: r.description,
-    href: r.href,
-  }));
+  const recipes: RecipeData[] = Array(12).fill({
+		date: "10 دقائق",
+		image: "/square_placeholder.jpg",
+		title: "ﻛﻴﻚ اﻟﺰﺑﺎدي ﺑﺎﻟﺘﻔﺎح",
+		description:
+			"اﺳﺘﻤﺘﻊ ﺑﻜﻴﻚ اﻟﺰﺑﺎدي ﺑﺎﻟﺘﻔﺎح اﻟﻤﻠﻲء ﺑﻨﻜﻬﺔ اﻟﻘﺮﻓﺔ. وﺻﻔﺔ ﺳﻬﻠﺔ وﻟﺬﻳﺬة، ﻣﺜﺎﻟﻴﺔ ﻟﻠﺤﻠﻮﻳﺎت ﻓﻲ أﻳﺎم اﻟﺨﺮﻳﻒ.",
+		href: "/recipes/yogurt-apple-cake",
+  });
 
   return (
     <>

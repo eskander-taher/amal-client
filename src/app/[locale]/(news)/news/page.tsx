@@ -3,7 +3,6 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
-import { newsCards } from "@/data/mockData";
 import type { News } from "@/types";
 
 type NewsData = News & { image: string; date: string };
@@ -11,14 +10,15 @@ type NewsData = News & { image: string; date: string };
 export default function NewsPage() {
   const t = useTranslations("News");
 
-  const news: NewsData[] = newsCards.map((n) => ({
-    date: n.date,
-    image: n.image,
-    title: "خبر تجريبي",
-    description: "نص تجريبي للخبر.",
-    href: n.href,
-    imageUrl: n.image,
-  }));
+  const news: NewsData[] = Array(9).fill({
+		date: "16 Feb 2025",
+		image: "/square_placeholder.jpg",
+		title: "اﻓﺘﺘﺎح ﻣﺘﺠﺮ اﻣﺮ اﻟﺨﻴﺮ ﻟﻠﺘﻤﻮر",
+		description:
+			"ﺷﺮﻛﺔ اﻣﻞ اﻟﺨﻴﺮ ﺗﻄﻠﻖ اﻟﻤﺘﺠﺮ اﻹﻟﻜﺘﺮوﻧﻲ اﻻول ﻟﻬﺎ ﻋﻠﻰ اﻻﻧﺘﺮﻧﺖ ﻳﺸﻤﻞ ﺟﻤﻴﻊ ﻣﻨﺘﺠﺎﺗﻬﺎ وﻳﻘﺪم ﺧﺪﻣﺔ اﻟﺪﻓﻊ ﻋﺒﺮ اﻟﺒﻄﺎﻗﺎت اﻻﺋﺘﻤﺎﻧﻴﺔ او ﺑﻄﺎﻗﺔ ﻣﺪى أو اﻟﺪﻓﻊ ﻧﻘﺪاً ﺑﻌﺪ اﻻﺳﺘﻼم ﻛﻤﺎ ﻳﻘﺪم اﻟﻌﺪﻳﺪ ﻣﻦ ...",
+		href: "/news/dummy-news",
+  });
+
 
   return (
     <>

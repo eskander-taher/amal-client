@@ -2,20 +2,19 @@
 import Section from "../Section";
 import { useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
-import { newsCards } from "@/data/mockData";
-import type { NewsListCard } from "@/types";
-
-type NewsCard = Pick<NewsListCard, "date" | "image" | "titleKey" | "descriptionKey">;
+import type { News } from "@/types";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
 
-	const news: NewsCard[] = newsCards.map((n) => ({
-		date: n.date,
-		image: n.image,
-		titleKey: n.titleKey,
-		descriptionKey: n.descriptionKey,
-	}));
+	const news: News[] = Array(3).fill({
+		date: "16 Feb 2025",
+		image: "/square_placeholder.jpg",
+		title: "اﻓﺘﺘﺎح ﻣﺘﺠﺮ اﻣﺮ اﻟﺨﻴﺮ ﻟﻠﺘﻤﻮر",
+		description:
+			"ﺷﺮﻛﺔ اﻣﻞ اﻟﺨﻴﺮ ﺗﻄﻠﻖ اﻟﻤﺘﺠﺮ اﻹﻟﻜﺘﺮوﻧﻲ اﻻول ﻟﻬﺎ ﻋﻠﻰ اﻻﻧﺘﺮﻧﺖ ﻳﺸﻤﻞ ﺟﻤﻴﻊ ﻣﻨﺘﺠﺎﺗﻬﺎ وﻳﻘﺪم ﺧﺪﻣﺔ اﻟﺪﻓﻊ ﻋﺒﺮ اﻟﺒﻄﺎﻗﺎت اﻻﺋﺘﻤﺎﻧﻴﺔ او ﺑﻄﺎﻗﺔ ﻣﺪى أو اﻟﺪﻓﻊ ﻧﻘﺪاً ﺑﻌﺪ اﻻﺳﺘﻼم ﻛﻤﺎ ﻳﻘﺪم اﻟﻌﺪﻳﺪ ﻣﻦ ...",
+		href: "/news/dummy-news",
+	});
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
@@ -26,10 +25,10 @@ const News: React.FC = () => {
 						<NewsCard
 							key={index}
 							image={item.image}
-							imageAlt={t(item.titleKey)}
-							title={t(item.titleKey)}
-							description={t(item.descriptionKey)}
-							href="/news/dummy-news"
+							imageAlt={item.title}
+							title={item.title}
+							description={item.description}
+							href={item.href}
 							badgeText={item.date}
 							cardBackgroundColor="#F2F2EF"
 							cardLinkBackgroundColor="white"

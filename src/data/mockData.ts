@@ -2,29 +2,6 @@
 import type { Category } from "@/types";
 // import type { News } from "@/types";
 
-export const newsCards = [
-  {
-    date: "16 Feb 2025",
-    image: "/image_shape_mask.png",
-    titleKey: "newsItems.storeOpening.title",
-    descriptionKey: "newsItems.storeOpening.description",
-    href: "/news/dummy-news",
-  },
-  {
-    date: "16 Feb 2025",
-    image: "/image_shape_mask.png",
-    titleKey: "newsItems.storeOpening.title",
-    descriptionKey: "newsItems.storeOpening.description",
-    href: "/news/dummy-news",
-  },
-  {
-    date: "16 Feb 2025",
-    image: "/image_shape_mask.png",
-    titleKey: "newsItems.storeOpening.title",
-    descriptionKey: "newsItems.storeOpening.description",
-    href: "/news/dummy-news",
-  },
-];
 
 export const recipeCards = [
   {
