@@ -1,14 +1,15 @@
 // app/contact/page.tsx
 import React from "react";
-import { ContactHero, ContactIntro, ContactForm, ContactInfo } from "@/components/contact";
+import { ContactIntro, ContactForm, ContactInfo } from "@/components/contact";
+import Hero from "@/components/Hero";
 
 export default function ContactPage() {
-  return (
-    <section className="w-full" dir="rtl">
-      <ContactHero />
-      <ContactIntro />
-      <ContactForm />
-      <ContactInfo />
-    </section>
-  );
+	return (
+		<section className="w-full">
+			<Hero title="تواصل معنا" image="/contact-hero.jpg"/>
+			<ContactIntro />
+			<ContactForm />
+			<ContactInfo />
+		</section>
+	);
 }

@@ -1,6 +1,32 @@
 {
 	"HomePage": {
 		"title": "The website is under development, see you soon ;)",
+		"heroSlides": {
+			"slide1": {
+				"alt": "Amal Al Khair Holding Group",
+				"title": "Welcome to Amal Al Khair Holding Group",
+				"description": "Discover high-quality products designed to meet your needs.",
+				"buttonText": "More"
+			},
+			"slide2": {
+				"alt": "Background image",
+				"title": "Discover Our Products",
+				"description": "Explore our wide range of high-quality products designed to meet your expectations.",
+				"buttonText": "More"
+			},
+			"slide3": {
+				"alt": "Company image",
+				"title": "About Our Company",
+				"description": "Learn about our mission, values, and commitment to excellence in everything we do.",
+				"buttonText": "More"
+			},
+			"slide4": {
+				"alt": "Product image",
+				"title": "Exceptional Quality",
+				"description": "Experience the difference with our products that stand the test of time.",
+				"buttonText": "More"
+			}
+		},
 		"heroTitle": "Discover Our Latest Financial Reports",
 		"heroDescription": "At Amal Al Khair Holding Group, we provide accurate financial reports and specialized consulting services to support your business growth with confidence and transparency.",
 		"heroButton": "Discover More",
@@ -18,6 +44,7 @@
 		"investmentCompanyTitle": "Amal Al Khair Investment Company",
 		"investmentCompanyDesc": "Diverse investments supporting sustainable economic development.",
 		"moreButton": "More",
+		"moreAboutButton": "More About Amal Al Khair",
 		"certificationsTitle": "Our Certifications!"
 	},
 	"Group": {

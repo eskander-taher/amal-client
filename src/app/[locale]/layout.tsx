@@ -6,19 +6,29 @@ import { routing } from "@/i18n/routing";
 import NavBar from "@/components/NavBar";
 import Providers from "@/components/Providers";
 import Footer from "@/components/Footer";
+import localFont from "next/font/local";
 
-/*
- ##### loading fonts in nextjs
-*/
-// import { Geist, Geist_Mono } from "next/font/google";
-// const geistSans = Geist({
-// 	variable: "--font-geist-sans",
-// 	subsets: ["latin"],
-// });
-// const geistMono = Geist_Mono({
-// 	variable: "--font-geist-mono",
-// 	subsets: ["latin"],
-// });
+const dinNextArabic = localFont({
+	src: "../../../public/DINNextLTArabic-Regular-3.ttf",
+	variable: "--font-din-next-arabic",
+	display: "swap",
+	fallback: [
+		"ui-sans-serif",
+		"system-ui",
+		"-apple-system",
+		"BlinkMacSystemFont",
+		"Segoe UI",
+		"Roboto",
+		"Helvetica Neue",
+		"Arial",
+		"Noto Sans",
+		"sans-serif",
+		"Apple Color Emoji",
+		"Segoe UI Emoji",
+		"Segoe UI Symbol",
+		"Noto Color Emoji",
+	],
+});
 
 export const metadata: Metadata = {
 	title: "Amal Al Khair Holding Group - مجموعة شركة أمل الخير القابضة",
@@ -40,7 +50,11 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+		<html
+			lang={locale}
+			dir={locale === "ar" ? "rtl" : "ltr"}
+			className={dinNextArabic.variable}
+		>
 			<body className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-sans">
 				<NextIntlClientProvider>
 					<Providers>
