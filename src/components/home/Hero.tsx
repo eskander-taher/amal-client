@@ -11,38 +11,38 @@ const Hero: React.FC = () => {
 
   // Carousel images with dynamic content
   const carouselSlides = [
-    {
-      src: "/hero.jpg",
-      alt: "مجموعة أمل الخير القابضة",
-      title: "مرحبًا بكم في مجموعة أمل الخير القابضة",
-      description: "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك.",
-      buttonText: "المزيد",
-      href: "/about",
-    },
-    {
-      src: "/square_placeholder.jpg",
-      alt: "صورة خلفية",
-      title: "اكتشف منتجاتنا",
-      description: "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك.",
-      buttonText: "المزيد",
-      href: "/products",
-    },
-    {
-      src: "/about.jpg",
-      alt: "صورة عن الشركة",
-      title: "عن شركتنا",
-      description: "تعرف على مهمتنا وقيمنا والتزامنا بالتميز في كل ما نقوم به.",
-      buttonText: "المزيد",
-      href: "/about",
-    },
-    {
-      src: "/square_placeholder.jpg",
-      alt: "صورة منتج",
-      title: "جودة متميزة",
-      description: "اختبر الفرق مع منتجاتنا التي تصمد أمام اختبار الزمن.",
-      buttonText: "المزيد",
-      href: "/products",
-    },
+		{
+			src: "/hero.jpg",
+			alt: "مجموعة أمل الخير القابضة",
+			title: "مرحبًا بكم في مجموعة أمل الخير القابضة",
+			description: "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك.",
+			buttonText: "المزيد",
+			href: "/about",
+		},
+		{
+			src: "/placeholder.jpg",
+			alt: "صورة خلفية",
+			title: "اكتشف منتجاتنا",
+			description: "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك.",
+			buttonText: "المزيد",
+			href: "/products",
+		},
+		{
+			src: "/placeholder.jpg",
+			alt: "صورة عن الشركة",
+			title: "عن شركتنا",
+			description: "تعرف على مهمتنا وقيمنا والتزامنا بالتميز في كل ما نقوم به.",
+			buttonText: "المزيد",
+			href: "/about",
+		},
+		{
+			src: "/placeholder.jpg",
+			alt: "صورة منتج",
+			title: "جودة متميزة",
+			description: "اختبر الفرق مع منتجاتنا التي تصمد أمام اختبار الزمن.",
+			buttonText: "المزيد",
+			href: "/products",
+		},
   ];
 
   // Auto-advance carousel
