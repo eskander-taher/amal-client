@@ -57,14 +57,14 @@ const GroupSection: React.FC = () => {
 							transition={{ delay: index / 2, ease: "easeInOut" }}
 							viewport={{ once: true }}
 						>
-							{/* Image Section - Fixed height for alignment */}
-							<div className="h-32 flex items-center justify-center mb-6">
+							{/* Image Section - Slightly expanded for better space usage */}
+							<div className="h-36 flex items-center justify-center mb-6">
 								<Image
 									src={card.image}
 									alt={t(card.titleKey)}
-									width={120}
-									height={120}
-									className="invert object-contain"
+									width={140}
+									height={140}
+									className="invert object-contain w-full h-full p-2"
 								/>
 							</div>
 

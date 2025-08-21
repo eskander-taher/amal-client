@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
-import { Link } from "@/i18n/navigation";
+import { TransitionLink } from "./TransitionLink";
 // import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
 import Section from "./Section";
@@ -151,12 +151,12 @@ export default function Hero({
 								{breadcrumbs.map((breadcrumb, index) => (
 									<li key={index} className="flex items-center">
 										<div className="relative flex-col pb-10">
-											<Link
+											<TransitionLink
 												href={breadcrumb.href}
 												className="flex  relative items-center hover:text-white transition-colors duration-200"
 											>
 												{breadcrumb.label}
-											</Link>
+											</TransitionLink>
 											{breadcrumb.isActive && (
 												<div
 													className={`absolute bg-${isProductPage ? "gray-200" : "white"} rounded-t-full animate-curve`}

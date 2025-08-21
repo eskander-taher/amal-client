@@ -74,7 +74,7 @@ export default function NavBar() {
 
 	return (
 		<nav
-			className={`px-10 py-2 flex  fixed top-0 w-full z-50 transition-all duration-300  ${
+			className={`px-10 py-2 flex fixed top-0 w-full z-50 transition-all duration-300  ${
 				isScrolled ? "bg-white" : "bg-transparent delay-200"
 			}`}
 		>
@@ -262,13 +262,36 @@ export default function NavBar() {
 			{/* Mobile Menu */}
 			{menuOpen && (
 				<div
-					className={`md:hidden mt-4 rounded-xl shadow-lg border p-4 transition-all duration-300 ${
+					className={`md:hidden fixed left-0 right-0 top-[72px] w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform ${
 						isScrolled
-							? "bg-white/95 backdrop-blur-md border-white/20"
-							: "bg-white/90 backdrop-blur-md border-white/20"
+							? "bg-white/95 backdrop-blur-md"
+							: "bg-white/90 backdrop-blur-md"
 					}`}
 				>
-					{navItems.map((item) => {
+					<div className="p-6 h-full overflow-y-auto">
+						{/* Close button */}
+						<div className="flex justify-end mb-6">
+							<button
+								onClick={() => setMenuOpen(false)}
+								className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+								aria-label="Close menu"
+							>
+								<svg
+									className="w-6 h-6 text-gray-600"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="2"
+										d="M6 18L18 6M6 6l12 12"
+									/>
+								</svg>
+							</button>
+						</div>
+						{navItems.map((item) => {
 						const isActive =
 							item.href === pathname ||
 							(item.submenu && item.submenu.some((sub) => sub.href === pathname));
@@ -354,6 +377,7 @@ export default function NavBar() {
 							/>
 						</div>
 						<LanguageSwitcher />
+					</div>
 					</div>
 				</div>
 			)}

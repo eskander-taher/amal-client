@@ -65,20 +65,20 @@ const ProductsSection: React.FC = () => {
               key={index}
               className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
             >
-              {/* Product Image */}
-              <div className="relative h-48 bg-gray-50 flex items-center justify-center p-4">
+              {/* Product Image - Expanded to fill more space */}
+              <div className="relative h-56 bg-gray-50 flex items-center justify-center p-4">
                 <Image
                   src={product.image}
                   alt={t(product.titleKey)}
-                  width={120}
-                  height={120}
-                  className="object-contain max-h-full transition-transform duration-300 group-hover:scale-105"
+                  width={160}
+                  height={160}
+                  className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
                 />
               </div>
 
               {/* Product Info */}
               <div className="p-4 text-center">
-                <h3 className="text-md font-bold text-gray-900">{t(product.titleKey)}</h3>
+                <h3 className="text-md font-bold text-gray-900 overflow-hidden text-ellipsis whitespace-nowrap">{t(product.titleKey)}</h3>
               </div>
             </div>
           ))}
