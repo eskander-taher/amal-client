@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { FaArrowLeftLong, FaArrowRightLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Section from "../Section";
-import { Link } from "@/i18n/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import { TransitionLink } from "../TransitionLink";
 
 const Hero: React.FC = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -107,7 +107,7 @@ const Hero: React.FC = () => {
 						<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">
 							{currentSlideData.description}
 						</p>
-						<Link
+						<TransitionLink
 							href={currentSlideData.href}
 							className="bg-white flex justify-between items-center text-black w-25 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl flex group px-1.5 py-1 animate-fade-in-delay-2"
 						>
@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
 									<FaArrowRightLong className="text-white text-sm" />
 								)}
 							</div>
-						</Link>
+						</TransitionLink>
 					</div>
 				</div>
 				<div className="hidden md:block w-1/2"></div>
@@ -128,14 +128,14 @@ const Hero: React.FC = () => {
 			{/* Navigation Arrows */}
 			<button
 				onClick={prevSlide}
-				className="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Previous slide"
 			>
 				<FaChevronLeft className="text-md" />
 			</button>
 			<button
 				onClick={nextSlide}
-				className="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Next slide"
 			>
 				<FaChevronRight className="text-md" />
