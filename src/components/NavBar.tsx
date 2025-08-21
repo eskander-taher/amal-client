@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "./TransitionLink";
+import { motion } from "framer-motion";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -105,16 +106,22 @@ export default function NavBar() {
 						/>
 					</TransitionLink>
 					<TransitionLink className="relative block sm:hidden z-10" href="/">
-						<Image
-							src="/AMAL_logo.webp"
-							alt="Amal Al-Khair logo"
-							width={75}
-							height={75}
-							priority
-							className={`transition-all duration-300 logo-hover ${
-								isScrolled ? "logo-enhanced" : "logo-white"
-							}`}
-						/>
+						<motion.div
+						initial={{ y: -50, x: 50, opacity: 0 }}
+						animate={{ y: 0, x: 0, opacity: 1 }}
+						transition={{ duration: 1, ease: "easeOut" }}
+						>
+							<Image
+								src="/AMAL_logo.webp"
+								alt="Amal Al-Khair logo"
+								width={75}
+								height={75}
+								priority
+								className={`transition-all duration-300 logo-hover ${
+									isScrolled ? "logo-enhanced" : "logo-white"
+								}`}
+							/>
+						</motion.div>
 					</TransitionLink>
 				</div>
 
@@ -247,12 +254,15 @@ export default function NavBar() {
 
 				{/* Hamburger for Mobile */}
 				{!menuOpen && (
-					<button
-						className={`md:hidden p-2 border rounded-lg transition-all duration-300 ${
+					<motion.button
+						className={`md:hidden p-2 border rounded-lg ${
 							isScrolled
 								? "border-gray-300 bg-white"
 								: "border-white/30 bg-white/20 backdrop-blur-sm"
 						}`}
+						initial={{ y: -50, x: -50, opacity: 0 }}
+						animate={{ y: 0, x: 0, opacity: 1 }}
+						transition={{ duration: 1, ease: "easeOut" }}
 						onClick={() => setMenuOpen((v) => !v)}
 						aria-label="Open menu"
 					>
@@ -271,7 +281,7 @@ export default function NavBar() {
 								d="M4 6h16M4 12h16M4 18h16"
 							/>
 						</svg>
-					</button>
+					</motion.button>
 				)}
 			</div>
 
