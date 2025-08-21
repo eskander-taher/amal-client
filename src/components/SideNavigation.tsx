@@ -1,24 +1,26 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface Section {
   id: string;
-  label: string;
+  labelKey: string;
 }
 
 const SideNavigation: React.FC = () => {
+  const t = useTranslations("SideNavigation");
   const [activeSection, setActiveSection] = useState<string>("hero");
 
   const sections: Section[] = useMemo(() => [
-    { id: "hero", label: "الرئيسية" },
-    { id: "about", label: "من نحن" },
-    { id: "group", label: "المجموعة" },
-    { id: "certifications", label: "الاعتمادات" },
-    { id: "products", label: "المنتجات" },
-    { id: "news", label: "الأخبار" },
-    { id: "stats", label: "الإحصائيات" },
-    { id: "newsletter", label: "النشرة الإخبارية" },
+    { id: "hero", labelKey: "home" },
+    { id: "about", labelKey: "about" },
+    { id: "group", labelKey: "group" },
+    { id: "certifications", labelKey: "certifications" },
+    { id: "products", labelKey: "products" },
+    { id: "news", labelKey: "news" },
+    { id: "stats", labelKey: "stats" },
+    { id: "newsletter", labelKey: "newsletter" },
   ], []);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const SideNavigation: React.FC = () => {
             ? "bg-[#E3A347] shadow-lg"
             : "bg-[#E2E2E2] hover:bg-gray-400"
             }`}
-          title={section.label}
+          title={t(section.labelKey)}
         />
       ))}
     </motion.div>

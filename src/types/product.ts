@@ -39,6 +39,7 @@ export type Product = {
 // Lightweight product card shape used across grid UIs
 export type ProductCardItem = {
     image: string;
-    title: string;
+    title?: string;
+    titleKey?: string;
     href: string;
 };

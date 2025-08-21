@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "../Section";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const logos = [
 	{ id: 1, src: "/images/logo1.webp", alt: "Logo 1" },
@@ -16,6 +17,7 @@ const logos = [
 ];
 
 export default function Certifications() {
+	const t = useTranslations("Certifications");
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [curveX, setCurveX] = useState(0);
@@ -54,11 +56,10 @@ export default function Certifications() {
 				{/* Heading */}
 				<div className="text-center mb-12 lg:mb-16">
 					<h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 text-white">
-						اعتماداتنا !
+						{t("title")}
 					</h2>
 					<p className="text-lg lg:text-xl max-w-4xl mx-auto text-gray-300 leading-relaxed">
-						نفخر في مجموعة أمل الخير القابضة بحصولنا على مجموعة من الإعتمادات و الشهادات
-						المحلية و الإقليمية
+						{t("description")}
 					</p>
 				</div>
 

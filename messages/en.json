@@ -69,8 +69,34 @@
 	"Products": {
 		"title": "Our Featured Products",
 		"subtitle": "Discover our most popular and high-quality products that have earned the trust of customers worldwide",
+		"homeTitle": "Our Products",
+		"homeDescription": "Discover our distinguished and high-quality product collection",
 		"learnMore": "Learn More",
 		"featuredBadge": "Featured",
+		"poultry": {
+			"fresh_breast_cubes": "Fresh Chicken Breast - Cubes",
+			"fresh_breast_fillet": "Fresh Chicken Breast Fillet",
+			"whole_chicken_bag": "Whole Chicken - Bag Packed",
+			"whole_chicken_biryani": "Whole Chicken - Biryani Flavored"
+		},
+		"feed": {
+			"laying_hens": "Laying Hens Feed",
+			"broiler_chickens": "Broiler Chickens Feed",
+			"dairy_cows": "Dairy Cows Feed",
+			"fish_feed": "Fish Feed"
+		},
+		"fish": {
+			"fresh_salmon": "Fresh Salmon",
+			"fresh_tuna": "Fresh Tuna",
+			"fresh_hamour": "Fresh Hamour",
+			"fresh_sheari": "Fresh Sheari"
+		},
+		"dates": {
+			"ajwa_premium": "Premium Ajwa Dates",
+			"sukkari_golden": "Golden Sukkari Dates",
+			"saqi_fresh": "Fresh Saqi Dates",
+			"barhi_fresh": "Fresh Barhi Dates"
+		},
 		"featured1": {
 			"title": "Fresh Farm Poultry",
 			"description": "Grade A fresh poultry from our free-range chickens, produced under strict quality control and food safety standards."
@@ -178,7 +204,7 @@
 	},
 	"Newsletter": {
 		"title": "Join Our Newsletter",
-		"description": "Get the latest news and updates from Amal Al Khair Holding Group",
+		"description": "For diverse content that suits your interests",
 		"placeholder": "Enter your email address"
 	},
 	"Navigation": {
@@ -244,16 +270,37 @@
 			"message": "\"Our dream was to create a strong commercial group that serves the community and develops the local economy, and today we are proud of what we have achieved.\""
 		}
 	},
+	"SideNavigation": {
+		"home": "Home",
+		"about": "About Us",
+		"group": "Group",
+		"certifications": "Certifications",
+		"products": "Products",
+		"news": "News",
+		"stats": "Statistics",
+		"newsletter": "Newsletter"
+	},
 	"Certifications": {
-		"title": "Food quality and safety",
+		"title": "Our Certifications!",
 		"subtitle": "Quality Certificates and Awards",
-		"description": "The business community views Amal Al Khair Holding Group as a commercial entity that embodies the meaning of struggle, overcoming many challenges over many years of hard work, until it became a prestigious commercial name in the Kingdom of Saudi Arabia. In 1955, in the city of Al Khobar, Sheikh Ahmed Mohammed Baghlaf - may God have mercy on him - established one of the first commercial institutions specialized in money transfer at the level of the Kingdom, Gulf Cooperation Council countries, and the Middle East. Thanks to God and then the distinguished management of Sheikh Jamal Ahmed Baghlaf, son of Sheikh Ahmed Mohammed Baghlaf - may God have mercy on him - who succeeded in establishing an independent holding group with diverse activities, thus moving to a new stage of expansion, steady growth, and excellence, both locally and internationally."
+		"description": "We are proud at Amal Al Khair Holding Group to have obtained a collection of local and regional certifications and certificates.",
+		"fullDescription": "The business community views Amal Al Khair Holding Group as a commercial entity that embodies the meaning of struggle, overcoming many challenges over many years of hard work, until it became a prestigious commercial name in the Kingdom of Saudi Arabia. In 1955, in the city of Al Khobar, Sheikh Ahmed Mohammed Baghlaf - may God have mercy on him - established one of the first commercial institutions specialized in money transfer at the level of the Kingdom, Gulf Cooperation Council countries, and the Middle East. Thanks to God and then the distinguished management of Sheikh Jamal Ahmed Baghlaf, son of Sheikh Ahmed Mohammed Baghlaf - may God have mercy on him - who succeeded in establishing an independent holding group with diverse activities, thus moving to a new stage of expansion, steady growth, and excellence, both locally and internationally.",
+		"sponsorships": {
+			"title": "Sponsorships and Participations",
+			"description": "Amal Al Khair Group has been and continues to sponsor many local and international forums on a large scale, as Amal Al Khair has always been the pioneer in supporting institutions, development, and community building."
+		},
+		"features": {
+			"title": "Our Features",
+			"description": "The group has obtained ISO 9001 certificate and ISO 22000 certificate in the field of quality management and food manufacturing safety, while seeking to adopt a high-quality marketing and distribution system and own other trademarks to expand its markets to reach different segments of customers."
+		}
 	},
 	"Footer": {
 		"contactTitle": "Contact Information",
 		"address": "P.O. Box 8524, Riyadh 11492",
 		"phone": "Phone: +966 (11) 460 0005",
 		"whatsapp": "WhatsApp: +966545501010",
+		"followUs": "Follow Us",
+		"quickLinks": "Quick Links",
 		"faq": "FAQ",
 		"sitemap": "Sitemap",
 		"privacy": "Privacy Policy",

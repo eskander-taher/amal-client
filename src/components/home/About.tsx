@@ -1,8 +1,8 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Section from "../Section";
-import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
+import { TransitionLink } from "../TransitionLink";
 
 const About: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -35,14 +35,14 @@ const About: React.FC = () => {
 			</motion.div>
 
 			{/* Bottom static curve */}
-			<Link
+			<TransitionLink
 				href="/about"
 				className={`absolute w-64 h-8 bottom-0 ${isArabic ? "left" : "right"}-0 transform ${
 					!isArabic && "-"
 				}translate-x-1/2 translate-y-1/2 bg-gray-200 rounded-t-full flex justify-center items-top pt-2 gap-3 hover:translate-y-1/3 transition-all duration-300 cursor-pointer hover:text-bold`}
 			>
 				<h3 className="absolute -translate-y-[150%]">{t("moreAboutButton")}</h3>
-			</Link>
+			</TransitionLink>
 		</Section>
 	);
 };

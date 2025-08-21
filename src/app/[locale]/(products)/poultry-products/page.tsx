@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import ProductCard from "@/components/ProdcutCard";
-import { productCards } from "@/data/mockData";
 
 type ProductData = {
   image: string;
@@ -13,11 +12,11 @@ type ProductData = {
 export default function PoultryProductsPage() {
   const t = useTranslations("ProductPages.poultry_products");
 
-  const baseProducts: ProductData[] = productCards
-    .filter((p) => p.category === "poultry")
-    .map((p) => ({ image: p.image, title: p.title, href: p.href }));
-
-  const products: ProductData[] = Array.from({ length: 12 }, (_, i) => baseProducts[i % baseProducts.length]);
+   const products: ProductData[] = Array(12).fill({
+		image: "/square_placeholder.webp",
+		title: "منتج الدواجن",
+		href: "/dummy-product",
+  });
   return (
     <div>
       <Hero title={t("title")} image="/placeholder.webp" />

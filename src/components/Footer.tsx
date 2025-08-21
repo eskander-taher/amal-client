@@ -13,7 +13,7 @@ import {
 	FaPhone,
 
 } from "react-icons/fa";
-import Newsletter from "./home/Newsletter";
+import Newsletter from "./Newsletter";
 
 export default function Footer() {
 	const t = useTranslations("Footer");
@@ -62,7 +62,7 @@ export default function Footer() {
 
 							{/* Social Media */}
 							<div className="pt-4">
-								<h4 className="text-lg font-semibold mb-4 text-black">تابعنا</h4>
+								<h4 className="text-lg font-semibold mb-4 text-black">{t("followUs")}</h4>
 								<div className="flex gap-4">
 									<a
 										href="#"
@@ -112,7 +112,7 @@ export default function Footer() {
 
 						{/* Links */}
 						<div className="space-y-6">
-							<h3 className="text-2xl font-bold mb-6 text-black">روابط سريعة</h3>
+							<h3 className="text-2xl font-bold mb-6 text-black">{t("quickLinks")}</h3>
 							<div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
 								<div className="space-y-3">
 									<Link

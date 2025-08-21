@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import Section from "../Section";
+import Section from "./Section";
 import { useTranslations } from "next-intl";
 
 export default function Newsletter() {
@@ -22,8 +22,8 @@ export default function Newsletter() {
 		>
 			<div className="w-full">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-					{/* Arabic Text - Right Side */}
-					<div className="text-center lg:text-right order-2 lg:order-1 lg:w-1/3">
+					
+					<div className="text-center flex flex-col items-start order-2 lg:w-1/3">
 						<h2 className="text-3xl lg:text-4xl font-bold mb-4 text-black">
 							{t("title")}
 						</h2>
@@ -37,6 +37,7 @@ export default function Newsletter() {
 						<form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto lg:mx-0">
 							<div className="relative w-full">
 								<div className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full w-8 h-8 flex items-center justify-center">
+								
 									<FaArrowLeftLong className="text-white text-sm" />
 								</div>
 								<input

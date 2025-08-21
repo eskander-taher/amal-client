@@ -1,11 +1,14 @@
-
+"use client";
 import Section from "../Section";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
 import type { News } from "@/types";
+import { TransitionLink } from "../TransitionLink";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
+	const local = useLocale();
+	const isArabic = local === "ar";
 
 	const news: News[] = Array(3).fill({
 		date: "16 Feb 2025",
@@ -37,9 +40,14 @@ const News: React.FC = () => {
 				</div>
 			</div>
 			{/* Bottom static curve */}
-			<div className="absolute w-64 h-8 bottom-0 left-0 transform translate-x-1/2 translate-y-1/2 bg-[#353535] rounded-t-full flex justify-center items-top pt-2 gap-3">
-				<h3 className="absolute cursor-pointer -translate-y-[150%]">{t("moreNews")}</h3>
-			</div>
+			<TransitionLink
+				href="/news"
+				className={`absolute w-64 h-8 bottom-0 ${isArabic ? "left" : "right"}-0 transform ${
+					!isArabic && "-"
+				}translate-x-1/2 translate-y-1/2 bg-[#353535] rounded-t-full flex justify-center items-top pt-2 gap-3 hover:translate-y-1/3 transition-all duration-300 cursor-pointer hover:text-bold`}
+			>
+				<h3 className="absolute -translate-y-[150%]">{t("moreNews")}</h3>
+			</TransitionLink>
 		</Section>
 	);
 };

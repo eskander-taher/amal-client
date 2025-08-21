@@ -3,7 +3,6 @@ import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
-import { productCards } from "@/data/mockData";
 
 type ProductData = {
 	image: string;
@@ -14,9 +13,11 @@ type ProductData = {
 export default function Page() {
 	const t = useTranslations("Group.poultryCompany");
 
-	const products: ProductData[] = productCards
-		.filter((p) => p.category === "poultry")
-		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
+	const products: ProductData[] = Array(9).fill({
+		image: "/square_placeholder.webp",
+		title: "منتج الدواجن",
+		href: "/dummy-product",
+  });
 	return (
 		<div>
 			<Hero title={t("title")} image="/poultry-hero.webp" />
