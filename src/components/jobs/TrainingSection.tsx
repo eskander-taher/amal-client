@@ -5,17 +5,17 @@ import Section from "@/components/Section";
 const TrainingSection: React.FC = () => {
 	const trainingCards = [
 		{
-			image: "/jobs/training1.jpg",
+			image: "/jobs/training1.webp",
 			imageAlt: "Employee Training Assessment",
 			paragraph: "تقوم امل الخير بدراسة الاحتياجات التدريبية للموظفين بشكل دوري من أجل تطوير أدوارهم الوظيفية وتحسين أدائهم، إذ يعد التدريب أحد استراتيجيات المراعي للاستثمار في العنصر البشري."
 		},
 		{
-			image: "/jobs/training2.jpg",
+			image: "/jobs/training2.webp",
 			imageAlt: "Specialized Training Institutes",
 			paragraph: "كما تُلحق مل الخير موظفيها حسب حاجة العمل بدورات تدريب فردية في معاهد متخصصة."
 		},
 		{
-			image: "/jobs/training3.png",
+			image: "/jobs/training3.webp",
 			imageAlt: "On-the-Job Training Programs",
 			paragraph: "تعمل المراعي على تلبية الاحتياجات التدريبية للموظفين عبر حزمة من برامج التدريب على رأس العمل التي تزود الموظف بالمهارات التطبيقية والفنية اللازمة لتطوير عمله."
 		}

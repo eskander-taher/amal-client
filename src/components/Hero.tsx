@@ -20,7 +20,7 @@ interface HeroProps {
 export default function Hero({
 	title,
 	subtitle,
-	image = "/hero.jpg",
+	image = "/hero.webp",
 	imageAlt = "Hero background",
 	showBreadcrumb = true,
 	className = "",

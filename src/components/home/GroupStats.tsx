@@ -18,22 +18,22 @@ const GroupStats: React.FC = () => {
 
 	const stats: StatData[] = [
 		{
-			image: "/group/poultry.png",
+			image: "/group/poultry.webp",
 			count: 65876,
 			titleKey: "poultryCompany",
 		},
 		{
-			image: "/group/feed.png",
+			image: "/group/feed.webp",
 			count: 156077,
 			titleKey: "feedCompany",
 		},
 		{
-			image: "/group/fish.png",
+			image: "/group/fish.webp",
 			count: 206768,
 			titleKey: "fishCompany",
 		},
 		{
-			image: "/group/dates.png",
+			image: "/group/dates.webp",
 			count: 9695,
 			titleKey: "datesCompany",
 		},

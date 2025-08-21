@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section className="relative h-[70vh] w-full">
       <Image
-        src="/hero.jpg"
+        src="/hero.webp"
         alt="Hero Background"
         layout="fill"
         objectFit="cover"

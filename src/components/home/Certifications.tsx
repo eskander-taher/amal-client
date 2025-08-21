@@ -6,13 +6,13 @@ import Section from "../Section";
 import { motion } from "framer-motion";
 
 const logos = [
-	{ id: 1, src: "/images/logo1.png", alt: "Logo 1" },
-	{ id: 2, src: "/images/logo2.png", alt: "Logo 2" },
-	{ id: 3, src: "/images/logo3.png", alt: "Logo 3" },
-	{ id: 4, src: "/images/logo4.png", alt: "Logo 4" },
-	{ id: 5, src: "/images/logo5.png", alt: "Logo 5" },
-	{ id: 6, src: "/images/logo6.png", alt: "Logo 6" },
-	{ id: 7, src: "/images/logo7.png", alt: "Logo 7" },
+	{ id: 1, src: "/images/logo1.webp", alt: "Logo 1" },
+	{ id: 2, src: "/images/logo2.webp", alt: "Logo 2" },
+	{ id: 3, src: "/images/logo3.webp", alt: "Logo 3" },
+	{ id: 4, src: "/images/logo4.webp", alt: "Logo 4" },
+	{ id: 5, src: "/images/logo5.webp", alt: "Logo 5" },
+	{ id: 6, src: "/images/logo6.webp", alt: "Logo 6" },
+	{ id: 7, src: "/images/logo7.webp", alt: "Logo 7" },
 ];
 
 export default function Certifications() {

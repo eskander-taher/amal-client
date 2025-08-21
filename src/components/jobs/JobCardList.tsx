@@ -10,22 +10,22 @@ type Card = {
 
 const cards: Card[] = [
 	{
-		icon: "/jobs/training_icon.png", // example placeholder, adjust according to your icons
+		icon: "/jobs/training_icon.webp", // example placeholder, adjust according to your icons
 		title: "التدريب التعاوني",
 		description: "طوّر معرفتك من خلال تطبيق ما تعلمته أكاديمياً في مجال العمل",
 	},
 	{
-		icon: "/jobs/worker_icon.png",
+		icon: "/jobs/worker_icon.webp",
 		title: "غير الجامعيين",
 		description: "كن أحد صناع الجودة",
 	},
 	{
-		icon: "/jobs/graduate_icon.png",
+		icon: "/jobs/graduate_icon.webp",
 		title: "حديثو التخرج",
 		description: "ابدأ من هنا! سنساعدك في تطوير مهاراتك الشخصية والعملية",
 	},
 	{
-		icon: "/jobs/expert_icon.png",
+		icon: "/jobs/expert_icon.webp",
 		title: "أصحاب الخبرة",
 		description: "هل تريد تحقيق النجاح في مسيرتك المهنية والوصول إلى مناصب قيادية",
 	},

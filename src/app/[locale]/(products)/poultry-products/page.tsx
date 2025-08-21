@@ -20,7 +20,7 @@ export default function PoultryProductsPage() {
   const products: ProductData[] = Array.from({ length: 12 }, (_, i) => baseProducts[i % baseProducts.length]);
   return (
     <div>
-      <Hero title={t("title")} image="/placeholder.jpg" />
+      <Hero title={t("title")} image="/placeholder.webp" />
       <Section className="bg-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, index) => (

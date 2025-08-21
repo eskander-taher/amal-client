@@ -5,7 +5,7 @@ export default function AboutImageSection() {
 		<section className="py-16 bg-white">
 			<div className="w-full">
 				<Image
-					src="/about.jpg"
+					src="/about.webp"
 					alt="About Amal Al-Khair"
 					width={1920}
 					height={800}

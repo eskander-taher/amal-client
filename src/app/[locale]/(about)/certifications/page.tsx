@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
 		<>
-			<Hero title={t("title")} image="/certifications-hero.png" />
+			<Hero title={t("title")} image="/certifications-hero.webp" />
 			<Section className="bg-gray-200">
 				<p>{t("description")}</p>
 			</Section>

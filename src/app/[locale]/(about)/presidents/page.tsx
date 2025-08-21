@@ -10,7 +10,7 @@ export default function PresidentsPage() {
     <>
       <Hero
         title={t("title")}
-        image="/presidents/hero.jpg"
+        image="/presidents/hero.webp"
         imageAlt="Presidents hero background"
       />
 
@@ -22,7 +22,7 @@ export default function PresidentsPage() {
 
             <div className="relative">
               <Image
-                src="/presidents/mr_hussam.png"
+                src="/presidents/mr_hussam.webp"
                 alt={t("currentPresident.name")}
                 width={500}
                 height={600}
@@ -54,7 +54,7 @@ export default function PresidentsPage() {
             <div>
               <div className="relative">
                 <Image
-                  src="/presidents/mr_hussam.png"
+                  src="/presidents/mr_hussam.webp"
                   alt={t("formerPresident.name")}
                   width={500}
                   height={600}

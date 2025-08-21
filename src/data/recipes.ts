@@ -8,7 +8,7 @@ export const recipes: Recipe[] = [
 			"وصفة تقليدية لذيذة لكيكة التمر المصنوعة من أجود أنواع تمور أمل الخير، مثالية للعائلة والمناسبات الخاصة.",
 		prepTime: "45 دقيقة",
 		servings: "8 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"2 كوب دقيق",
 			"1 كوب تمر مفروم",
@@ -31,7 +31,7 @@ export const recipes: Recipe[] = [
 			"وصفة صحية ولذيذة لسمك البلطي المشوي مع البهارات العربية التقليدية، مصنوع من أسماك أمل الخير الطازجة.",
 		prepTime: "30 دقيقة",
 		servings: "4 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"4 قطع فيليه بلطي",
 			"2 ملاعق كبيرة زيت زيتون",
@@ -52,7 +52,7 @@ export const recipes: Recipe[] = [
 			"وصفة دجاج مشوي شهية مع الليمون والأعشاب الطازجة، مصنوعة من دجاج أمل الخير عالي الجودة.",
 		prepTime: "60 دقيقة",
 		servings: "6 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"1 دجاجة كاملة",
 			"2 ملاعق كبيرة زيت زيتون",
@@ -72,7 +72,7 @@ export const recipes: Recipe[] = [
 			"سلطة مغذية تجمع بين حلاوة التمر ومقرمشة الجوز مع صلصة خفيفة.",
 		prepTime: "15 دقيقة",
 		servings: "2 حصتان",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"1 كوب تمر مقطع",
 			"1/2 كوب جوز",
@@ -93,7 +93,7 @@ export const recipes: Recipe[] = [
 			"وصفة أرز شهية مع الدجاج والتمر لمذاق متوازن وغني.",
 		prepTime: "40 دقيقة",
 		servings: "5 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"2 كوب أرز بسمتي",
 			"1 صدر دجاج مقطع",
@@ -113,7 +113,7 @@ export const recipes: Recipe[] = [
 			"شوربة دافئة من السمك والخضروات الطازجة.",
 		prepTime: "35 دقيقة",
 		servings: "4 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"فيليه سمك",
 			"جزر وبطاطس",
@@ -133,7 +133,7 @@ export const recipes: Recipe[] = [
 			"مربى طبيعي 100% من التمر بدون مواد حافظة.",
 		prepTime: "90 دقيقة",
 		servings: "3 مرطبانات",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"1 كغم تمر",
 			"3 أكواب ماء",
@@ -151,7 +151,7 @@ export const recipes: Recipe[] = [
 			"نكهة مميزة للدجاج مع الكاري والتمر.",
 		prepTime: "50 دقيقة",
 		servings: "5 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"1 صدر دجاج مكعبات",
 			"ملعقة كاري",
@@ -171,7 +171,7 @@ export const recipes: Recipe[] = [
 			"سمك مشوي بسيط ولذيذ مع الليمون والثوم.",
 		prepTime: "25 دقيقة",
 		servings: "2 حصتان",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"2 قطع سمك",
 			"عصير ليمون",
@@ -190,7 +190,7 @@ export const recipes: Recipe[] = [
 			"معكرونة كريمية سهلة وسريعة.",
 		prepTime: "20 دقيقة",
 		servings: "3 حصص",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"250 غرام معكرونة",
 			"كريمة طبخ",
@@ -209,7 +209,7 @@ export const recipes: Recipe[] = [
 			"سلطة خفيفة مع جبن الفيتا والخضروات.",
 		prepTime: "10 دقائق",
 		servings: "2 حصتان",
-		imageUrl: "/poultry.jpg",
+		imageUrl: "/poultry.webp",
 		ingredients: [
 			"خيار وطماطم",
 			"زيتون أسود",

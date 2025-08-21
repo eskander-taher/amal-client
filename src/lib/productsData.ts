@@ -41,7 +41,7 @@ export interface Product {
 export const productsData: Product[] = [
 	{
 		id: "ajwa-dates",
-		image: "/group/dates.png",
+		image: "/group/dates.webp",
 		title: "تمور عجوة مميزة",
 		description:
 			"تمور العجوة المميزة من المدينة المنورة، معروفة بمذاقها الاستثنائي وفوائدها الغذائية. مثالية للتصدير والأسواق المحلية.",
@@ -59,7 +59,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "tilapia-fish",
-		image: "/group/fish.png",
+		image: "/group/fish.webp",
 		title: "أسماك البلطي الطازجة",
 		description:
 			"أسماك بلطي مميزة تربى في مرافق الاستزراع المائي المتطورة لدينا، مما يضمن أعلى جودة وطزاجة لعملائنا.",
@@ -99,7 +99,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "premium-feed",
-		image: "/group/feed.png",
+		image: "/group/feed.webp",
 		title: "أعلاف دواجن مميزة",
 		description:
 			"أعلاف متوازنة غذائياً مصممة خصيصاً للنمو الأمثل وصحة دجاج التسمين والدجاج البياض.",
@@ -117,7 +117,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "fresh-poultry",
-		image: "/group/poultry.png",
+		image: "/group/poultry.webp",
 		title: "بيض مزرعة طازج",
 		description:
 			"بيض طازج من الدرجة الأولى من دجاجنا الحر، منتج تحت رقابة جودة صارمة ومعايير سلامة الغذاء.",
@@ -157,7 +157,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "sukkary-dates",
-		image: "/group/dates.png",
+		image: "/group/dates.webp",
 		title: "تمور السكري",
 		description:
 			"تمور سكري مميزة معروفة بلونها الذهبي ومذاقها الحلو، مثالية للاستهلاك المحلي وأسواق التصدير.",
@@ -175,7 +175,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "chicken-breast",
-		image: "/square_placeholder.jpg",
+		image: "/square_placeholder.webp",
 		title: "صدر دجاج",
 		description:
 			"صدر دجاج طازج متبل بنكهة البرياني، جاهز للطبخ بطعم لذيذ لتدعمكم بالتغذية الصحية.",
@@ -215,7 +215,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "salmon-fish",
-		image: "/group/fish.png",
+		image: "/group/fish.webp",
 		title: "سمك السلمون الطازج",
 		description:
 			"سمك سلمون مميز يربى في مرافق الاستزراع المائي المتطورة لدينا، مما يضمن أعلى جودة وطزاجة.",
@@ -255,7 +255,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "broiler-feed",
-		image: "/group/feed.png",
+		image: "/group/feed.webp",
 		title: "علف التسمين",
 		description: "علف متخصص لدجاج التسمين مصمم للنمو الأمثل والصحة مع تغذية متوازنة.",
 		category: "feed",

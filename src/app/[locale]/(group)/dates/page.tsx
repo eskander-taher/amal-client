@@ -16,11 +16,11 @@ export default function Page() {
 		.map((p) => ({ image: p.image, title: p.title, href: p.href }));
 	return (
 		<div>
-			<Hero title={t("title")} image="/placeholder.jpg" />
+			<Hero title={t("title")} image="/placeholder.webp" />
 			<Section>
 				<div className="flex justify-start gap-10 items-center">
 					<Image
-						src="/group/dates.png"
+						src="/group/dates.webp"
 						alt="Dates Company Logo"
 						width={500}
 						height={500}
@@ -35,7 +35,7 @@ export default function Page() {
 			<section className="py-16">
 				<div className="w-full">
 					<Image
-						src="/placeholder.jpg"
+						src="/placeholder.webp"
 						alt="About Amal Al-Khair Dates"
 						width={1920}
 						height={800}

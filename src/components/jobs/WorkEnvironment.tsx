@@ -26,7 +26,7 @@ export default function WorkEnvironment() {
 
 			<div className="flex justify-center mb-10">
 				<Image
-					src="/jobs/env.png"
+					src="/jobs/env.webp"
 					alt={t("title")}
 					width={640}
 					height={360}

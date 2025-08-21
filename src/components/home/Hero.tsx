@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
 	// Carousel images with dynamic content
 	const carouselSlides = [
 		{
-			src: "/hero.jpg",
+			src: "/hero.webp",
 			alt: t("slide1.alt"),
 			title: t("slide1.title"),
 			description: t("slide1.description"),
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
 			href: "/about",
 		},
 		{
-			src: "/products-hero.jpg",
+			src: "/products-hero.webp",
 			alt: t("slide2.alt"),
 			title: t("slide2.title"),
 			description: t("slide2.description"),
@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
 			href: "/poultry-products",
 		},
 		{
-			src: "/about-hero.jpg",
+			src: "/about-hero.webp",
 			alt: t("slide3.alt"),
 			title: t("slide3.title"),
 			description: t("slide3.description"),
@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
 			href: "/about",
 		},
 		{
-			src: "/certifications-hero.png",
+			src: "/certifications-hero.webp",
 			alt: t("slide4.alt"),
 			title: t("slide4.title"),
 			description: t("slide4.description"),

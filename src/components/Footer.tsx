@@ -27,7 +27,7 @@ export default function Footer() {
 						<div className="flex flex-col items-center lg:items-end space-y-6 order-first lg:order-last">
 							<div className="text-center lg:text-right">
 								<Image
-									src="/AMAL_logo.png"
+									src="/AMAL_logo.webp"
 									alt="Amal Al Khair logo"
 									width={120}
 									height={120}

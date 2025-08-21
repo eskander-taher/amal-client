@@ -15,53 +15,53 @@ export default function Page() {
 
   const products: ProductData[] = [
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك البلطي الطازج",
       href: "/products/1",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك السلمون الطازج",
       href: "/products/2",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك البوري الطازج",
       href: "/products/3",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك البلطي الطازج",
       href: "/products/1",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك القاروص الطازج",
       href: "/products/4",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك البوري الطازج",
       href: "/products/3",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك السلمون الطازج",
       href: "/products/2",
     },
     {
-      image: "/square_placeholder.jpg",
+      image: "/square_placeholder.webp",
       title: "سمك القاروص الطازج",
       href: "/products/4",
     },
   ];
   return (
     <div>
-      <Hero title={t("title")} image="/placeholder.jpg" />
+      <Hero title={t("title")} image="/placeholder.webp" />
       <Section>
         <div className="flex justify-start gap-10 items-center">
           <Image
-            src="/group/fish.png"
+            src="/group/fish.webp"
             alt="Fish Company Logo"
             width={500}
             height={500}
@@ -76,7 +76,7 @@ export default function Page() {
       <section className="py-16">
         <div className="w-full">
           <Image
-            src="/placeholder.jpg"
+            src="/placeholder.webp"
             alt="About Amal Al-Khair Fish"
             width={1920}
             height={800}

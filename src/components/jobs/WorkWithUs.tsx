@@ -11,7 +11,7 @@ export default function WorkWithUs() {
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 				<div className="order-1 md:order-none">
 					<Image
-						src="/jobs/paragraph.jpg"
+						src="/jobs/paragraph.webp"
 						alt={t("title")}
 						width={320}
 						height={320}

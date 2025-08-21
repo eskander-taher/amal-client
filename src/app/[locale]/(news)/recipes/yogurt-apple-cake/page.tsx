@@ -27,28 +27,28 @@ export default function Page() {
 
 	const moreRecipes = [
 		{
-			image: "/poultry.jpg",
+			image: "/poultry.webp",
 			title: "بان كيك بالشوكولاتة",
 			description: "بان كيك هش مزين برذاذ الشوكولاتة.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "حلى",
 		},
 		{
-			image: "/poultry.jpg",
+			image: "/poultry.webp",
 			title: "كيك الزبادي بالتفاح",
 			description: "كيك رطب بالتفاح والزبادي بطعم منزلي.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "كيك",
 		},
 		{
-			image: "/poultry.jpg",
+			image: "/poultry.webp",
 			title: "تشيز كيك بالفواكه",
 			description: "تشيز كيك خفيف مزيّن بفاكهة طازجة.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "حلى",
 		},
 		{
-			image: "/poultry.jpg",
+			image: "/poultry.webp",
 			title: "كيكة الكراميل",
 			description: "كيك لذيذ بطبقة كراميل ذهبية.",
 			href: "/recipes/yogurt-apple-cake",
@@ -80,7 +80,7 @@ export default function Page() {
 						{/* Image on the right */}
 						<div className="order-1 md:order-1 justify-self-center translate-y-1/3 z-10">
 							<Image
-								src="/recipe_details.png"
+								src="/recipe_details.webp"
 								alt="كيك الزبادي بالتفاح"
 								width={560}
 								height={360}

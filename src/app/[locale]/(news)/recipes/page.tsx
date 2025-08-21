@@ -18,7 +18,7 @@ export default function RecipesPage() {
 
   const recipes: RecipeData[] = Array(12).fill({
 		date: "10 دقائق",
-		image: "/square_placeholder.jpg",
+		image: "/square_placeholder.webp",
 		title: "ﻛﻴﻚ اﻟﺰﺑﺎدي ﺑﺎﻟﺘﻔﺎح",
 		description:
 			"اﺳﺘﻤﺘﻊ ﺑﻜﻴﻚ اﻟﺰﺑﺎدي ﺑﺎﻟﺘﻔﺎح اﻟﻤﻠﻲء ﺑﻨﻜﻬﺔ اﻟﻘﺮﻓﺔ. وﺻﻔﺔ ﺳﻬﻠﺔ وﻟﺬﻳﺬة، ﻣﺜﺎﻟﻴﺔ ﻟﻠﺤﻠﻮﻳﺎت ﻓﻲ أﻳﺎم اﻟﺨﺮﻳﻒ.",
@@ -27,7 +27,7 @@ export default function RecipesPage() {
 
   return (
 		<>
-			<Hero title={t("title")} imageAlt="Recipes hero image." image="/recipes-hero.png" />
+			<Hero title={t("title")} imageAlt="Recipes hero image." image="/recipes-hero.webp" />
 
 			<Section className="bg-gray-200">
 				<div className="container mx-auto px-4 py-10">

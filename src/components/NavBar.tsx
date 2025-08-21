@@ -90,11 +90,25 @@ export default function NavBar() {
 								: "bg-transparent -translate-y-8 opacity-0"
 						}`}
 					/>
-					<TransitionLink className="relative z-10" href="/">
+					<TransitionLink className="relative hidden sm:block z-10" href="/">
 						<Image
-							src={locale == "ar" ? "/amal_big_logo_ar.png" : "/amal_big_logo_en.png"}
+							src={
+								locale == "ar" ? "/amal_big_logo_ar.webp" : "/amal_big_logo_en.webp"
+							}
 							alt="Amal Al-Khair logo"
 							width={260}
+							height={75}
+							priority
+							className={`transition-all duration-300 logo-hover ${
+								isScrolled ? "logo-enhanced" : "logo-white"
+							}`}
+						/>
+					</TransitionLink>
+					<TransitionLink className="relative block sm:hidden z-10" href="/">
+						<Image
+							src="/AMAL_logo.webp"
+							alt="Amal Al-Khair logo"
+							width={75}
 							height={75}
 							priority
 							className={`transition-all duration-300 logo-hover ${
@@ -263,9 +277,7 @@ export default function NavBar() {
 			{menuOpen && (
 				<div
 					className={`md:hidden fixed left-0 right-0 top-[72px] w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform ${
-						isScrolled
-							? "bg-white/95 backdrop-blur-md"
-							: "bg-white/90 backdrop-blur-md"
+						isScrolled ? "bg-white/95 backdrop-blur-md" : "bg-white/90 backdrop-blur-md"
 					}`}
 				>
 					<div className="p-6 h-full overflow-y-auto">
@@ -292,92 +304,93 @@ export default function NavBar() {
 							</button>
 						</div>
 						{navItems.map((item) => {
-						const isActive =
-							item.href === pathname ||
-							(item.submenu && item.submenu.some((sub) => sub.href === pathname));
-						return (
-							<div key={item.href}>
-								{item.submenu ? (
-									<div>
-										<button
-											className={`w-full text-left px-4 py-3 rounded-lg font-medium mb-1 flex items-center justify-between ${
+							const isActive =
+								item.href === pathname ||
+								(item.submenu && item.submenu.some((sub) => sub.href === pathname));
+							return (
+								<div key={item.href}>
+									{item.submenu ? (
+										<div>
+											<button
+												className={`w-full text-left px-4 py-3 rounded-lg font-medium mb-1 flex items-center justify-between ${
+													isActive
+														? "bg-blue-600 text-white"
+														: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+												}`}
+												onClick={() =>
+													setSubmenuOpen(
+														submenuOpen === item.href ? null : item.href
+													)
+												}
+											>
+												{item.label}
+												<svg
+													className="w-4 h-4"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M19 9l-7 7-7-7"
+													/>
+												</svg>
+											</button>
+											{submenuOpen === item.href && (
+												<div
+													className={`${
+														locale === "ar" ? "mr-4" : "ml-4"
+													} mt-2 space-y-1`}
+												>
+													{item.submenu.map((subItem) => {
+														const isSubActive =
+															subItem.href === pathname;
+														return (
+															<TransitionLink
+																key={subItem.href}
+																href={subItem.href}
+																className={`block px-4 py-2 rounded-lg text-sm ${
+																	isSubActive
+																		? "bg-blue-100 text-blue-700 font-medium"
+																		: "text-gray-600 hover:bg-gray-50"
+																}`}
+																onClick={() => setMenuOpen(false)}
+															>
+																{subItem.label}
+															</TransitionLink>
+														);
+													})}
+												</div>
+											)}
+										</div>
+									) : (
+										<TransitionLink
+											href={item.href}
+											className={`block px-4 py-3 rounded-lg font-medium mb-1 ${
 												isActive
 													? "bg-blue-600 text-white"
 													: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
 											}`}
-											onClick={() =>
-												setSubmenuOpen(
-													submenuOpen === item.href ? null : item.href
-												)
-											}
+											onClick={() => setMenuOpen(false)}
 										>
 											{item.label}
-											<svg
-												className="w-4 h-4"
-												fill="none"
-												stroke="currentColor"
-												viewBox="0 0 24 24"
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth="2"
-													d="M19 9l-7 7-7-7"
-												/>
-											</svg>
-										</button>
-										{submenuOpen === item.href && (
-											<div
-												className={`${
-													locale === "ar" ? "mr-4" : "ml-4"
-												} mt-2 space-y-1`}
-											>
-												{item.submenu.map((subItem) => {
-													const isSubActive = subItem.href === pathname;
-													return (
-														<TransitionLink
-															key={subItem.href}
-															href={subItem.href}
-															className={`block px-4 py-2 rounded-lg text-sm ${
-																isSubActive
-																	? "bg-blue-100 text-blue-700 font-medium"
-																	: "text-gray-600 hover:bg-gray-50"
-															}`}
-															onClick={() => setMenuOpen(false)}
-														>
-															{subItem.label}
-														</TransitionLink>
-													);
-												})}
-											</div>
-										)}
-									</div>
-								) : (
-									<TransitionLink
-										href={item.href}
-										className={`block px-4 py-3 rounded-lg font-medium mb-1 ${
-											isActive
-												? "bg-blue-600 text-white"
-												: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-										}`}
-										onClick={() => setMenuOpen(false)}
-									>
-										{item.label}
-									</TransitionLink>
-								)}
+										</TransitionLink>
+									)}
+								</div>
+							);
+						})}
+						<div className="mt-4 flex flex-col gap-2">
+							<div className="relative">
+								<input
+									type="text"
+									placeholder={t("searchPlaceholder")}
+									className="w-full border border-gray-300 rounded-full py-2 px-4 text-sm"
+								/>
 							</div>
-						);
-					})}
-					<div className="mt-4 flex flex-col gap-2">
-						<div className="relative">
-							<input
-								type="text"
-								placeholder={t("searchPlaceholder")}
-								className="w-full border border-gray-300 rounded-full py-2 px-4 text-sm"
-							/>
+							<LanguageSwitcher />
 						</div>
-						<LanguageSwitcher />
-					</div>
 					</div>
 				</div>
 			)}

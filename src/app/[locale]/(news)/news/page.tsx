@@ -12,7 +12,7 @@ export default function NewsPage() {
 
   const news: NewsData[] = Array(9).fill({
 		date: "16 Feb 2025",
-		image: "/square_placeholder.jpg",
+		image: "/square_placeholder.webp",
 		title: "اﻓﺘﺘﺎح ﻣﺘﺠﺮ اﻣﺮ اﻟﺨﻴﺮ ﻟﻠﺘﻤﻮر",
 		description:
 			"ﺷﺮﻛﺔ اﻣﻞ اﻟﺨﻴﺮ ﺗﻄﻠﻖ اﻟﻤﺘﺠﺮ اﻹﻟﻜﺘﺮوﻧﻲ اﻻول ﻟﻬﺎ ﻋﻠﻰ اﻻﻧﺘﺮﻧﺖ ﻳﺸﻤﻞ ﺟﻤﻴﻊ ﻣﻨﺘﺠﺎﺗﻬﺎ وﻳﻘﺪم ﺧﺪﻣﺔ اﻟﺪﻓﻊ ﻋﺒﺮ اﻟﺒﻄﺎﻗﺎت اﻻﺋﺘﻤﺎﻧﻴﺔ او ﺑﻄﺎﻗﺔ ﻣﺪى أو اﻟﺪﻓﻊ ﻧﻘﺪاً ﺑﻌﺪ اﻻﺳﺘﻼم ﻛﻤﺎ ﻳﻘﺪم اﻟﻌﺪﻳﺪ ﻣﻦ ...",
@@ -22,7 +22,7 @@ export default function NewsPage() {
 
   return (
     <>
-      <Hero title={t("title")} imageAlt="News hero image." image="/news-hero.jpg" />
+      <Hero title={t("title")} imageAlt="News hero image." image="/news-hero.webp" />
 
       <Section>
         <div className="container mx-auto px-4 py-10">

@@ -12,7 +12,7 @@ export default function ProductsPage() {
 				title="دجاجة كاملة متبّلة بنكهة البرياني 
 
 "
-				image="/placeholder.jpg"
+				image="/placeholder.webp"
 			/>
 
 			{/* Product Details Section */}
@@ -23,7 +23,7 @@ export default function ProductsPage() {
 						<div className="flex justify-center lg:justify-start">
 							<div className="relative w-full max-w-md">
 								<Image
-									src="/placeholder.jpg"
+									src="/placeholder.webp"
 									alt="دجاجة كاملة متبّلة"
 									width={500}
 									height={500}
@@ -142,22 +142,22 @@ export default function ProductsPage() {
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
 						{[
 							{
-								image: "/square_placeholder.jpg",
+								image: "/square_placeholder.webp",
 								title: "صدر دجاج متبل",
 								href: "/dummy-product",
 							},
 							{
-								image: "/square_placeholder.jpg",
+								image: "/square_placeholder.webp",
 								title: "فيليه صدر دجاج",
 								href: "/dummy-product",
 							},
 							{
-								image: "/square_placeholder.jpg",
+								image: "/square_placeholder.webp",
 								title: "أجنحة دجاج",
 								href: "/dummy-product",
 							},
 							{
-								image: "/square_placeholder.jpg",
+								image: "/square_placeholder.webp",
 								title: "دجاج مفروم",
 								href: "/dummy-product",
 							},
