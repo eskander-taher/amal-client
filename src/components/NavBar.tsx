@@ -246,37 +246,39 @@ export default function NavBar() {
 				</div>
 
 				{/* Hamburger for Mobile */}
-				<button
-					className={`md:hidden p-2 border rounded-lg transition-all duration-300 ${
-						isScrolled
-							? "border-gray-300 bg-white"
-							: "border-white/30 bg-white/20 backdrop-blur-sm"
-					}`}
-					onClick={() => setMenuOpen((v) => !v)}
-					aria-label="Open menu"
-				>
-					<svg
-						className={`w-6 h-6 transition-colors duration-300 ${
-							isScrolled ? "text-blue-700" : "text-white"
+				{!menuOpen && (
+					<button
+						className={`md:hidden p-2 border rounded-lg transition-all duration-300 ${
+							isScrolled
+								? "border-gray-300 bg-white"
+								: "border-white/30 bg-white/20 backdrop-blur-sm"
 						}`}
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						viewBox="0 0 24 24"
+						onClick={() => setMenuOpen((v) => !v)}
+						aria-label="Open menu"
 					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M4 6h16M4 12h16M4 18h16"
-						/>
-					</svg>
-				</button>
+						<svg
+							className={`w-6 h-6 transition-colors duration-300 ${
+								isScrolled ? "text-blue-700" : "text-white"
+							}`}
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							viewBox="0 0 24 24"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+						</svg>
+					</button>
+				)}
 			</div>
 
 			{/* Mobile Menu */}
 			{menuOpen && (
 				<div
-					className={`md:hidden fixed left-0 right-0 top-[72px] w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform ${
+					className={`md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform ${
 						isScrolled ? "bg-white/95 backdrop-blur-md" : "bg-white/90 backdrop-blur-md"
 					}`}
 				>
