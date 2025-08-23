@@ -143,33 +143,24 @@ const Hero: React.FC = () => {
 
 			{/* Bottom static curve */}
 			<motion.div
-				className="absolute bg-white min-w-60 bottom-0 left-1/2 transform -translate-x-1/2  rounded-t-full flex justify-center items-start gap-3 z-30 py-2"
+				className="absolute bg-transparent min-w-60 bottom-0 left-1/2 transform -translate-x-1/2  rounded-t-full flex justify-center items-start gap-3 py-2"
 				initial={{ y: 50, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
 			>
-				{/* left pseudo-element equivalent */}
-				<div
-					className="absolute -left-7 bottom-0 w-4 h-4"
-					style={{
-						transform: "translateX(100%)",
-						background: `radial-gradient(circle at top left, transparent 70%, white 0%)`,
-					}}
-				/>
-
-				{/* Right pseudo-element equivalent */}
-				<div
-					className="absolute right-1 -bottom-0 w-4 h-4"
-					style={{
-						transform: "translateX(100%)",
-						background: `radial-gradient(circle at top right, transparent 70%, white 0%)`,
-					}}
+				<Image
+					src="/curve.svg"
+					alt="Decorative curve"
+					width={100}
+					height={100}
+					className="absolute translate-y-1 bottom-0 left-0 w-60 h-auto  rotate-180 left-1/2 transform -translate-x-1/2"
+					priority
 				/>
 				{carouselSlides.map((_, index) => (
 					<motion.button
 						key={index}
 						onClick={() => goToSlide(index)}
-						className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+						className={`w-2.5 h-2.5 -mb-0.5 rounded-full transition-all duration-300 cursor-pointer  ${
 							index === currentSlide
 								? "bg-[#E3A347] scale-125"
 								: "bg-gray-200 hover:bg-gray-200/70"
