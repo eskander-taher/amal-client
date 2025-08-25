@@ -3,8 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "../Section";
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Notch from "../Notch";
 
 const logos = [
 	{ id: 1, src: "/images/logo1.webp", alt: "Logo 1" },
@@ -44,13 +44,7 @@ export default function Certifications() {
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
 			{/* Top static curve */}
-			<motion.div
-				initial={{ y: -50 }}
-				whileInView={{ y: 0 }}
-				transition={{ ease: "easeOut", duration: 1 }}
-				viewport={{ once: true }}
-				className="absolute w-80 h-8 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-b-full"
-			/>
+			<Notch className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1" width={700} color="#E5E7EB" direction="down"/>
 
 			<div className="w-full">
 				{/* Heading */}
@@ -91,16 +85,14 @@ export default function Certifications() {
 
 			{/* Curve */}
 			{hoveredIndex !== null && (
-				<motion.div
-					initial={{ y: 50 }}
-					whileInView={{ y: 0 }}
-					transition={{ ease: "easeOut", duration: 1 }}
-					viewport={{ once: true }}
-					className="absolute bg-gray-200 rounded-t-full animate-curve"
+				<Notch
+					
+					color="#E5E7EB"
+					className="absolute animate-curve"
 					style={{
 						width: `${curveWidth}px`,
 						left: `${curveX - curveWidth / 2}px`,
-						bottom: "-20px",
+						bottom: "-7px",
 						height: "30px",
 					}}
 				/>

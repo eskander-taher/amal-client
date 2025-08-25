@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
 import type { News } from "@/types";
 import { TransitionLink } from "../TransitionLink";
+import Notch from "../Notch";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
@@ -40,13 +41,16 @@ const News: React.FC = () => {
 				</div>
 			</div>
 			{/* Bottom static curve */}
-			<TransitionLink
-				href="/news"
-				className={`absolute w-64 h-8 bottom-0 ${isArabic ? "left" : "right"}-0 transform ${
-					!isArabic && "-"
-				}translate-x-1/2 translate-y-1/2 bg-[#353535] rounded-t-full flex justify-center items-top pt-2 gap-3 hover:translate-y-1/3 transition-all duration-300 cursor-pointer hover:text-bold`}
-			>
-				<h3 className="absolute -translate-y-[150%]">{t("moreNews")}</h3>
+			<TransitionLink href="/news">
+				<Notch
+					className={`absolute ${
+						isArabic ? "left-0" : "right-0"
+					} bottom-0  translate-y-1`}
+					color="#353535"
+					textColor="white"
+				>
+					{t("moreNews")}
+				</Notch>
 			</TransitionLink>
 		</Section>
 	);
