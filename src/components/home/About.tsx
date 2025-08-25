@@ -11,7 +11,7 @@ const About: React.FC = () => {
 	const isArabic = locale === "ar";
 
 	return (
-		<Section id="about" className="relative">
+		<Section id="about" className="relative bg-white">
 			<motion.div
 				initial={{ x: 50, opacity: 0 }}
 				whileInView={{ x: 0, opacity: 1 }}

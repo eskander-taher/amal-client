@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "./TransitionLink";
 import { motion } from "framer-motion";
+import Notch from "./Notch";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -84,12 +85,15 @@ export default function NavBar() {
 
 				<div className="relative">
 					{/* Top static curve */}
-					<div
-						className={`absolute w-80 h-8 bottom-0 left-1/2 transform -translate-x-1/2 rounded-b-full z-0 transition-all duration-500 ease-out ${
+					<Notch
+						className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0 transition-all duration-500 ease-out ${
 							isScrolled
-								? "bg-white translate-y-1/2 opacity-100 delay-200"
-								: "bg-transparent -translate-y-8 opacity-0"
+								? "translate-y-full -mb-1 opacity-100 delay-200"
+								: " opacity-0"
 						}`}
+						width={320}
+						color={isScrolled ? "#fff" : "transparent"}
+						direction="down"
 					/>
 					<TransitionLink className="relative hidden sm:block z-10" href="/">
 						<Image
@@ -107,9 +111,9 @@ export default function NavBar() {
 					</TransitionLink>
 					<TransitionLink className="relative block sm:hidden z-10" href="/">
 						<motion.div
-						initial={{ y: -50, x: 50, opacity: 0 }}
-						animate={{ y: 0, x: 0, opacity: 1 }}
-						transition={{ duration: 1, ease: "easeOut" }}
+							initial={{ y: -50, x: 50, opacity: 0 }}
+							animate={{ y: 0, x: 0, opacity: 1 }}
+							transition={{ duration: 1, ease: "easeOut" }}
 						>
 							<Image
 								src="/AMAL_logo.webp"
