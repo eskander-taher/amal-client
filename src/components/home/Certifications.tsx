@@ -23,6 +23,7 @@ export default function Certifications() {
 	const [curveX, setCurveX] = useState(0);
 	const [curveWidth, setCurveWidth] = useState(60);
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+	const [staticCurveWidth, setStaticCurveWidth] = useState(700);
 
 	useEffect(() => {
 		if (hoveredIndex !== null && logoRefs.current[hoveredIndex]) {
@@ -41,10 +42,36 @@ export default function Certifications() {
 		}
 	}, [hoveredIndex]);
 
+	// Update static curve width based on viewport
+	useEffect(() => {
+		const updateStaticCurveWidth = () => {
+			const viewportWidth = window.innerWidth;
+			// Responsive width calculation: 
+			// Mobile: 90% of viewport, Desktop: clamp between 600px and 80% of viewport
+			if (viewportWidth < 768) {
+				setStaticCurveWidth(viewportWidth * 0.9);
+			} else if (viewportWidth < 1024) {
+				setStaticCurveWidth(viewportWidth * 0.75);
+			} else {
+				setStaticCurveWidth(Math.min(Math.max(600, viewportWidth * 0.6), viewportWidth * 0.8));
+			}
+		};
+
+		updateStaticCurveWidth();
+		window.addEventListener('resize', updateStaticCurveWidth);
+		
+		return () => window.removeEventListener('resize', updateStaticCurveWidth);
+	}, []);
+
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
 			{/* Top static curve */}
-			<Notch className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1" width={700} color="#E5E7EB" direction="down"/>
+			<Notch 
+				className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1" 
+				width={staticCurveWidth} 
+				color="#E5E7EB" 
+				direction="down"
+			/>
 
 			<div className="w-full">
 				{/* Heading */}
