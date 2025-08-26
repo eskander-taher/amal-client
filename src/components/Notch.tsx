@@ -9,19 +9,18 @@ interface NotchProps {
 	children?: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
-	textColor?: string;
+	middleStyles?: string;
 }
 
 const Notch: React.FC<NotchProps> = ({
 	direction = "up",
 	color = "#fff",
-	width = 300,
 	height = 24,
 	curveWidth = 76,
 	children,
 	className = "",
 	style = {},
-	textColor = "#000",
+	middleStyles = "w-full",
 }) => {
 	const isUp = direction === "up";
 
@@ -56,12 +55,9 @@ const Notch: React.FC<NotchProps> = ({
 	const rightCurveSrc = createCurveSVG(false, color);
 
 	return (
-		<div
-			className={`flex items-center ${className}`}
-			style={{ width: `${width}px` , ...style}}
-		>
+		<div className={`flex items-center ${className}`} style={{ ...style }}>
 			{/* Left curve */}
-			<div 
+			<div
 				className="flex-shrink-0 -ml-2"
 				style={{
 					width: `${curveWidth}px`,
@@ -71,7 +67,7 @@ const Notch: React.FC<NotchProps> = ({
 					backgroundRepeat: "no-repeat",
 					backgroundPosition: "center",
 					transform: isUp ? "scaleY(-1) scaleX(-1)" : "scaleY(1) scaleX(-1)",
-					transformOrigin: "center"
+					transformOrigin: "center",
 				}}
 			/>
 
@@ -80,15 +76,14 @@ const Notch: React.FC<NotchProps> = ({
 				style={{
 					backgroundColor: color,
 					height: `${height}px`,
-					color: textColor,
 				}}
-				className="flex-1 flex items-center justify-center px-4"
+				className={middleStyles}
 			>
 				{children}
 			</div>
 
 			{/* Right curve */}
-			<div 
+			<div
 				className="flex-shrink-0 -mr-2"
 				style={{
 					width: `${curveWidth}px`,
@@ -98,7 +93,7 @@ const Notch: React.FC<NotchProps> = ({
 					backgroundRepeat: "no-repeat",
 					backgroundPosition: "center",
 					transform: isUp ? "scaleY(-1) scaleX(-1)" : "scaleY(1) scaleX(-1)",
-					transformOrigin: "center"
+					transformOrigin: "center",
 				}}
 			/>
 		</div>

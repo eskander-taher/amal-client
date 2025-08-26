@@ -43,6 +43,7 @@ const About: React.FC = () => {
 						isArabic ? "left-0" : "right-0"
 					} bottom-0  translate-y-1`}
 					color="#E5E7EB"
+					middleStyles="text-black px-4 hover:font-bold"
 				>
 					{t("moreAboutButton")}
 				</Notch>

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Section from "../Section";
 import { useTranslations, useLocale } from "next-intl";
 import { TransitionLink } from "../TransitionLink";
+import Notch from "../Notch";
 
 const Hero: React.FC = () => {
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -143,36 +144,30 @@ const Hero: React.FC = () => {
 
 			{/* Bottom static curve */}
 			<motion.div
-				className="absolute bg-transparent min-w-60 bottom-0 left-1/2 transform -translate-x-1/2  rounded-t-full flex justify-center items-start gap-3 py-2"
+				className="absolute bg-transparent min-w-60 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 rounded-t-full flex justify-center items-start gap-3"
 				initial={{ y: 50, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
 			>
-				<Image
-					src="/curve.svg"
-					alt="Decorative curve"
-					width={100}
-					height={100}
-					className="absolute translate-y-1 bottom-0 left-0 w-60 h-auto  rotate-180 left-1/2 transform -translate-x-1/2"
-					priority
-				/>
-				{carouselSlides.map((_, index) => (
-					<motion.button
-						key={index}
-						onClick={() => goToSlide(index)}
-						className={`w-2.5 h-2.5 -mb-0.5 rounded-full transition-all duration-300 cursor-pointer  ${
-							index === currentSlide
-								? "bg-[#E3A347] scale-125"
-								: "bg-gray-200 hover:bg-gray-200/70"
-						}`}
-						aria-label={`Go to slide ${index + 1}`}
-						initial={{ scale: 0 }}
-						animate={{ scale: 1 }}
-						transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
-						whileHover={{ scale: 1.2 }}
-						whileTap={{ scale: 0.9 }}
-					/>
-				))}
+				<Notch middleStyles="flex justify-between items-center gap-3 px-3 py-2">
+					{carouselSlides.map((_, index) => (
+						<motion.button
+							key={index}
+							onClick={() => goToSlide(index)}
+							className={`w-2.5 h-2.5 -mb-0.5 rounded-full transition-all duration-300 cursor-pointer  ${
+								index === currentSlide
+									? "bg-[#E3A347] scale-125"
+									: "bg-gray-200 hover:bg-gray-200/70"
+							}`}
+							aria-label={`Go to slide ${index + 1}`}
+							initial={{ scale: 0 }}
+							animate={{ scale: 1 }}
+							transition={{ duration: 0.4, delay: 1.2 + index * 0.1 }}
+							whileHover={{ scale: 1.2 }}
+							whileTap={{ scale: 0.9 }}
+						/>
+					))}
+				</Notch>
 			</motion.div>
 		</Section>
 	);

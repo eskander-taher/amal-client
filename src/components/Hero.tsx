@@ -7,6 +7,7 @@ import { TransitionLink } from "./TransitionLink";
 import Image from "next/image";
 import Section from "./Section";
 import { routing } from "@/i18n/routing";
+import Notch from "./Notch";
 
 interface HeroProps {
 	title: string;
@@ -96,9 +97,7 @@ export default function Hero({
 					break;
 				default:
 					// For unknown segments, if it's the last one (dynamic page), use the page title; otherwise, fallback to capitalized segment
-					label = isLast
-						? title
-						: segment.charAt(0).toUpperCase() + segment.slice(1);
+					label = isLast ? title : segment.charAt(0).toUpperCase() + segment.slice(1);
 			}
 
 			breadcrumbs.push({
@@ -119,7 +118,7 @@ export default function Hero({
 		pathname.endsWith("certifications");
 
 	return (
-		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 xl:p-0  ${className}`}>
+		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image src={image} alt={imageAlt} fill className="object-cover" priority />
@@ -147,25 +146,21 @@ export default function Hero({
 				{showBreadcrumb && (
 					<div className="container mx-auto px-4">
 						<nav aria-label="Breadcrumb">
-							<ol className="flex items-center space-x-5 text-sm text-white/80">
+							<ol className="flex items-center text-sm text-white/80">
 								{breadcrumbs.map((breadcrumb, index) => (
 									<li key={index} className="flex items-center">
-										<div className="relative flex-col pb-10">
+										<div className="relative flex-col pb-10 mx-5">
 											<TransitionLink
 												href={breadcrumb.href}
-												className="flex  relative items-center hover:text-white transition-colors duration-200"
+												className="hover:text-white transition-colors duration-200"
 											>
 												{breadcrumb.label}
 											</TransitionLink>
 											{breadcrumb.isActive && (
-												<div
-													className={`absolute bg-${isProductPage ? "gray-200" : "white"} rounded-t-full animate-curve`}
-													style={{
-														width: `100%`,
-														bottom: "0px",
-														height: "10px",
-													}}
-												/>	
+												<Notch
+													className="absolute left-1/2 transform -translate-x-1/2 -bottom-2"
+													color={isProductPage ? "#E5E7EB" : "#FFFFFF"}
+												/>
 											)}
 										</div>
 									</li>

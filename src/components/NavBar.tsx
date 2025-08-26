@@ -83,18 +83,18 @@ export default function NavBar() {
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
 
-				<div className="relative">
+				<div className="relative flex items-center justify-center px-10">
 					{/* Top static curve */}
 					<Notch
-						className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0 transition-all duration-500 ease-out ${
+						className={`absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 z-0 transition-all duration-500 ease-out ${
 							isScrolled
 								? "translate-y-full -mb-1 opacity-100 delay-200"
 								: " opacity-0"
 						}`}
-						width={320}
 						color={isScrolled ? "#fff" : "transparent"}
 						direction="down"
 					/>
+					{/* laptop */}
 					<TransitionLink className="relative hidden sm:block z-10" href="/">
 						<Image
 							src={
@@ -104,11 +104,13 @@ export default function NavBar() {
 							width={260}
 							height={75}
 							priority
-							className={`transition-all duration-300 logo-hover ${
+							className={`transition-all duration-300 logo-hover translate-y-1/4 ${
 								isScrolled ? "logo-enhanced" : "logo-white"
 							}`}
 						/>
 					</TransitionLink>
+
+					{/* mobile */}
 					<TransitionLink className="relative block sm:hidden z-10" href="/">
 						<motion.div
 							initial={{ y: -50, x: 50, opacity: 0 }}
@@ -121,7 +123,7 @@ export default function NavBar() {
 								width={75}
 								height={75}
 								priority
-								className={`transition-all duration-300 logo-hover ${
+								className={`transition-all duration-300 logo-hover translate-y-1/4 ${
 									isScrolled ? "logo-enhanced" : "logo-white"
 								}`}
 							/>
@@ -220,7 +222,7 @@ export default function NavBar() {
 				</div>
 
 				{/* Left Side: Search + Language */}
-				<div className="hidden md:flex items-center space-x-2 space-x-reverse">
+				<div className="hidden md:flex items-center space-x-2 space-x-reverse translate-y-1/4">
 					<div className="relative text-gray-600">
 						<input
 							type="text"
