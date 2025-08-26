@@ -18,8 +18,8 @@ export default function page() {
 			/>
 			<JobCardList />
 			<WorkWithUs />
-			<HiringProcess />
 			<JoinFamilyCTA />
+			<HiringProcess />
 			<WorkEnvironment />
 			<TrainingSection />
 		</div>

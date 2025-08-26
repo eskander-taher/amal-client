@@ -15,7 +15,7 @@ export default function Component() {
         {/* Top row: Logo/English name on left, Arabic title on right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Right side: Arabic title */}
-          <div className="text-right" dir="rtl">
+          <div className="text-right">
             <h1 className=" font-bold text-7xl text-[#454545]">
               أمل الخير
               <br />
@@ -24,7 +24,7 @@ export default function Component() {
           </div>
 
           {/* Left side: English name and logo */}
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col">
             <div className="flex justify-start">
               <Image
                 src={locale == "ar" ? "/logo.svg" : "/logo.svg"}
@@ -39,7 +39,7 @@ export default function Component() {
 
         {/* Bottom section: Arabic paragraph */}
         <div className="w-full">
-          <div className="text-right texxt-[#686868] text-[20px]" dir="rtl">
+          <div className="text-right text-[#686868] text-[20px]">
             <p className="text-[#686868]">
               ينظر مجتمع الأعمال إلى مجموعة جمال بغلف القابضة إلى انها كيان تجاري يجسد معنى الكفاح, إذ تغلب على العديد من التحديات على مدى سنوات طويلة من العمل الجاد, إلى أن أصبح اسما تجاريا مرموقا في المملكة العربية السعودية.
             </p>

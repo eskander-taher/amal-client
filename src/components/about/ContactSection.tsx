@@ -1,5 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import Section from "../Section";
+import Notch from "../Notch";
 
 const contactItems = [
   {
@@ -24,7 +25,8 @@ const contactItems = [
 
 export default function ContactSection() {
   return (
-    <Section className=" relative bg-[#353535]">
+    <Section className="relative bg-[#353535]">
+      <Notch className="absolute w-[80%]  top-0 transform left-1/2 -translate-x-1/2 -translate-y-1" direction="down" color="#E5E7EB"/>
       <div className="max-w-[1320px] mx-auto text-center">
         {/* العنوان الرئيسي */}
         <h2 className="text-[52.89px] leading-[86px] tracking-[-0.22px] text-white">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Section from "@/components/Section";
 import RecipeCard from "@/components/RecipeCard";
 import { Link } from "@/i18n/navigation";
+import Notch from "@/components/Notch";
 
 export default function Page() {
 	const ingredients: string[] = [
@@ -59,7 +60,12 @@ export default function Page() {
 	return (
 		<>
 			{/* Top orange banner */}
-			<div className="w-full bg-[#F9AE42] relative overflow-visible -mb-16 md:-mb-24">
+			<div className="w-full relative bg-[#F9AE42] relative overflow-visible -mb-16 md:-mb-24">
+				<Notch
+					className="absolute w-[80%] transform left-0 -translate-x-3/4 translate-y-1 bottom-0 z-10"
+					color="white"
+				/>
+
 				<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
 						{/* Textual content */}

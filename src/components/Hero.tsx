@@ -158,7 +158,7 @@ export default function Hero({
 											</TransitionLink>
 											{breadcrumb.isActive && (
 												<Notch
-													className="absolute left-1/2 transform -translate-x-1/2 -bottom-2"
+													className="absolute min-w-20 left-1/2 transform -translate-x-1/2 -bottom-1"
 													color={isProductPage ? "#E5E7EB" : "#FFFFFF"}
 												/>
 											)}
