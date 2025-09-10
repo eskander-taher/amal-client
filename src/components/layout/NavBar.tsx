@@ -1,13 +1,13 @@
 "use client";
-import {  usePathname } from "@/i18n/navigation";
+import { usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./LanguageSwitcher";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
-import { TransitionLink } from "./TransitionLink";
+import { TransitionLink } from "@/components/TransitionLink";
 import { motion } from "framer-motion";
-import Notch from "./Notch";
+import Notch from "@/components/Notch";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -74,9 +74,12 @@ export default function NavBar() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
+	const isAdminPath = pathname.startsWith("/admin");
 	return (
 		<nav
-			className={`px-10 py-2 flex fixed top-0 w-full z-50 transition-all duration-300  ${
+			className={`${
+				isAdminPath ? "hidden" : ""
+			} px-10 py-2 flex fixed top-0 w-full z-50 transition-all duration-300  ${
 				isScrolled ? "bg-white" : "bg-transparent delay-200"
 			}`}
 		>

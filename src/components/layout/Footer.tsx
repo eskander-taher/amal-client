@@ -13,7 +13,7 @@ import {
 	FaPhone,
 
 } from "react-icons/fa";
-import Newsletter from "./Newsletter";
+import Newsletter from "@/components/Newsletter";
 
 export default function Footer() {
 	const t = useTranslations("Footer");

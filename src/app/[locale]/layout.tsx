@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/layout/NavBar";
 import Providers from "@/components/Providers";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 import localFont from "next/font/local";
 
 const dinNextArabic = localFont({
