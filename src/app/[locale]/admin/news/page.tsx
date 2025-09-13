@@ -42,12 +42,6 @@ export default function AdminNewsPage() {
         imageUrl = await uploadToCloudinary(imageFile, 'news');
       }
 
-      // Validate that we have an image URL
-      if (!imageUrl) {
-        alert('Please select an image');
-        return;
-      }
-
       const newsData = {
         title: formData.title,
         description: formData.description,
@@ -66,9 +60,7 @@ export default function AdminNewsPage() {
       setIsFormOpen(false);
       setEditingNews(null);
     } catch (error) {
-      console.error('❌ Error saving news:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      alert(`Failed to save news article: ${errorMessage}`);
+      console.error('❌ Error saving news:', error);;
     }
   };
 
