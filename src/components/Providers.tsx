@@ -49,16 +49,7 @@ export default function Providers({ children }: { children: ReactNode }) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			{/* <LoadingSpinner /> */}
-			<ToastContainer
-				position="top-right"
-				autoClose={3000}
-				hideProgressBar={false}
-				newestOnTop
-				closeOnClick
-				pauseOnFocusLoss
-				draggable
-				pauseOnHover
-			/>
+			<ToastContainer />
 			{children}
 		</QueryClientProvider>
 	);

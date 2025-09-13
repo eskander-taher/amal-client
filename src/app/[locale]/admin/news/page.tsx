@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Plus, Edit, Trash2, Upload } from 'lucide-react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import AdminPage from '@/components/admin/AdminPage';
 import { useNews, useCreateNews, useUpdateNews, useDeleteNews } from '@/hooks/useNews';
+import { useCloudinaryUpload } from '@/hooks/useCloudinary';
 import type { News } from '@/types/news';
 import type { BreadcrumbItem } from '@/types';
 
@@ -18,7 +18,6 @@ export default function AdminNewsPage() {
     image: '',
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [uploading, setUploading] = useState(false);
 
   const breadcrumbs: BreadcrumbItem[] = [
     { label: 'Content Management', href: '/admin' },
@@ -30,41 +29,7 @@ export default function AdminNewsPage() {
   const updateNews = useUpdateNews();
   const deleteNews = useDeleteNews();
 
-  const handleImageUpload = async (file: File): Promise<string> => {
-    setUploading(true);
-    try {
-      // Get Cloudinary signature using axios
-      const signatureResponse = await axios.post('/api/media/signature', {
-        folder: 'news',
-        tags: ['news'],
-      });
-
-      const signatureData = signatureResponse.data;
-
-      // Upload to Cloudinary using axios
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('api_key', signatureData.api_key);
-      formData.append('timestamp', signatureData.timestamp);
-      formData.append('signature', signatureData.signature);
-      formData.append('folder', 'news');
-      formData.append('tags', 'news');
-
-      const uploadResponse = await axios.post(
-        `https://api.cloudinary.com/v1_1/${signatureData.cloud_name}/image/upload`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-
-      return uploadResponse.data.secure_url;
-    } finally {
-      setUploading(false);
-    }
-  };
+  const { upload: uploadToCloudinary, uploading: cloudinaryUploading } = useCloudinaryUpload();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +39,7 @@ export default function AdminNewsPage() {
 
       // Upload image only when form is submitted
       if (imageFile) {
-        imageUrl = await handleImageUpload(imageFile);
+        imageUrl = await uploadToCloudinary(imageFile, 'news');
       }
 
       // Validate that we have an image URL
@@ -101,8 +66,9 @@ export default function AdminNewsPage() {
       setIsFormOpen(false);
       setEditingNews(null);
     } catch (error) {
-      console.error('Error saving news:', error);
-      alert('Failed to save news article');
+      console.error('❌ Error saving news:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Failed to save news article: ${errorMessage}`);
     }
   };
 
@@ -239,10 +205,10 @@ export default function AdminNewsPage() {
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"
-                    disabled={createNews.isPending || updateNews.isPending || uploading}
+                    disabled={createNews.isPending || updateNews.isPending || cloudinaryUploading}
                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
                   >
-{uploading ? (
+{cloudinaryUploading ? (
                       <>
                         <Upload className="w-4 h-4 mr-2 animate-spin" />
                         Uploading & Saving...

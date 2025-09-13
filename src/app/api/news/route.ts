@@ -57,8 +57,12 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error creating news article:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { success: false, error: 'Failed to create news article' },
+      { 
+        success: false, 
+        error: `Failed to create news article: ${errorMessage}` 
+      },
       { status: 500 }
     );
   }
