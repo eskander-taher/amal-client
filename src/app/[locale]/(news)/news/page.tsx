@@ -1,24 +1,14 @@
+'use client';
+
 import Hero from "@/components/Hero";
-import React from "react";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
-import type { News } from "@/types";
-
-type NewsData = News & { image: string; date: string };
+import { useNews } from "@/hooks/useNews";
 
 export default function NewsPage() {
   const t = useTranslations("News");
-
-  const news: NewsData[] = Array(9).fill({
-		date: "16 Feb 2025",
-		image: "/square_placeholder.webp",
-		title: "اﻓﺘﺘﺎح ﻣﺘﺠﺮ اﻣﺮ اﻟﺨﻴﺮ ﻟﻠﺘﻤﻮر",
-		description:
-			"ﺷﺮﻛﺔ اﻣﻞ اﻟﺨﻴﺮ ﺗﻄﻠﻖ اﻟﻤﺘﺠﺮ اﻹﻟﻜﺘﺮوﻧﻲ اﻻول ﻟﻬﺎ ﻋﻠﻰ اﻻﻧﺘﺮﻧﺖ ﻳﺸﻤﻞ ﺟﻤﻴﻊ ﻣﻨﺘﺠﺎﺗﻬﺎ وﻳﻘﺪم ﺧﺪﻣﺔ اﻟﺪﻓﻊ ﻋﺒﺮ اﻟﺒﻄﺎﻗﺎت اﻻﺋﺘﻤﺎﻧﻴﺔ او ﺑﻄﺎﻗﺔ ﻣﺪى أو اﻟﺪﻓﻊ ﻧﻘﺪاً ﺑﻌﺪ اﻻﺳﺘﻼم ﻛﻤﺎ ﻳﻘﺪم اﻟﻌﺪﻳﺪ ﻣﻦ ...",
-		href: "/news/dummy-news",
-  });
-
+  const { data: news = [], isLoading, error } = useNews();
 
   return (
     <>
@@ -26,21 +16,47 @@ export default function NewsPage() {
 
       <Section>
         <div className="container mx-auto px-4 py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {news.map((item, index) => (
-              <NewsCard
-                key={index}
-                image={item.image}
-                imageAlt={item.title}
-                title={item.title}
-                description={item.description}
-                href={item.href}
-                badgeText={item.date}
-                cardBackgroundColor="#F2F2EF"
-                cardLinkBackgroundColor="white"
-              />
-            ))}
-          </div>
+          {isLoading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
+                  <div className="bg-gray-200 h-4 rounded mb-2"></div>
+                  <div className="bg-gray-200 h-3 rounded w-3/4"></div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-red-600">Error loading news: {error.message}</p>
+            </div>
+          )}
+
+          {!isLoading && !error && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {news.map((item) => (
+                <NewsCard
+                  key={item._id}
+                  image={item.image}
+                  imageAlt={item.title}
+                  title={item.title}
+                  description={item.description}
+                  href={`/news/${item._id}`}
+                  badgeText={item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ''}
+                  cardBackgroundColor="#F2F2EF"
+                  cardLinkBackgroundColor="white"
+                />
+              ))}
+            </div>
+          )}
+
+          {!isLoading && !error && news.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No news articles found.</p>
+            </div>
+          )}
         </div>
       </Section>
     </>

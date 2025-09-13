@@ -2,7 +2,7 @@
 import Section from "../Section";
 import { useLocale, useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
-import type { News } from "@/types";
+import { useNews } from "@/hooks/useNews";
 import { TransitionLink } from "../TransitionLink";
 import Notch from "../Notch";
 
@@ -10,16 +10,11 @@ const News: React.FC = () => {
 	const t = useTranslations("News");
 	const local = useLocale();
 	const isArabic = local === "ar";
-
-
-	const news: News[] = Array(3).fill({
-		date: "16 Feb 2025",
-		image: "/square_placeholder.webp",
-		title: "اﻓﺘﺘﺎح ﻣﺘﺠﺮ اﻣﺮ اﻟﺨﻴﺮ ﻟﻠﺘﻤﻮر",
-		description:
-			"ﺷﺮﻛﺔ اﻣﻞ اﻟﺨﻴﺮ ﺗﻄﻠﻖ اﻟﻤﺘﺠﺮ اﻹﻟﻜﺘﺮوﻧﻲ اﻻول ﻟﻬﺎ ﻋﻠﻰ اﻻﻧﺘﺮﻧﺖ ﻳﺸﻤﻞ ﺟﻤﻴﻊ ﻣﻨﺘﺠﺎﺗﻬﺎ وﻳﻘﺪم ﺧﺪﻣﺔ اﻟﺪﻓﻊ ﻋﺒﺮ اﻟﺒﻄﺎﻗﺎت اﻻﺋﺘﻤﺎﻧﻴﺔ او ﺑﻄﺎﻗﺔ ﻣﺪى أو اﻟﺪﻓﻊ ﻧﻘﺪاً ﺑﻌﺪ اﻻﺳﺘﻼم ﻛﻤﺎ ﻳﻘﺪم اﻟﻌﺪﻳﺪ ﻣﻦ ...",
-		href: "/news/dummy-news",
-	});
+	
+	const { data: news = [], isLoading } = useNews();
+	
+	// Show only the first 3 news items
+	const displayNews = news.slice(0, 3);
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
@@ -32,21 +27,33 @@ const News: React.FC = () => {
 			
 			<div className="w-full">
 				<h2 className="text-3xl font-bold text-center mb-12">{t("title")}</h2>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{news.map((item, index) => (
-						<NewsCard
-							key={index}
-							image={item.image}
-							imageAlt={item.title}
-							title={item.title}
-							description={item.description}
-							href={item.href}
-							badgeText={item.date}
-							cardBackgroundColor="#F2F2EF"
-							cardLinkBackgroundColor="white"
-						/>
-					))}
-				</div>
+				{isLoading ? (
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{[1, 2, 3].map((i) => (
+							<div key={i} className="animate-pulse">
+								<div className="bg-gray-200 h-48 rounded-lg mb-4"></div>
+								<div className="bg-gray-200 h-4 rounded mb-2"></div>
+								<div className="bg-gray-200 h-3 rounded w-3/4"></div>
+							</div>
+						))}
+					</div>
+				) : (
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{displayNews.map((item) => (
+							<NewsCard
+								key={item._id}
+								image={item.image}
+								imageAlt={item.title}
+								title={item.title}
+								description={item.description}
+								href={`/news/${item._id}`}
+								badgeText={item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ''}
+								cardBackgroundColor="#F2F2EF"
+								cardLinkBackgroundColor="white"
+							/>
+						))}
+					</div>
+				)}
 			</div>
 			{/* Bottom static curve */}
 			<TransitionLink href="/news">
