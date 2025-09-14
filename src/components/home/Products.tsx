@@ -1,21 +1,27 @@
+"use client";
+
 import Section from "../Section";
 import ProductCard from "../ProdcutCard";
 import { useTranslations } from "next-intl";
-
-type ProductData = {
-	image: string;
-	titleKey: string;
-	href: string;
-};
+import { useFeaturedProducts } from "@/hooks/useProducts";
+import { getServerUrl } from "@/lib/apiBase";
 
 const Products: React.FC = () => {
 	const t = useTranslations("Products");
-	
-	 const products: ProductData[] = Array(4).fill({
+	const { data: featuredProducts = [], isLoading } = useFeaturedProducts();
+
+	// Take first 4 featured products or show placeholders if loading
+	const displayProducts = isLoading 
+		? Array(4).fill({
 			image: "/square_placeholder.webp",
-			title: "منتج الدواجن",
-			href: "/dummy-product",
-		});
+			title: "جاري التحميل...",
+			href: "#",
+		})
+		: featuredProducts.slice(0, 4).map(product => ({
+			image: product.image ? getServerUrl(product.image) || "/square_placeholder.webp" : "/square_placeholder.webp",
+			title: product.title,
+			href: `/products/${product._id}`,
+		}));
 
 	return (
 		<Section id="products" className="bg-gray-200">
@@ -28,7 +34,7 @@ const Products: React.FC = () => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{products.map((product, index) => (
+					{displayProducts.map((product, index) => (
 						<ProductCard key={index} product={product} />
 					))}
 				</div>

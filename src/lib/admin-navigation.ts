@@ -42,6 +42,12 @@ export const adminNavigation: AdminNavItem[] = [
 				icon: FileText,
 				href: "/admin/recipes",
 			},
+			{
+				id: "products",
+				label: "المنتجات",
+				icon: Package,
+				href: "/admin/products",
+			},
 		],
 	},
 	{

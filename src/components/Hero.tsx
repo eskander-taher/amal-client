@@ -21,7 +21,7 @@ interface HeroProps {
 export default function Hero({
 	title,
 	subtitle,
-	image = "/hero.webp",
+	image = "/placeholder.webp",
 	imageAlt = "Hero background",
 	showBreadcrumb = true,
 	className = "",
@@ -121,7 +121,7 @@ export default function Hero({
 		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
-				<Image src={image} alt={imageAlt} fill className="object-cover" priority />
+				<Image src={image || "/placeholder.webp"} alt={imageAlt} fill className="object-cover" priority />
 				{/* Overlay */}
 				<div className="absolute inset-0 bg-black/40" />
 			</div>
@@ -158,7 +158,7 @@ export default function Hero({
 											</TransitionLink>
 											{breadcrumb.isActive && (
 												<Notch
-													className="absolute min-w-20 left-1/2 transform -translate-x-1/2 -bottom-1"
+													className="absolute  min-w-20 left-1/2 transform -translate-x-1/2 -bottom-1"
 													color={isProductPage ? "#E5E7EB" : "#FFFFFF"}
 												/>
 											)}

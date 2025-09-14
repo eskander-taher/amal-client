@@ -1,309 +1,338 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { Plus, Edit, Trash2, Upload } from 'lucide-react';
-import AdminLayout from '@/components/admin/AdminLayout';
-import AdminPage from '@/components/admin/AdminPage';
-import RichTextEditor from '@/components/ui/RichTextEditor';
-import { useNews, useCreateNews, useUpdateNews, useDeleteNews } from '@/hooks/useNews';
-import type { News } from '@/types/news';
-import type { BreadcrumbItem } from '@/types';
-import { getServerUrl } from '@/lib/apiBase';
+import React, { useState } from "react";
+import { Plus, Edit2, Trash2, Search, Calendar, Eye } from "lucide-react";
+import AdminLayout from "@/components/admin/AdminLayout";
+import RichTextEditor from "@/components/ui/RichTextEditor";
+import { useNews, useCreateNews, useUpdateNews, useDeleteNews } from "@/hooks/useNews";
+import { getServerUrl } from "@/lib/apiBase";
+import type { News } from "@/types/news";
+
+interface BreadcrumbItem {
+	label: string;
+	href?: string;
+	current?: boolean;
+}
 
 export default function AdminNewsPage() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [editingNews, setEditingNews] = useState<News | null>(null);
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-  });
-  const [imageFile, setImageFile] = useState<File | null>(null);
+	const [isFormOpen, setIsFormOpen] = useState(false);
+	const [editingNews, setEditingNews] = useState<News | null>(null);
+	const [searchQuery, setSearchQuery] = useState("");
 
-  const breadcrumbs: BreadcrumbItem[] = [
-    { label: 'إدارة المحتوى', href: '/admin' },
-    { label: 'المقالات الإخبارية', current: true },
-  ];
+	// Form state
+	const [formData, setFormData] = useState({
+		title: "",
+		description: "",
+		imageFile: null as File | null
+	});
 
-  const { data: news = [], isLoading, error } = useNews();
-  const createNews = useCreateNews();
-  const updateNews = useUpdateNews();
-  const deleteNews = useDeleteNews();
+	// API hooks
+	const { data: news = [], isLoading } = useNews();
+	const createNewsMutation = useCreateNews();
+	const updateNewsMutation = useUpdateNews();
+	const deleteNewsMutation = useDeleteNews();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+	// Filter news based on search
+	const filteredNews = news.filter(item => 
+		item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+		item.description.toLowerCase().includes(searchQuery.toLowerCase())
+	);
 
-    try {
-      const newsData = {
-        title: formData.title,
-        description: formData.description,
-        image: imageFile || undefined,
-      };
+	const breadcrumbs: BreadcrumbItem[] = [
+		{ label: "إدارة المحتوى", href: "/admin" },
+		{ label: "المقالات الإخبارية", current: true },
+	];
 
-      if (editingNews) {
-        await updateNews.mutateAsync({ id: editingNews._id!, data: newsData });
-      } else {
-        await createNews.mutateAsync(newsData);
-      }
+	const resetForm = () => {
+		setFormData({
+			title: "",
+			description: "",
+			imageFile: null
+		});
+		setEditingNews(null);
+		setIsFormOpen(false);
+	};
 
-      // Reset form only after successful submission
-      setFormData({ 
-        title: '', 
-        description: ''
-      });
-      setImageFile(null);
-      setIsFormOpen(false);
-      setEditingNews(null);
-    } catch (error) {
-      console.error('❌ Error saving news:', error);
-    }
-  };
+	const handleEdit = (newsItem: News) => {
+		setFormData({
+			title: newsItem.title,
+			description: newsItem.description,
+			imageFile: null
+		});
+		setEditingNews(newsItem);
+		setIsFormOpen(true);
+	};
 
-  const handleEdit = (newsItem: News) => {
-    setEditingNews(newsItem);
-    setFormData({
-      title: newsItem.title,
-      description: newsItem.description,
-    });
-    setIsFormOpen(true);
-  };
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		
+		if (!formData.title.trim() || !formData.description.trim()) {
+			alert("يرجى ملء جميع الحقول المطلوبة");
+			return;
+		}
 
-  const handleDelete = async (id: string) => {
-    if (window.confirm('هل أنت متأكد من حذف هذا المقال؟')) {
-      try {
-        await deleteNews.mutateAsync(id);
-      } catch (error) {
-        console.error('Error deleting news:', error);
-        alert('فشل في حذف المقال');
-      }
-    }
-  };
+		const newsData = {
+			title: formData.title,
+			description: formData.description,
+			image: formData.imageFile || undefined
+		};
 
-  const handleCancel = () => {
-    // Clean up object URL if it exists
-    if (imageFile) {
-      URL.revokeObjectURL(URL.createObjectURL(imageFile));
-    }
-    
-    setFormData({ 
-      title: '', 
-      description: ''
-    });
-    setImageFile(null);
-    setIsFormOpen(false);
-    setEditingNews(null);
-  };
+		try {
+			if (editingNews) {
+				await updateNewsMutation.mutateAsync({
+					id: editingNews._id!,
+					data: newsData
+				});
+			} else {
+				await createNewsMutation.mutateAsync(newsData);
+			}
+			resetForm();
+		} catch (error) {
+			console.error("Error saving news:", error);
+			// Toast notification is handled in the hook
+		}
+	};
 
-  const actions = (
-    <button
-      onClick={() => setIsFormOpen(true)}
-      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-    >
-      <Plus className="w-4 h-4 mr-2" />
-      إضافة خبر
-    </button>
-  );
+	const handleDelete = async (newsItem: News) => {
+		if (!confirm(`هل أنت متأكد من حذف خبر "${newsItem.title}"؟`)) return;
 
-  return (
-    <AdminLayout
-      title="إدارة الأخبار"
-      description="إدارة مقالاتك الإخبارية"
-      breadcrumbs={breadcrumbs}
-    >
-      <AdminPage
-        title="المقالات الإخبارية"
-        description="إنشاء وإدارة المقالات الإخبارية بنموذج بسيط"
-        actions={actions}
-      >
-        <div className="p-6">
-          {/* Simple Form */}
-          {isFormOpen && (
-            <div className="mb-8 bg-white border rounded-lg p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">
-                {editingNews ? 'تعديل المقال الإخباري' : 'إنشاء مقال إخباري جديد'}
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    العنوان *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="أدخل عنوان الخبر..."
-                    required
-                  />
-                </div>
+		try {
+			await deleteNewsMutation.mutateAsync(newsItem._id!);
+		} catch (error) {
+			console.error("Error deleting news:", error);
+			// Toast notification is handled in the hook
+		}
+	};
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    الوصف *
-                  </label>
-                  <RichTextEditor
-                    value={formData.description}
-                    onChange={(value) => setFormData({ ...formData, description: value })}
-                    placeholder="أدخل وصف الخبر..."
-                  />
-                </div>
+	return (
+		<AdminLayout breadcrumbs={breadcrumbs}>
+			<div className="space-y-6">
+				{/* Header */}
+				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+					<div>
+						<h1 className="text-2xl font-bold text-gray-900">إدارة الأخبار</h1>
+						<p className="text-gray-600 mt-1">إدارة المقالات الإخبارية والأخبار</p>
+					</div>
+					<button
+						onClick={() => setIsFormOpen(true)}
+						className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+					>
+						<Plus className="w-4 h-4 mr-2" />
+						إضافة خبر جديد
+					</button>
+				</div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    الصورة
-                  </label>
-                  <div className="space-y-3">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                      className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                    />
-                    
-                    {/* Preview selected file */}
-                    {imageFile && (
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-600 mb-2">الملف المحدد:</p>
-                        <img
-                          src={URL.createObjectURL(imageFile)}
-                          alt="Preview"
-                          className="w-32 h-32 object-cover rounded-md border"
-                        />
-                      </div>
-                    )}
-                    
-                    {/* Show current image if editing and no new file selected */}
-                    {editingNews?.image && !imageFile && (
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-600 mb-2">الصورة الحالية:</p>
-                        <img
-                          src={getServerUrl(editingNews.image)}
-                          alt="Current"
-                          className="w-32 h-32 object-cover rounded-md border"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
+				{/* Search */}
+				<div className="bg-white p-6 rounded-lg shadow-sm border">
+					<div className="relative">
+						<Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+						<input
+							type="text"
+							placeholder="البحث في الأخبار..."
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)}
+							className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+						/>
+					</div>
+				</div>
 
-                <div className="flex gap-3 pt-4">
-                  <button
-                    type="submit"
-                    disabled={createNews.isPending || updateNews.isPending}
-                    className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
-                  >
-                    {createNews.isPending || updateNews.isPending ? (
-                      <>
-                        <Upload className="w-4 h-4 mr-2 animate-spin" />
-                        جاري الحفظ...
-                      </>
-                    ) : (
-                      <>
-                        {editingNews ? 'تحديث المقال' : 'إنشاء المقال'}
-                      </>
-                    )}
-                  </button>
-                  
-                  <button
-                    type="button"
-                    onClick={handleCancel}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    إلغاء
-                  </button>
-                </div>
-              </form>
-            </div>
-          )}
+				{/* News List */}
+				<div className="bg-white rounded-lg shadow-sm border">
+					<div className="p-6">
+						<h2 className="text-lg font-semibold text-gray-900 mb-4">
+							الأخبار ({filteredNews.length})
+						</h2>
 
-          {/* News List */}
-          <div className="bg-white border rounded-lg">
-            <div className="px-6 py-4 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">المقالات الإخبارية</h3>
-            </div>
+						{isLoading ? (
+							<div className="text-center py-8">
+								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+								<p className="text-gray-600">جاري تحميل الأخبار...</p>
+							</div>
+						) : filteredNews.length === 0 ? (
+							<div className="text-center py-8 text-gray-500">
+								<Eye className="w-12 h-12 mx-auto mb-2 text-gray-300" />
+								<p>
+									{searchQuery 
+										? "لم نعثر على أخبار تطابق معايير البحث."
+										: "لا توجد أخبار متاحة حالياً."
+									}
+								</p>
+								{searchQuery && (
+									<button
+										onClick={() => setSearchQuery("")}
+										className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+									>
+										مسح البحث
+									</button>
+								)}
+							</div>
+						) : (
+							<div className="space-y-4">
+								{filteredNews.map((newsItem) => (
+									<div key={newsItem._id} className="border border-gray-200 rounded-lg p-4">
+										<div className="flex items-start gap-4">
+											{/* News Image */}
+											<div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+												{newsItem.image ? (
+													<img
+														src={getServerUrl(newsItem.image)}
+														alt={newsItem.title}
+														className="w-full h-full object-cover"
+													/>
+												) : (
+													<div className="w-full h-full flex items-center justify-center">
+														<Eye className="w-8 h-8 text-gray-400" />
+													</div>
+												)}
+											</div>
 
-            {isLoading && (
-              <div className="p-6 text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                <span className="mt-2 text-gray-600">جاري تحميل الأخبار...</span>
-              </div>
-            )}
+											{/* News Info */}
+											<div className="flex-1 min-w-0">
+												<div className="flex items-start justify-between">
+													<div className="flex-1">
+														<h3 className="text-lg font-semibold text-gray-900 truncate">
+															{newsItem.title}
+														</h3>
+														<div
+															className="text-sm text-gray-600 line-clamp-3 mb-3 prose prose-sm max-w-none tiptap-content"
+															dangerouslySetInnerHTML={{ __html: newsItem.description }}
+														/>
+														<div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+															<span className="flex items-center">
+																<Calendar className="w-3 h-3 ml-1" />
+																{newsItem.createdAt && new Date(newsItem.createdAt).toLocaleDateString('ar-SA')}
+															</span>
+															{newsItem.updatedAt && newsItem.updatedAt !== newsItem.createdAt && (
+																<span className="flex items-center">
+																	<Calendar className="w-3 h-3 ml-1" />
+																	آخر تحديث: {new Date(newsItem.updatedAt).toLocaleDateString('ar-SA')}
+																</span>
+															)}
+														</div>
+													</div>
 
-            {error && (
-              <div className="p-6 text-red-600 bg-red-50">
-                خطأ في تحميل الأخبار: {error.message}
-              </div>
-            )}
+													{/* Actions */}
+													<div className="flex items-center gap-2 ml-4">
+														<button
+															onClick={() => handleEdit(newsItem)}
+															className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+															title="تعديل"
+														>
+															<Edit2 className="w-4 h-4" />
+														</button>
+														<button
+															onClick={() => handleDelete(newsItem)}
+															className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+															title="حذف"
+														>
+															<Trash2 className="w-4 h-4" />
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+						)}
+					</div>
+				</div>
 
-            {news && news.length === 0 && !isLoading && (
-              <div className="p-6 text-center text-gray-500">
-                لا توجد مقالات إخبارية. أنشئ مقالك الأول!
-              </div>
-            )}
+				{/* News Form Modal */}
+				{isFormOpen && (
+					<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+						<div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+							<div className="p-6">
+								<div className="flex items-center justify-between mb-6">
+									<h2 className="text-xl font-bold text-gray-900">
+										{editingNews ? "تعديل الخبر" : "إضافة خبر جديد"}
+									</h2>
+									<button
+										onClick={resetForm}
+										className="text-gray-400 hover:text-gray-600"
+									>
+										×
+									</button>
+								</div>
 
-            {news && news.length > 0 && (
-              <div className="divide-y divide-gray-200">
-                {news.map((item) => (
-                  <div key={item._id} className="p-6 flex items-start justify-between">
-                    <div className="flex items-start space-x-4 flex-1">
-                      {/* Image Thumbnail */}
-                      <div className="flex-shrink-0">
-                        {item.image ? (
-                          <img
-                            src={getServerUrl(item.image)}
-                            alt={item.title}
-                            className="w-20 h-20 object-cover rounded-lg border border-gray-200 shadow-sm"
-                          />
-                        ) : (
-                          <div className="w-20 h-20 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
-                            <span className="text-gray-400 text-xs">لا توجد صورة</span>
-                          </div>
-                        )}
-                      </div>
+								<form onSubmit={handleSubmit} className="space-y-6">
+									{/* Title */}
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											عنوان الخبر *
+										</label>
+										<input
+											type="text"
+											value={formData.title}
+											onChange={(e) => setFormData({...formData, title: e.target.value})}
+											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+											placeholder="أدخل عنوان الخبر..."
+											required
+										/>
+									</div>
 
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-lg font-medium text-gray-900 mb-2">{item.title}</h4>
-                        <div 
-                          className="text-sm text-gray-600 line-clamp-3 mb-3 prose prose-sm max-w-none tiptap-content"
-                          dangerouslySetInnerHTML={{ __html: item.description }}
-                        />
-                        <div className="flex items-center space-x-4 text-xs text-gray-500">
-                          {item.createdAt && (
-                            <span>تاريخ الإنشاء: {new Date(item.createdAt).toLocaleDateString()}</span>
-                          )}
-                          {item.updatedAt && item.updatedAt !== item.createdAt && (
-                            <span>تاريخ التحديث: {new Date(item.updatedAt).toLocaleDateString()}</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+									{/* Description */}
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											محتوى الخبر *
+										</label>
+										<RichTextEditor
+											value={formData.description}
+											onChange={(value) => setFormData({...formData, description: value})}
+											placeholder="أدخل محتوى الخبر..."
+										/>
+									</div>
 
-                    {/* Actions */}
-                    <div className="flex items-center space-x-2 flex-shrink-0 ml-4">
-                      <button
-                        onClick={() => handleEdit(item)}
-                        className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
-                        title="تعديل"
-                      >
-                        <Edit className="w-5 h-5" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item._id!)}
-                        disabled={deleteNews.isPending}
-                        className="p-2 text-gray-400 hover:text-red-600 disabled:opacity-50 transition-colors"
-                        title="حذف"
-                      >
-                        <Trash2 className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </AdminPage>
-    </AdminLayout>
-  );
+									{/* Image Upload */}
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											صورة الخبر
+										</label>
+										<input
+											type="file"
+											accept="image/*"
+											onChange={(e) => setFormData({...formData, imageFile: e.target.files?.[0] || null})}
+											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+										/>
+										{editingNews?.image && (
+											<div className="mt-2">
+												<img
+													src={getServerUrl(editingNews.image)}
+													alt="Current news"
+													className="w-20 h-20 object-cover rounded-lg"
+												/>
+											</div>
+										)}
+									</div>
+
+									{/* Form Actions */}
+									<div className="flex justify-end gap-3 pt-6 border-t">
+										<button
+											type="button"
+											onClick={resetForm}
+											className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+										>
+											إلغاء
+										</button>
+										<button
+											type="submit"
+											disabled={createNewsMutation.isPending || updateNewsMutation.isPending}
+											className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+										>
+											{createNewsMutation.isPending || updateNewsMutation.isPending
+												? "جاري الحفظ..."
+												: editingNews
+												? "تحديث الخبر"
+												: "إنشاء الخبر"
+											}
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				)}
+			</div>
+		</AdminLayout>
+	);
 }

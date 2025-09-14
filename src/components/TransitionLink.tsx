@@ -27,15 +27,27 @@ export const TransitionLink: React.FC<TransitionLinkProps> = ({
 
 	const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 		e.preventDefault();
-		const body = document.querySelector("body");
+		
+		// Create loading bar element
+		const loadingBar = document.createElement("div");
+		loadingBar.className = "page-loading-bar";
+		document.body.appendChild(loadingBar);
 
-		body?.classList.add("page-transition");
+		// Start loading animation
+		await sleep(50);
+		loadingBar.classList.add("loading");
 
-		await sleep(500);
+		// Navigate after a short delay
+		await sleep(300);
 		router.push(href);
-		await sleep(1000);
 
-		body?.classList.remove("page-transition");
+		// Complete loading animation
+		await sleep(400);
+		loadingBar.classList.add("complete");
+
+		// Remove loading bar
+		await sleep(300);
+		document.body.removeChild(loadingBar);
 	};
 
 	return (

@@ -136,11 +136,9 @@ export default function AdminSidebar({
             </div>
           ) : (
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
-              </div>
+              
               <span className="ml-3 text-xl font-semibold text-gray-900">
-                Admin Panel
+                لوحة التحكم
               </span>
             </div>
           )}

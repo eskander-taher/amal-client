@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { News } from '@/types/news';
 import apiBase from '@/lib/apiBase';
 import { getStoredToken } from './useAuth';
+import { showToast } from '@/lib/toast';
 
 // Create axios instance for Express server API
 const newsApi = axios.create({
@@ -94,6 +95,10 @@ export function useCreateNews() {
     mutationFn: createNews,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['news'] });
+      showToast.success('تم إنشاء الخبر بنجاح!');
+    },
+    onError: (error: Error) => {
+      showToast.error(`فشل في إنشاء الخبر: ${error.message}`);
     },
   });
 }
@@ -106,6 +111,10 @@ export function useUpdateNews() {
       updateNews(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['news'] });
+      showToast.success('تم تحديث الخبر بنجاح!');
+    },
+    onError: (error: Error) => {
+      showToast.error(`فشل في تحديث الخبر: ${error.message}`);
     },
   });
 }
@@ -117,6 +126,10 @@ export function useDeleteNews() {
     mutationFn: deleteNews,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['news'] });
+      showToast.success('تم حذف الخبر بنجاح!');
+    },
+    onError: (error: Error) => {
+      showToast.error(`فشل في حذف الخبر: ${error.message}`);
     },
   });
 }

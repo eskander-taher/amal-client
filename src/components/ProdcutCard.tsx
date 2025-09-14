@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
 				{/* Link Section */}
 				<div className="mt-auto">
-					<CardLink href="/dummy-product" />
+					<CardLink href={product.href} />
 				</div>
 			</div>
 		</div>

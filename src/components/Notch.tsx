@@ -55,7 +55,7 @@ const Notch: React.FC<NotchProps> = ({
 	const rightCurveSrc = createCurveSVG(false, color);
 
 	return (
-		<div className={`flex items-center ${className}`} style={{ ...style }}>
+		<div dir="rtl" className={`flex items-center ${className}`} style={{ ...style }}>
 			{/* Left curve */}
 			<div
 				className="flex-shrink-0 -ml-2"
