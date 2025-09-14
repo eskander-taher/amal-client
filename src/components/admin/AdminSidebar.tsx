@@ -32,7 +32,7 @@ function NavItem({ item, currentPath, isCollapsed, level = 0 }: NavItemProps) {
     <>
       <div className="flex items-center min-w-0 flex-1">
         <item.icon 
-          className={`flex-shrink-0 w-5 h-5 ${
+          className={`flex-shrink-0 w-5 h-5 mx-2 ${
             isActive || isParentActive 
               ? 'text-blue-600' 
               : 'text-gray-500 group-hover:text-gray-700'

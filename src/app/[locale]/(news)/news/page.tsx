@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
 import { useNews } from "@/hooks/useNews";
+import { getServerUrl } from "@/lib/apiBase";
 
 export default function NewsPage() {
   const t = useTranslations("News");
@@ -39,7 +40,7 @@ export default function NewsPage() {
               {news.map((item) => (
                 <NewsCard
                   key={item._id}
-                  image={item.image}
+                  image={item.image ? getServerUrl(item.image) : '/placeholder.webp'}
                   imageAlt={item.title}
                   title={item.title}
                   description={item.description}

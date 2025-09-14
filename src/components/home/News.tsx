@@ -5,6 +5,7 @@ import NewsCard from "../NewsCard";
 import { useNews } from "@/hooks/useNews";
 import { TransitionLink } from "../TransitionLink";
 import Notch from "../Notch";
+import { getServerUrl } from "@/lib/apiBase";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
@@ -42,7 +43,7 @@ const News: React.FC = () => {
 						{displayNews.map((item) => (
 							<NewsCard
 								key={item._id}
-								image={item.image}
+								image={item.image ? getServerUrl(item.image) : '/placeholder.webp'}
 								imageAlt={item.title}
 								title={item.title}
 								description={item.description}

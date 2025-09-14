@@ -148,6 +148,22 @@
 			}
 		}
 	},
+	"Login": {
+		"title": "Sign In",
+		"subtitle": "Access the admin dashboard",
+		"emailLabel": "Email address",
+		"emailPlaceholder": "Enter your email",
+		"passwordLabel": "Password",
+		"passwordPlaceholder": "Enter your password",
+		"signInButton": "Sign in",
+		"signingIn": "Signing in...",
+		"adminOnly": "Admin access only. Contact your administrator if you need an account.",
+		"errors": {
+			"invalidCredentials": "Invalid email or password",
+			"networkError": "Network error occurred. Please try again.",
+			"genericError": "Login failed. Please try again."
+		}
+	},
 	"Jobs": {
 		"hiringProcess": {
 			"title": "Hiring Process",

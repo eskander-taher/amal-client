@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Menu, Bell, Search, User, Settings, LogOut, ChevronDown } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface AdminHeaderProps {
   title: string;
@@ -18,14 +20,21 @@ export default function AdminHeader({
 }: AdminHeaderProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   const notifications = [
-    { id: 1, title: 'New article published', time: '5 minutes ago', unread: true },
-    { id: 2, title: 'User registration', time: '1 hour ago', unread: true },
-    { id: 3, title: 'System backup completed', time: '2 hours ago', unread: false },
+    { id: 1, title: 'تم نشر مقال جديد', time: 'منذ 5 دقائق', unread: true },
+    { id: 2, title: 'تسجيل مستخدم جديد', time: 'منذ ساعة واحدة', unread: true },
+    { id: 3, title: 'تم إكمال النسخ الاحتياطي للنظام', time: 'منذ ساعتين', unread: false },
   ];
 
   const unreadCount = notifications.filter(n => n.unread).length;
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
 
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
@@ -58,7 +67,7 @@ export default function AdminHeader({
             </div>
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="البحث..."
               className="block w-64 pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"
             />
           </div>
@@ -82,7 +91,7 @@ export default function AdminHeader({
               <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                 <div className="py-1">
                   <div className="px-4 py-3 border-b border-gray-200">
-                    <h3 className="text-sm font-medium text-gray-900">Notifications</h3>
+                    <h3 className="text-sm font-medium text-gray-900">الإشعارات</h3>
                   </div>
                   <div className="max-h-64 overflow-y-auto">
                     {notifications.map((notification) => (
@@ -110,7 +119,7 @@ export default function AdminHeader({
                   </div>
                   <div className="px-4 py-3 border-t border-gray-200">
                     <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-                      View all notifications
+                      عرض جميع الإشعارات
                     </button>
                   </div>
                 </div>
@@ -128,7 +137,7 @@ export default function AdminHeader({
                 <User className="w-4 h-4 text-white" />
               </div>
               <span className="hidden md:block text-sm font-medium text-gray-700">
-                Admin User
+                {user?.name || 'Admin User'}
               </span>
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -138,29 +147,30 @@ export default function AdminHeader({
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                 <div className="py-1">
                   <div className="px-4 py-3 border-b border-gray-200">
-                    <p className="text-sm font-medium text-gray-900">Admin User</p>
-                    <p className="text-sm text-gray-500">admin@example.com</p>
+                    <p className="text-sm font-medium text-gray-900">{user?.name || 'Admin User'}</p>
+                    <p className="text-sm text-gray-500">{user?.email || 'admin@example.com'}</p>
                   </div>
                   <a
                     href="#"
                     className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     <User className="w-4 h-4 mr-3" />
-                    Profile
+                    الملف الشخصي
                   </a>
                   <a
                     href="#"
                     className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
                     <Settings className="w-4 h-4 mr-3" />
-                    Settings
+                    الإعدادات
                   </a>
                   <div className="border-t border-gray-200"></div>
                   <button
+                    onClick={handleLogout}
                     className="flex items-center w-full px-4 py-2 text-sm text-red-700 hover:bg-red-50"
                   >
                     <LogOut className="w-4 h-4 mr-3" />
-                    Sign out
+                    تسجيل الخروج
                   </button>
                 </div>
               </div>

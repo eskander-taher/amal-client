@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Upload } from 'lucide-react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import AdminPage from '@/components/admin/AdminPage';
+import RichTextEditor from '@/components/ui/RichTextEditor';
 import { useNews, useCreateNews, useUpdateNews, useDeleteNews } from '@/hooks/useNews';
-import { useCloudinaryUpload } from '@/hooks/useCloudinary';
 import type { News } from '@/types/news';
 import type { BreadcrumbItem } from '@/types';
+import { getServerUrl } from '@/lib/apiBase';
 
 export default function AdminNewsPage() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -15,13 +16,12 @@ export default function AdminNewsPage() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    image: '',
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: 'Content Management', href: '/admin' },
-    { label: 'News Articles', current: true },
+    { label: 'إدارة المحتوى', href: '/admin' },
+    { label: 'المقالات الإخبارية', current: true },
   ];
 
   const { data: news = [], isLoading, error } = useNews();
@@ -29,23 +29,14 @@ export default function AdminNewsPage() {
   const updateNews = useUpdateNews();
   const deleteNews = useDeleteNews();
 
-  const { upload: uploadToCloudinary, uploading: cloudinaryUploading } = useCloudinaryUpload();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      let imageUrl = formData.image;
-
-      // Upload image only when form is submitted
-      if (imageFile) {
-        imageUrl = await uploadToCloudinary(imageFile, 'news');
-      }
-
       const newsData = {
         title: formData.title,
         description: formData.description,
-        image: imageUrl,
+        image: imageFile || undefined,
       };
 
       if (editingNews) {
@@ -55,12 +46,15 @@ export default function AdminNewsPage() {
       }
 
       // Reset form only after successful submission
-      setFormData({ title: '', description: '', image: '' });
+      setFormData({ 
+        title: '', 
+        description: ''
+      });
       setImageFile(null);
       setIsFormOpen(false);
       setEditingNews(null);
     } catch (error) {
-      console.error('❌ Error saving news:', error);;
+      console.error('❌ Error saving news:', error);
     }
   };
 
@@ -69,18 +63,17 @@ export default function AdminNewsPage() {
     setFormData({
       title: newsItem.title,
       description: newsItem.description,
-      image: newsItem.image,
     });
     setIsFormOpen(true);
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this news article?')) {
+    if (window.confirm('هل أنت متأكد من حذف هذا المقال؟')) {
       try {
         await deleteNews.mutateAsync(id);
       } catch (error) {
         console.error('Error deleting news:', error);
-        alert('Failed to delete news article');
+        alert('فشل في حذف المقال');
       }
     }
   };
@@ -91,7 +84,10 @@ export default function AdminNewsPage() {
       URL.revokeObjectURL(URL.createObjectURL(imageFile));
     }
     
-    setFormData({ title: '', description: '', image: '' });
+    setFormData({ 
+      title: '', 
+      description: ''
+    });
     setImageFile(null);
     setIsFormOpen(false);
     setEditingNews(null);
@@ -103,19 +99,19 @@ export default function AdminNewsPage() {
       className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Plus className="w-4 h-4 mr-2" />
-      Add News
+      إضافة خبر
     </button>
   );
 
   return (
     <AdminLayout
-      title="News Management"
-      description="Manage your news articles"
+      title="إدارة الأخبار"
+      description="إدارة مقالاتك الإخبارية"
       breadcrumbs={breadcrumbs}
     >
       <AdminPage
-        title="News Articles"
-        description="Create and manage news articles with simple form"
+        title="المقالات الإخبارية"
+        description="إنشاء وإدارة المقالات الإخبارية بنموذج بسيط"
         actions={actions}
       >
         <div className="p-6">
@@ -123,41 +119,38 @@ export default function AdminNewsPage() {
           {isFormOpen && (
             <div className="mb-8 bg-white border rounded-lg p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-4">
-                {editingNews ? 'Edit News Article' : 'Create New News Article'}
+                {editingNews ? 'تعديل المقال الإخباري' : 'إنشاء مقال إخباري جديد'}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Title *
+                    العنوان *
                   </label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter news title..."
+                    placeholder="أدخل عنوان الخبر..."
                     required
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Description *
+                    الوصف *
                   </label>
-                  <textarea
+                  <RichTextEditor
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    rows={4}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter news description..."
-                    required
+                    onChange={(value) => setFormData({ ...formData, description: value })}
+                    placeholder="أدخل وصف الخبر..."
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Image *
+                    الصورة
                   </label>
                   <div className="space-y-3">
                     <input
@@ -165,13 +158,12 @@ export default function AdminNewsPage() {
                       accept="image/*"
                       onChange={(e) => setImageFile(e.target.files?.[0] || null)}
                       className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                      required={!editingNews && !formData.image}
                     />
                     
-                    {/* Preview selected file (not yet uploaded) */}
+                    {/* Preview selected file */}
                     {imageFile && (
                       <div className="mt-2">
-                        <p className="text-sm text-gray-600 mb-2">Selected file (will upload on save):</p>
+                        <p className="text-sm text-gray-600 mb-2">الملف المحدد:</p>
                         <img
                           src={URL.createObjectURL(imageFile)}
                           alt="Preview"
@@ -181,11 +173,11 @@ export default function AdminNewsPage() {
                     )}
                     
                     {/* Show current image if editing and no new file selected */}
-                    {formData.image && !imageFile && (
+                    {editingNews?.image && !imageFile && (
                       <div className="mt-2">
-                        <p className="text-sm text-gray-600 mb-2">Current image:</p>
+                        <p className="text-sm text-gray-600 mb-2">الصورة الحالية:</p>
                         <img
-                          src={formData.image}
+                          src={getServerUrl(editingNews.image)}
                           alt="Current"
                           className="w-32 h-32 object-cover rounded-md border"
                         />
@@ -197,21 +189,17 @@ export default function AdminNewsPage() {
                 <div className="flex gap-3 pt-4">
                   <button
                     type="submit"
-                    disabled={createNews.isPending || updateNews.isPending || cloudinaryUploading}
+                    disabled={createNews.isPending || updateNews.isPending}
                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50"
                   >
-{cloudinaryUploading ? (
+                    {createNews.isPending || updateNews.isPending ? (
                       <>
                         <Upload className="w-4 h-4 mr-2 animate-spin" />
-                        Uploading & Saving...
-                      </>
-                    ) : createNews.isPending || updateNews.isPending ? (
-                      <>
-                        Saving...
+                        جاري الحفظ...
                       </>
                     ) : (
                       <>
-                        {editingNews ? 'Update Article' : 'Create Article'}
+                        {editingNews ? 'تحديث المقال' : 'إنشاء المقال'}
                       </>
                     )}
                   </button>
@@ -221,7 +209,7 @@ export default function AdminNewsPage() {
                     onClick={handleCancel}
                     className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   >
-                    Cancel
+                    إلغاء
                   </button>
                 </div>
               </form>
@@ -231,25 +219,25 @@ export default function AdminNewsPage() {
           {/* News List */}
           <div className="bg-white border rounded-lg">
             <div className="px-6 py-4 border-b border-gray-200">
-              <h3 className="text-lg font-medium text-gray-900">News Articles</h3>
+              <h3 className="text-lg font-medium text-gray-900">المقالات الإخبارية</h3>
             </div>
 
             {isLoading && (
               <div className="p-6 text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                <span className="mt-2 text-gray-600">Loading news...</span>
+                <span className="mt-2 text-gray-600">جاري تحميل الأخبار...</span>
               </div>
             )}
 
             {error && (
               <div className="p-6 text-red-600 bg-red-50">
-                Error loading news: {error.message}
+                خطأ في تحميل الأخبار: {error.message}
               </div>
             )}
 
             {news && news.length === 0 && !isLoading && (
               <div className="p-6 text-center text-gray-500">
-                No news articles found. Create your first article!
+                لا توجد مقالات إخبارية. أنشئ مقالك الأول!
               </div>
             )}
 
@@ -262,13 +250,13 @@ export default function AdminNewsPage() {
                       <div className="flex-shrink-0">
                         {item.image ? (
                           <img
-                            src={item.image}
+                            src={getServerUrl(item.image)}
                             alt={item.title}
                             className="w-20 h-20 object-cover rounded-lg border border-gray-200 shadow-sm"
                           />
                         ) : (
                           <div className="w-20 h-20 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center">
-                            <span className="text-gray-400 text-xs">No Image</span>
+                            <span className="text-gray-400 text-xs">لا توجد صورة</span>
                           </div>
                         )}
                       </div>
@@ -276,13 +264,16 @@ export default function AdminNewsPage() {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <h4 className="text-lg font-medium text-gray-900 mb-2">{item.title}</h4>
-                        <p className="text-sm text-gray-600 line-clamp-3 mb-3">{item.description}</p>
+                        <div 
+                          className="text-sm text-gray-600 line-clamp-3 mb-3 prose prose-sm max-w-none tiptap-content"
+                          dangerouslySetInnerHTML={{ __html: item.description }}
+                        />
                         <div className="flex items-center space-x-4 text-xs text-gray-500">
                           {item.createdAt && (
-                            <span>Created: {new Date(item.createdAt).toLocaleDateString()}</span>
+                            <span>تاريخ الإنشاء: {new Date(item.createdAt).toLocaleDateString()}</span>
                           )}
                           {item.updatedAt && item.updatedAt !== item.createdAt && (
-                            <span>Updated: {new Date(item.updatedAt).toLocaleDateString()}</span>
+                            <span>تاريخ التحديث: {new Date(item.updatedAt).toLocaleDateString()}</span>
                           )}
                         </div>
                       </div>
@@ -293,7 +284,7 @@ export default function AdminNewsPage() {
                       <button
                         onClick={() => handleEdit(item)}
                         className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
-                        title="Edit"
+                        title="تعديل"
                       >
                         <Edit className="w-5 h-5" />
                       </button>
@@ -301,7 +292,7 @@ export default function AdminNewsPage() {
                         onClick={() => handleDelete(item._id!)}
                         disabled={deleteNews.isPending}
                         className="p-2 text-gray-400 hover:text-red-600 disabled:opacity-50 transition-colors"
-                        title="Delete"
+                        title="حذف"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

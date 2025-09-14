@@ -4,7 +4,7 @@ export interface INews {
   _id?: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

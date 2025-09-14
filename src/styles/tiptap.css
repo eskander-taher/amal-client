@@ -1,0 +1,136 @@
+/* Tiptap Rich Text Editor Styles */
+
+/* Apply to both editor content and display content */
+.tiptap-editor, .tiptap-content {
+  /* Lists */
+  ul {
+    @apply list-disc ml-6 my-2;
+    list-style-type: disc !important;
+  }
+  
+  ol {
+    @apply list-decimal ml-6 my-2;
+    list-style-type: decimal !important;
+  }
+  
+  li {
+    @apply mb-1 pl-1;
+    display: list-item !important;
+  }
+  
+  /* Nested lists */
+  ul ul, ol ol, ul ol, ol ul {
+    @apply ml-4 mt-1 mb-1;
+  }
+  
+  /* Blockquotes */
+  blockquote {
+    @apply border-l-4 border-gray-300 pl-4 my-4 italic text-gray-600 bg-gray-50 p-3 rounded;
+  }
+  
+  /* Headings */
+  h1 {
+    @apply text-3xl font-bold my-4 leading-tight;
+  }
+  
+  h2 {
+    @apply text-2xl font-bold my-3 leading-tight;
+  }
+  
+  h3 {
+    @apply text-xl font-bold my-3 leading-tight;
+  }
+  
+  h4 {
+    @apply text-lg font-bold my-2 leading-tight;
+  }
+  
+  h5 {
+    @apply text-base font-bold my-2 leading-tight;
+  }
+  
+  h6 {
+    @apply text-sm font-bold my-2 leading-tight;
+  }
+  
+  /* Paragraphs */
+  p {
+    @apply my-2 leading-relaxed;
+  }
+  
+  /* Text formatting */
+  strong {
+    @apply font-bold;
+  }
+  
+  em {
+    @apply italic;
+  }
+  
+  u {
+    @apply underline;
+  }
+  
+  s {
+    @apply line-through;
+  }
+  
+  /* Links */
+  a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  }
+  
+  /* Images */
+  img {
+    @apply max-w-full h-auto rounded my-2;
+  }
+  
+  /* Text alignment */
+  [style*="text-align: left"] {
+    text-align: left !important;
+  }
+  
+  [style*="text-align: center"] {
+    text-align: center !important;
+  }
+  
+  [style*="text-align: right"] {
+    text-align: right !important;
+  }
+  
+  /* Ensure proper spacing */
+  > *:first-child {
+    @apply mt-0;
+  }
+  
+  > *:last-child {
+    @apply mb-0;
+  }
+  
+  /* Code (if using code extension) */
+  code {
+    @apply bg-gray-100 px-1 py-0.5 rounded text-sm font-mono;
+  }
+  
+  pre {
+    @apply bg-gray-100 p-4 rounded my-4 overflow-x-auto;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0;
+  }
+}
+
+/* Special handling for line-clamp in cards */
+.tiptap-content.line-clamp-3 ul,
+.tiptap-content.line-clamp-3 ol {
+  @apply my-0;
+}
+
+.tiptap-content.line-clamp-3 li {
+  @apply mb-0;
+}
+
+.tiptap-content.line-clamp-3 p {
+  @apply my-0;
+}

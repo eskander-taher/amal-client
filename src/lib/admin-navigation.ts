@@ -21,24 +21,24 @@ import type { AdminNavItem } from "@/types";
 export const adminNavigation: AdminNavItem[] = [
 	{
 		id: "dashboard",
-		label: "Dashboard",
+		label: "لوحة التحكم",
 		icon: Home,
 		href: "/admin",
 	},
 	{
 		id: "content",
-		label: "Content Management",
+		label: "إدارة المحتوى",
 		icon: FileText,
 		children: [
 			{
 				id: "news",
-				label: "News Articles",
+				label: "المقالات الإخبارية",
 				icon: FileText,
 				href: "/admin/news",
 			},
 			{
 				id: "recipes",
-				label: "Recipes",
+				label: "الوصفات",
 				icon: FileText,
 				href: "/admin/recipes",
 			},
@@ -46,7 +46,7 @@ export const adminNavigation: AdminNavItem[] = [
 	},
 	{
 		id: "home",
-		label: "Home",
+		label: "الصفحة الرئيسية",
 		icon: Home,
 		href: "/",
 	},

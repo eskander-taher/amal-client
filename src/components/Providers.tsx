@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 function makeQueryClient() {
 	return new QueryClient({
@@ -48,9 +49,11 @@ export default function Providers({ children }: { children: ReactNode }) {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			{/* <LoadingSpinner /> */}
-			<ToastContainer />
-			{children}
+			<AuthProvider>
+				{/* <LoadingSpinner /> */}
+				<ToastContainer />
+				{children}
+			</AuthProvider>
 		</QueryClientProvider>
 	);
 }

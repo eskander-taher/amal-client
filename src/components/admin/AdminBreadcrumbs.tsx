@@ -20,7 +20,7 @@ export default function AdminBreadcrumbs({ items }: AdminBreadcrumbsProps) {
             className="text-gray-500 hover:text-gray-700 transition-colors"
           >
             <Home className="w-4 h-4" />
-            <span className="sr-only">Dashboard</span>
+            <span className="sr-only">لوحة التحكم</span>
           </Link>
         </li>
 

@@ -114,7 +114,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
 				<h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{title}</h3>
 
 				{/* Description */}
-				<p className="text-gray-600 line-clamp-3 leading-relaxed">{description}</p>
+				<div 
+					className="text-gray-600 line-clamp-3 leading-relaxed prose prose-sm max-w-none tiptap-content"
+					dangerouslySetInnerHTML={{ __html: description }}
+				/>
 			</div>
 
 			{/* Card Link - positioned absolutely at bottom */}
