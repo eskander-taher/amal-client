@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { TransitionLink } from "@/components/TransitionLink";
 import {
 	FaFacebook,
 	FaInstagram,
@@ -189,6 +190,12 @@ export default function Footer() {
 									>
 										{t("jobs")}
 									</Link>
+									<TransitionLink
+										href="/admin"
+										className="block text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										بوابة الموظفين
+									</TransitionLink>
 								</div>
 							</div>
 						</div>

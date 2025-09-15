@@ -114,12 +114,12 @@ export default function AdminRecipesPage() {
 			ingredients: recipe.ingredients.length > 0 ? recipe.ingredients : [""],
 			instructions: recipe.instructions.length > 0 ? recipe.instructions : [""],
 			tips: recipe.tips && recipe.tips.length > 0 ? recipe.tips : [""],
-			nutritionInfo: recipe.nutritionInfo || {
-				calories: 0,
-				protein: 0,
-				carbs: 0,
-				fat: 0
-			},
+		nutritionInfo: {
+			calories: recipe.nutritionInfo?.calories || 0,
+			protein: recipe.nutritionInfo?.protein || 0,
+			carbs: recipe.nutritionInfo?.carbs || 0,
+			fat: recipe.nutritionInfo?.fat || 0
+		},
 			tags: recipe.tags && recipe.tags.length > 0 ? recipe.tags : [""],
 			imageFile: null
 		});

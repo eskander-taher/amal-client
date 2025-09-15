@@ -227,11 +227,7 @@ export default function RecipesPage() {
 								{recipes.map((recipe) => (
 									<RecipeCard
 										key={recipe._id}
-										image={
-											recipe.image
-												? getServerUrl(recipe.image)
-												: "/placeholder.webp"
-										}
+										image={getServerUrl(recipe.image) || "/placeholder.webp"}
 										imageAlt={recipe.title}
 										title={recipe.title}
 										description={recipe.description}

@@ -40,3 +40,4 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
 }
+

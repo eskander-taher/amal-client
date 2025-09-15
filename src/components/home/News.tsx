@@ -2,7 +2,7 @@
 import Section from "../Section";
 import { useLocale, useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
-import { useNews } from "@/hooks/useNews";
+import { useFeaturedNews } from "@/hooks/useNews";
 import { TransitionLink } from "../TransitionLink";
 import Notch from "../Notch";
 import { getServerUrl } from "@/lib/apiBase";
@@ -12,20 +12,20 @@ const News: React.FC = () => {
 	const local = useLocale();
 	const isArabic = local === "ar";
 	
-	const { data: news = [], isLoading } = useNews();
+	const { data: featuredNews = [], isLoading } = useFeaturedNews();
 	
-	// Show only the first 3 news items
-	const displayNews = news.slice(0, 3);
+	// Show only the first 3 featured news items
+	const displayNews = featuredNews.slice(0, 3);
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
 			{/* Top static curve */}
-			<Notch 
-				className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2 -translate-y-1"  
-				color="#E5E7EB" 
+			<Notch
+				className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2 -translate-y-1"
+				color="#E5E7EB"
 				direction="down"
 			/>
-			
+
 			<div className="w-full">
 				<h2 className="text-3xl font-bold text-center mb-12">{t("title")}</h2>
 				{isLoading ? (
@@ -43,12 +43,16 @@ const News: React.FC = () => {
 						{displayNews.map((item) => (
 							<NewsCard
 								key={item._id}
-								image={item.image ? getServerUrl(item.image) : '/placeholder.webp'}
+								image={getServerUrl(item.image) || "/placeholder.webp"}
 								imageAlt={item.title}
 								title={item.title}
 								description={item.description}
 								href={`/news/${item._id}`}
-								badgeText={item.createdAt ? new Date(item.createdAt).toLocaleDateString() : ''}
+								badgeText={
+									item.createdAt
+										? new Date(item.createdAt).toLocaleDateString()
+										: ""
+								}
 								cardBackgroundColor="#F2F2EF"
 								cardLinkBackgroundColor="white"
 							/>

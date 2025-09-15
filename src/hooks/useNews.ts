@@ -48,11 +48,17 @@ async function fetchNews(): Promise<News[]> {
   return response.data.data;
 }
 
-async function createNews(newsData: { title: string; description: string; image?: File }): Promise<News> {
+async function fetchFeaturedNews(): Promise<News[]> {
+  const response = await newsApi.get('/news/featured');
+  return response.data.data;
+}
+
+async function createNews(newsData: { title: string; description: string; image?: File; featured?: boolean }): Promise<News> {
   const formData = new FormData();
   formData.append('title', newsData.title);
   formData.append('description', newsData.description);
   if (newsData.image) formData.append('image', newsData.image);
+  if (newsData.featured !== undefined) formData.append('featured', newsData.featured.toString());
 
   const response = await newsApi.post('/news', formData, {
     headers: {
@@ -62,11 +68,12 @@ async function createNews(newsData: { title: string; description: string; image?
   return response.data.data;
 }
 
-async function updateNews(id: string, newsData: { title?: string; description?: string; image?: File }): Promise<News> {
+async function updateNews(id: string, newsData: { title?: string; description?: string; image?: File; featured?: boolean }): Promise<News> {
   const formData = new FormData();
   if (newsData.title) formData.append('title', newsData.title);
   if (newsData.description) formData.append('description', newsData.description);
   if (newsData.image) formData.append('image', newsData.image);
+  if (newsData.featured !== undefined) formData.append('featured', newsData.featured.toString());
 
   const response = await newsApi.put(`/news/${id}`, formData, {
     headers: {
@@ -131,5 +138,13 @@ export function useDeleteNews() {
     onError: (error: Error) => {
       showToast.error(`فشل في حذف الخبر: ${error.message}`);
     },
+  });
+}
+
+export function useFeaturedNews() {
+  return useQuery({
+    queryKey: ['featuredNews'],
+    queryFn: fetchFeaturedNews,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 }

@@ -23,6 +23,7 @@ export default function AdminNewsPage() {
 	const [formData, setFormData] = useState({
 		title: "",
 		description: "",
+		featured: false,
 		imageFile: null as File | null
 	});
 
@@ -47,6 +48,7 @@ export default function AdminNewsPage() {
 		setFormData({
 			title: "",
 			description: "",
+			featured: false,
 			imageFile: null
 		});
 		setEditingNews(null);
@@ -57,6 +59,7 @@ export default function AdminNewsPage() {
 		setFormData({
 			title: newsItem.title,
 			description: newsItem.description,
+			featured: newsItem.featured || false,
 			imageFile: null
 		});
 		setEditingNews(newsItem);
@@ -74,6 +77,7 @@ export default function AdminNewsPage() {
 		const newsData = {
 			title: formData.title,
 			description: formData.description,
+			featured: formData.featured,
 			image: formData.imageFile || undefined
 		};
 
@@ -281,6 +285,20 @@ export default function AdminNewsPage() {
 											onChange={(value) => setFormData({...formData, description: value})}
 											placeholder="أدخل محتوى الخبر..."
 										/>
+									</div>
+
+									{/* Featured Checkbox */}
+									<div className="flex items-center">
+										<input
+											type="checkbox"
+											id="featured"
+											checked={formData.featured}
+											onChange={(e) => setFormData({...formData, featured: e.target.checked})}
+											className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+										/>
+										<label htmlFor="featured" className="mr-2 block text-sm text-gray-900">
+											خبر مميز (سيظهر في الصفحة الرئيسية)
+										</label>
 									</div>
 
 									{/* Image Upload */}

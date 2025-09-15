@@ -7,9 +7,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight, Calendar, Clock, Eye } from "lucide-react";
 import { TransitionLink } from "@/components/TransitionLink";
 import Section from "@/components/Section";
+import NewsCard from "@/components/NewsCard";
 import { useNews } from "@/hooks/useNews";
 import { getServerUrl } from "@/lib/apiBase";
-import Image from "next/image";
 import Hero from "@/components/Hero";
 
 export default function NewsDetailPage() {
@@ -128,7 +128,7 @@ export default function NewsDetailPage() {
 			</Head>
 
 			<Hero
-				image={article.image ? getServerUrl(article.image) : "/placeholder.webp"}
+				image={article.image ? getServerUrl(article.image) || "/placeholder.webp" : "/placeholder.webp"}
 				title={article.title}
 			/>
 
@@ -208,51 +208,21 @@ export default function NewsDetailPage() {
 							.filter((item) => item._id !== article._id) // Exclude current article
 							.slice(0, 3) // Show only 3 related articles
 							.map((item) => (
-								<div
+								<NewsCard
 									key={item._id}
-									className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-								>
-									{/* Image */}
-									<div className="relative h-48">
-										{item.image ? (
-											<Image
-												src={getServerUrl(item.image)}
-												alt={item.title}
-												fill
-												className="object-cover"
-											/>
-										) : (
-											<div className="w-full h-full bg-gray-200 flex items-center justify-center">
-												<Eye className="w-12 h-12 text-gray-400" />
-											</div>
-										)}
-									</div>
-
-									{/* Content */}
-									<div className="p-4">
-										<h3 className="font-bold text-gray-900 mb-2 line-clamp-2">
-											{item.title}
-										</h3>
-										<div
-											className="text-sm text-gray-600 line-clamp-3 mb-3 tiptap-content"
-											dangerouslySetInnerHTML={{ __html: item.description }}
-										/>
-										<div className="flex items-center justify-between">
-											<span className="text-xs text-gray-500">
-												{item.createdAt &&
-													new Date(item.createdAt).toLocaleDateString(
-														"ar-SA"
-													)}
-											</span>
-											<TransitionLink
-												href={`/news/${item._id}`}
-												className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
-											>
-												اقرأ المزيد
-											</TransitionLink>
-										</div>
-									</div>
-								</div>
+									image={getServerUrl(item.image) || "/placeholder.webp"}
+									imageAlt={item.title}
+									title={item.title}
+									description={item.description}
+									href={`/news/${item._id}`}
+									badgeText={
+										item.createdAt
+											? new Date(item.createdAt).toLocaleDateString("ar-SA")
+											: ""
+									}
+									cardBackgroundColor="#F2F2EF"
+									cardLinkBackgroundColor="white"
+								/>
 							))}
 					</div>
 
