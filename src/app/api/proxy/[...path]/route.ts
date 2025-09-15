@@ -11,7 +11,7 @@ export async function GET(
   const searchParams = request.nextUrl.searchParams;
   
   try {
-    const response = await fetch(`${SERVER_URL}/api/${path}?${searchParams}`, {
+    const response = await fetch(`${SERVER_URL}/${path}?${searchParams}`, {
       method: 'GET',
       headers: {
         'Authorization': request.headers.get('Authorization') || '',
