@@ -1,6 +1,6 @@
 const apiBase =
 	process.env.NODE_ENV === "production" 
-		? "/api/proxy"  // Use Vercel's API routes as proxy
+		? "https://api.afaqrussia.com"  // Use Vercel's API routes as proxy
 		: "http://localhost:5000";
 
 export default apiBase;
@@ -10,7 +10,7 @@ export const getServerUrl = (filename: string = "") => {
 	if (!filename) return undefined;
 
 	const baseUrl =
-		process.env.NODE_ENV === "production" ? "/api/proxy" : "http://localhost:5000";
+		process.env.NODE_ENV === "production" ? "https://api.afaqrussia.com" : "http://localhost:5000";
 
 	// If filename already contains /uploads/, return as is
 	if (filename.startsWith("/uploads/") || filename.startsWith("http")) {
