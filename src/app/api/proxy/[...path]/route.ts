@@ -35,21 +35,36 @@ export async function POST(
 ) {
   const { path: pathArray } = await params;
   const path = pathArray.join('/');
-  const body = await request.json();
   
   try {
+    // Get the content type to determine how to handle the body
+    const contentType = request.headers.get('content-type') || '';
+    
+    let body;
+    let headers: Record<string, string> = {
+      'Authorization': request.headers.get('Authorization') || '',
+    };
+    
+    if (contentType.includes('multipart/form-data')) {
+      // Handle FormData (for file uploads)
+      body = await request.formData();
+      // Don't set Content-Type header, let fetch set it with boundary
+    } else {
+      // Handle JSON
+      body = JSON.stringify(await request.json());
+      headers['Content-Type'] = 'application/json';
+    }
+
     const response = await fetch(`${SERVER_URL}/${path}`, {
       method: 'POST',
-      headers: {
-        'Authorization': request.headers.get('Authorization') || '',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+      headers,
+      body,
     });
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
+    console.error('POST proxy error:', error);
     return NextResponse.json(
       { error: 'Proxy request failed' },
       { status: 500 }
@@ -63,21 +78,36 @@ export async function PUT(
 ) {
   const { path: pathArray } = await params;
   const path = pathArray.join('/');
-  const body = await request.json();
   
   try {
+    // Get the content type to determine how to handle the body
+    const contentType = request.headers.get('content-type') || '';
+    
+    let body;
+    let headers: Record<string, string> = {
+      'Authorization': request.headers.get('Authorization') || '',
+    };
+    
+    if (contentType.includes('multipart/form-data')) {
+      // Handle FormData (for file uploads)
+      body = await request.formData();
+      // Don't set Content-Type header, let fetch set it with boundary
+    } else {
+      // Handle JSON
+      body = JSON.stringify(await request.json());
+      headers['Content-Type'] = 'application/json';
+    }
+
     const response = await fetch(`${SERVER_URL}/${path}`, {
       method: 'PUT',
-      headers: {
-        'Authorization': request.headers.get('Authorization') || '',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+      headers,
+      body,
     });
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });
   } catch (error) {
+    console.error('PUT proxy error:', error);
     return NextResponse.json(
       { error: 'Proxy request failed' },
       { status: 500 }
