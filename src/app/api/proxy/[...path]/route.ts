@@ -38,7 +38,7 @@ export async function POST(
   const body = await request.json();
   
   try {
-    const response = await fetch(`${SERVER_URL}/api/${path}`, {
+    const response = await fetch(`${SERVER_URL}/${path}`, {
       method: 'POST',
       headers: {
         'Authorization': request.headers.get('Authorization') || '',
@@ -66,7 +66,7 @@ export async function PUT(
   const body = await request.json();
   
   try {
-    const response = await fetch(`${SERVER_URL}/api/${path}`, {
+    const response = await fetch(`${SERVER_URL}/${path}`, {
       method: 'PUT',
       headers: {
         'Authorization': request.headers.get('Authorization') || '',
@@ -93,7 +93,7 @@ export async function DELETE(
   const path = pathArray.join('/');
   
   try {
-    const response = await fetch(`${SERVER_URL}/api/${path}`, {
+    const response = await fetch(`${SERVER_URL}/${path}`, {
       method: 'DELETE',
       headers: {
         'Authorization': request.headers.get('Authorization') || '',
