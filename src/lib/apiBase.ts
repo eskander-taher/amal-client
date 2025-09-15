@@ -1,6 +1,6 @@
 const apiBase =
 	process.env.NODE_ENV === "production" 
-		? "https://api.afaqrussia.com"  // Use Vercel's API routes as proxy
+		? "https://api.afaqrussia.com"  // Your VPS server
 		: "http://localhost:5000";
 
 export default apiBase;
