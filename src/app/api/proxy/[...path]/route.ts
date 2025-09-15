@@ -52,7 +52,7 @@ export async function POST(
     } else {
       // Handle JSON
       body = JSON.stringify(await request.json());
-      headers['Content-Type'] = 'application/json';
+      headers = { ...headers, 'Content-Type': 'application/json' };
     }
 
     const response = await fetch(`${SERVER_URL}/${path}`, {
@@ -95,7 +95,7 @@ export async function PUT(
     } else {
       // Handle JSON
       body = JSON.stringify(await request.json());
-      headers['Content-Type'] = 'application/json';
+      headers = { ...headers, 'Content-Type': 'application/json' };
     }
 
     const response = await fetch(`${SERVER_URL}/${path}`, {
