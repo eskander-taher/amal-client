@@ -10,7 +10,7 @@ export const getServerUrl = (filename: string = "") => {
 	if (!filename) return undefined;
 
 	const baseUrl =
-		process.env.NODE_ENV === "production" ? "PRODUCTION_URL" : "http://localhost:5000";
+		process.env.NODE_ENV === "production" ? "/api/proxy" : "http://localhost:5000";
 
 	// If filename already contains /uploads/, return as is
 	if (filename.startsWith("/uploads/") || filename.startsWith("http")) {
