@@ -271,11 +271,11 @@ export default function AdminHeroPage() {
               setShowForm(!showForm);
               setEditingSlide(null);
               setFormData({
-                title: '',
-                description: '',
-                buttonText: '',
+                title: { ar: '', en: '' },
+                description: { ar: '', en: '' },
+                buttonText: { ar: '', en: '' },
                 href: '',
-                alt: '',
+                alt: { ar: '', en: '' },
                 order: 0,
                 isActive: true,
               });
