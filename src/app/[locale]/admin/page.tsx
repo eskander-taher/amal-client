@@ -3,6 +3,7 @@
 import React from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import AdminMetrics from '@/components/admin/AdminMetrics';
+import { useDashboard } from '@/hooks/useDashboard';
 import { 
   FileText, 
   Package, 
@@ -11,21 +12,24 @@ import {
   MessageSquare, 
   TrendingUp,
   Calendar,
-  Image
+  Image,
+  Loader2
 } from 'lucide-react';
 import type { AdminMetric } from '@/types';
 
 export default function AdminDashboard() {
-  // Mock metrics data - replace with real data from your API
+  const { stats, loading, error, refetch } = useDashboard();
+
+  // Convert real data to metrics format
   const metrics: AdminMetric[] = [
     {
       id: 'total-articles',
       label: 'Total Articles',
-      value: '127',
+      value: stats.totalNews.toString(),
       change: {
-        value: 12,
+        value: 0, // We don't have historical data yet
         type: 'increase',
-        period: 'last month'
+        period: 'current'
       },
       icon: FileText,
       color: 'blue'
@@ -33,78 +37,65 @@ export default function AdminDashboard() {
     {
       id: 'total-products',
       label: 'Total Products',
-      value: '89',
+      value: stats.totalProducts.toString(),
       change: {
-        value: 5,
+        value: 0,
         type: 'increase',
-        period: 'last month'
+        period: 'current'
       },
       icon: Package,
       color: 'green'
     },
     {
-      id: 'total-users',
-      label: 'Total Users',
-      value: '2,341',
+      id: 'total-recipes',
+      label: 'Total Recipes',
+      value: stats.totalRecipes.toString(),
       change: {
-        value: 8,
+        value: 0,
         type: 'increase',
-        period: 'last month'
+        period: 'current'
       },
-      icon: Users,
+      icon: MessageSquare,
       color: 'purple'
     },
     {
-      id: 'page-views',
-      label: 'Page Views',
-      value: '45.2K',
+      id: 'total-users',
+      label: 'Total Users',
+      value: stats.totalUsers.toString(),
       change: {
-        value: 3,
-        type: 'decrease',
-        period: 'last week'
+        value: 0,
+        type: 'increase',
+        period: 'current'
       },
-      icon: Eye,
+      icon: Users,
       color: 'yellow'
     }
   ];
 
+  // Generate recent activity from real data
   const recentActivity = [
-    {
-      id: 1,
-      type: 'article',
-      title: 'New article published: "Latest Product Launch"',
-      time: '2 hours ago',
-      user: 'John Doe'
-    },
-    {
-      id: 2,
-      type: 'user',
-      title: 'New user registration: jane@example.com',
-      time: '4 hours ago',
-      user: 'System'
-    },
-    {
-      id: 3,
-      type: 'product',
-      title: 'Product updated: Premium Dates Package',
-      time: '6 hours ago',
-      user: 'Sarah Smith'
-    },
-    {
-      id: 4,
-      type: 'message',
-      title: 'New contact message received',
-      time: '8 hours ago',
-      user: 'Contact Form'
-    },
-    {
-      id: 5,
-      type: 'system',
-      title: 'System backup completed successfully',
-      time: '12 hours ago',
-      user: 'System'
-    }
-  ];
+    ...stats.recentNews.slice(0, 2).map((news, index) => ({
+      id: `news-${news._id}`,
+      type: 'article' as const,
+      title: `Article: "${news.title}"`,
+      time: new Date(news.createdAt).toLocaleDateString(),
+      user: 'Admin'
+    })),
+    ...stats.recentProducts.slice(0, 2).map((product, index) => ({
+      id: `product-${product._id}`,
+      type: 'product' as const,
+      title: `Product: "${product.title}"`,
+      time: new Date(product.createdAt).toLocaleDateString(),
+      user: 'Admin'
+    })),
+    ...stats.recentRecipes.slice(0, 1).map((recipe, index) => ({
+      id: `recipe-${recipe._id}`,
+      type: 'recipe' as const,
+      title: `Recipe: "${recipe.title}"`,
+      time: new Date(recipe.createdAt).toLocaleDateString(),
+      user: 'Admin'
+    }))
+  ].slice(0, 5); // Limit to 5 items
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -114,6 +105,8 @@ export default function AdminDashboard() {
         return <Users className="w-4 h-4" />;
       case 'product':
         return <Package className="w-4 h-4" />;
+      case 'recipe':
+        return <MessageSquare className="w-4 h-4" />;
       case 'message':
         return <MessageSquare className="w-4 h-4" />;
       default:
@@ -129,6 +122,8 @@ export default function AdminDashboard() {
         return 'bg-green-50 text-green-600';
       case 'product':
         return 'bg-purple-50 text-purple-600';
+      case 'recipe':
+        return 'bg-orange-50 text-orange-600';
       case 'message':
         return 'bg-yellow-50 text-yellow-600';
       default:
@@ -136,12 +131,76 @@ export default function AdminDashboard() {
     }
   };
 
+  // Handle loading state
+  if (loading) {
+    return (
+      <AdminLayout
+        title="Dashboard"
+        description="Loading dashboard data..."
+      >
+        <div className="flex items-center justify-center h-64">
+          <div className="flex items-center space-x-2">
+            <Loader2 className="w-6 h-6 animate-spin" />
+            <span className="text-gray-600">Loading dashboard data...</span>
+          </div>
+        </div>
+      </AdminLayout>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return (
+      <AdminLayout
+        title="Dashboard"
+        description="Error loading dashboard data"
+      >
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <div className="text-red-600 mb-4">
+              <p className="text-lg font-semibold">Error loading dashboard</p>
+              <p className="text-sm">{error}</p>
+            </div>
+            <button
+              onClick={refetch}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </AdminLayout>
+    );
+  }
+
   return (
     <AdminLayout
       title="Dashboard"
       description="Welcome back! Here's what's happening with your site today."
     >
       <div className="space-y-8">
+        {/* Header with refresh button */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">Overview</h2>
+            <p className="text-sm text-gray-600">Real-time data from your content management system</p>
+          </div>
+          <button
+            onClick={refetch}
+            disabled={loading}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {loading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            )}
+            <span>Refresh</span>
+          </button>
+        </div>
+
         {/* Metrics */}
         <AdminMetrics metrics={metrics} />
 
@@ -154,21 +213,27 @@ export default function AdminDashboard() {
             </div>
             <div className="p-6">
               <div className="space-y-4">
-                {recentActivity.map((activity) => (
-                  <div key={activity.id} className="flex items-start space-x-3">
-                    <div className={`p-2 rounded-lg ${getActivityColor(activity.type)}`}>
-                      {getActivityIcon(activity.type)}
+                {recentActivity.length > 0 ? (
+                  recentActivity.map((activity) => (
+                    <div key={activity.id} className="flex items-start space-x-3">
+                      <div className={`p-2 rounded-lg ${getActivityColor(activity.type)}`}>
+                        {getActivityIcon(activity.type)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900">
+                          {activity.title}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {activity.time} • by {activity.user}
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900">
-                        {activity.title}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {activity.time} • by {activity.user}
-                      </p>
-                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-gray-500">No recent activity</p>
                   </div>
-                ))}
+                )}
               </div>
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
