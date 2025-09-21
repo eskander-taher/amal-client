@@ -31,6 +31,12 @@ export const adminNavigation: AdminNavItem[] = [
 		icon: FileText,
 		children: [
 			{
+				id: "hero",
+				label: "شريط العرض الرئيسي",
+				icon: Image,
+				href: "/admin/hero",
+			},
+			{
 				id: "news",
 				label: "المقالات الإخبارية",
 				icon: FileText,
