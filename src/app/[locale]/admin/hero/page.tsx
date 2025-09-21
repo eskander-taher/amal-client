@@ -79,13 +79,13 @@ export default function AdminHeroPage() {
       const response = await fetch(`${apiBase}/api/hero/admin`);
       
       if (!response.ok) {
-        throw new Error('Failed to fetch hero slides');
+        throw new Error('فشل في تحميل شرائح العرض');
       }
 
       const data = await response.json();
       setHeroSlides(data.data || []);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : 'حدث خطأ');
     } finally {
       setLoading(false);
     }
@@ -127,7 +127,7 @@ export default function AdminHeroPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'Failed to save hero slide');
+        throw new Error(errorData.error?.message || 'فشل في حفظ شريحة العرض');
       }
 
       // Reset form and refresh data
@@ -145,7 +145,7 @@ export default function AdminHeroPage() {
       setImageFile(null);
       await fetchHeroSlides();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : 'حدث خطأ');
     } finally {
       setSubmitting(false);
     }
@@ -168,7 +168,7 @@ export default function AdminHeroPage() {
 
   // Handle delete
   const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this hero slide?')) {
+    if (!confirm('هل أنت متأكد من حذف هذه الشريحة؟')) {
       return;
     }
 
@@ -178,12 +178,12 @@ export default function AdminHeroPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to delete hero slide');
+        throw new Error('فشل في حذف شريحة العرض');
       }
 
       await fetchHeroSlides();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : 'حدث خطأ');
     }
   };
 
@@ -201,12 +201,12 @@ export default function AdminHeroPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update hero slide status');
+        throw new Error('فشل في تحديث حالة شريحة العرض');
       }
 
       await fetchHeroSlides();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : 'حدث خطأ');
     }
   };
 
@@ -222,25 +222,25 @@ export default function AdminHeroPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update hero slide order');
+        throw new Error('فشل في تحديث ترتيب شريحة العرض');
       }
 
       await fetchHeroSlides();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : 'حدث خطأ');
     }
   };
 
   if (loading) {
     return (
       <AdminLayout
-        title="Hero Carousel Management"
-        description="Manage your homepage hero carousel slides"
+        title="إدارة شريط العرض الرئيسي"
+        description="إدارة شرائح الكاروسيل في الصفحة الرئيسية"
       >
         <div className="flex items-center justify-center h-64">
           <div className="flex items-center space-x-2">
             <Loader2 className="w-6 h-6 animate-spin" />
-            <span className="text-gray-600">Loading hero slides...</span>
+            <span className="text-gray-600">جاري تحميل شرائح العرض...</span>
           </div>
         </div>
       </AdminLayout>
@@ -249,10 +249,10 @@ export default function AdminHeroPage() {
 
   return (
     <AdminLayout
-      title="Hero Carousel Management"
-      description="Manage your homepage hero carousel slides"
+      title="إدارة شريط العرض الرئيسي"
+      description="إدارة شرائح الكاروسيل في الصفحة الرئيسية"
     >
-      <div className="space-y-6">
+      <div className="space-y-6" dir="rtl">
         {/* Error Message */}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -263,8 +263,8 @@ export default function AdminHeroPage() {
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-xl font-semibold text-gray-900">Hero Slides</h2>
-            <p className="text-sm text-gray-600">Manage your homepage carousel slides</p>
+            <h2 className="text-xl font-semibold text-gray-900">شرائح العرض الرئيسي</h2>
+            <p className="text-sm text-gray-600">إدارة شرائح الكاروسيل في الصفحة الرئيسية</p>
           </div>
           <button
             onClick={() => {
@@ -284,7 +284,7 @@ export default function AdminHeroPage() {
             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
-            <span>Add New Slide</span>
+            <span>إضافة شريحة جديدة</span>
           </button>
         </div>
 
@@ -292,16 +292,16 @@ export default function AdminHeroPage() {
         {showForm && (
           <div className="bg-white border border-gray-200 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              {editingSlide ? 'Edit Hero Slide' : 'Add New Hero Slide'}
+              {editingSlide ? 'تعديل شريحة العرض' : 'إضافة شريحة عرض جديدة'}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title Section */}
               <div className="space-y-4">
-                <h4 className="text-md font-medium text-gray-900 border-b pb-2">Title</h4>
+                <h4 className="text-md font-medium text-gray-900 border-b pb-2">العنوان</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Title (Arabic) *
+                      العنوان (عربي) *
                     </label>
                     <input
                       type="text"
@@ -314,7 +314,7 @@ export default function AdminHeroPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Title (English) *
+                      العنوان (إنجليزي) *
                     </label>
                     <input
                       type="text"
@@ -329,11 +329,11 @@ export default function AdminHeroPage() {
 
               {/* Description Section */}
               <div className="space-y-4">
-                <h4 className="text-md font-medium text-gray-900 border-b pb-2">Description</h4>
+                <h4 className="text-md font-medium text-gray-900 border-b pb-2">الوصف</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Description (Arabic) *
+                      الوصف (عربي) *
                     </label>
                     <textarea
                       value={formData.description.ar}
@@ -346,7 +346,7 @@ export default function AdminHeroPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Description (English) *
+                      الوصف (إنجليزي) *
                     </label>
                     <textarea
                       value={formData.description.en}
@@ -361,11 +361,11 @@ export default function AdminHeroPage() {
 
               {/* Button Text Section */}
               <div className="space-y-4">
-                <h4 className="text-md font-medium text-gray-900 border-b pb-2">Button Text</h4>
+                <h4 className="text-md font-medium text-gray-900 border-b pb-2">نص الزر</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Button Text (Arabic) *
+                      نص الزر (عربي) *
                     </label>
                     <input
                       type="text"
@@ -378,7 +378,7 @@ export default function AdminHeroPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Button Text (English) *
+                      نص الزر (إنجليزي) *
                     </label>
                     <input
                       type="text"
@@ -393,11 +393,11 @@ export default function AdminHeroPage() {
 
               {/* Alt Text Section */}
               <div className="space-y-4">
-                <h4 className="text-md font-medium text-gray-900 border-b pb-2">Alt Text</h4>
+                <h4 className="text-md font-medium text-gray-900 border-b pb-2">النص البديل</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Alt Text (Arabic) *
+                      النص البديل (عربي) *
                     </label>
                     <input
                       type="text"
@@ -410,7 +410,7 @@ export default function AdminHeroPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Alt Text (English) *
+                      النص البديل (إنجليزي) *
                     </label>
                     <input
                       type="text"
@@ -426,7 +426,7 @@ export default function AdminHeroPage() {
               {/* Link URL */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Link URL *
+                  رابط الصفحة *
                 </label>
                 <input
                   type="text"
@@ -441,7 +441,7 @@ export default function AdminHeroPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Order
+                    الترتيب
                   </label>
                   <input
                     type="number"
@@ -459,14 +459,14 @@ export default function AdminHeroPage() {
                       onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
                       className="mr-2"
                     />
-                    <span className="text-sm font-medium text-gray-700">Active</span>
+                    <span className="text-sm font-medium text-gray-700">نشط</span>
                   </label>
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Image {editingSlide ? '(Leave empty to keep current)' : '*'}
+                  الصورة {editingSlide ? '(اترك فارغ للاحتفاظ بالحالي)' : '*'}
                 </label>
                 <input
                   type="file"
@@ -483,7 +483,7 @@ export default function AdminHeroPage() {
                   onClick={() => setShowForm(false)}
                   className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  Cancel
+                  إلغاء
                 </button>
                 <button
                   type="submit"
@@ -491,7 +491,7 @@ export default function AdminHeroPage() {
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
                 >
                   {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
-                  <span>{editingSlide ? 'Update' : 'Create'} Slide</span>
+                  <span>{editingSlide ? 'تحديث' : 'إنشاء'} الشريحة</span>
                 </button>
               </div>
             </form>
@@ -501,12 +501,12 @@ export default function AdminHeroPage() {
         {/* Hero Slides List */}
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Hero Slides ({heroSlides.length})</h3>
+            <h3 className="text-lg font-semibold text-gray-900">شرائح العرض الرئيسي ({heroSlides.length})</h3>
           </div>
           <div className="divide-y divide-gray-200">
             {heroSlides.length === 0 ? (
               <div className="p-6 text-center text-gray-500">
-                No hero slides found. Create your first slide to get started.
+                لم يتم العثور على شرائح عرض. قم بإنشاء أول شريحة للبدء.
               </div>
             ) : (
               heroSlides.map((slide, index) => (
@@ -541,16 +541,16 @@ export default function AdminHeroPage() {
                               ? 'bg-green-100 text-green-800' 
                               : 'bg-gray-100 text-gray-800'
                           }`}>
-                            {slide.isActive ? 'Active' : 'Inactive'}
+                            {slide.isActive ? 'نشط' : 'غير نشط'}
                           </span>
                           <span className="text-sm text-gray-500">
-                            Order: {slide.order}
+                            الترتيب: {slide.order}
                           </span>
                         </div>
                       </div>
                       <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
-                        <span>Button: "{slide.buttonText.ar}" / "{slide.buttonText.en}"</span>
-                        <span>Link: {slide.href}</span>
+                        <span>الزر: "{slide.buttonText.ar}" / "{slide.buttonText.en}"</span>
+                        <span>الرابط: {slide.href}</span>
                       </div>
                     </div>
 
@@ -560,14 +560,14 @@ export default function AdminHeroPage() {
                       <button
                         onClick={() => handleOrderChange(slide._id, slide.order - 1)}
                         className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                        title="Move up"
+                        title="نقل لأعلى"
                       >
                         <ArrowUp className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleOrderChange(slide._id, slide.order + 1)}
                         className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
-                        title="Move down"
+                        title="نقل لأسفل"
                       >
                         <ArrowDown className="w-4 h-4" />
                       </button>
@@ -580,7 +580,7 @@ export default function AdminHeroPage() {
                             ? 'text-green-600 hover:text-green-800' 
                             : 'text-gray-400 hover:text-gray-600'
                         }`}
-                        title={slide.isActive ? 'Deactivate' : 'Activate'}
+                        title={slide.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
                       >
                         {slide.isActive ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                       </button>
@@ -589,7 +589,7 @@ export default function AdminHeroPage() {
                       <button
                         onClick={() => handleEdit(slide)}
                         className="p-1 text-blue-600 hover:text-blue-800 transition-colors"
-                        title="Edit"
+                        title="تعديل"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -598,7 +598,7 @@ export default function AdminHeroPage() {
                       <button
                         onClick={() => handleDelete(slide._id)}
                         className="p-1 text-red-600 hover:text-red-800 transition-colors"
-                        title="Delete"
+                        title="حذف"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
