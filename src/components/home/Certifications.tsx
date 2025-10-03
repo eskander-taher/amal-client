@@ -36,7 +36,7 @@ export default function Certifications() {
 				const relativeX = centerX - sectionRect.left;
 
 				setCurveX(relativeX);
-				setCurveWidth(logoRect.width * 2);
+				setCurveWidth(logoRect.width * 1.5);
 			}
 		}
 	}, [hoveredIndex]);
@@ -98,7 +98,7 @@ export default function Certifications() {
 						width: `${curveWidth}px`,
 						left: `${curveX - curveWidth / 2}px`,
 						bottom: "-7px",
-						height: "30px",
+						height: "25px",
 					}}
 				/>
 			)}

@@ -48,7 +48,7 @@ export default function CardLink({
 				>
 					{hoverText}
 				</div>
-			</div>
+			</div> 
 
 			{/* Top pseudo-element equivalent */}
 			<div

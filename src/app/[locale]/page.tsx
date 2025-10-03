@@ -18,8 +18,6 @@ export default function Home() {
 			<Products />
 			<News />
 			<GroupStats />
-			{/* Functional Side Navigation */}
-			<SideNavigation />
 		</div>
 	);
 }

@@ -118,7 +118,7 @@ export default function Hero({
 		pathname.endsWith("certifications");
 
 	return (
-		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
+		<Section className={`relative h-[calc(100vh-91px)] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image src={image || "/placeholder.webp"} alt={imageAlt} fill className="object-cover" priority />
@@ -127,7 +127,7 @@ export default function Hero({
 			</div>
 
 			{/* Content */}
-			<div className="relative z-10 h-full min-h-[60vh] flex flex-col justify-between">
+			<div className="relative z-10 h-full flex flex-col justify-between">
 				{/* Title and Subtitle */}
 				<div className="container mx-auto px-4 py-16 md:py-24">
 					<div className="max-w-4xl">

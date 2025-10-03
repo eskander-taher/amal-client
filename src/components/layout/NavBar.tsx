@@ -3,11 +3,9 @@ import { usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "@/components/TransitionLink";
-import { motion } from "framer-motion";
-import Notch from "@/components/Notch";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -61,44 +59,19 @@ export default function NavBar() {
 	const navItems = getNavItems(t);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [submenuOpen, setSubmenuOpen] = useState<string | null>(null);
-	const [isScrolled, setIsScrolled] = useState(false);
-
-	// Scroll detection
-	useEffect(() => {
-		const handleScroll = () => {
-			const scrollTop = window.scrollY;
-			setIsScrolled(scrollTop > 10);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
 
 	const isAdminPath = pathname.startsWith("/admin");
 	return (
 		<nav
 			className={`${
 				isAdminPath ? "hidden" : ""
-			} px-10 py-2 flex fixed top-0 w-full z-50 transition-all duration-300  ${
-				isScrolled ? "bg-white" : "bg-transparent delay-200"
-			}`}
+			} px-10 py-2 flex w-full bg-white`}
 		>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
-
 				<div className="relative flex items-center justify-center px-10">
-					{/* Top static curve */}
-					<Notch
-						className={`absolute w-full bottom-0 left-1/2 transform -translate-x-1/2 z-0 transition-all duration-500 ease-out ${
-							isScrolled
-								? "translate-y-full -mb-1 opacity-100 delay-200"
-								: " opacity-0"
-						}`}
-						color={isScrolled ? "#fff" : "transparent"}
-						direction="down"
-					/>
 					{/* laptop */}
-					<TransitionLink className="relative hidden sm:block z-10" href="/">
+					<TransitionLink className="relative hidden sm:block" href="/">
 						<Image
 							src={
 								locale == "ar" ? "/amal_big_logo_ar.webp" : "/amal_big_logo_en.webp"
@@ -107,30 +80,20 @@ export default function NavBar() {
 							width={260}
 							height={75}
 							priority
-							className={`transition-all duration-300 logo-hover translate-y-1/4 ${
-								isScrolled ? "logo-enhanced" : "logo-white"
-							}`}
+							className="logo-enhanced"
 						/>
 					</TransitionLink>
 
 					{/* mobile */}
-					<TransitionLink className="relative block sm:hidden z-10" href="/">
-						<motion.div
-							initial={{ y: -50, x: 50, opacity: 0 }}
-							animate={{ y: 0, x: 0, opacity: 1 }}
-							transition={{ duration: 1, ease: "easeOut" }}
-						>
-							<Image
-								src="/AMAL_logo.webp"
-								alt="Amal Al-Khair logo"
-								width={75}
-								height={75}
-								priority
-								className={`transition-all duration-300 logo-hover translate-y-1/4 ${
-									isScrolled ? "logo-enhanced" : "logo-white"
-								}`}
-							/>
-						</motion.div>
+					<TransitionLink className="relative block sm:hidden" href="/">
+						<Image
+							src="/AMAL_logo.webp"
+							alt="Amal Al-Khair logo"
+							width={75}
+							height={75}
+							priority
+							className="logo-enhanced"
+						/>
 					</TransitionLink>
 				</div>
 
@@ -151,12 +114,8 @@ export default function NavBar() {
 										<button
 											className={`px-2 py-2 rounded-lg transition-all duration-200 flex items-center ${
 												isActive
-													? isScrolled
-														? "text-gray-900 font-bold"
-														: "text-white font-bold"
-													: isScrolled
-													? "text-gray-700 hover:text-gray-800 font-small"
-													: "text-white/90 hover:text-white font-small"
+													? "text-gray-900 font-bold"
+													: "text-gray-700 hover:text-gray-800 font-small"
 											}`}
 										>
 											{item.label}
@@ -167,11 +126,7 @@ export default function NavBar() {
 												<div
 													className={`absolute top-full min-w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
 														locale === "ar" ? "right-0" : "left-0"
-													} ${
-														isScrolled
-															? "bg-white/95 backdrop-blur-md border-white/20"
-															: "bg-white/90 backdrop-blur-md border-white/20"
-													} animate-submenu-slide-down origin-top`}
+													} bg-white/95 backdrop-blur-md border-white/20 animate-submenu-slide-down origin-top`}
 													style={{
 														width: "max-content",
 														minWidth: "100%",
@@ -208,12 +163,8 @@ export default function NavBar() {
 										href={item.href}
 										className={`px-2 py-2 rounded-lg transition-all duration-200 ${
 											isActive
-												? isScrolled
-													? "text-gray-900 font-bold"
-													: "text-white font-bold"
-												: isScrolled
-												? "text-gray-700 hover:text-gray-800 font-small"
-												: "text-white/90 hover:text-white font-small"
+												? "text-gray-900 font-bold"
+												: "text-gray-700 hover:text-gray-800 font-small"
 										}`}
 									>
 										{item.label}
@@ -225,16 +176,12 @@ export default function NavBar() {
 				</div>
 
 				{/* Left Side: Search + Language */}
-				<div className="hidden md:flex items-center space-x-2 space-x-reverse translate-y-1/4">
+				<div className="hidden md:flex items-center space-x-2 space-x-reverse">
 					<div className="relative text-gray-600">
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}
-							className={`border rounded-md py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm transition-all duration-300 ${
-								isScrolled
-									? "border-gray-300 bg-white"
-									: "border-white/30 bg-white/20 backdrop-blur-sm text-white placeholder-white/70"
-							}`}
+							className="border border-gray-300 bg-white rounded-md py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm"
 						/>
 						<span
 							className={`absolute inset-y-0 flex items-center pl-1 ${
@@ -242,9 +189,7 @@ export default function NavBar() {
 							}`}
 						>
 							<svg
-								className={`w-5 h-5 transition-colors duration-300 ${
-									isScrolled ? "text-gray-400" : "text-white/70"
-								}`}
+								className="w-5 h-5 text-gray-400"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -263,22 +208,13 @@ export default function NavBar() {
 
 				{/* Hamburger for Mobile */}
 				{!menuOpen && (
-					<motion.button
-						className={`md:hidden p-2 border rounded-lg ${
-							isScrolled
-								? "border-gray-300 bg-white"
-								: "border-white/30 bg-white/20 backdrop-blur-sm"
-						}`}
-						initial={{ y: -50, x: -50, opacity: 0 }}
-						animate={{ y: 0, x: 0, opacity: 1 }}
-						transition={{ duration: 1, ease: "easeOut" }}
+					<button
+						className="md:hidden p-2 border border-gray-300 bg-white rounded-lg"
 						onClick={() => setMenuOpen((v) => !v)}
 						aria-label="Open menu"
 					>
 						<svg
-							className={`w-6 h-6 transition-colors duration-300 ${
-								isScrolled ? "text-blue-700" : "text-white"
-							}`}
+							className="w-6 h-6 text-blue-700"
 							fill="none"
 							stroke="currentColor"
 							strokeWidth="2"
@@ -290,16 +226,14 @@ export default function NavBar() {
 								d="M4 6h16M4 12h16M4 18h16"
 							/>
 						</svg>
-					</motion.button>
+					</button>
 				)}
 			</div>
 
 			{/* Mobile Menu */}
 			{menuOpen && (
 				<div
-					className={`md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300 transform ${
-						isScrolled ? "bg-white/95 backdrop-blur-md" : "bg-white/90 backdrop-blur-md"
-					}`}
+					className="md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg"
 				>
 					<div className="p-6 h-full overflow-y-auto">
 						{/* Close button */}

@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
 	// Show loading state
 	if (loading) {
 		return (
-			<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
+			<Section id="hero" className="relative w-full h-[calc(100vh-91px)] bg-black overflow-hidden">
 				<div className="absolute inset-0 z-10 flex items-center justify-center">
 					<div className="text-white text-center">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
 	}
 
 	return (
-		<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
+		<Section id="hero" className="relative w-full h-[calc(100vh-91px)] bg-black overflow-hidden">
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (
 				<div
@@ -112,7 +112,7 @@ const Hero: React.FC = () => {
 
 			{/* Content */}
 			<div className="relative z-10 flex w-full h-full">
-				<div className="flex flex-col justify-center w-full md:w-1/2 h-screen pb-[15%]">
+				<div className="flex flex-col justify-center w-full md:w-1/2 h-full pb-[15%]">
 					<div
 						key={currentSlide}
 						className="transition-all duration-700 ease-in-out animate-fade-in"
@@ -159,7 +159,7 @@ const Hero: React.FC = () => {
 
 			{/* Bottom static curve */}
 			<motion.div
-				className="absolute bg-transparent min-w-60 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 rounded-t-full flex justify-center items-start gap-3"
+				className="absolute bg-transparent bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 rounded-t-full flex justify-center items-start gap-3"
 				initial={{ y: 50, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
