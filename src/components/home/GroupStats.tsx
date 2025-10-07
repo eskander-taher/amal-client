@@ -68,15 +68,15 @@ const GroupStats: React.FC = () => {
 					{stats.map((stat, index) => (
 						<div
 							key={index}
-							className="flex flex-col items-center text-center group hover:scale-105 transition-transform duration-300"
+							className="flex flex-col justify-between items-center text-center group hover:scale-105 transition-transform duration-300"
 						>
-							<div className="h-28 w-28 lg:h-32 lg:w-32 flex items-center justify-center mb-4 lg:mb-6 rounded-full p-6 group-hover:bg-white/20 transition-colors duration-300">
+							<div className="flex items-center justify-center">
 								<Image
 									src={stat.image}
 									alt={t(stat.titleKey)}
-									width={112}
-									height={112}
-									className="object-contain max-h-full max-w-full"
+									width={180}
+									height={180}
+									className="object-contain"
 								/>
 							</div>
 							<div className="space-y-2">

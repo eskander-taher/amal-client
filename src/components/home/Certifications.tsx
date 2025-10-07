@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
+import { TransitionLink } from "../TransitionLink";
 
 const logos = [
 	{ id: 1, src: "/images/saudi_accreditation.svg", alt: "Logo 1" },
@@ -16,6 +17,7 @@ const logos = [
 ];
 
 export default function Certifications() {
+	const tHomePage = useTranslations("HomePage");
 	const t = useTranslations("Certifications");
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -43,12 +45,11 @@ export default function Certifications() {
 
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
-			{/* Top static notch */}
-			<div className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2">
-				<div
-					className="downward-tab"
-					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
-				/>
+			{/* Bottom static tab */}
+			<div className="absolute top-0 left-1/2 -translate-x-1/2">
+				<TransitionLink href="/about">
+					<div className="downward-tab text-black" style={{paddingInline: "50px"}}>{tHomePage("moreAboutButton")}</div>
+				</TransitionLink>
 			</div>
 
 			<div className="w-full">
@@ -79,7 +80,7 @@ export default function Certifications() {
 									alt={logo.alt}
 									width={0}
 									height={0}
-									className="object-contain h-full w-auto"
+									className="object-contain h-full w-auto duration-300"
 									sizes="100vw"
 								/>
 							</div>

@@ -4,9 +4,8 @@ import React, { useState, useEffect } from "react";
 import { FaArrowLeftLong, FaArrowRightLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import Section from "../Section";
-import { useTranslations, useLocale } from "next-intl";
+import { useLocale } from "next-intl";
 import { TransitionLink } from "../TransitionLink";
-import Notch from "../Notch";
 import { useHero } from "@/hooks/useHero";
 import { getServerUrl } from "@/lib/apiBase";
 
@@ -128,10 +127,10 @@ const Hero: React.FC = () => {
 						</p>
 						<TransitionLink
 							href={currentSlideData.href}
-							className="bg-white flex justify-between items-center text-black w-25 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl group px-1.5 py-1 animate-fade-in-delay-2"
+							className={`bg-white flex justify-between items-center text-black w-30 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl group px-1.5 py-1 animate-fade-in-delay-2 ${local === "ar" ? "pr-5" : "pl-5"}`}
 						>
 							<p>{currentSlideData.buttonText}</p>
-							<div className="bg-gradient-to-r from-orange-400 to-yellow-400 hover:from-orange-500 hover:to-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+							<div className="bg-yellow-500 hover:from-orange-500 hover:to-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
 								{local === "ar" ? (
 									<FaArrowLeftLong className="text-white text-sm" />
 								) : (
@@ -167,7 +166,7 @@ const Hero: React.FC = () => {
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
 			>
-				<div className="upward-tab flex items-center justify-center gap-3">
+				<div className="upward-tab flex items-center justify-center gap-3" style={{paddingInline:"30px"}}>
 					{carouselSlides.map((_, index) => (
 						<motion.button
 							key={index}

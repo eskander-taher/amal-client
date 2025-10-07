@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "@/components/TransitionLink";
-import Notch from "../Notch";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -63,7 +62,7 @@ export default function NavBar() {
 
 	const isAdminPath = pathname.startsWith("/admin");
 	return (
-		<nav className={`${isAdminPath ? "hidden" : ""} px-10 flex w-full bg-white`}>
+		<nav className={`${isAdminPath ? "hidden" : ""} sticky top-0 z-50 px-10 flex w-full bg-white shadow-sm`}>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
 				<div className="relative">
