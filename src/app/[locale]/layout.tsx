@@ -8,9 +8,40 @@ import Providers from "@/components/Providers";
 import Footer from "@/components/layout/Footer";
 import localFont from "next/font/local";
 
-const dinNextArabic = localFont({
-	src: "../../../public/DINNextLTArabic-Regular-3.ttf",
-	variable: "--font-din-next-arabic",
+const neoSansArabic = localFont({
+	src: [
+		{
+			path: "../../../public/fonts/NeoSansArabicLight.ttf",
+			weight: "300",
+			style: "normal",
+		},
+		{
+			path: "../../../public/fonts/NeoSansArabic.ttf",
+			weight: "400",
+			style: "normal",
+		},
+		{
+			path: "../../../public/fonts/NeoSansArabicMedium.ttf",
+			weight: "500",
+			style: "normal",
+		},
+		{
+			path: "../../../public/fonts/NeoSansArabicBold.ttf",
+			weight: "700",
+			style: "normal",
+		},
+		{
+			path: "../../../public/fonts/NeoSansArabicBlack.ttf",
+			weight: "900",
+			style: "normal",
+		},
+		{
+			path: "../../../public/fonts/NeoSansArabicUltra.ttf",
+			weight: "950",
+			style: "normal",
+		},
+	],
+	variable: "--font-neo-sans-arabic",
 	display: "swap",
 	fallback: [
 		"ui-sans-serif",
@@ -53,7 +84,7 @@ export default async function RootLayout({
 		<html
 			lang={locale}
 			dir={locale === "ar" ? "rtl" : "ltr"}
-			className={dinNextArabic.variable}
+			className={neoSansArabic.variable}
 		>
 			<body className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-sans">
 				<NextIntlClientProvider>

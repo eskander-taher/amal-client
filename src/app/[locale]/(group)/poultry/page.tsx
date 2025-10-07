@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
 import Notch from "@/components/Notch";
+import ImageSection from "@/components/ui/ImageSection";
 
 type ProductData = {
 	image: string;
@@ -37,31 +38,7 @@ export default function Page() {
 					</div>
 				</div>
 			</Section>
-			<section className="relative bg-white">
-				<Notch
-					className="absolute w-[50%] transform left-0 -translate-x-3/4 -translate-y-1 z-10"
-					direction="down"
-					
-				/>
-				<Notch
-					className="absolute w-[50%] transform right-0 translate-x-3/4 -translate-y-1 z-10"
-					direction="down"
-					
-				/>
-
-				<div className="w-full h-[80vh]">
-					<Image
-						src="/placeholder.webp"
-						alt="About Amal Al-Khair"
-						fill
-						className="object-cover"
-						priority
-					/>
-				</div>
-
-				<Notch className="absolute w-[50%] transform left-0 -translate-x-3/4 translate-y-1 bottom-0 z-10" color="#E5E7EB"/>
-				<Notch className="absolute w-[50%] transform right-0 translate-x-3/4 translate-y-1 bottom-0 z-10" color="#E5E7EB"/>
-			</section>
+			<ImageSection />
 			<Section className="bg-gray-200">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 					{products.map((product, index) => (

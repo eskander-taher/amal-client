@@ -2,7 +2,6 @@ import React from "react";
 import Section from "@/components/Section";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Notch from "../Notch";
 
 export default function WorkEnvironment() {
 	const t = useTranslations("Jobs.workEnvironment");
@@ -18,11 +17,19 @@ export default function WorkEnvironment() {
 
 	return (
 		<Section className="bg-white relative">
-			<Notch
-				className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2 -translate-y-1"
-				color="#E5E7EB"
-				direction="down"
-			/>
+			{/* Top Tab */}
+			<div className="absolute w-1/2 -translate-x-3/4 left-0 top-0 z-10">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
+			<div className="absolute w-1/2 translate-x-3/4 right-0 top-0 z-10">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
 			<div className="max-w-3xl mx-auto text-center">
 				<h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
 					{t("title")}
@@ -55,10 +62,20 @@ export default function WorkEnvironment() {
 					</ul>
 				</div>
 			</div>
-			<Notch
-				className="absolute w-[80%] bottom-0 left-1/2 -translate-x-1/2 translate-y-1"
-				color="#E5E7EB"
-			/>
+
+			{/* Bottom Tab */}
+			<div className="absolute w-1/2 -translate-x-3/4 left-0 bottom-0 z-10">
+				<div
+					className="upward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
+			<div className="absolute w-1/2 translate-x-3/4 right-0 bottom-0 z-10">
+				<div
+					className="upward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
 		</Section>
 	);
 }

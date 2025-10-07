@@ -2,18 +2,25 @@ import React from "react";
 import Section from "@/components/Section";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Notch from "../Notch";
 
 export default function WorkWithUs() {
 	const t = useTranslations("Jobs.workWithUs");
 
 	return (
 		<Section className="relative">
-			<Notch
-				className="absolute top-0 w-[80%] transform left-0 -translate-x-2/4 -translate-y-1 z-10"
-				direction="down"
-				color="#E5E7EB"
-			/>
+			{/* Top Tab */}
+			<div className="absolute w-1/2 -translate-x-3/4 left-0 top-0 z-10">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
+			<div className="absolute w-1/2 translate-x-3/4 right-0 top-0 z-10">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 				<div className="order-1 md:order-none">
 					<Image

@@ -118,16 +118,22 @@ export default function Hero({
 		pathname.endsWith("certifications");
 
 	return (
-		<Section className={`relative h-[calc(100vh-91px)] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
+		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
-				<Image src={image || "/placeholder.webp"} alt={imageAlt} fill className="object-cover" priority />
+				<Image
+					src={image || "/placeholder.webp"}
+					alt={imageAlt}
+					fill
+					className="object-cover"
+					priority
+				/>
 				{/* Overlay */}
 				<div className="absolute inset-0 bg-black/40" />
 			</div>
 
 			{/* Content */}
-			<div className="relative z-10 h-full flex flex-col justify-between">
+			<div className="relative z-10 h-full min-h-[60vh] flex flex-col justify-between">
 				{/* Title and Subtitle */}
 				<div className="container mx-auto px-4 py-16 md:py-24">
 					<div className="max-w-4xl">
@@ -157,10 +163,18 @@ export default function Hero({
 												{breadcrumb.label}
 											</TransitionLink>
 											{breadcrumb.isActive && (
-												<Notch
-													className="absolute  min-w-20 left-1/2 transform -translate-x-1/2 -bottom-1"
-													color={isProductPage ? "#E5E7EB" : "#FFFFFF"}
-												/>
+												<>
+													<div className="absolute w-full left-1/2 transform -translate-x-1/2 bottom-0">
+														<div
+															className="upward-tab"
+															style={{
+																"--tab-color": isProductPage
+																	? "#E5E7EB"
+																	: "#FFFFFF",
+															} as React.CSSProperties}
+														></div>
+													</div>
+												</>
 											)}
 										</div>
 									</li>

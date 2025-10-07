@@ -4,16 +4,15 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Section from "../Section";
 import { useTranslations } from "next-intl";
-import Notch from "../Notch";
 
 const logos = [
-	{ id: 1, src: "/images/logo1.webp", alt: "Logo 1" },
-	{ id: 2, src: "/images/logo2.webp", alt: "Logo 2" },
-	{ id: 3, src: "/images/logo3.webp", alt: "Logo 3" },
-	{ id: 4, src: "/images/logo4.webp", alt: "Logo 4" },
-	{ id: 5, src: "/images/logo5.webp", alt: "Logo 5" },
-	{ id: 6, src: "/images/logo6.webp", alt: "Logo 6" },
-	{ id: 7, src: "/images/logo7.webp", alt: "Logo 7" },
+	{ id: 1, src: "/images/saudi_accreditation.svg", alt: "Logo 1" },
+	{ id: 2, src: "/images/saudi_made.svg", alt: "Logo 2" },
+	{ id: 3, src: "/images/saudi_GAP.svg", alt: "Logo 3" },
+	{ id: 4, src: "/images/SMG_HACCP.svg", alt: "Logo 4" },
+	{ id: 5, src: "/images/IAF.svg", alt: "Logo 5" },
+	{ id: 6, src: "/images/SMG_ISO.svg", alt: "Logo 6" },
+	{ id: 7, src: "/images/halal.svg", alt: "Logo 7" },
 ];
 
 export default function Certifications() {

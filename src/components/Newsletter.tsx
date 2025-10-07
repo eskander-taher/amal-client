@@ -18,7 +18,7 @@ export default function Newsletter() {
 	return (
 		<Section id="newsletter" className="bg-yellow-500 text-black py-8 lg:py-12 relative">
 			<div className="absolute top-0  w-[80%] left-1/2 -translate-x-1/2 -translate-y-full">
-				<div className="upward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" }}></div>
+				<div className="upward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" } as React.CSSProperties}></div>
 			</div>
 			<div className="w-full">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
@@ -52,7 +52,7 @@ export default function Newsletter() {
 				</div>
 			</div>
 			<div className="absolute bottom-0  w-[80%] left-1/2 -translate-x-1/2 translate-y-full">
-				<div className="downward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" }}></div>
+				<div className="downward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" } as React.CSSProperties}></div>
 			</div>
 		</Section>
 	);
