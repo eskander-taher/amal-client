@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "@/components/TransitionLink";
+import Notch from "../Notch";
 
 const getNavItems = (t: (key: string) => string) => {
 	return [
@@ -62,39 +63,45 @@ export default function NavBar() {
 
 	const isAdminPath = pathname.startsWith("/admin");
 	return (
-		<nav
-			className={`${
-				isAdminPath ? "hidden" : ""
-			} px-10 py-2 flex w-full bg-white`}
-		>
+		<nav className={`${isAdminPath ? "hidden" : ""} px-10 flex w-full bg-white`}>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
-				<div className="relative flex items-center justify-center px-10">
-					{/* laptop */}
-					<TransitionLink className="relative hidden sm:block" href="/">
-						<Image
-							src={
-								locale == "ar" ? "/amal_big_logo_ar.webp" : "/amal_big_logo_en.webp"
-							}
-							alt="Amal Al-Khair logo"
-							width={260}
-							height={75}
-							priority
-							className="logo-enhanced"
-						/>
-					</TransitionLink>
+				<div className="relative">
+					<div className="relative flex items-center justify-center px-10 -bottom-4 z-50">
+						{/* laptop */}
+						<TransitionLink className="relative hidden sm:block" href="/">
+							<Image
+								src={
+									locale == "ar"
+										? "/amal_big_logo_ar.webp"
+										: "/amal_big_logo_en.webp"
+								}
+								alt="Amal Al-Khair logo"
+								width={260}
+								height={50}
+								priority
+								className="logo-enhanced"
+							/>
+						</TransitionLink>
 
-					{/* mobile */}
-					<TransitionLink className="relative block sm:hidden" href="/">
-						<Image
-							src="/AMAL_logo.webp"
-							alt="Amal Al-Khair logo"
-							width={75}
-							height={75}
-							priority
-							className="logo-enhanced"
-						/>
-					</TransitionLink>
+						{/* mobile */}
+						<TransitionLink className="relative block sm:hidden" href="/">
+							<Image
+								src="/AMAL_logo.webp"
+								alt="Amal Al-Khair logo"
+								width={50}
+								height={50}
+								priority
+								className="logo-enhanced"
+							/>
+						</TransitionLink>
+					</div>
+					<div className="absolute w-full z-40">
+						<div
+							className="downward-tab "
+							style={{ width: "100%", height: "25px" }}
+						></div>
+					</div>
 				</div>
 
 				{/* Navigation Links */}
@@ -181,7 +188,7 @@ export default function NavBar() {
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}
-							className="border border-gray-300 bg-white rounded-md py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm"
+							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm"
 						/>
 						<span
 							className={`absolute inset-y-0 flex items-center pl-1 ${
@@ -232,9 +239,7 @@ export default function NavBar() {
 
 			{/* Mobile Menu */}
 			{menuOpen && (
-				<div
-					className="md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg"
-				>
+				<div className="md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg">
 					<div className="p-6 h-full overflow-y-auto">
 						{/* Close button */}
 						<div className="flex justify-end mb-6">

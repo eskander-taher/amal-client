@@ -3,7 +3,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Section from "../Section";
 import { motion } from "framer-motion";
 import { TransitionLink } from "../TransitionLink";
-import Notch from "../Notch";
+
 
 const About: React.FC = () => {
 	const t = useTranslations("HomePage");
@@ -35,18 +35,11 @@ const About: React.FC = () => {
 				</p>
 			</motion.div>
 
-			{/* Bottom static curve */}
-
+			{/* Bottom static tab */}
 			<TransitionLink href="/about">
-				<Notch
-					className={`absolute ${
-						isArabic ? "left-0" : "right-0"
-					} bottom-0  translate-y-1`}
-					color="#E5E7EB"
-					middleStyles="text-black px-4 hover:font-bold"
-				>
-					{t("moreAboutButton")}
-				</Notch>
+				<div className="absolute bottom-0 left-10 translate-y-full">
+					<div className="downward-tab">{t("moreAboutButton")}</div>
+				</div>
 			</TransitionLink>
 		</Section>
 	);

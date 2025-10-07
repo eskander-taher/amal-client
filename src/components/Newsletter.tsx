@@ -16,13 +16,12 @@ export default function Newsletter() {
 	};
 
 	return (
-		<Section
-			id="newsletter"
-			className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black py-8 lg:py-12"
-		>
+		<Section id="newsletter" className="bg-yellow-500 text-black py-8 lg:py-12 relative">
+			<div className="absolute top-0  w-[80%] left-1/2 -translate-x-1/2 -translate-y-full">
+				<div className="upward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" }}></div>
+			</div>
 			<div className="w-full">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-					
 					<div className="text-center flex flex-col items-start order-2 lg:w-1/3">
 						<h2 className="text-3xl lg:text-4xl font-bold mb-4 text-black">
 							{t("title")}
@@ -36,8 +35,7 @@ export default function Newsletter() {
 					<div className="order-1 lg:order-2 w-full lg:w-2/3">
 						<form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto lg:mx-0">
 							<div className="relative w-full">
-								<div className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full w-8 h-8 flex items-center justify-center">
-								
+								<div className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center">
 									<FaArrowLeftLong className="text-white text-sm" />
 								</div>
 								<input
@@ -52,6 +50,9 @@ export default function Newsletter() {
 						</form>
 					</div>
 				</div>
+			</div>
+			<div className="absolute bottom-0  w-[80%] left-1/2 -translate-x-1/2 translate-y-full">
+				<div className="downward-tab" style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" }}></div>
 			</div>
 		</Section>
 	);

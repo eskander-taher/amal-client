@@ -44,12 +44,13 @@ export default function Certifications() {
 
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
-			{/* Top static curve */}
-			<Notch 
-				className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2 -translate-y-1" 
-				color="#E5E7EB" 
-				direction="down"
-			/>
+			{/* Top static notch */}
+			<div className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
 
 			<div className="w-full">
 				{/* Heading */}
@@ -88,11 +89,9 @@ export default function Certifications() {
 				</div>
 			</div>
 
-			{/* Curve */}
+			{/* tab (notch) */}
 			{hoveredIndex !== null && (
-				<Notch
-					
-					color="#E5E7EB"
+				<div
 					className="absolute animate-curve"
 					style={{
 						width: `${curveWidth}px`,
@@ -100,7 +99,12 @@ export default function Certifications() {
 						bottom: "-7px",
 						height: "25px",
 					}}
-				/>
+				>
+					<div
+						className="upward-tab"
+						style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+					/>
+				</div>
 			)}
 		</Section>
 	);

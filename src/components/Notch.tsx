@@ -27,9 +27,7 @@ const Notch: React.FC<NotchProps> = ({
 		<div dir="rtl" className={` flex items-center ${className}`} style={{ ...style }}>
 			{/* Left pseudo-element equivalent */}
 			<div
-				className={`absolute left-0 -translate-x-full ${
-					isUp ? "bottom-1" : "top-1"
-				} w-3 h-3`}
+				className={`absolute left-0 -bottom-1 -translate-x-full w-5 h-5`}
 				style={{
 					background: `radial-gradient(circle at ${
 						isUp ? "top" : "bottom"
@@ -50,9 +48,7 @@ const Notch: React.FC<NotchProps> = ({
 
 			{/* Right pseudo-element equivalent */}
 			<div
-				className={`absolute right-0 translate-x-full ${
-					isUp ? "bottom-1" : "top-1"
-				} w-3 h-3`}
+				className={`absolute right-0 -top-1 translate-x-full w-5 h-5`}
 				style={{
 					background: `radial-gradient(circle at ${
 						isUp ? "top" : "bottom"

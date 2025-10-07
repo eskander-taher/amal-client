@@ -41,7 +41,7 @@ export default function LanguageSwitcher() {
 	return (
 		<button
 			onClick={() => switchToLocale(getNextLocale())}
-			className="mx-2 flex items-center space-x-2 px-3 py-2 bg-white hover:bg-gray-50 border-none transition-all duration-200 hover:shadow-md cursor-pointer rounded-md"
+			className="mx-2 flex items-center space-x-2 px-3 py-2 bg-white hover:bg-gray-50 border-none transition-all duration-200 hover:shadow-md cursor-pointer rounded-full"
 			title={`Switch to ${getLocaleName(getNextLocale() as "ar" | "en")}`}
 		>
 			<span className="text-sm font-medium text-gray-700 hidden sm:inline">

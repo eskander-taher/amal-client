@@ -19,12 +19,13 @@ const News: React.FC = () => {
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
-			{/* Top static curve */}
-			<Notch
-				className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2 -translate-y-1"
-				color="#E5E7EB"
-				direction="down"
-			/>
+			{/* Top static notch */}
+			<div className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2">
+				<div
+					className="downward-tab"
+					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+				/>
+			</div>
 
 			<div className="w-full">
 				<h2 className="text-3xl font-bold text-center mb-12">{t("title")}</h2>
@@ -60,17 +61,12 @@ const News: React.FC = () => {
 					</div>
 				)}
 			</div>
-			{/* Bottom static curve */}
-			<TransitionLink href="/news">
-				<Notch
-					className={`absolute ${
-						isArabic ? "left-0" : "right-0"
-					} bottom-0  translate-y-1`}
-					color="#353535"
-					middleStyles="text-white px-4 hover:font-bold"
-				>
-					{t("moreNews")}
-				</Notch>
+
+			{/* Bottom static tab */}
+			<TransitionLink href="/about">
+				<div className="absolute bottom-0 left-10 translate-y-full">
+					<div className="downward-tab">{t("moreNews")}</div>
+				</div>
 			</TransitionLink>
 		</Section>
 	);

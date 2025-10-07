@@ -344,3 +344,82 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+
+/* =========================== */
+/* tab (notch) styling */
+/* =========================== */
+/* upward tab styling */
+.upward-tab, .downward-tab {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  --tab-color: white; /* default color */
+  --tab-width: fit-content; /* default width */
+  padding: 10px 15px;
+  height: fit-content;
+  font-weight: 600;
+  user-select: none;
+  width: 100%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.upward-tab {
+	background: var(--tab-color, white);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	position: relative;
+	
+}
+
+.upward-tab:before,
+.upward-tab:after {
+	content: "";
+	position: absolute;
+	height: 10px;
+	width: 20px;
+	bottom: 0;
+}
+
+.upward-tab:after {
+	right: -20px;
+	border-radius:  0  0  0 10px ;
+	box-shadow: -10px 0 0 0 var(--tab-color, white);
+}
+
+.upward-tab:before {
+	left: -20px;
+	border-radius: 0  0 10px 0 ;
+	box-shadow: 10px 0 0 0 var(--tab-color, white);
+}
+
+/* downward tab styling */
+.downward-tab {
+	background: var(--tab-color, white);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	position: relative;
+}
+
+.downward-tab:before,
+.downward-tab:after {
+	content: "";
+	position: absolute;
+	height: 10px;
+	width: 20px;
+	top: 0;
+}
+
+.downward-tab:after {
+	right: -20px;
+	border-radius:  10px 0  0  0  ;
+	box-shadow: -10px 0 0 0 var(--tab-color, white);
+}
+
+.downward-tab:before {
+	left: -20px;
+	border-radius:  0 10px 0  0  ;
+	box-shadow: 10px 0 0 0 var(--tab-color, white);
+}
+/* =========================== */
+/* end tab (notch) styling */
+/* =========================== */

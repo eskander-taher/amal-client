@@ -89,7 +89,10 @@ const Hero: React.FC = () => {
 	}
 
 	return (
-		<Section id="hero" className="relative w-full h-[calc(100vh-91px)] bg-black overflow-hidden">
+		<Section
+			id="hero"
+			className="relative w-full h-[calc(100vh-75px)] bg-black overflow-hidden"
+		>
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (
 				<div
@@ -159,12 +162,12 @@ const Hero: React.FC = () => {
 
 			{/* Bottom static curve */}
 			<motion.div
-				className="absolute bg-transparent bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 rounded-t-full flex justify-center items-start gap-3"
+				className="absolute bottom-0 left-1/2 transform -translate-x-1/2"
 				initial={{ y: 50, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
 			>
-				<Notch middleStyles="flex justify-between items-center gap-3 px-3 py-2">
+				<div className="upward-tab flex items-center justify-center gap-3">
 					{carouselSlides.map((_, index) => (
 						<motion.button
 							key={index}
@@ -182,7 +185,7 @@ const Hero: React.FC = () => {
 							whileTap={{ scale: 0.9 }}
 						/>
 					))}
-				</Notch>
+				</div>
 			</motion.div>
 		</Section>
 	);
