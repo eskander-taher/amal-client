@@ -44,7 +44,7 @@ const getNavItems = (t: (key: string) => string) => {
 			href: "/news",
 			label: t("news"),
 			submenu: [
-				{ href: "/news", label: t("news") },
+				{ href: "/news", label: t("latest_news") }, 
 				{ href: "/recipes", label: t("recipes") },
 			],
 		},
