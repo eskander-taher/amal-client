@@ -66,7 +66,7 @@ export default function NavBar() {
 		<nav
 			className={`${
 				isAdminPath ? "hidden" : ""
-			} fixed top-0 z-50 px-10 flex w-full bg-white shadow-sm`}
+			} fixed top-0 z-50 px-10 flex w-full bg-white`}
 		>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}

@@ -9,10 +9,8 @@ import {
 	FaLinkedin,
 	FaTwitter,
 	FaWhatsapp,
-	FaTelegram,
 	FaMapMarkerAlt,
 	FaPhone,
-
 } from "react-icons/fa";
 import Newsletter from "@/components/Newsletter";
 
@@ -21,22 +19,9 @@ export default function Footer() {
 	return (
 		<>
 			<Newsletter />
-			<footer className="bg-white text-black pt-16 pb-8">
+			<footer className="bg-white text-black pt-20 pb-8">
 				<div className="max-w-7xl mx-auto px-4">
 					<div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-12 lg:gap-16">
-						{/* Logo*/}
-						<div className="flex flex-col items-center lg:items-end space-y-6 order-first lg:order-last flex-1 md:basis-1/2 lg:basis-1/3">
-							<div className="text-center lg:text-right">
-								<Image
-									src="/footer_AKG_vert_logo.svg"
-									alt="Amal Al Khair logo"
-									width={300}
-									height={300}
-									className="mb-4 mx-auto lg:mx-0"
-								/>
-							</div>
-						</div>
-
 						{/* Contact Info */}
 						<div className="relative">
 							<h3 className="text-xl font-bold mb-6 text-black">
@@ -191,6 +176,25 @@ export default function Footer() {
 									</TransitionLink>
 								</div>
 							</div>
+						</div>
+
+						{/* Logo*/}
+						<div className="flex flex-col justify-between items-start w-md relative">
+							<div className="text-center relative -top-8">
+								<Image
+									src="/AKG_Logo_Horizontal.svg"
+									alt="Amal Al Khair logo"
+									width={450}
+									height={200}
+								/>
+							</div>
+
+							<p className="text-justify border-t border-gray-500 pt-6">
+								مجموعة أمل الخير القابضة هي مجموعة سعودية رائدة تلتزم بالتميز
+								والابتكار في قطاعات الدواجن والأعلاف والأسماك والتمور. نؤمن بأن
+								الشفافية والجودة هما أساس نجاحنا، ونعمل على بناء شراكات طويلة الأمد
+								تحقق قيمة مستدامة لمجتمعنا وعملائنا.
+							</p>
 						</div>
 					</div>
 				</div>

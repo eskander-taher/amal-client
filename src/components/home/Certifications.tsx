@@ -21,47 +21,43 @@ export default function Certifications() {
 	const t = useTranslations("Certifications");
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
-	const [curveX, setCurveX] = useState(0);
-	const [curveWidth, setCurveWidth] = useState(20);
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+	// const [curveX, setCurveX] = useState(0);
+	// const [curveWidth, setCurveWidth] = useState(20);
 
-	useEffect(() => {
-		if (hoveredIndex !== null && logoRefs.current[hoveredIndex]) {
-			const section = sectionRef.current;
-			const logo = logoRefs.current[hoveredIndex];
-			if (section && logo) {
-				const sectionRect = section.getBoundingClientRect();
-				const logoRect = logo.getBoundingClientRect();
+	// useEffect(() => {
+	// 	if (hoveredIndex !== null && logoRefs.current[hoveredIndex]) {
+	// 		const section = sectionRef.current;
+	// 		const logo = logoRefs.current[hoveredIndex];
+	// 		if (section && logo) {
+	// 			const sectionRect = section.getBoundingClientRect();
+	// 			const logoRect = logo.getBoundingClientRect();
 
-				const centerX = logoRect.left + logoRect.width / 2;
-				const relativeX = centerX - sectionRect.left;
+	// 			const centerX = logoRect.left + logoRect.width / 2;
+	// 			const relativeX = centerX - sectionRect.left;
 
-				setCurveX(relativeX);
-				setCurveWidth(logoRect.width);
-			}
-		}
-	}, [hoveredIndex]);
+	// 			setCurveX(relativeX);
+	// 			setCurveWidth(logoRect.width);
+	// 		}
+	// 	}
+	// }, [hoveredIndex]);
 
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-gray-200 text-white relative">
 			{/* Bottom static tab */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2">
 				<TransitionLink href="/about">
-					<div className="downward-tab text-yellow-500" style={{ paddingInline: "50px"}}>
+					<div className="downward-tab text-yellow-500" style={{ paddingInline: "50px" }}>
 						{tHomePage("moreAboutButton")}
 					</div>
 				</TransitionLink>
 			</div>
 
-			<div className="w-full">
+			<div className="w-full relative">
 				{/* Heading */}
 				<div className="text-center mb-12 lg:mb-16">
-					<h2 className="text-4xl font-bold mb-6 text-gray-900">
-						{t("title")}
-					</h2>
-					<p className="text-xl max-w-4xl mx-auto text-gray-600">
-						{t("description")}
-					</p>
+					<h2 className="text-4xl font-bold mb-6 text-gray-900">{t("title")}</h2>
+					<p className="text-xl max-w-4xl mx-auto text-gray-600">{t("description")}</p>
 				</div>
 
 				{/* Logos */}
@@ -71,9 +67,7 @@ export default function Certifications() {
 							key={logo.id}
 							ref={(el: any) => (logoRefs.current[index] = el)}
 							onMouseEnter={() => setHoveredIndex(index)}
-							className={`group transition-all duration-300 cursor-pointer hover:scale-110 ${
-								hoveredIndex === index ? "opacity-100" : "opacity-20"
-							}`}
+							className={`group transition-all duration-300 cursor-pointer hover:scale-110`}
 						>
 							<div className="h-32 w-contain flex items-center justify-center">
 								<Image
@@ -81,18 +75,21 @@ export default function Certifications() {
 									alt={logo.alt}
 									width={0}
 									height={0}
-									className="h-full w-auto duration-300"
+									className={`h-full w-auto duration-300 transition-all hover:grayscale-0 grayscale ${
+										hoveredIndex === index ? "" : ""
+									}`}
 								/>
 							</div>
 						</div>
 					))}
 				</div>
+				<div className="h-[1px] w-full bg-black absolute sm:-bottom-20 -bottom-15 lg:-bottom-15 xl:-bottom-25 opacity-20"></div>
 			</div>
 
 			{/* tab (notch) */}
-			{hoveredIndex !== null && (
+			{/* {hoveredIndex !== null && (
 				<div
-					className="absolute animate-curve"
+					className="absolute animate-curve -bottom-5"
 					style={{
 						width: `${curveWidth}px`,
 						left: `${curveX - curveWidth / 2}px`,
@@ -102,10 +99,10 @@ export default function Certifications() {
 				>
 					<div
 						className="upward-tab"
-						style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+						style={{ "--tab-color": "#E5E7EB", borderTop: "1px solid black" } as React.CSSProperties}
 					/>
 				</div>
-			)}
+			)} */}
 		</Section>
 	);
 }
