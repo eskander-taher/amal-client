@@ -91,7 +91,7 @@ export default async function RootLayout({
 					<Providers>
 						<div className="min-h-screen flex flex-col">
 							<NavBar />
-							<main>{children}</main>
+							<main className="pt-20">{children}</main>
 							<Footer />
 						</div>
 					</Providers>

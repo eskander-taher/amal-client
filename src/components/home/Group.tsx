@@ -4,7 +4,6 @@ import Section from "../Section";
 import { useTranslations } from "next-intl";
 import CardLink from "../CardLink";
 import { motion } from "framer-motion";
-import { TransitionLink } from "../TransitionLink";
 
 type CardData = {
 	image: string;
@@ -52,7 +51,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="group relative w-full h-[400px] rounded-lg bg-[#E5E7EB] p-6 flex flex-col"
+							className="relative w-full h-[400px] rounded-lg bg-[#E5E7EB] p-6 flex flex-col"
 							initial={{ x: -300, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: index / 2, ease: "easeInOut" }}
@@ -65,7 +64,7 @@ const GroupSection: React.FC = () => {
 									alt={t(card.titleKey)}
 									width={140}
 									height={140}
-									className="invert object-contain w-full h-full p-2 transition-transform duration-300 group-hover:scale-150"
+									className="invert object-contain w-full h-full p-2 transition-transform duration-300 hover:scale-150"
 								/>
 							</div>
 

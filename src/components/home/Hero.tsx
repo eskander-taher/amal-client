@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
 	// Show loading state
 	if (loading) {
 		return (
-			<Section id="hero" className="relative w-full h-[calc(100vh-91px)] bg-black overflow-hidden">
+			<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
 				<div className="absolute inset-0 z-10 flex items-center justify-center">
 					<div className="text-white text-center">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
@@ -90,7 +90,7 @@ const Hero: React.FC = () => {
 	return (
 		<Section
 			id="hero"
-			className="relative w-full h-[calc(100vh-75px)] bg-black overflow-hidden"
+			className="relative w-full h-screen bg-black overflow-hidden"
 		>
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (

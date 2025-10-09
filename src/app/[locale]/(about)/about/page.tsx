@@ -4,7 +4,6 @@ import React from "react";
 import CompanyOverview from "@/components/about/CompanyOverview";
 import AboutImageSection from "@/components/about/AboutImageSection";
 import DateCompanySection from "@/components/about/DateCompanySection";
-import ContactSection from "@/components/about/ContactSection";
 
 export default function page() {
   return (
@@ -14,7 +13,6 @@ export default function page() {
 			<AboutImageSection />
 			<CompanyOverview />
 			<DateCompanySection />
-			<ContactSection />
 		</div>
   );
 }

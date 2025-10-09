@@ -22,6 +22,16 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	cardLinkBackgroundColor,
 	cardBackgroundColor,
 }) => {
+	// Strip HTML tags and convert to plain text using DOM
+	const getPlainText = (html: string) => {
+		if (typeof window === 'undefined') return html; // SSR fallback
+		const div = document.createElement('div');
+		div.innerHTML = html;
+		return div.textContent || div.innerText || '';
+	};
+
+	const plainDescription = getPlainText(description);
+
 	return (
 		<div
 			className="bg-white p-3 rounded-lg overflow-hidden relative"
@@ -113,11 +123,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
 				{/* Title */}
 				<h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{title}</h3>
 
-				{/* Description */}
-				<div 
-					className="text-gray-600 line-clamp-3 leading-relaxed prose prose-sm max-w-none tiptap-content"
-					dangerouslySetInnerHTML={{ __html: description }}
-				/>
+			{/* Description */}
+			<p className="text-gray-600 line-clamp-3 leading-relaxed">
+				{plainDescription}
+			</p>
 			</div>
 
 			{/* Card Link - positioned absolutely at bottom */}

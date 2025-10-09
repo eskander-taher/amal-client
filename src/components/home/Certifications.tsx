@@ -7,12 +7,12 @@ import { useTranslations } from "next-intl";
 import { TransitionLink } from "../TransitionLink";
 
 const logos = [
+	{ id: 5, src: "/images/IAF.svg", alt: "Logo 5" },
+	{ id: 4, src: "/images/SMG_HACCP.svg", alt: "Logo 4" },
+	{ id: 6, src: "/images/SMG_ISO.svg", alt: "Logo 6" },
 	{ id: 1, src: "/images/saudi_accreditation.svg", alt: "Logo 1" },
 	{ id: 2, src: "/images/saudi_made.svg", alt: "Logo 2" },
 	{ id: 3, src: "/images/saudi_GAP.svg", alt: "Logo 3" },
-	{ id: 4, src: "/images/SMG_HACCP.svg", alt: "Logo 4" },
-	{ id: 5, src: "/images/IAF.svg", alt: "Logo 5" },
-	{ id: 6, src: "/images/SMG_ISO.svg", alt: "Logo 6" },
 	{ id: 7, src: "/images/halal.svg", alt: "Logo 7" },
 ];
 
@@ -22,7 +22,7 @@ export default function Certifications() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [curveX, setCurveX] = useState(0);
-	const [curveWidth, setCurveWidth] = useState(60);
+	const [curveWidth, setCurveWidth] = useState(20);
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
 
 	useEffect(() => {
@@ -37,51 +37,51 @@ export default function Certifications() {
 				const relativeX = centerX - sectionRect.left;
 
 				setCurveX(relativeX);
-				setCurveWidth(logoRect.width * 1.5);
+				setCurveWidth(logoRect.width);
 			}
 		}
 	}, [hoveredIndex]);
 
-
 	return (
-		<Section id="certifications" ref={sectionRef} className="bg-[#353535] text-white relative">
+		<Section id="certifications" ref={sectionRef} className="bg-gray-200 text-white relative">
 			{/* Bottom static tab */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2">
 				<TransitionLink href="/about">
-					<div className="downward-tab text-black" style={{paddingInline: "50px"}}>{tHomePage("moreAboutButton")}</div>
+					<div className="downward-tab text-yellow-500" style={{ paddingInline: "50px"}}>
+						{tHomePage("moreAboutButton")}
+					</div>
 				</TransitionLink>
 			</div>
 
 			<div className="w-full">
 				{/* Heading */}
 				<div className="text-center mb-12 lg:mb-16">
-					<h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 text-white">
+					<h2 className="text-4xl font-bold mb-6 text-gray-900">
 						{t("title")}
 					</h2>
-					<p className="text-lg lg:text-xl max-w-4xl mx-auto text-gray-300 leading-relaxed">
+					<p className="text-xl max-w-4xl mx-auto text-gray-600">
 						{t("description")}
 					</p>
 				</div>
 
 				{/* Logos */}
-				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-8 lg:gap-12 items-center justify-items-center">
+				<div className="flex w-full justify-between items-center gap-10">
 					{logos.map((logo, index) => (
 						<div
 							key={logo.id}
 							ref={(el: any) => (logoRefs.current[index] = el)}
 							onMouseEnter={() => setHoveredIndex(index)}
 							className={`group transition-all duration-300 cursor-pointer hover:scale-110 ${
-								hoveredIndex === index ? "opacity-100" : "opacity-60"
+								hoveredIndex === index ? "opacity-100" : "opacity-20"
 							}`}
 						>
-							<div className="h-28 lg:h-32 xl:h-36 flex items-center justify-center">
+							<div className="h-32 w-contain flex items-center justify-center">
 								<Image
 									src={logo.src}
 									alt={logo.alt}
 									width={0}
 									height={0}
-									className="object-contain h-full w-auto duration-300"
-									sizes="100vw"
+									className="h-full w-auto duration-300"
 								/>
 							</div>
 						</div>
