@@ -12,6 +12,7 @@ export default function CardLink({
 	hoverText = "عرض المزيد",
 	backgroundColor = "#E5E7EB",
 }: CardLinkProps) {
+
 	return (
 		<Link
 			href={href}
@@ -21,9 +22,8 @@ export default function CardLink({
 					border-t-r-lg
 					transition-all duration-300 ease-in-out
 					cursor-pointer
-					hover:w-30
+					group-hover:w-30
 					flex items-center justify-center
-					group
 					overflow-visible
 				"
 			style={{
@@ -48,7 +48,7 @@ export default function CardLink({
 				>
 					{hoverText}
 				</div>
-			</div> 
+			</div>
 
 			{/* Top pseudo-element equivalent */}
 			<div

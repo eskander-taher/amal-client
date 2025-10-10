@@ -147,14 +147,14 @@ export default function RecipeDetailPage() {
 										height={360}
 										className="w-full h-auto shadow-lg"
 										style={{
-											maskImage: 'url(/recipe_details.webp)',
-											maskSize: 'contain',
-											maskPosition: 'center',
-											maskRepeat: 'no-repeat',
-											WebkitMaskImage: 'url(/recipe_details.webp)',
-											WebkitMaskSize: 'contain',
-											WebkitMaskPosition: 'center',
-											WebkitMaskRepeat: 'no-repeat'
+											maskImage: "url(/recipe_details.webp)",
+											maskSize: "contain",
+											maskPosition: "center",
+											maskRepeat: "no-repeat",
+											WebkitMaskImage: "url(/recipe_details.webp)",
+											WebkitMaskSize: "contain",
+											WebkitMaskPosition: "center",
+											WebkitMaskRepeat: "no-repeat",
 										}}
 										priority
 									/>
@@ -189,31 +189,43 @@ export default function RecipeDetailPage() {
 						{/* Nutrition Info */}
 						{recipe.nutritionInfo && (
 							<div className="mt-8">
-								<h3 className="text-lg font-bold mb-3 text-gray-900">القيم الغذائية (لكل حصة)</h3>
+								<h3 className="text-lg font-bold mb-3 text-gray-900">
+									القيم الغذائية (لكل حصة)
+								</h3>
 								<div className="bg-gray-50 p-4 rounded-lg">
 									<div className="grid grid-cols-2 gap-4 text-sm">
 										{recipe.nutritionInfo.calories && (
 											<div>
-												<span className="font-medium">السعرات الحرارية:</span>
-												<span className="float-left">{recipe.nutritionInfo.calories}</span>
+												<span className="font-medium">
+													السعرات الحرارية:
+												</span>
+												<span className="float-left">
+													{recipe.nutritionInfo.calories}
+												</span>
 											</div>
 										)}
 										{recipe.nutritionInfo.protein && (
 											<div>
 												<span className="font-medium">البروتين:</span>
-												<span className="float-left">{recipe.nutritionInfo.protein}ج</span>
+												<span className="float-left">
+													{recipe.nutritionInfo.protein}ج
+												</span>
 											</div>
 										)}
 										{recipe.nutritionInfo.carbs && (
 											<div>
 												<span className="font-medium">الكربوهيدرات:</span>
-												<span className="float-left">{recipe.nutritionInfo.carbs}ج</span>
+												<span className="float-left">
+													{recipe.nutritionInfo.carbs}ج
+												</span>
 											</div>
 										)}
 										{recipe.nutritionInfo.fat && (
 											<div>
 												<span className="font-medium">الدهون:</span>
-												<span className="float-left">{recipe.nutritionInfo.fat}ج</span>
+												<span className="float-left">
+													{recipe.nutritionInfo.fat}ج
+												</span>
 											</div>
 										)}
 									</div>
@@ -261,7 +273,11 @@ export default function RecipeDetailPage() {
 						{relatedRecipes.map((r) => (
 							<div className="min-w-[280px] max-w-[320px] snap-start" key={r._id}>
 								<RecipeCard
-									image={r.image ? getServerUrl(r.image) || "/poultry.webp" : "/poultry.webp"}
+									image={
+										r.image
+											? getServerUrl(r.image) || "/eggs_icon.svg"
+											: "/eggs_icon.svg"
+									}
 									imageAlt={r.title}
 									title={r.title}
 									description={r.description}

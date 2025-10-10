@@ -60,7 +60,7 @@ export default function NavBar() {
 		<nav
 			className={`${
 				isAdminPath ? "hidden" : ""
-			} fixed top-0 z-50 px-10 flex w-full bg-white`}
+			} fixed top-0 z-50 px-10 flex w-full bg-white shadow-md`}
 		>
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
@@ -94,7 +94,7 @@ export default function NavBar() {
 							/>
 						</TransitionLink>
 					</div>
-					<div className="absolute w-full z-40">
+					<div className="absolute w-full z-40 shadow-md">
 						<div
 							className="downward-tab "
 							style={{ width: "100%", height: "25px" }}

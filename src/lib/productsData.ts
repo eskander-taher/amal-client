@@ -41,7 +41,7 @@ export interface Product {
 export const productsData: Product[] = [
 	{
 		id: "ajwa-dates",
-		image: "/group/dates.webp",
+		image: "/group/dates_icon.svg",
 		title: "تمور عجوة مميزة",
 		description:
 			"تمور العجوة المميزة من المدينة المنورة، معروفة بمذاقها الاستثنائي وفوائدها الغذائية. مثالية للتصدير والأسواق المحلية.",
@@ -59,7 +59,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "tilapia-fish",
-		image: "/group/fish.webp",
+		image: "/group/fish_icon.svg",
 		title: "أسماك البلطي الطازجة",
 		description:
 			"أسماك بلطي مميزة تربى في مرافق الاستزراع المائي المتطورة لدينا، مما يضمن أعلى جودة وطزاجة لعملائنا.",
@@ -99,7 +99,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "premium-feed",
-		image: "/group/feed.webp",
+		image: "/group/feeds_icon.svg",
 		title: "أعلاف دواجن مميزة",
 		description:
 			"أعلاف متوازنة غذائياً مصممة خصيصاً للنمو الأمثل وصحة دجاج التسمين والدجاج البياض.",
@@ -117,7 +117,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "fresh-poultry",
-		image: "/group/poultry.webp",
+		image: "/group/eggs_icon.svg",
 		title: "بيض مزرعة طازج",
 		description:
 			"بيض طازج من الدرجة الأولى من دجاجنا الحر، منتج تحت رقابة جودة صارمة ومعايير سلامة الغذاء.",
@@ -157,7 +157,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "sukkary-dates",
-		image: "/group/dates.webp",
+		image: "/group/dates_icon.svg",
 		title: "تمور السكري",
 		description:
 			"تمور سكري مميزة معروفة بلونها الذهبي ومذاقها الحلو، مثالية للاستهلاك المحلي وأسواق التصدير.",
@@ -215,7 +215,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "salmon-fish",
-		image: "/group/fish.webp",
+		image: "/group/fish_icon.svg",
 		title: "سمك السلمون الطازج",
 		description:
 			"سمك سلمون مميز يربى في مرافق الاستزراع المائي المتطورة لدينا، مما يضمن أعلى جودة وطزاجة.",
@@ -255,7 +255,7 @@ export const productsData: Product[] = [
 	},
 	{
 		id: "broiler-feed",
-		image: "/group/feed.webp",
+		image: "/group/feeds_icon.svg",
 		title: "علف التسمين",
 		description: "علف متخصص لدجاج التسمين مصمم للنمو الأمثل والصحة مع تغذية متوازنة.",
 		category: "feed",

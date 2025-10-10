@@ -88,10 +88,7 @@ const Hero: React.FC = () => {
 	}
 
 	return (
-		<Section
-			id="hero"
-			className="relative w-full h-screen bg-black overflow-hidden"
-		>
+		<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
 			{/* Carousel Background Images */}
 			{carouselSlides.map((slide, index) => (
 				<div
@@ -112,13 +109,13 @@ const Hero: React.FC = () => {
 				</div>
 			))}
 
-		{/* Content */}
-		<div className="absolute inset-0 z-10 flex w-full h-full">
-			<div className="flex flex-col justify-center w-full md:w-1/2 h-full px-12 sm:px-16 lg:px-24">
-				<div
-					key={currentSlide}
-					className="transition-all duration-700 ease-in-out animate-fade-in"
-				>
+			{/* Content */}
+			<div className="absolute inset-0 z-10 flex w-full h-full">
+				<div className="flex flex-col justify-center w-full md:w-1/2 h-full px-12 sm:px-16 lg:px-24">
+					<div
+						key={currentSlide}
+						className="transition-all duration-700 ease-in-out animate-fade-in"
+					>
 						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-relaxed">
 							{currentSlideData.title}
 						</h1>
@@ -127,10 +124,12 @@ const Hero: React.FC = () => {
 						</p>
 						<TransitionLink
 							href={currentSlideData.href}
-							className={`bg-white flex justify-between items-center text-black w-30 rounded-full font-bold text-lg shadow-lg transition-all duration-300 hover:bg-gray-100 hover:shadow-xl group px-1.5 py-1 animate-fade-in-delay-2 ${local === "ar" ? "pr-5" : "pl-5"}`}
+							className={`relative group bg-white flex justify-between items-center text-black rounded-full font-bold text-lg shadow-lg px-1.5 py-1 animate-fade-in-delay-2 transition-[width,background,shadow] duration-300 ease-in-out overflow-hidden w-[44px] h-[44px] hover:w-[110px]`}
 						>
-							<p>{currentSlideData.buttonText}</p>
-							<div className="bg-yellow-500 hover:from-orange-500 hover:to-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+							<p className="absolute right-4 hidden group-hover:block whitespace-nowrap transition-all duration-900">
+								{currentSlideData.buttonText}
+							</p>
+							<div className="absolute left-1.5 bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
 								{local === "ar" ? (
 									<FaArrowLeftLong className="text-white text-sm" />
 								) : (
@@ -146,14 +145,14 @@ const Hero: React.FC = () => {
 			{/* Navigation Arrows */}
 			<button
 				onClick={prevSlide}
-				className="absolute hidden sm:block left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Previous slide"
 			>
 				<FaChevronLeft className="text-md" />
 			</button>
 			<button
 				onClick={nextSlide}
-				className="absolute hidden sm:block right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Next slide"
 			>
 				<FaChevronRight className="text-md" />
@@ -166,7 +165,10 @@ const Hero: React.FC = () => {
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.8, ease: "easeOut", delay: 1.0 }}
 			>
-				<div className="upward-tab flex items-center justify-center gap-3" style={{paddingInline:"30px"}}>
+				<div
+					className="upward-tab flex items-center justify-center gap-3"
+					style={{ paddingInline: "30px" }}
+				>
 					{carouselSlides.map((_, index) => (
 						<motion.button
 							key={index}

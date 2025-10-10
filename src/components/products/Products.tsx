@@ -15,42 +15,42 @@ const ProductsSection: React.FC = () => {
 
   const products: ProductCard[] = [
 		{
-			image: "/group/poultry.webp",
+			image: "/group/eggs_icon.svg",
 			titleKey: "featured1.title",
 			featured: true,
 		},
 		{
-			image: "/group/feed.webp",
+			image: "/group/feeds_icon.svg",
 			titleKey: "featured2.title",
 			featured: true,
 		},
 		{
-			image: "/group/fish.webp",
+			image: "/group/fish_icon.svg",
 			titleKey: "featured3.title",
 			featured: true,
 		},
 		{
-			image: "/group/dates.webp",
+			image: "/group/dates_icon.svg",
 			titleKey: "featured4.title",
 			featured: true,
 		},
 		{
-			image: "/group/feed.webp",
+			image: "/group/feeds_icon.svg",
 			titleKey: "featured2.title",
 			featured: true,
 		},
 		{
-			image: "/group/poultry.webp",
+			image: "/group/eggs_icon.svg",
 			titleKey: "featured1.title",
 			featured: true,
 		},
 		{
-			image: "/group/feed.webp",
+			image: "/group/feeds_icon.svg",
 			titleKey: "featured2.title",
 			featured: true,
 		},
 		{
-			image: "/group/poultry.webp",
+			image: "/group/eggs_icon.svg",
 			titleKey: "featured1.title",
 			featured: true,
 		},

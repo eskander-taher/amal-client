@@ -28,28 +28,28 @@ export default function Page() {
 
 	const moreRecipes = [
 		{
-			image: "/poultry.webp",
+			image: "/eggs_icon.svg",
 			title: "بان كيك بالشوكولاتة",
 			description: "بان كيك هش مزين برذاذ الشوكولاتة.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "حلى",
 		},
 		{
-			image: "/poultry.webp",
+			image: "/eggs_icon.svg",
 			title: "كيك الزبادي بالتفاح",
 			description: "كيك رطب بالتفاح والزبادي بطعم منزلي.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "كيك",
 		},
 		{
-			image: "/poultry.webp",
+			image: "/eggs_icon.svg",
 			title: "تشيز كيك بالفواكه",
 			description: "تشيز كيك خفيف مزيّن بفاكهة طازجة.",
 			href: "/recipes/yogurt-apple-cake",
 			badgeText: "حلى",
 		},
 		{
-			image: "/poultry.webp",
+			image: "/eggs_icon.svg",
 			title: "كيكة الكراميل",
 			description: "كيك لذيذ بطبقة كراميل ذهبية.",
 			href: "/recipes/yogurt-apple-cake",

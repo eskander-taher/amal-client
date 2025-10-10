@@ -26,7 +26,7 @@ export default function Page() {
 			<Section>
 				<div className="flex justify-start gap-10 items-center">
 					<Image
-						src="/group/feed.webp"
+						src="/group/feeds_icon.svg"
 						alt="Poultry Company Logo"
 						width={500}
 						height={500}
