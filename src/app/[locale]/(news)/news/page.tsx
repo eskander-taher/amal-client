@@ -51,7 +51,6 @@ export default function NewsPage() {
 											: ""
 									}
 									cardBackgroundColor="#F2F2EF"
-									cardLinkBackgroundColor="white"
 								/>
 							))}
 						</div>

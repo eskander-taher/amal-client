@@ -53,7 +53,6 @@ const News: React.FC = () => {
 										: ""
 								}
 								cardBackgroundColor="#F2F2EF"
-								cardLinkBackgroundColor="white"
 							/>
 						))}
 					</div>

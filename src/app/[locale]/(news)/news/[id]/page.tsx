@@ -225,7 +225,6 @@ export default function NewsDetailPage() {
 											: ""
 									}
 									cardBackgroundColor="#F2F2EF"
-									cardLinkBackgroundColor="white"
 								/>
 							))}
 					</div>
