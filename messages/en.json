@@ -73,6 +73,9 @@
 		"homeDescription": "Discover our distinguished and high-quality product collection",
 		"learnMore": "Learn More",
 		"featuredBadge": "Featured",
+		"filters": {
+			"all": "All Products"
+		},
 		"poultry": {
 			"fresh_breast_cubes": "Fresh Chicken Breast - Cubes",
 			"fresh_breast_fillet": "Fresh Chicken Breast Fillet",

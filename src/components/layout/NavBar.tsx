@@ -30,16 +30,10 @@ const getNavItems = (t: (key: string) => string) => {
 				{ href: "/dates", label: t("dates_company") },
 			],
 		},
-		{
-			href: "/products",
-			label: t("products"),
-			submenu: [
-				{ href: "/poultry-products", label: t("poultry_products") },
-				{ href: "/feed-products", label: t("feed_products") },
-				{ href: "/fish-products", label: t("fish_products") },
-				{ href: "/dates-products", label: t("dates_products") },
-			],
-		},
+	{
+		href: "/products",
+		label: t("products"),
+	},
 		{
 			href: "/news",
 			label: t("news"),

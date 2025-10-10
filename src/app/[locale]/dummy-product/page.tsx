@@ -166,12 +166,12 @@ export default function ProductsPage() {
 						))}
 					</div>
 
-					{/* View More Button */}
-					<div className="flex justify-end">
-						<Link href="/poultry-products" className="bg-[#F9AE42] hover:bg-[#ed8f07] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
-							مزيد من المنتجات
-						</Link>
-					</div>
+				{/* View More Button */}
+				<div className="flex justify-end">
+					<Link href="/products" className="bg-[#F9AE42] hover:bg-[#ed8f07] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
+						مزيد من المنتجات
+					</Link>
+				</div>
 				</div>
 			</Section>
 		</div>

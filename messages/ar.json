@@ -73,6 +73,9 @@
 		"homeDescription": "اكتشف مجموعة منتجاتنا المميزة والعالية الجودة",
 		"learnMore": "اعرف المزيد",
 		"featuredBadge": "مميز",
+		"filters": {
+			"all": "جميع المنتجات"
+		},
 		"poultry": {
 			"fresh_breast_cubes": "صدور دجاج الطازج - مكعبات",
 			"fresh_breast_fillet": "فيليه صدر دجاج طازج",
