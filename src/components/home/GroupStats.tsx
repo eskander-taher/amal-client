@@ -74,8 +74,8 @@ const GroupStats: React.FC = () => {
 								<Image
 									src={stat.image}
 									alt={t(stat.titleKey)}
-									width={180}
-									height={180}
+									width={130}
+									height={130}
 									className="object-contain"
 								/>
 							</div>
