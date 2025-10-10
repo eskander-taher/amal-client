@@ -69,17 +69,19 @@ export default function Certifications() {
 							onMouseEnter={() => setHoveredIndex(index)}
 							className={`group transition-all duration-300 cursor-pointer hover:scale-110`}
 						>
-							<div className="h-32 w-contain flex items-center justify-center">
-								<Image
-									src={logo.src}
-									alt={logo.alt}
-									width={0}
-									height={0}
-									className={`h-full w-auto duration-300 transition-all hover:grayscale-0 grayscale ${
-										hoveredIndex === index ? "" : ""
-									}`}
-								/>
-							</div>
+							<TransitionLink href="/certifications">
+								<div className="h-32 w-contain flex items-center justify-center">
+									<Image
+										src={logo.src}
+										alt={logo.alt}
+										width={0}
+										height={0}
+										className={`h-full w-auto duration-300 transition-all hover:grayscale-0 grayscale ${
+											hoveredIndex === index ? "" : ""
+										}`}
+									/>
+								</div>
+							</TransitionLink>
 						</div>
 					))}
 				</div>

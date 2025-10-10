@@ -97,7 +97,7 @@ const GroupSection: React.FC = () => {
 							</h3>
 
 							{/* Description Section - Flexible height */}
-							<p className="text-sm text-gray-600 flex-1 text-justify leading-relaxed">
+							<p className="text-sm text-gray-600 flex-1 text-center">
 								{t(card.descriptionKey).slice(0, 150)} <span>...</span>
 							</p>
 
