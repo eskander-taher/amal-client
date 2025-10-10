@@ -112,13 +112,13 @@ const Hero: React.FC = () => {
 				</div>
 			))}
 
-			{/* Content */}
-			<div className="relative z-10 flex w-full h-full">
-				<div className="flex flex-col justify-center w-full md:w-1/2 h-full pb-[15%]">
-					<div
-						key={currentSlide}
-						className="transition-all duration-700 ease-in-out animate-fade-in"
-					>
+		{/* Content */}
+		<div className="absolute inset-0 z-10 flex w-full h-full">
+			<div className="flex flex-col justify-center w-full md:w-1/2 h-full px-12 sm:px-16 lg:px-24">
+				<div
+					key={currentSlide}
+					className="transition-all duration-700 ease-in-out animate-fade-in"
+				>
 						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-relaxed">
 							{currentSlideData.title}
 						</h1>

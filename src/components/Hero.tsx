@@ -112,10 +112,7 @@ export default function Hero({
 
 	const breadcrumbs = generateBreadcrumbs();
 
-	const isProductPage =
-		pathname.endsWith("products") ||
-		pathname.endsWith("jobs") ||
-		pathname.endsWith("certifications");
+	const isProductPage = pathname.endsWith("products") || pathname.endsWith("jobs");
 
 	return (
 		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
@@ -167,11 +164,13 @@ export default function Hero({
 													<div className="absolute w-full left-1/2 transform -translate-x-1/2 bottom-0">
 														<div
 															className="upward-tab"
-															style={{
-																"--tab-color": isProductPage
-																	? "#E5E7EB"
-																	: "#FFFFFF",
-															} as React.CSSProperties}
+															style={
+																{
+																	"--tab-color": isProductPage
+																		? "#E5E7EB"
+																		: "#FFFFFF",
+																} as React.CSSProperties
+															}
 														></div>
 													</div>
 												</>
