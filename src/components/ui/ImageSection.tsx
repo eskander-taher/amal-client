@@ -9,7 +9,7 @@ interface ImageSectionProps {
 const ImageSection: React.FC<ImageSectionProps> = ({
 	src = "/placeholder.webp",
 	topColor = "#FFFFFF",
-	bottomColor = "#E5E7EB",
+	bottomColor = "#f5f5f7",
 }) => {
 	return (
 		<section className="relative bg-white">

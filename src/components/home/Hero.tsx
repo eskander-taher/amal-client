@@ -176,7 +176,7 @@ const Hero: React.FC = () => {
 							className={`w-2.5 h-2.5 -mb-0.5 rounded-full transition-all duration-300 cursor-pointer  ${
 								index === currentSlide
 									? "bg-[#E3A347] scale-125"
-									: "bg-gray-200 hover:bg-gray-200/70"
+									: "bg-[#f5f5f7] hover:bg-[#f5f5f7]/70"
 							}`}
 							aria-label={`Go to slide ${index + 1}`}
 							initial={{ scale: 0 }}

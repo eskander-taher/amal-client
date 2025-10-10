@@ -32,7 +32,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	const plainDescription = getPlainText(description);
 
 	return (
-		<div className="bg-gray-200 group p-3 rounded-lg overflow-hidden relative">
+		<div className="bg-[#f5f5f7] group p-3 rounded-lg overflow-hidden relative">
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image
@@ -57,7 +57,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						"
 						style={{
 							borderBottomRightRadius: "10px",
-							backgroundColor: "#E5E7EB",
+							backgroundColor: "#f5f5f7",
 						}}
 					>
 						<span className="text-xs text-gray-500 font-semibold mb-3">
@@ -67,7 +67,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						<div
 							className="absolute bottom-0 left-0 translate-y-full w-5 h-5"
 							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, #E5E7EB 0%)`,
+								background: `radial-gradient(circle at bottom right, transparent 70%, #f5f5f7 0%)`,
 							}}
 						/>
 
@@ -75,7 +75,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						<div
 							className="absolute top-0 right-0 translate-x-full w-3 h-3"
 							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, #E5E7EB 0%)`,
+								background: `radial-gradient(circle at bottom right, transparent 70%, #f5f5f7 0%)`,
 							}}
 						/>
 					</div>
@@ -93,14 +93,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
 						rounded-tl-xl
 					"
 					style={{
-						backgroundColor: "#E5E7EB",
+						backgroundColor: "#f5f5f7",
 					}}
 				>
 					{/* Top pseudo-element equivalent */}
 					<div
 						className="absolute bottom-0 left-0 -translate-x-full w-2 h-2"
 						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, #E5E7EB 0%)`,
+							background: `radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)`,
 						}}
 					/>
 
@@ -108,7 +108,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 					<div
 						className="absolute top-0 right-0 -translate-y-full  w-2 h-2"
 						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, #E5E7EB 0%)`,
+							background: `radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)`,
 						}}
 					/>
 				</div>

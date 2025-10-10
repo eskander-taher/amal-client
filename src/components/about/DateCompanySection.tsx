@@ -2,7 +2,7 @@ import Section from "../Section";
 
 export default function DateCompanySection() {
   return (
-		<Section className="relative text-[#686868] text-[18px] font-normal bg-gray-200 ">
+		<Section className="relative text-[#686868] text-[18px] font-normal bg-[#f5f5f7] ">
 			<p className="text-justify">
 				تخصصت شركة أمل الخير للتمور في تصنيع وتصدير التمو ذات الجودة العالية ويقع مقرها في
 				الرياض . وبفضل الخبرة التي تراكمت لدى المجموعة على مدى عشر سنوات , واستطاعت أن تؤسس

@@ -43,17 +43,17 @@ export default function ProductsPage() {
 								الصحية والبروتين عالي الجودة.
 							</p>
 							<div className="space-y-3">
-								<div className="flex justify-between items-center py-2 border-b border-gray-200">
+								<div className="flex justify-between items-center py-2 border-b border-[#f5f5f7]">
 									<span className="text-gray-600">العلامة التجارية:</span>
 									<span className="font-semibold text-gray-900">أمل الخير</span>
 								</div>
-								<div className="flex justify-between items-center py-2 border-b border-gray-200">
+								<div className="flex justify-between items-center py-2 border-b border-[#f5f5f7]">
 									<span className="text-gray-600">الوزن:</span>
 									<span className="font-semibold text-gray-900">
 										750 جم - 1 كجم
 									</span>
 								</div>
-								<div className="flex justify-between items-center py-2 border-b border-gray-200">
+								<div className="flex justify-between items-center py-2 border-b border-[#f5f5f7]">
 									<span className="text-gray-600">النوع:</span>
 									<span className="font-semibold text-gray-900">دجاج طازج</span>
 								</div>
@@ -107,7 +107,7 @@ export default function ProductsPage() {
 								].map((item, index) => (
 									<div
 										key={index}
-										className="flex justify-between items-center py-3 border-b border-gray-200 last:border-b-0"
+										className="flex justify-between items-center py-3 border-b border-[#f5f5f7] last:border-b-0"
 									>
 										<span className="text-gray-700 font-medium">
 											{item.name}
@@ -129,7 +129,7 @@ export default function ProductsPage() {
 			</Section>
 
 			{/* More Products Section */}
-			<Section className="py-16 bg-gray-200">
+			<Section className="py-16 bg-[#f5f5f7]">
 				<div className="container mx-auto px-4">
 					{/* Section Header */}
 					<div className="text-center mb-12">
@@ -166,12 +166,15 @@ export default function ProductsPage() {
 						))}
 					</div>
 
-				{/* View More Button */}
-				<div className="flex justify-end">
-					<Link href="/products" className="bg-[#F9AE42] hover:bg-[#ed8f07] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg">
-						مزيد من المنتجات
-					</Link>
-				</div>
+					{/* View More Button */}
+					<div className="flex justify-end">
+						<Link
+							href="/products"
+							className="bg-[#F9AE42] hover:bg-[#ed8f07] text-white font-semibold py-3 px-6 rounded-full transition-colors duration-300 shadow-md hover:shadow-lg"
+						>
+							مزيد من المنتجات
+						</Link>
+					</div>
 				</div>
 			</Section>
 		</div>

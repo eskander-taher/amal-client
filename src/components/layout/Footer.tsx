@@ -200,7 +200,7 @@ export default function Footer() {
 				</div>
 
 				{/* Copyright */}
-				<div className="border-t border-gray-200 mt-12 pt-8">
+				<div className="border-t border-[#f5f5f7] mt-12 pt-8">
 					<div className="max-w-7xl mx-auto px-4 text-center">
 						<p className="text-gray-600 text-sm">{t("rights")}</p>
 					</div>

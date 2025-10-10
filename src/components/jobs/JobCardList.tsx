@@ -33,7 +33,7 @@ const cards: Card[] = [
 
 export default function JobCardList() {
 	return (
-		<Section className="bg-gray-200">
+		<Section className="bg-[#f5f5f7]">
 			<div className="container mx-auto px-4 py-8">
 				<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
 					{cards.map((card, index) => (

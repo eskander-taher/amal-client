@@ -43,7 +43,7 @@ export default function Certifications() {
 	// }, [hoveredIndex]);
 
 	return (
-		<Section id="certifications" ref={sectionRef} className="bg-gray-200 text-white relative">
+		<Section id="certifications" ref={sectionRef} className="bg-[#f5f5f7] text-white relative">
 			{/* Bottom static tab */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2">
 				<TransitionLink href="/about">
@@ -101,7 +101,7 @@ export default function Certifications() {
 				>
 					<div
 						className="upward-tab"
-						style={{ "--tab-color": "#E5E7EB", borderTop: "1px solid black" } as React.CSSProperties}
+						style={{ "--tab-color": "#f5f5f7", borderTop: "1px solid black" } as React.CSSProperties}
 					/>
 				</div>
 			)} */}

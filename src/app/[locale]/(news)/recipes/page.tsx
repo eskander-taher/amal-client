@@ -153,7 +153,7 @@ export default function RecipesPage() {
 			</Section>
 
 			{/* Recipes Grid Section */}
-			<Section className="bg-gray-200">
+			<Section className="bg-[#f5f5f7]">
 				<div className="container mx-auto px-4 py-10">
 					{/* Loading State */}
 					{isLoading && (

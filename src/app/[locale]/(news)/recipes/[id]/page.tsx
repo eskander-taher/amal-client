@@ -265,7 +265,7 @@ export default function RecipeDetailPage() {
 
 			{/* More recipes */}
 			{relatedRecipes.length > 0 && (
-				<Section className="bg-gray-200">
+				<Section className="bg-[#f5f5f7]">
 					<h3 className="text-2xl text-center font-extrabold text-gray-900 mb-6">
 						مزيد من وصفات أمل الخير
 					</h3>

@@ -167,7 +167,7 @@ export default function Hero({
 															style={
 																{
 																	"--tab-color": isProductPage
-																		? "#E5E7EB"
+																		? "#f5f5f7"
 																		: "#FFFFFF",
 																} as React.CSSProperties
 															}

@@ -295,10 +295,13 @@ export default function AdminRecipesPage() {
 						) : (
 							<div className="space-y-4">
 								{recipes.map((recipe) => (
-									<div key={recipe._id} className="border border-gray-200 rounded-lg p-4">
+									<div
+										key={recipe._id}
+										className="border border-[#f5f5f7] rounded-lg p-4"
+									>
 										<div className="flex items-start gap-4">
 											{/* Recipe Image */}
-											<div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+											<div className="w-20 h-20 bg-[#f5f5f7] rounded-lg overflow-hidden flex-shrink-0">
 												{recipe.image ? (
 													<img
 														src={getServerUrl(recipe.image)}
@@ -340,7 +343,9 @@ export default function AdminRecipesPage() {
 																</span>
 															)}
 															<span className="px-2 py-1 bg-gray-100 rounded text-xs">
-																{getDifficultyLabel(recipe.difficulty || "easy")}
+																{getDifficultyLabel(
+																	recipe.difficulty || "easy"
+																)}
 															</span>
 															<span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs">
 																{recipe.category}
@@ -402,7 +407,12 @@ export default function AdminRecipesPage() {
 											<input
 												type="text"
 												value={formData.title}
-												onChange={(e) => setFormData({...formData, title: e.target.value})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														title: e.target.value,
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 												placeholder="أدخل عنوان الوصفة..."
 												required
@@ -416,7 +426,12 @@ export default function AdminRecipesPage() {
 											<input
 												type="text"
 												value={formData.category}
-												onChange={(e) => setFormData({...formData, category: e.target.value})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														category: e.target.value,
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 												placeholder="مثل: كيك، حلى، مقبلات..."
 												required
@@ -431,7 +446,12 @@ export default function AdminRecipesPage() {
 										</label>
 										<textarea
 											value={formData.description}
-											onChange={(e) => setFormData({...formData, description: e.target.value})}
+											onChange={(e) =>
+												setFormData({
+													...formData,
+													description: e.target.value,
+												})
+											}
 											rows={3}
 											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 											placeholder="أدخل وصف الوصفة..."
@@ -449,7 +469,12 @@ export default function AdminRecipesPage() {
 												type="number"
 												min="1"
 												value={formData.prepTime}
-												onChange={(e) => setFormData({...formData, prepTime: parseInt(e.target.value) || 15})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														prepTime: parseInt(e.target.value) || 15,
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 												required
 											/>
@@ -463,7 +488,12 @@ export default function AdminRecipesPage() {
 												type="number"
 												min="0"
 												value={formData.cookTime}
-												onChange={(e) => setFormData({...formData, cookTime: parseInt(e.target.value) || 0})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														cookTime: parseInt(e.target.value) || 0,
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 											/>
 										</div>
@@ -476,7 +506,12 @@ export default function AdminRecipesPage() {
 												type="number"
 												min="1"
 												value={formData.servings}
-												onChange={(e) => setFormData({...formData, servings: parseInt(e.target.value) || 4})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														servings: parseInt(e.target.value) || 4,
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 											/>
 										</div>
@@ -487,7 +522,15 @@ export default function AdminRecipesPage() {
 											</label>
 											<select
 												value={formData.difficulty}
-												onChange={(e) => setFormData({...formData, difficulty: e.target.value as "easy" | "medium" | "hard"})}
+												onChange={(e) =>
+													setFormData({
+														...formData,
+														difficulty: e.target.value as
+															| "easy"
+															| "medium"
+															| "hard",
+													})
+												}
 												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 											>
 												<option value="easy">سهل</option>
@@ -505,7 +548,12 @@ export default function AdminRecipesPage() {
 										<input
 											type="file"
 											accept="image/*"
-											onChange={(e) => setFormData({...formData, imageFile: e.target.files?.[0] || null})}
+											onChange={(e) =>
+												setFormData({
+													...formData,
+													imageFile: e.target.files?.[0] || null,
+												})
+											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 										/>
 										{editingRecipe?.image && (
@@ -527,7 +575,7 @@ export default function AdminRecipesPage() {
 											</label>
 											<button
 												type="button"
-												onClick={() => addArrayItem('ingredients')}
+												onClick={() => addArrayItem("ingredients")}
 												className="text-sm text-orange-600 hover:text-orange-800"
 											>
 												+ إضافة مكون
@@ -539,14 +587,25 @@ export default function AdminRecipesPage() {
 													<input
 														type="text"
 														value={ingredient}
-														onChange={(e) => updateArrayItem('ingredients', index, e.target.value)}
+														onChange={(e) =>
+															updateArrayItem(
+																"ingredients",
+																index,
+																e.target.value
+															)
+														}
 														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 														placeholder={`المكون ${index + 1}`}
 													/>
 													{formData.ingredients.length > 1 && (
 														<button
 															type="button"
-															onClick={() => removeArrayItem('ingredients', index)}
+															onClick={() =>
+																removeArrayItem(
+																	"ingredients",
+																	index
+																)
+															}
 															className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 														>
 															×
@@ -565,7 +624,7 @@ export default function AdminRecipesPage() {
 											</label>
 											<button
 												type="button"
-												onClick={() => addArrayItem('instructions')}
+												onClick={() => addArrayItem("instructions")}
 												className="text-sm text-orange-600 hover:text-orange-800"
 											>
 												+ إضافة خطوة
@@ -579,7 +638,13 @@ export default function AdminRecipesPage() {
 													</span>
 													<textarea
 														value={instruction}
-														onChange={(e) => updateArrayItem('instructions', index, e.target.value)}
+														onChange={(e) =>
+															updateArrayItem(
+																"instructions",
+																index,
+																e.target.value
+															)
+														}
 														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 														placeholder={`الخطوة ${index + 1}`}
 														rows={2}
@@ -587,7 +652,12 @@ export default function AdminRecipesPage() {
 													{formData.instructions.length > 1 && (
 														<button
 															type="button"
-															onClick={() => removeArrayItem('instructions', index)}
+															onClick={() =>
+																removeArrayItem(
+																	"instructions",
+																	index
+																)
+															}
 															className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 														>
 															×
@@ -606,7 +676,7 @@ export default function AdminRecipesPage() {
 											</label>
 											<button
 												type="button"
-												onClick={() => addArrayItem('tips')}
+												onClick={() => addArrayItem("tips")}
 												className="text-sm text-orange-600 hover:text-orange-800"
 											>
 												+ إضافة نصيحة
@@ -618,13 +688,21 @@ export default function AdminRecipesPage() {
 													<input
 														type="text"
 														value={tip}
-														onChange={(e) => updateArrayItem('tips', index, e.target.value)}
+														onChange={(e) =>
+															updateArrayItem(
+																"tips",
+																index,
+																e.target.value
+															)
+														}
 														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 														placeholder={`نصيحة ${index + 1}`}
 													/>
 													<button
 														type="button"
-														onClick={() => removeArrayItem('tips', index)}
+														onClick={() =>
+															removeArrayItem("tips", index)
+														}
 														className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 													>
 														×
@@ -642,7 +720,7 @@ export default function AdminRecipesPage() {
 											</label>
 											<button
 												type="button"
-												onClick={() => addArrayItem('tags')}
+												onClick={() => addArrayItem("tags")}
 												className="text-sm text-orange-600 hover:text-orange-800"
 											>
 												+ إضافة علامة
@@ -654,13 +732,21 @@ export default function AdminRecipesPage() {
 													<input
 														type="text"
 														value={tag}
-														onChange={(e) => updateArrayItem('tags', index, e.target.value)}
+														onChange={(e) =>
+															updateArrayItem(
+																"tags",
+																index,
+																e.target.value
+															)
+														}
 														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 														placeholder={`علامة ${index + 1}`}
 													/>
 													<button
 														type="button"
-														onClick={() => removeArrayItem('tags', index)}
+														onClick={() =>
+															removeArrayItem("tags", index)
+														}
 														className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 													>
 														×
@@ -681,13 +767,16 @@ export default function AdminRecipesPage() {
 													type="number"
 													min="0"
 													value={formData.nutritionInfo.calories}
-													onChange={(e) => setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															calories: parseInt(e.target.value) || 0
-														}
-													})}
+													onChange={(e) =>
+														setFormData({
+															...formData,
+															nutritionInfo: {
+																...formData.nutritionInfo,
+																calories:
+																	parseInt(e.target.value) || 0,
+															},
+														})
+													}
 													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 													placeholder="السعرات"
 												/>
@@ -697,13 +786,16 @@ export default function AdminRecipesPage() {
 													type="number"
 													min="0"
 													value={formData.nutritionInfo.protein}
-													onChange={(e) => setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															protein: parseInt(e.target.value) || 0
-														}
-													})}
+													onChange={(e) =>
+														setFormData({
+															...formData,
+															nutritionInfo: {
+																...formData.nutritionInfo,
+																protein:
+																	parseInt(e.target.value) || 0,
+															},
+														})
+													}
 													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 													placeholder="البروتين (ج)"
 												/>
@@ -713,13 +805,16 @@ export default function AdminRecipesPage() {
 													type="number"
 													min="0"
 													value={formData.nutritionInfo.carbs}
-													onChange={(e) => setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															carbs: parseInt(e.target.value) || 0
-														}
-													})}
+													onChange={(e) =>
+														setFormData({
+															...formData,
+															nutritionInfo: {
+																...formData.nutritionInfo,
+																carbs:
+																	parseInt(e.target.value) || 0,
+															},
+														})
+													}
 													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 													placeholder="الكربوهيدرات (ج)"
 												/>
@@ -729,13 +824,15 @@ export default function AdminRecipesPage() {
 													type="number"
 													min="0"
 													value={formData.nutritionInfo.fat}
-													onChange={(e) => setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															fat: parseInt(e.target.value) || 0
-														}
-													})}
+													onChange={(e) =>
+														setFormData({
+															...formData,
+															nutritionInfo: {
+																...formData.nutritionInfo,
+																fat: parseInt(e.target.value) || 0,
+															},
+														})
+													}
 													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 													placeholder="الدهون (ج)"
 												/>
@@ -748,21 +845,24 @@ export default function AdminRecipesPage() {
 										<button
 											type="button"
 											onClick={resetForm}
-											className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+											className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-[#f5f5f7] transition-colors"
 										>
 											إلغاء
 										</button>
 										<button
 											type="submit"
-											disabled={createRecipeMutation.isPending || updateRecipeMutation.isPending}
+											disabled={
+												createRecipeMutation.isPending ||
+												updateRecipeMutation.isPending
+											}
 											className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors disabled:opacity-50"
 										>
-											{createRecipeMutation.isPending || updateRecipeMutation.isPending
+											{createRecipeMutation.isPending ||
+											updateRecipeMutation.isPending
 												? "جاري الحفظ..."
 												: editingRecipe
 												? "تحديث الوصفة"
-												: "إنشاء الوصفة"
-											}
+												: "إنشاء الوصفة"}
 										</button>
 									</div>
 								</form>

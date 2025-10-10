@@ -174,130 +174,157 @@ export default function AdminDashboard() {
   }
 
   return (
-    <AdminLayout
-      title="Dashboard"
-      description="Welcome back! Here's what's happening with your site today."
-    >
-      <div className="space-y-8">
-        {/* Header with refresh button */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900">Overview</h2>
-            <p className="text-sm text-gray-600">Real-time data from your content management system</p>
-          </div>
-          <button
-            onClick={refetch}
-            disabled={loading}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            {loading ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            )}
-            <span>Refresh</span>
-          </button>
-        </div>
+		<AdminLayout
+			title="Dashboard"
+			description="Welcome back! Here's what's happening with your site today."
+		>
+			<div className="space-y-8">
+				{/* Header with refresh button */}
+				<div className="flex justify-between items-center">
+					<div>
+						<h2 className="text-xl font-semibold text-gray-900">Overview</h2>
+						<p className="text-sm text-gray-600">
+							Real-time data from your content management system
+						</p>
+					</div>
+					<button
+						onClick={refetch}
+						disabled={loading}
+						className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+					>
+						{loading ? (
+							<Loader2 className="w-4 h-4 animate-spin" />
+						) : (
+							<svg
+								className="w-4 h-4"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth={2}
+									d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+								/>
+							</svg>
+						)}
+						<span>Refresh</span>
+					</button>
+				</div>
 
-        {/* Metrics */}
-        <AdminMetrics metrics={metrics} />
+				{/* Metrics */}
+				<AdminMetrics metrics={metrics} />
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Recent Activity */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
-            </div>
-            <div className="p-6">
-              <div className="space-y-4">
-                {recentActivity.length > 0 ? (
-                  recentActivity.map((activity) => (
-                    <div key={activity.id} className="flex items-start space-x-3">
-                      <div className={`p-2 rounded-lg ${getActivityColor(activity.type)}`}>
-                        {getActivityIcon(activity.type)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900">
-                          {activity.title}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {activity.time} • by {activity.user}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-center py-8">
-                    <p className="text-gray-500">No recent activity</p>
-                  </div>
-                )}
-              </div>
-              <div className="mt-6 pt-4 border-t border-gray-200">
-                <button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
-                  View all activity
-                </button>
-              </div>
-            </div>
-          </div>
+				{/* Content Grid */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+					{/* Recent Activity */}
+					<div className="bg-white border border-[#f5f5f7] rounded-lg shadow-sm">
+						<div className="p-6 border-b border-[#f5f5f7]">
+							<h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
+						</div>
+						<div className="p-6">
+							<div className="space-y-4">
+								{recentActivity.length > 0 ? (
+									recentActivity.map((activity) => (
+										<div
+											key={activity.id}
+											className="flex items-start space-x-3"
+										>
+											<div
+												className={`p-2 rounded-lg ${getActivityColor(
+													activity.type
+												)}`}
+											>
+												{getActivityIcon(activity.type)}
+											</div>
+											<div className="flex-1 min-w-0">
+												<p className="text-sm font-medium text-gray-900">
+													{activity.title}
+												</p>
+												<p className="text-sm text-gray-500">
+													{activity.time} • by {activity.user}
+												</p>
+											</div>
+										</div>
+									))
+								) : (
+									<div className="text-center py-8">
+										<p className="text-gray-500">No recent activity</p>
+									</div>
+								)}
+							</div>
+							<div className="mt-6 pt-4 border-t border-[#f5f5f7]">
+								<button className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+									View all activity
+								</button>
+							</div>
+						</div>
+					</div>
 
-          {/* Quick Actions */}
-          <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
-            </div>
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-4">
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                  <FileText className="w-8 h-8 text-blue-600 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">New Article</span>
-                </button>
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                  <Package className="w-8 h-8 text-green-600 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">Add Product</span>
-                </button>
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                  <Image className="w-8 h-8 text-purple-600 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">Upload Media</span>
-                </button>
-                <button className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                  <Calendar className="w-8 h-8 text-yellow-600 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">Schedule Event</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+					{/* Quick Actions */}
+					<div className="bg-white border border-[#f5f5f7] rounded-lg shadow-sm">
+						<div className="p-6 border-b border-[#f5f5f7]">
+							<h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
+						</div>
+						<div className="p-6">
+							<div className="grid grid-cols-2 gap-4">
+								<button className="flex flex-col items-center p-4 border border-[#f5f5f7] rounded-lg hover:bg-gray-50 transition-colors">
+									<FileText className="w-8 h-8 text-blue-600 mb-2" />
+									<span className="text-sm font-medium text-gray-900">
+										New Article
+									</span>
+								</button>
+								<button className="flex flex-col items-center p-4 border border-[#f5f5f7] rounded-lg hover:bg-gray-50 transition-colors">
+									<Package className="w-8 h-8 text-green-600 mb-2" />
+									<span className="text-sm font-medium text-gray-900">
+										Add Product
+									</span>
+								</button>
+								<button className="flex flex-col items-center p-4 border border-[#f5f5f7] rounded-lg hover:bg-gray-50 transition-colors">
+									<Image className="w-8 h-8 text-purple-600 mb-2" />
+									<span className="text-sm font-medium text-gray-900">
+										Upload Media
+									</span>
+								</button>
+								<button className="flex flex-col items-center p-4 border border-[#f5f5f7] rounded-lg hover:bg-gray-50 transition-colors">
+									<Calendar className="w-8 h-8 text-yellow-600 mb-2" />
+									<span className="text-sm font-medium text-gray-900">
+										Schedule Event
+									</span>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        {/* Content Overview */}
-        <div className="bg-white border border-gray-200 rounded-lg shadow-sm">
-          <div className="p-6 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">Content Overview</h3>
-          </div>
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">24</div>
-                <div className="text-sm text-gray-600">Published Articles</div>
-                <div className="text-xs text-green-600 mt-1">+3 this week</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">12</div>
-                <div className="text-sm text-gray-600">Draft Articles</div>
-                <div className="text-xs text-yellow-600 mt-1">Needs review</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">156</div>
-                <div className="text-sm text-gray-600">Media Files</div>
-                <div className="text-xs text-blue-600 mt-1">2.3GB used</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </AdminLayout>
+				{/* Content Overview */}
+				<div className="bg-white border border-[#f5f5f7] rounded-lg shadow-sm">
+					<div className="p-6 border-b border-[#f5f5f7]">
+						<h3 className="text-lg font-semibold text-gray-900">Content Overview</h3>
+					</div>
+					<div className="p-6">
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+							<div className="text-center">
+								<div className="text-3xl font-bold text-blue-600 mb-2">24</div>
+								<div className="text-sm text-gray-600">Published Articles</div>
+								<div className="text-xs text-green-600 mt-1">+3 this week</div>
+							</div>
+							<div className="text-center">
+								<div className="text-3xl font-bold text-green-600 mb-2">12</div>
+								<div className="text-sm text-gray-600">Draft Articles</div>
+								<div className="text-xs text-yellow-600 mt-1">Needs review</div>
+							</div>
+							<div className="text-center">
+								<div className="text-3xl font-bold text-purple-600 mb-2">156</div>
+								<div className="text-sm text-gray-600">Media Files</div>
+								<div className="text-xs text-blue-600 mt-1">2.3GB used</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</AdminLayout>
   );
 }
 

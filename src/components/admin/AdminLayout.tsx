@@ -23,44 +23,44 @@ export default function AdminLayout({
   };
 
   return (
-    <ProtectedRoute requireAdmin={true}>
-      <div className="min-h-screen bg-gray-50 flex">
-        {/* Sidebar */}
-        <AdminSidebar
-          isCollapsed={sidebarCollapsed}
-          onToggle={toggleSidebar}
-          currentPath={pathname}
-          navigation={adminNavigation}
-        />
+		<ProtectedRoute requireAdmin={true}>
+			<div className="min-h-screen bg-gray-50 flex">
+				{/* Sidebar */}
+				<AdminSidebar
+					isCollapsed={sidebarCollapsed}
+					onToggle={toggleSidebar}
+					currentPath={pathname}
+					navigation={adminNavigation}
+				/>
 
-        {/* Main Content */}
-        <div className={`flex-1 flex flex-col transition-all duration-300 ${
-          sidebarCollapsed ? 'ml-16' : 'ml-64'
-        }`}>
-          {/* Header */}
-          <AdminHeader
-            title={title}
-            description={description}
-            onMenuClick={toggleSidebar}
-            sidebarCollapsed={sidebarCollapsed}
-          />
+				{/* Main Content */}
+				<div
+					className={`flex-1 flex flex-col transition-all duration-300 ${
+						sidebarCollapsed ? "ml-16" : "ml-64"
+					}`}
+				>
+					{/* Header */}
+					<AdminHeader
+						title={title}
+						description={description}
+						onMenuClick={toggleSidebar}
+						sidebarCollapsed={sidebarCollapsed}
+					/>
 
-          {/* Breadcrumbs */}
-          {breadcrumbs.length > 0 && (
-            <div className="bg-white border-b border-gray-200 px-6 py-3">
-              <AdminBreadcrumbs items={breadcrumbs} />
-            </div>
-          )}
+					{/* Breadcrumbs */}
+					{breadcrumbs.length > 0 && (
+						<div className="bg-white border-b border-[#f5f5f7] px-6 py-3">
+							<AdminBreadcrumbs items={breadcrumbs} />
+						</div>
+					)}
 
-          {/* Content */}
-          <main className="flex-1 overflow-auto">
-            <div className="p-6">
-              {children}
-            </div>
-          </main>
-        </div>
-      </div>
-    </ProtectedRoute>
+					{/* Content */}
+					<main className="flex-1 overflow-auto">
+						<div className="p-6">{children}</div>
+					</main>
+				</div>
+			</div>
+		</ProtectedRoute>
   );
 }
 

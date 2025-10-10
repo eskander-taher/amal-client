@@ -128,7 +128,11 @@ export default function NewsDetailPage() {
 			</Head>
 
 			<Hero
-				image={article.image ? getServerUrl(article.image) || "/placeholder.webp" : "/placeholder.webp"}
+				image={
+					article.image
+						? getServerUrl(article.image) || "/placeholder.webp"
+						: "/placeholder.webp"
+				}
 				title={article.title}
 			/>
 
@@ -183,7 +187,7 @@ export default function NewsDetailPage() {
 					</section>
 
 					{/* Article Footer */}
-					<footer className="border-t border-gray-200 pt-8">
+					<footer className="border-t border-[#f5f5f7] pt-8">
 						<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 							{/* Back to News */}
 							<TransitionLink

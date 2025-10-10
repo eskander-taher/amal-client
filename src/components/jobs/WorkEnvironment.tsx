@@ -21,13 +21,13 @@ export default function WorkEnvironment() {
 			<div className="absolute w-1/2 -translate-x-3/4 left-0 top-0 z-10">
 				<div
 					className="downward-tab"
-					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+					style={{ "--tab-color": "#f5f5f7" } as React.CSSProperties}
 				/>
 			</div>
 			<div className="absolute w-1/2 translate-x-3/4 right-0 top-0 z-10">
 				<div
 					className="downward-tab"
-					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+					style={{ "--tab-color": "#f5f5f7" } as React.CSSProperties}
 				/>
 			</div>
 			<div className="max-w-3xl mx-auto text-center">
@@ -67,13 +67,13 @@ export default function WorkEnvironment() {
 			<div className="absolute w-1/2 -translate-x-3/4 left-0 bottom-0 z-10">
 				<div
 					className="upward-tab"
-					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+					style={{ "--tab-color": "#f5f5f7" } as React.CSSProperties}
 				/>
 			</div>
 			<div className="absolute w-1/2 translate-x-3/4 right-0 bottom-0 z-10">
 				<div
 					className="upward-tab"
-					style={{ "--tab-color": "#E5E7EB" } as React.CSSProperties}
+					style={{ "--tab-color": "#f5f5f7" } as React.CSSProperties}
 				/>
 			</div>
 		</Section>

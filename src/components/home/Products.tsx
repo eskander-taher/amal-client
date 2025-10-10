@@ -24,7 +24,7 @@ const Products: React.FC = () => {
 		}));
 
 	return (
-		<Section id="products" className="bg-gray-200">
+		<Section id="products" className="bg-[#f5f5f7]">
 			<div className="w-full">
 				<div className="text-center mb-12">
 					<h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">

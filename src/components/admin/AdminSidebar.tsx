@@ -122,61 +122,64 @@ export default function AdminSidebar({
   navigation 
 }: AdminSidebarProps) {
   return (
-    <div className={`fixed inset-y-0 left-0 z-50 transition-all duration-300 ${
-      isCollapsed ? 'w-16' : 'w-64'
-    }`}>
-      <div className="flex flex-col h-full bg-white border-r border-gray-200 shadow-sm">
-        {/* Logo/Brand */}
-        <div className={`flex items-center h-16 px-4 border-b border-gray-200 ${
-          isCollapsed ? 'justify-center' : ''
-        }`}>
-          {isCollapsed ? (
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
-          ) : (
-            <div className="flex items-center">
-              
-              <span className="ml-3 text-xl font-semibold text-gray-900">
-                لوحة التحكم
-              </span>
-            </div>
-          )}
-        </div>
+		<div
+			className={`fixed inset-y-0 left-0 z-50 transition-all duration-300 ${
+				isCollapsed ? "w-16" : "w-64"
+			}`}
+		>
+			<div className="flex flex-col h-full bg-white border-r border-[#f5f5f7] shadow-sm">
+				{/* Logo/Brand */}
+				<div
+					className={`flex items-center h-16 px-4 border-b border-[#f5f5f7] ${
+						isCollapsed ? "justify-center" : ""
+					}`}
+				>
+					{isCollapsed ? (
+						<div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+							<span className="text-white font-bold text-sm">A</span>
+						</div>
+					) : (
+						<div className="flex items-center">
+							<span className="ml-3 text-xl font-semibold text-gray-900">
+								لوحة التحكم
+							</span>
+						</div>
+					)}
+				</div>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-          <ul className="space-y-1">
-            {navigation.map((item) => (
-              <NavItem
-                key={item.id}
-                item={item}
-                currentPath={currentPath}
-                isCollapsed={isCollapsed}
-              />
-            ))}
-          </ul>
-        </nav>
+				{/* Navigation */}
+				<nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+					<ul className="space-y-1">
+						{navigation.map((item) => (
+							<NavItem
+								key={item.id}
+								item={item}
+								currentPath={currentPath}
+								isCollapsed={isCollapsed}
+							/>
+						))}
+					</ul>
+				</nav>
 
-        {/* Collapse Toggle */}
-        <div className="p-3 border-t border-gray-200">
-          <button
-            onClick={onToggle}
-            className={`w-full flex items-center justify-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors ${
-              isCollapsed ? 'px-2' : ''
-            }`}
-            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            <ChevronRight className={`w-4 h-4 transition-transform ${
-              isCollapsed ? '' : 'rotate-180'
-            }`} />
-            {!isCollapsed && (
-              <span className="ml-2">Collapse</span>
-            )}
-          </button>
-        </div>
-      </div>
-    </div>
+				{/* Collapse Toggle */}
+				<div className="p-3 border-t border-[#f5f5f7]">
+					<button
+						onClick={onToggle}
+						className={`w-full flex items-center justify-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors ${
+							isCollapsed ? "px-2" : ""
+						}`}
+						title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+					>
+						<ChevronRight
+							className={`w-4 h-4 transition-transform ${
+								isCollapsed ? "" : "rotate-180"
+							}`}
+						/>
+						{!isCollapsed && <span className="ml-2">Collapse</span>}
+					</button>
+				</div>
+			</div>
+		</div>
   );
 }
 

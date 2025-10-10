@@ -51,7 +51,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="group relative w-full h-[400px] rounded-lg bg-[#E5E7EB] p-3 flex flex-col transition-all duration-300 hover:scale-105"
+							className="group relative w-full h-[400px] rounded-lg bg-[#f5f5f7] p-3 flex flex-col transition-all duration-300 hover:scale-105"
 							initial={{ x: -300, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: index / 2, ease: "easeInOut" }}
@@ -70,14 +70,14 @@ const GroupSection: React.FC = () => {
 								{/* bottom static curve */}
 								<div
 									className="absolute bottom-0 right-0 h-4 border-lg w-[60%] flex items-center justify-center overflow-visible rounded-tl-xl "
-									style={{ backgroundColor: "#e5e7eb" }}
+									style={{ backgroundColor: "#f5f5f7" }}
 								>
 									{/* Top pseudo-element equivalent */}
 									<div
 										className="absolute bottom-0 left-0 -translate-x-full w-2 h-2"
 										style={{
 											background:
-												"radial-gradient(circle at top left, transparent 70%, #e5e7eb 0%)",
+												"radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)",
 										}}
 									/>
 									{/* Right pseudo-element equivalent */}
@@ -85,7 +85,7 @@ const GroupSection: React.FC = () => {
 										className="absolute top-0 right-0 -translate-y-full w-2 h-2"
 										style={{
 											background:
-												"radial-gradient(circle at top left, transparent 70%, #e5e7eb 0%)",
+												"radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)",
 										}}
 									/>
 								</div>

@@ -10,9 +10,8 @@ interface CardLinkProps {
 export default function CardLink({
 	href = "#",
 	hoverText = "عرض المزيد",
-	backgroundColor = "#E5E7EB",
+	backgroundColor = "#f5f5f7",
 }: CardLinkProps) {
-
 	return (
 		<Link
 			href={href}

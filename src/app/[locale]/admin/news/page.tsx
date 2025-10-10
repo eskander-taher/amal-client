@@ -156,10 +156,9 @@ export default function AdminNewsPage() {
 							<div className="text-center py-8 text-gray-500">
 								<Eye className="w-12 h-12 mx-auto mb-2 text-gray-300" />
 								<p>
-									{searchQuery 
+									{searchQuery
 										? "لم نعثر على أخبار تطابق معايير البحث."
-										: "لا توجد أخبار متاحة حالياً."
-									}
+										: "لا توجد أخبار متاحة حالياً."}
 								</p>
 								{searchQuery && (
 									<button
@@ -173,10 +172,13 @@ export default function AdminNewsPage() {
 						) : (
 							<div className="space-y-4">
 								{filteredNews.map((newsItem) => (
-									<div key={newsItem._id} className="border border-gray-200 rounded-lg p-4">
+									<div
+										key={newsItem._id}
+										className="border border-[#f5f5f7] rounded-lg p-4"
+									>
 										<div className="flex items-start gap-4">
 											{/* News Image */}
-											<div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+											<div className="w-20 h-20 bg-[#f5f5f7] rounded-lg overflow-hidden flex-shrink-0">
 												{newsItem.image ? (
 													<img
 														src={getServerUrl(newsItem.image)}
@@ -199,19 +201,31 @@ export default function AdminNewsPage() {
 														</h3>
 														<div
 															className="text-sm text-gray-600 line-clamp-3 mb-3 prose prose-sm max-w-none tiptap-content"
-															dangerouslySetInnerHTML={{ __html: newsItem.description }}
+															dangerouslySetInnerHTML={{
+																__html: newsItem.description,
+															}}
 														/>
 														<div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
 															<span className="flex items-center">
 																<Calendar className="w-3 h-3 ml-1" />
-																{newsItem.createdAt && new Date(newsItem.createdAt).toLocaleDateString('ar-SA')}
+																{newsItem.createdAt &&
+																	new Date(
+																		newsItem.createdAt
+																	).toLocaleDateString("ar-SA")}
 															</span>
-															{newsItem.updatedAt && newsItem.updatedAt !== newsItem.createdAt && (
-																<span className="flex items-center">
-																	<Calendar className="w-3 h-3 ml-1" />
-																	آخر تحديث: {new Date(newsItem.updatedAt).toLocaleDateString('ar-SA')}
-																</span>
-															)}
+															{newsItem.updatedAt &&
+																newsItem.updatedAt !==
+																	newsItem.createdAt && (
+																	<span className="flex items-center">
+																		<Calendar className="w-3 h-3 ml-1" />
+																		آخر تحديث:{" "}
+																		{new Date(
+																			newsItem.updatedAt
+																		).toLocaleDateString(
+																			"ar-SA"
+																		)}
+																	</span>
+																)}
 														</div>
 													</div>
 
@@ -268,7 +282,9 @@ export default function AdminNewsPage() {
 										<input
 											type="text"
 											value={formData.title}
-											onChange={(e) => setFormData({...formData, title: e.target.value})}
+											onChange={(e) =>
+												setFormData({ ...formData, title: e.target.value })
+											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 											placeholder="أدخل عنوان الخبر..."
 											required
@@ -282,7 +298,9 @@ export default function AdminNewsPage() {
 										</label>
 										<RichTextEditor
 											value={formData.description}
-											onChange={(value) => setFormData({...formData, description: value})}
+											onChange={(value) =>
+												setFormData({ ...formData, description: value })
+											}
 											placeholder="أدخل محتوى الخبر..."
 										/>
 									</div>
@@ -293,10 +311,18 @@ export default function AdminNewsPage() {
 											type="checkbox"
 											id="featured"
 											checked={formData.featured}
-											onChange={(e) => setFormData({...formData, featured: e.target.checked})}
+											onChange={(e) =>
+												setFormData({
+													...formData,
+													featured: e.target.checked,
+												})
+											}
 											className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
 										/>
-										<label htmlFor="featured" className="mr-2 block text-sm text-gray-900">
+										<label
+											htmlFor="featured"
+											className="mr-2 block text-sm text-gray-900"
+										>
 											خبر مميز (سيظهر في الصفحة الرئيسية)
 										</label>
 									</div>
@@ -309,7 +335,12 @@ export default function AdminNewsPage() {
 										<input
 											type="file"
 											accept="image/*"
-											onChange={(e) => setFormData({...formData, imageFile: e.target.files?.[0] || null})}
+											onChange={(e) =>
+												setFormData({
+													...formData,
+													imageFile: e.target.files?.[0] || null,
+												})
+											}
 											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 										/>
 										{editingNews?.image && (
@@ -328,21 +359,24 @@ export default function AdminNewsPage() {
 										<button
 											type="button"
 											onClick={resetForm}
-											className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+											className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-[#f5f5f7] transition-colors"
 										>
 											إلغاء
 										</button>
 										<button
 											type="submit"
-											disabled={createNewsMutation.isPending || updateNewsMutation.isPending}
+											disabled={
+												createNewsMutation.isPending ||
+												updateNewsMutation.isPending
+											}
 											className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
 										>
-											{createNewsMutation.isPending || updateNewsMutation.isPending
+											{createNewsMutation.isPending ||
+											updateNewsMutation.isPending
 												? "جاري الحفظ..."
 												: editingNews
 												? "تحديث الخبر"
-												: "إنشاء الخبر"
-											}
+												: "إنشاء الخبر"}
 										</button>
 									</div>
 								</form>

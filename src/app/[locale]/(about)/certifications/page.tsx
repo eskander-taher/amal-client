@@ -13,7 +13,7 @@ export default function Page() {
 			<Section>
 				<p className="text-justify">{t("fullDescription")}</p>
 			</Section>
-			<Section id="certifications" className="bg-gray-200 text-white relative">
+			<Section id="certifications" className="bg-[#f5f5f7] text-white relative">
 				<div className="w-full relative">
 					<div className="text-center mb-12 lg:mb-16">
 						<h2 className="text-4xl font-bold mb-6 text-gray-900">{t("title")}</h2>
@@ -76,7 +76,7 @@ export default function Page() {
 					<div className="row-start-7">22</div>
 				</div>
 			</Section>
-			<Section className="text-white relative bg-gray-200">
+			<Section className="text-white relative bg-[#f5f5f7]">
 				<div className="flex flex-col md:flex-row items-start justify-between gap-10">
 					{/* Title Block */}
 					<div>
@@ -101,9 +101,7 @@ export default function Page() {
 
 				{/* Text Block */}
 				<div className="mx-auto">
-					<p className="text-[#1F1F1F] text-center">
-						{t("features.description")}
-					</p>
+					<p className="text-[#1F1F1F] text-center">{t("features.description")}</p>
 				</div>
 			</Section>
 		</>

@@ -42,7 +42,7 @@ export default function HiringProcess() {
 	];
 
 	return (
-		<Section dir="rtl" className="bg-gray-200">
+		<Section dir="rtl" className="bg-[#f5f5f7]">
 			<h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-10 text-center">
 				{t("title")}
 			</h2>
@@ -53,7 +53,7 @@ export default function HiringProcess() {
 						className="relative w-full min-h-[220px] rounded-lg bg-white p-6 flex flex-col items-center justify-between text-center"
 					>
 						<p className="text-4xl text-gray-600">{`0${index + 1}`}</p>
-						<div className="w-14 h-14 rounded-full bg-white border border-gray-200  flex items-center justify-center">
+						<div className="w-14 h-14 rounded-full bg-white border border-[#f5f5f7]  flex items-center justify-center">
 							<step.Icon className="w-7 h-7 text-gray-700" />
 						</div>
 						<h3 className="text-lg font-bold mb-2">{step.title}</h3>
