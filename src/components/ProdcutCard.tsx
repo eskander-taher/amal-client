@@ -22,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 	const title = getTitle();
 
 	return (
-		<div className="relative w-full h-[320px] rounded-lg bg-white overflow-hidden hover:scale-105 transition-all duration-300">
+		<div className="relative group w-full h-[320px] rounded-lg bg-white overflow-hidden hover:scale-105 transition-all duration-300">
 			{/* Image Section - Expanded to fill more space */}
 			<div className="h-56 flex items-center justify-center overflow-hidden bg-gray-50">
 				<Image

@@ -19,7 +19,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({
 	badgeText,
 }) => {
 	return (
-		<div className="bg-white p-3 rounded-lg overflow-hidden relative">
+		<div className="bg-white group p-3 rounded-lg overflow-hidden relative">
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image

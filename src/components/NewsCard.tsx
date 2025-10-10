@@ -34,7 +34,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 
 	return (
 		<div
-			className="bg-white p-3 rounded-lg overflow-hidden relative"
+			className="bg-white group p-3 rounded-lg overflow-hidden relative"
 			style={{ backgroundColor: cardBackgroundColor }}
 		>
 			{/* Card Image Container */}
