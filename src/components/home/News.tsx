@@ -4,13 +4,11 @@ import { useLocale, useTranslations } from "next-intl";
 import NewsCard from "../NewsCard";
 import { useFeaturedNews } from "@/hooks/useNews";
 import { TransitionLink } from "../TransitionLink";
-import Notch from "../Notch";
 import { getServerUrl } from "@/lib/apiBase";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
 	const local = useLocale();
-	const isArabic = local === "ar";
 	
 	const { data: featuredNews = [], isLoading } = useFeaturedNews();
 	
