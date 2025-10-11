@@ -43,11 +43,14 @@ export default function Certifications() {
 	// }, [hoveredIndex]);
 
 	return (
-		<Section id="certifications" ref={sectionRef} className="bg-gray-200 relative">
+		<Section id="certifications" ref={sectionRef} className="bg-[#f5f5f7] relative">
 			{/* Bottom static tab */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
 				<TransitionLink href="/about">
-					<div className="downward-tab text-yellow-500 text-sm sm:text-base" style={{ paddingInline: "30px" }}>
+					<div
+						className="downward-tab text-yellow-500 text-sm sm:text-base"
+						style={{ paddingInline: "30px" }}
+					>
 						{tHomePage("moreAboutButton")}
 					</div>
 				</TransitionLink>
@@ -56,8 +59,12 @@ export default function Certifications() {
 			<div className="w-full relative">
 				{/* Heading */}
 				<div className="text-center mb-8 sm:mb-10 lg:mb-16 px-4">
-					<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-gray-900">{t("title")}</h2>
-					<p className="text-base sm:text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">{t("description")}</p>
+					<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-gray-900">
+						{t("title")}
+					</h2>
+					<p className="text-base sm:text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">
+						{t("description")}
+					</p>
 				</div>
 
 				{/* Logos */}

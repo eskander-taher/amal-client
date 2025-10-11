@@ -31,15 +31,21 @@ export default function Footer() {
 							<div className="space-y-3 sm:space-y-4">
 								<div className="flex items-center gap-3">
 									<FaMapMarkerAlt className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-sm sm:text-base text-gray-700">{t("address")}</span>
+									<span className="text-sm sm:text-base text-gray-700">
+										{t("address")}
+									</span>
 								</div>
 								<div className="flex items-center gap-3">
 									<FaPhone className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-sm sm:text-base text-gray-700">{t("phone")}</span>
+									<span className="text-sm sm:text-base text-gray-700">
+										{t("phone")}
+									</span>
 								</div>
 								<div className="flex items-center gap-3">
 									<FaWhatsapp className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-sm sm:text-base text-gray-700">{t("whatsapp")}</span>
+									<span className="text-sm sm:text-base text-gray-700">
+										{t("whatsapp")}
+									</span>
 								</div>
 							</div>
 
@@ -91,7 +97,9 @@ export default function Footer() {
 
 						{/* Links */}
 						<div className="flex-1 lg:min-w-0">
-							<h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-black">{t("quickLinks")}</h3>
+							<h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-black">
+								{t("quickLinks")}
+							</h3>
 							<div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
 								<div className="space-y-2 sm:space-y-3">
 									<Link
@@ -182,7 +190,7 @@ export default function Footer() {
 						<div className="flex flex-col justify-start items-center lg:items-start lg:w-auto lg:max-w-md">
 							<div className="w-full max-w-xs sm:max-w-sm lg:max-w-md mb-4 sm:mb-6">
 								<Image
-									src="/AKG_Logo_Horizontal.svg"
+									src="/AKG_hori_logo.svg"
 									alt="Amal Al Khair logo"
 									width={450}
 									height={200}

@@ -115,7 +115,9 @@ export default function Hero({
 	const isProductPage = pathname.endsWith("products") || pathname.endsWith("jobs");
 
 	return (
-		<Section className={`relative min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}>
+		<Section
+			className={`relative min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] p-0 sm:p-0 md:p-0 lg:p-0  ${className}`}
+		>
 			{/* Background Image */}
 			<div className="absolute inset-0 z-0">
 				<Image
@@ -130,15 +132,15 @@ export default function Hero({
 			</div>
 
 			{/* Content */}
-			<div className="relative z-10 h-full min-h-[60vh] flex flex-col justify-between">
+			<div className="relative z-10 h-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] flex flex-col justify-between">
 				{/* Title and Subtitle */}
-				<div className="container mx-auto px-4 py-16 md:py-24">
+				<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
 					<div className="max-w-4xl">
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+						<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight">
 							{title}
 						</h1>
 						{subtitle && (
-							<p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+							<p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
 								{subtitle}
 							</p>
 						)}
@@ -147,12 +149,12 @@ export default function Hero({
 
 				{/* Breadcrumb */}
 				{showBreadcrumb && (
-					<div className="container mx-auto px-4">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 						<nav aria-label="Breadcrumb">
-							<ol className="flex items-center text-sm text-white/80">
+							<ol className="flex items-center flex-wrap text-xs sm:text-sm text-white/80">
 								{breadcrumbs.map((breadcrumb, index) => (
 									<li key={index} className="flex items-center">
-										<div className="relative flex-col pb-10 mx-5">
+										<div className="relative flex-col pb-8 sm:pb-10 mx-2 sm:mx-4 lg:mx-5">
 											<TransitionLink
 												href={breadcrumb.href}
 												className="hover:text-white transition-colors duration-200"

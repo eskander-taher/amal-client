@@ -73,34 +73,34 @@ export default function RichTextEditor({
   });
 
   if (!editor) {
-    return (
-		<div className={`border border-gray-300 rounded-md ${className}`}>
-			<div className="border-b border-[#f5f5f7] p-2 bg-gray-50 rounded-t-md">
-				<div className="h-8 bg-[#f5f5f7] rounded animate-pulse"></div>
+		return (
+			<div className={`border border-gray-300 rounded-md ${className}`}>
+				<div className="border-b border-[#f5f5f7] p-2 bg-gray-50 rounded-t-md">
+					<div className="h-8 bg-[#f5f5f7] rounded animate-pulse"></div>
+				</div>
+				<div className="min-h-[120px] p-3 flex items-center justify-center">
+					<div className="text-gray-500">جاري تحميل المحرر...</div>
+				</div>
 			</div>
-			<div className="min-h-[120px] p-3 flex items-center justify-center">
-				<div className="text-gray-500">جاري تحميل المحرر...</div>
-			</div>
-		</div>
-	);
+		);
   }
 
   const addLink = () => {
-    const url = window.prompt('أدخل رابط URL:');
-    if (url) {
-      editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
-    }
+		const url = window.prompt("أدخل رابط URL:");
+		if (url) {
+			editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+		}
   };
 
   const addImage = () => {
-    const url = window.prompt('أدخل رابط الصورة:');
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
+		const url = window.prompt("أدخل رابط الصورة:");
+		if (url) {
+			editor.chain().focus().setImage({ src: url }).run();
+		}
   };
 
   const setColor = (color: string) => {
-    editor.chain().focus().setColor(color).run();
+		editor.chain().focus().setColor(color).run();
   };
 
   return (

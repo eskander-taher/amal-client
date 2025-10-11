@@ -368,7 +368,8 @@ body {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	position: relative;
-	
+	/* Shadow on bottom to cover pixel gaps */
+	box-shadow: 0 2px 0 0 var(--tab-color, white);
 }
 
 .upward-tab:before,
@@ -398,6 +399,8 @@ body {
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 	position: relative;
+	/* Shadow on top to cover pixel gaps */
+	box-shadow: 0 -2px 0 0 var(--tab-color, white);
 }
 
 .downward-tab:before,
