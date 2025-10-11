@@ -198,12 +198,9 @@ export default function Footer() {
 								/>
 							</div>
 
-							<p className="text-sm sm:text-base text-justify border-t border-gray-500 pt-4 sm:pt-6 w-full">
-								مجموعة أمل الخير القابضة هي مجموعة سعودية رائدة تلتزم بالتميز
-								والابتكار في قطاعات الدواجن والأعلاف والأسماك والتمور. نؤمن بأن
-								الشفافية والجودة هما أساس نجاحنا، ونعمل على بناء شراكات طويلة الأمد
-								تحقق قيمة مستدامة لمجتمعنا وعملائنا.
-							</p>
+						<p className="text-sm sm:text-base text-justify border-t border-gray-500 pt-4 sm:pt-6 w-full">
+							{t("description")}
+						</p>
 						</div>
 					</div>
 				</div>

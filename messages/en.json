@@ -137,10 +137,10 @@
 		}
 	},
 	"GroupStats": {
-		"poultryCompany": "Amal Al Khair Poultry Company",
-		"feedCompany": "Amal Al Khair Feed Company",
-		"fishCompany": "Amal Al Khair Fish Company",
-		"datesCompany": "Amal Al Khair Dates Company"
+		"poultryCompany": "More than 132 million eggs annually",
+		"feedCompany": "More than 60 thousand tons of feed annually",
+		"fishCompany": "More than 350 tons of fresh fish annually",
+		"datesCompany": "More than 80 thousand tons of dates annually"
 	},
 	"News": {
 		"title": "Latest News!",
@@ -334,6 +334,7 @@
 		"products": "Our Products",
 		"news": "News & Blogs",
 		"jobs": "Jobs",
+		"description": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the poultry, feed, fish, and dates sectors. We believe that transparency and quality are the foundation of our success, and we work to build long-term partnerships that create sustainable value for our community and customers.",
 		"rights": "All rights reserved © Amal Al Khair 2025"
 	}
 }

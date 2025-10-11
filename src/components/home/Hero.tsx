@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
 	// Fallback carousel slides if API fails or no data
 	const fallbackSlides = [
 		{
-			src: "/hero.webp",
+			src: "/home_hero_1.webp",
 			alt: local === "ar" ? "مجموعة أمل الخير القابضة" : "Amal Al Khair Holding Group",
 			title: local === "ar" ? "مرحبًا بكم في مجموعة أمل الخير القابضة" : "Welcome to Amal Al Khair Holding Group",
 			description: local === "ar" ? "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك." : "Discover high-quality products designed to meet your needs.",
@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
 			href: "/about",
 		},
 		{
-			src: "/products-hero.webp",
+			src: "/home_hero_2.webp",
 			alt: local === "ar" ? "صورة خلفية" : "Background image",
 			title: local === "ar" ? "اكتشف منتجاتنا" : "Discover Our Products",
 			description: local === "ar" ? "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك." : "Explore our wide range of high-quality products designed to meet your expectations.",

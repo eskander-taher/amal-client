@@ -48,7 +48,7 @@ export default function Certifications() {
 			<div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
 				<TransitionLink href="/about">
 					<div
-						className="downward-tab text-yellow-500 text-sm sm:text-base"
+						className="downward-tab text-gray-400 text-sm sm:text-base"
 						style={{ paddingInline: "30px" }}
 					>
 						{tHomePage("moreAboutButton")}

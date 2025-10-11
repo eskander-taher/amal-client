@@ -9,6 +9,7 @@ type StatData = {
 	image: string;
 	count: number;
 	titleKey: string;
+	unit: string;
 };
 
 const GroupStats: React.FC = () => {
@@ -19,23 +20,27 @@ const GroupStats: React.FC = () => {
 	const stats: StatData[] = [
 		{
 			image: "/group/eggs_icon.svg",
-			count: 65876,
+			count: 132,
 			titleKey: "poultryCompany",
+			unit: "M"
 		},
 		{
 			image: "/group/feeds_icon.svg",
-			count: 156077,
+			count: 60000,
 			titleKey: "feedCompany",
+			unit: "TON"
 		},
 		{
 			image: "/group/fish_icon.svg",
-			count: 206768,
+			count: 350,
 			titleKey: "fishCompany",
+			unit: "TON"
 		},
 		{
 			image: "/group/dates_icon.svg",
-			count: 9695,
+			count: 80000,
 			titleKey: "datesCompany",
+			unit: "TON"
 		},
 	];
 
@@ -79,17 +84,21 @@ const GroupStats: React.FC = () => {
 									className="object-contain"
 								/>
 							</div>
-							<h3 className="text-2xl lg:text-4xl xl:text-5xl font-black text-white">
+							<h3 className="flex gap-3 text-xl lg:text-2xl xl:text-5xl font-black text-white">
+								<span className="text-yellow-500 block rtl:hidden">+ </span>
+								<span className="text-gray-200 text-2xl block ltr:hidden">{stat.unit} </span>
 								<CountUp
-									className="text-yellow-500"
+									className="text-yellow-500 "
 									end={stat.count}
 									duration={5}
 									separator=","
 									start={isVisible ? undefined : 0}
 									delay={isVisible ? index * 0.2 : 0} // Stagger the animations
 								/>
+								<span className="text-yellow-500 block ltr:hidden">+ </span>
+								<span className="text-gray-200 block rtl:hidden text-2xl">{stat.unit} </span>
 							</h3>
-							<p className="text-sm lg:text-base text-gray-300 font-medium leading-relaxed">
+							<p className="text-sm lg:text-base text-gray-300 font-medium leading-relaxed whitespace-pre-line">
 								{t(stat.titleKey)}
 							</p>
 						</div>

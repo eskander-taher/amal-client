@@ -26,7 +26,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 			{/* Image Section - Expanded to fill more space */}
 			<div className="h-56 flex items-center justify-center overflow-hidden bg-gray-50">
 				<Image
-					src={product.image}
+					// src={product.image}
+					src="/new_placeholder.svg"
 					alt={title}
 					width={200}
 					height={200}

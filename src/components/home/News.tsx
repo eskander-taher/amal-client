@@ -8,7 +8,6 @@ import { getServerUrl } from "@/lib/apiBase";
 
 const News: React.FC = () => {
 	const t = useTranslations("News");
-	const local = useLocale();
 	
 	const { data: featuredNews = [], isLoading } = useFeaturedNews();
 	
@@ -61,8 +60,8 @@ const News: React.FC = () => {
 
 			{/* Bottom static tab */}
 			<TransitionLink href="/about">
-				<div className="absolute bottom-0 left-10 translate-y-full">
-					<div className="downward-tab text-yellow-500">{t("moreNews")}</div>
+				<div className="absolute bottom-0.5 left-10 translate-y-full">
+					<div className="downward-tab text-gray-400">{t("moreNews")}</div>
 				</div>
 			</TransitionLink>
 		</Section>

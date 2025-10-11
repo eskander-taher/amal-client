@@ -36,7 +36,8 @@ const NewsCard: React.FC<NewsCardProps> = ({
 			{/* Card Image Container */}
 			<div className="relative rounded-lg overflow-hidden">
 				<Image
-					src={image}
+					// src={image}
+					src="new_placeholder.svg"
 					alt={imageAlt}
 					width={400}
 					height={250}
