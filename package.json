@@ -31,6 +31,7 @@
 		"next": "15.3.5",
 		"next-auth": "^5.0.0-beta.29",
 		"next-intl": "^4.3.4",
+		"openai": "^6.3.0",
 		"react": "^19.0.0",
 		"react-countup": "^6.5.3",
 		"react-dom": "^19.0.0",

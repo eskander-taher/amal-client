@@ -67,7 +67,7 @@ const GroupStats: React.FC = () => {
 	}, []);
 	
 	return (
-		<Section id="stats" ref={sectionRef} className="bg-[#353535] text-white">
+		<Section id="stats" ref={sectionRef} className="bg-gray-900 text-white">
 			<div className="w-full">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 					{stats.map((stat, index) => (

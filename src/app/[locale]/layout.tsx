@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import NavBar from "@/components/layout/NavBar";
 import Providers from "@/components/Providers";
 import Footer from "@/components/layout/Footer";
+import ChatBot from "@/components/ChatBot";
 import localFont from "next/font/local";
 
 const neoSansArabic = localFont({
@@ -93,6 +94,7 @@ export default async function RootLayout({
 							<NavBar />
 							<main>{children}</main>
 							<Footer />
+							<ChatBot />
 						</div>
 					</Providers>
 				</NextIntlClientProvider>

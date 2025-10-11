@@ -176,12 +176,12 @@ export default function Footer() {
 									>
 										{t("jobs")}
 									</Link>
-									<TransitionLink
-										href="/admin"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										بوابة الموظفين
-									</TransitionLink>
+								<TransitionLink
+									href="/admin"
+									className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+								>
+									{t("employeePortal")}
+								</TransitionLink>
 								</div>
 							</div>
 						</div>

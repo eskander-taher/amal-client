@@ -34,10 +34,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	return (
 		<div className="bg-[#f5f5f7] group p-3 rounded-lg overflow-hidden relative">
 			{/* Card Image Container */}
-			<div className="relative rounded-lg overflow-hidden">
+			<div className="relative rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300">
 				<Image
-					// src={image}
-					src="new_placeholder.svg"
+					src={image}
+					// src="new_placeholder.svg"
 					alt={imageAlt}
 					width={400}
 					height={250}
@@ -48,7 +48,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 				{badgeText && (
 					<div
 						className="
-							absolute top-0 left-0
+							absolute -top-0.5 -left-0.5
 							h-5
 							border-lg
 							w-30
@@ -61,7 +61,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 							backgroundColor: "#f5f5f7",
 						}}
 					>
-						<span className="text-xs text-gray-500 font-semibold mb-3">
+						<span className="text-xs text-gray-500 font-semibold ">
 							{badgeText}
 						</span>
 						{/* Top pseudo-element equivalent */}

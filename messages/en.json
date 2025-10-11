@@ -315,6 +315,17 @@
 			"description": "The group has obtained ISO 9001 certificate and ISO 22000 certificate in the field of quality management and food manufacturing safety, while seeking to adopt a high-quality marketing and distribution system and own other trademarks to expand its markets to reach different segments of customers."
 		}
 	},
+	"ChatBot": {
+		"title": "Amal Al Khair Assistant",
+		"subtitle": "How can I help you?",
+		"welcomeMessage": "Hello! I'm your virtual assistant. How can I help you today?",
+		"placeholder": "Type your message here...",
+		"send": "Send",
+		"openChat": "Open chat",
+		"closeChat": "Close chat",
+		"chatWithUs": "Chat with us",
+		"errorMessage": "Sorry, an error occurred. Please try again."
+	},
 	"Footer": {
 		"contactTitle": "Contact Information",
 		"address": "P.O. Box 8524, Riyadh 11492",
@@ -334,6 +345,7 @@
 		"products": "Our Products",
 		"news": "News & Blogs",
 		"jobs": "Jobs",
+		"employeePortal": "Employee Portal",
 		"description": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the poultry, feed, fish, and dates sectors. We believe that transparency and quality are the foundation of our success, and we work to build long-term partnerships that create sustainable value for our community and customers.",
 		"rights": "All rights reserved © Amal Al Khair 2025"
 	}
