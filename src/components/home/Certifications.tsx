@@ -43,11 +43,11 @@ export default function Certifications() {
 	// }, [hoveredIndex]);
 
 	return (
-		<Section id="certifications" ref={sectionRef} className="bg-[#f5f5f7] text-white relative">
+		<Section id="certifications" ref={sectionRef} className="bg-gray-200 relative">
 			{/* Bottom static tab */}
-			<div className="absolute top-0 left-1/2 -translate-x-1/2">
+			<div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
 				<TransitionLink href="/about">
-					<div className="downward-tab text-yellow-500" style={{ paddingInline: "50px" }}>
+					<div className="downward-tab text-yellow-500 text-sm sm:text-base" style={{ paddingInline: "30px" }}>
 						{tHomePage("moreAboutButton")}
 					</div>
 				</TransitionLink>
@@ -55,22 +55,22 @@ export default function Certifications() {
 
 			<div className="w-full relative">
 				{/* Heading */}
-				<div className="text-center mb-12 lg:mb-16">
-					<h2 className="text-4xl font-bold mb-6 text-gray-900">{t("title")}</h2>
-					<p className="text-xl max-w-4xl mx-auto text-gray-600">{t("description")}</p>
+				<div className="text-center mb-8 sm:mb-10 lg:mb-16 px-4">
+					<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-gray-900">{t("title")}</h2>
+					<p className="text-base sm:text-lg lg:text-xl max-w-4xl mx-auto text-gray-600">{t("description")}</p>
 				</div>
 
 				{/* Logos */}
-				<div className="flex w-full justify-between items-center gap-10">
+				<div className="flex flex-wrap w-full justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 px-4">
 					{logos.map((logo, index) => (
 						<div
 							key={logo.id}
 							ref={(el: any) => (logoRefs.current[index] = el)}
 							onMouseEnter={() => setHoveredIndex(index)}
-							className={`group transition-all duration-300 cursor-pointer hover:scale-110`}
+							className={`group transition-all duration-300 cursor-pointer hover:scale-110 flex-shrink-0`}
 						>
 							<TransitionLink href="/certifications">
-								<div className="h-32 w-contain flex items-center justify-center">
+								<div className="h-16 sm:h-20 md:h-24 lg:h-32 w-auto flex items-center justify-center">
 									<Image
 										src={logo.src}
 										alt={logo.alt}
@@ -85,7 +85,7 @@ export default function Certifications() {
 						</div>
 					))}
 				</div>
-				<div className="h-[1px] w-full bg-black absolute sm:-bottom-20 -bottom-15 lg:-bottom-15 xl:-bottom-25 opacity-20"></div>
+				<div className="h-[1px] w-full bg-black absolute -bottom-10 sm:-bottom-15 lg:-bottom-20 xl:-bottom-25 opacity-20"></div>
 			</div>
 
 			{/* tab (notch) */}

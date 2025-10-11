@@ -19,158 +19,158 @@ export default function Footer() {
 	return (
 		<>
 			<Newsletter />
-			<footer className="bg-white text-black pt-20 pb-8">
-				<div className="max-w-7xl mx-auto px-4">
-					<div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-12 lg:gap-16">
-						{/* Contact Info */}
-						<div className="relative">
-							<h3 className="text-xl font-bold mb-6 text-black">
+			<footer className="bg-white text-black pt-12 sm:pt-16 lg:pt-20 pb-8">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-16">
+						{/* Contact Info & Social Media */}
+						<div className="flex-shrink-0 lg:w-auto">
+							<h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-black">
 								{t("contactTitle")}
 							</h3>
 
-							<div className="space-y-4">
+							<div className="space-y-3 sm:space-y-4">
 								<div className="flex items-center gap-3">
-									<FaMapMarkerAlt className="text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-gray-700">{t("address")}</span>
+									<FaMapMarkerAlt className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
+									<span className="text-sm sm:text-base text-gray-700">{t("address")}</span>
 								</div>
 								<div className="flex items-center gap-3">
-									<FaPhone className="text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-gray-700">{t("phone")}</span>
+									<FaPhone className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
+									<span className="text-sm sm:text-base text-gray-700">{t("phone")}</span>
 								</div>
 								<div className="flex items-center gap-3">
-									<FaWhatsapp className="text-xl text-gray-600 flex-shrink-0" />
-									<span className="text-gray-700">{t("whatsapp")}</span>
+									<FaWhatsapp className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
+									<span className="text-sm sm:text-base text-gray-700">{t("whatsapp")}</span>
 								</div>
 							</div>
 
 							{/* Social Media */}
-							<div className="pt-4 absolute bottom-0">
-								<h4 className="text-xl font-semibold mb-4 text-black">
+							<div className="mt-6 sm:mt-8">
+								<h4 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-black">
 									{t("followUs")}
 								</h4>
-								<div className="flex gap-6">
+								<div className="flex flex-wrap gap-4 sm:gap-6">
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaFacebook className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaFacebook className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaInstagram className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaInstagram className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaYoutube className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaYoutube className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaLinkedin className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaLinkedin className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaTwitter className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaTwitter className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
 										href="#"
 										className="flex items-center justify-center duration-300 group"
 									>
-										<FaWhatsapp className="text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
+										<FaWhatsapp className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 								</div>
 							</div>
 						</div>
 
 						{/* Links */}
-						<div className="space-y-6 flex-1 md:basis-1/2 lg:basis-1/3">
-							<h3 className="text-xl font-bold mb-6 text-black">{t("quickLinks")}</h3>
-							<div className="flex flex-col sm:flex-row gap-6">
-								<div className="space-y-3 flex-1">
+						<div className="flex-1 lg:min-w-0">
+							<h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-black">{t("quickLinks")}</h3>
+							<div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
+								<div className="space-y-2 sm:space-y-3">
 									<Link
 										href="#faq"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("faq")}
 									</Link>
 									<Link
 										href="#sitemap"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("sitemap")}
 									</Link>
 									<Link
 										href="#privacy"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("privacy")}
 									</Link>
 									<Link
 										href="#terms"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("terms")}
 									</Link>
 									<Link
 										href="#contact"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("contact")}
 									</Link>
 									<Link
 										href="#location"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("location")}
 									</Link>
 								</div>
-								<div className="space-y-3 flex-1">
+								<div className="space-y-2 sm:space-y-3">
 									<Link
 										href="/"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("home")}
 									</Link>
 									<Link
 										href="/about"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("about")}
 									</Link>
 									<Link
 										href="/group"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("group")}
 									</Link>
 									<Link
 										href="/products"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("products")}
 									</Link>
 									<Link
 										href="/news"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("news")}
 									</Link>
 									<Link
 										href="/jobs"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("jobs")}
 									</Link>
 									<TransitionLink
 										href="/admin"
-										className="block text-gray-700 hover:text-black transition-colors duration-300"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										بوابة الموظفين
 									</TransitionLink>
@@ -178,18 +178,19 @@ export default function Footer() {
 							</div>
 						</div>
 
-						{/* Logo*/}
-						<div className="flex flex-col justify-between items-start w-md relative">
-							<div className="text-center relative -top-8">
+						{/* Logo & Description */}
+						<div className="flex flex-col justify-start items-center lg:items-start lg:w-auto lg:max-w-md">
+							<div className="w-full max-w-xs sm:max-w-sm lg:max-w-md mb-4 sm:mb-6">
 								<Image
 									src="/AKG_Logo_Horizontal.svg"
 									alt="Amal Al Khair logo"
 									width={450}
 									height={200}
+									className="w-full h-auto"
 								/>
 							</div>
 
-							<p className="text-justify border-t border-gray-500 pt-6">
+							<p className="text-sm sm:text-base text-justify border-t border-gray-500 pt-4 sm:pt-6 w-full">
 								مجموعة أمل الخير القابضة هي مجموعة سعودية رائدة تلتزم بالتميز
 								والابتكار في قطاعات الدواجن والأعلاف والأسماك والتمور. نؤمن بأن
 								الشفافية والجودة هما أساس نجاحنا، ونعمل على بناء شراكات طويلة الأمد
@@ -200,9 +201,9 @@ export default function Footer() {
 				</div>
 
 				{/* Copyright */}
-				<div className="border-t border-[#f5f5f7] mt-12 pt-8">
-					<div className="max-w-7xl mx-auto px-4 text-center">
-						<p className="text-gray-600 text-sm">{t("rights")}</p>
+				<div className="border-t border-[#f5f5f7] mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8">
+					<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+						<p className="text-gray-600 text-xs sm:text-sm">{t("rights")}</p>
 					</div>
 				</div>
 			</footer>
