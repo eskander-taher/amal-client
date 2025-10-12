@@ -65,7 +65,7 @@ export default function NavBar() {
 			<div className="flex w-full items-center justify-between">
 				{/* Logo */}
 				<div className="relative">
-					<div className="relative flex items-center justify-center px-10 -bottom-4 z-50">
+					<div className="relative flex items-center justify-center px-3 -bottom-4 z-50">
 						{/* laptop */}
 						<TransitionLink className="relative hidden sm:block" href="/">
 							<Image
@@ -103,7 +103,7 @@ export default function NavBar() {
 				</div>
 
 				{/* Navigation Links */}
-				<div className="hidden h-full md:flex items-center space-x-1 space-x-reverse">
+				<div className="hidden h-full lg:flex items-center space-x-1 space-x-reverse">
 					{navItems.map((item, index) => {
 						const isActive =
 							item.href === pathname ||
@@ -120,7 +120,7 @@ export default function NavBar() {
 										onMouseLeave={() => setSubmenuOpen(null)}
 									>
 										<button
-											className={`px-2py-2 h-full rounded-lg transition-all duration-200 flex items-center ${
+											className={`px-2py-2 h-full rounded-lg transition-all duration-200 flex items-center text-sm lg:text-base xl:text-lg ${
 												isActive
 													? "text-gray-900 font-bold"
 													: "text-gray-700 hover:text-gray-800 font-small"
@@ -151,7 +151,7 @@ export default function NavBar() {
 															<TransitionLink
 																key={subItem.href}
 																href={subItem.href}
-																className={`block px-4 py-2 text-sm transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item whitespace-nowrap ${
+																className={`block px-4 py-2 text-xs lg:text-sm xl:text-base transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item whitespace-nowrap ${
 																	isSubActive
 																		? "bg-blue-50 text-blue-700 font-medium"
 																		: "text-gray-700 hover:bg-gray-50"
@@ -173,7 +173,7 @@ export default function NavBar() {
 								) : (
 									<TransitionLink
 										href={item.href}
-										className={`px-2 py-2 flex justify-center items-center h-full rounded-lg transition-all duration-200 ${
+										className={`px-2 py-2 flex justify-center items-center h-full rounded-lg transition-all duration-200 text-sm lg:text-base xl:text-lg ${
 											isActive
 												? "text-gray-900 font-bold"
 												: "text-gray-700 hover:text-gray-800 font-small"
@@ -196,14 +196,14 @@ export default function NavBar() {
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}
-							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-sm"
+							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
 						/>
 						<span
 							className={`absolute inset-y-0 flex items-center pl-1 ${
 								locale === "en" ? "right-2" : "left-2"
 							}`}
 						>
-							<FaSearch className="text-gray-300"/>
+							<FaSearch className="text-gray-300 text-xs lg:text-sm"/>
 						</span>
 					</div>
 					<LanguageSwitcher />
@@ -268,7 +268,7 @@ export default function NavBar() {
 									{item.submenu ? (
 										<div>
 											<button
-												className={`w-full text-left px-4 py-3 rounded-lg font-medium mb-1 flex items-center justify-between ${
+												className={`w-full text-left px-4 py-3 rounded-lg font-medium mb-1 flex items-center justify-between text-sm sm:text-base ${
 													isActive
 														? "bg-blue-600 text-white"
 														: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -307,7 +307,7 @@ export default function NavBar() {
 															<TransitionLink
 																key={subItem.href}
 																href={subItem.href}
-																className={`block px-4 py-2 rounded-lg text-sm ${
+																className={`block px-4 py-2 rounded-lg text-xs sm:text-sm ${
 																	isSubActive
 																		? "bg-blue-100 text-blue-700 font-medium"
 																		: "text-gray-600 hover:bg-gray-50"
@@ -324,7 +324,7 @@ export default function NavBar() {
 									) : (
 										<TransitionLink
 											href={item.href}
-											className={`block px-4 py-3 rounded-lg font-medium mb-1 ${
+											className={`block px-4 py-3 rounded-lg font-medium mb-1 text-sm sm:text-base ${
 												isActive
 													? "bg-blue-600 text-white"
 													: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -342,7 +342,7 @@ export default function NavBar() {
 								<input
 									type="text"
 									placeholder={t("searchPlaceholder")}
-									className="w-full border border-gray-300 rounded-full py-2 px-4 text-sm"
+									className="w-full border border-gray-300 rounded-full py-2 px-4 text-xs sm:text-sm"
 								/>
 							</div>
 							<LanguageSwitcher />
