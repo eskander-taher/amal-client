@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
 				<div className="absolute inset-0 z-10 flex items-center justify-center">
 					<div className="text-white text-center">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-						<p className="text-lg">Loading...</p>
+						<p className="text-sm sm:text-base lg:text-lg">Loading...</p>
 					</div>
 				</div>
 			</Section>
@@ -116,17 +116,17 @@ const Hero: React.FC = () => {
 						key={currentSlide}
 						className="transition-all duration-700 ease-in-out animate-fade-in"
 					>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-relaxed">
+						<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-4 sm:mb-6 drop-shadow-lg leading-relaxed">
 							{currentSlideData.title}
 						</h1>
-						<p className="text-lg md:text-2xl text-white/90 mb-8 max-w-2xl animate-fade-in-delay">
+						<p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl animate-fade-in-delay">
 							{currentSlideData.description}
 						</p>
 						<TransitionLink
 							href={currentSlideData.href}
-							className={`relative group bg-white flex justify-between items-center text-black rounded-full font-bold text-lg shadow-lg px-1.5 py-1 animate-fade-in-delay-2 transition-[width,background,shadow] duration-300 ease-in-out overflow-hidden w-[44px] h-[44px] hover:w-[110px]`}
+							className={`relative group bg-white flex justify-between items-center text-black rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg px-1.5 py-1 animate-fade-in-delay-2 transition-[width,background,shadow] duration-300 ease-in-out overflow-hidden w-[44px] h-[44px] hover:w-[110px]`}
 						>
-							<p className="absolute right-4 hidden group-hover:block whitespace-nowrap transition-all duration-900">
+							<p className="absolute right-4 whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[opacity,visibility] duration-300 delay-150 ease-in-out">
 								{currentSlideData.buttonText}
 							</p>
 							<div className="absolute left-1.5 bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
@@ -145,17 +145,17 @@ const Hero: React.FC = () => {
 			{/* Navigation Arrows */}
 			<button
 				onClick={prevSlide}
-				className="absolute hidden sm:block left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block left-4 sm:left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Previous slide"
 			>
-				<FaChevronLeft className="text-md" />
+				<FaChevronLeft className="text-sm md:text-base lg:text-lg" />
 			</button>
 			<button
 				onClick={nextSlide}
-				className="absolute hidden sm:block right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
+				className="absolute hidden sm:block right-4 sm:right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-yellow-500 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm cursor-pointer"
 				aria-label="Next slide"
 			>
-				<FaChevronRight className="text-md" />
+				<FaChevronRight className="text-sm md:text-base lg:text-lg" />
 			</button>
 
 			{/* Bottom static curve */}
