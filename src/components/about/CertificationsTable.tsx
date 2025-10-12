@@ -91,7 +91,7 @@ export default function CertificationsTable() {
 						<span className="text-lg">Issuing Authority</span>
 					</div>
 				</div>
-				<div className="font-bold text-gray-900">
+				<div className="font-bold pl-6 text-gray-900">
 					<div className="flex justify-between items-center">
 						<span className="text-lg">نبذة تعريفية</span>
 						<span className="text-lg">About</span>
@@ -167,7 +167,7 @@ export default function CertificationsTable() {
 						<div className="hidden lg:grid lg:grid-cols-[2fr_1.5fr_2fr] ">
 							{/* Certificate Name & Logo Column */}
 							<div className="space-y-4 relative">
-								<div className="flex justify-between items-start w-full py-2 px-4 absolute top-0 transform -translate-y-2/3 z-50 ">
+								<div className="flex justify-between items-start w-full py-2 px-4 absolute top-0 transform -translate-y-2/3 z-20">
 									<span className="text-md font-semibold text-gray-900">
 										{cert.nameAr}
 									</span>
