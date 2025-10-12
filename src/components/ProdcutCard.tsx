@@ -35,12 +35,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 				/>
 			</div>
 
-			{/* Content Section - Compact layout */}
-			<div className="p-4 flex flex-col h-24">
-				{/* Title Section */}
-				<h3 className="text-base font-bold mb-3 text-center text-gray-900 overflow-hidden text-ellipsis whitespace-nowrap">
-					{title}
-				</h3>
+		{/* Content Section - Compact layout */}
+		<div className="p-4 flex flex-col h-24">
+			{/* Title Section */}
+			<h3 className="text-sm sm:text-base md:text-lg font-bold mb-3 text-center text-gray-900 overflow-hidden text-ellipsis whitespace-nowrap leading-tight">
+				{title}
+			</h3>
 
 				{/* Link Section */}
 				<div className="mt-auto">

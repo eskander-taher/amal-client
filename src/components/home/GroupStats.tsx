@@ -71,37 +71,37 @@ const GroupStats: React.FC = () => {
 			<div className="w-full">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 					{stats.map((stat, index) => (
-						<div
-							key={index}
-							className="flex flex-col gap-5 justify-between items-center text-center group hover:scale-105 transition-transform duration-300"
-						>
-							<div className="flex items-center justify-center">
-								<Image
-									src={stat.image}
-									alt={t(stat.titleKey)}
-									width={130}
-									height={130}
-									className="object-contain"
-								/>
-							</div>
-							<h3 className="flex gap-3 text-xl lg:text-2xl xl:text-5xl font-black text-white">
-								<span className="text-yellow-500 block rtl:hidden">+ </span>
-								<span className="text-gray-200 text-2xl block ltr:hidden">{stat.unit} </span>
-								<CountUp
-									className="text-yellow-500 "
-									end={stat.count}
-									duration={5}
-									separator=","
-									start={isVisible ? undefined : 0}
-									delay={isVisible ? index * 0.2 : 0} // Stagger the animations
-								/>
-								<span className="text-yellow-500 block ltr:hidden">+ </span>
-								<span className="text-gray-200 block rtl:hidden text-2xl">{stat.unit} </span>
-							</h3>
-							<p className="text-sm lg:text-base text-gray-300 font-medium leading-relaxed whitespace-pre-line">
-								{t(stat.titleKey)}
-							</p>
+					<div
+						key={index}
+						className="flex flex-col gap-5 justify-between items-center text-center group hover:scale-105 transition-transform duration-300"
+					>
+						<div className="flex items-center justify-center">
+							<Image
+								src={stat.image}
+								alt={t(stat.titleKey)}
+								width={130}
+								height={130}
+								className="object-contain"
+							/>
 						</div>
+						<h3 className="flex gap-2 sm:gap-3 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white">
+							<span className="text-yellow-400 block rtl:hidden">+ </span>
+							<span className="text-gray-100 text-base sm:text-lg md:text-xl lg:text-2xl block ltr:hidden">{stat.unit} </span>
+							<CountUp
+								className="text-yellow-400"
+								end={stat.count}
+								duration={5}
+								separator=","
+								start={isVisible ? undefined : 0}
+								delay={isVisible ? index * 0.2 : 0} // Stagger the animations
+							/>
+							<span className="text-yellow-400 block ltr:hidden">+ </span>
+							<span className="text-gray-100 block rtl:hidden text-base sm:text-lg md:text-xl lg:text-2xl">{stat.unit} </span>
+						</h3>
+						<p className="text-sm sm:text-base md:text-lg text-gray-300 font-medium leading-relaxed whitespace-pre-line">
+							{t(stat.titleKey)}
+						</p>
+					</div>
 					))}
 				</div>
 			</div>

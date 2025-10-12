@@ -192,7 +192,7 @@ export default function NavBar() {
 
 				{/* Left Side: Search + Language */}
 				<div className="hidden md:flex items-center space-x-2 space-x-reverse">
-					<div className="relative text-gray-600">
+					<div className="relative text-gray-600 hidden md:flex">
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}

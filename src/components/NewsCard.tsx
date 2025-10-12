@@ -56,14 +56,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
 							group
 							overflow-visible
 						"
-						style={{
-							borderBottomRightRadius: "10px",
-							backgroundColor: "#f5f5f7",
-						}}
-					>
-						<span className="text-xs text-gray-500 font-semibold ">
-							{badgeText}
-						</span>
+					style={{
+						borderBottomRightRadius: "10px",
+						backgroundColor: "#f5f5f7",
+					}}
+				>
+					<span className="text-xs sm:text-sm text-gray-600 font-semibold">
+						{badgeText}
+					</span>
 						{/* Top pseudo-element equivalent */}
 						<div
 							className="absolute bottom-0 left-0 translate-y-full w-5 h-5"
@@ -115,14 +115,14 @@ const NewsCard: React.FC<NewsCardProps> = ({
 				</div>
 			</div>
 
-			{/* Card Content */}
-			<div className="p-6 pb-16">
-				{/* Title */}
-				<h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{title}</h3>
+		{/* Card Content */}
+		<div className="p-6 pb-16">
+			{/* Title */}
+			<h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight">{title}</h3>
 
-				{/* Description */}
-				<p className="text-gray-600 line-clamp-3 leading-relaxed">{plainDescription}</p>
-			</div>
+			{/* Description */}
+			<p className="text-sm sm:text-base text-gray-600 line-clamp-3 leading-relaxed">{plainDescription}</p>
+		</div>
 
 			{/* Card Link - positioned absolutely at bottom */}
 			<CardLink href={href} backgroundColor="white" />

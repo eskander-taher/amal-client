@@ -20,10 +20,10 @@ export default function Newsletter() {
 			<div className="w-full">
 				<div className="flex flex-col lg:flex-row items-center justify-between gap-8">
 					<div className="text-center flex flex-col items-start order-2 lg:w-1/3">
-						<h2 className="text-3xl lg:text-4xl font-bold text-black">
+						<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold text-gray-900 ">
 							{t("title")}
 						</h2>
-						<p className="text-lg lg:text-xl text-gray-800 leading-relaxed max-w-md">
+						<p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed max-w-md">
 							{t("description")}
 						</p>
 					</div>
@@ -39,8 +39,8 @@ export default function Newsletter() {
 									type="email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
-									placeholder={"   " + t("placeholder")}
-									className="w-full pl-16 pr-4 py-4 rounded-full border-2 border-white/30 bg-white/90 text-black placeholder-gray-600 focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-bold text-lg h-14"
+									placeholder={t("placeholder")}
+									className="w-full rounded-full border-2 border-white/30 bg-white/90 text-gray-900 placeholder-gray-600 focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-semibold text-sm sm:text-base md:text-lg h-14 pr-5"
 									required
 								/>
 							</div>

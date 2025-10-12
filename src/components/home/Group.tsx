@@ -45,7 +45,7 @@ const GroupSection: React.FC = () => {
 	return (
 		<Section id="group" className="bg-white">
 			<div className="w-full">
-				<h2 className="text-2xl font-semibold text-center mb-12">{t("title")}</h2>
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-900">{t("title")}</h2>
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 					{cards.map((card, index) => (
@@ -91,15 +91,15 @@ const GroupSection: React.FC = () => {
 								</div>
 							</div>
 
-							{/* Title Section - Fixed height for alignment */}
-							<h3 className="text-lg font-bold h-12 flex items-center justify-center text-center">
-								{t(card.titleKey)}
-							</h3>
+						{/* Title Section - Fixed height for alignment */}
+						<h3 className="text-base sm:text-lg  font-bold h-12 flex items-center justify-center text-center text-gray-900 leading-tight">
+							{t(card.titleKey)}
+						</h3>
 
-							{/* Description Section - Flexible height */}
-							<p className="text-sm text-gray-600 flex-1 text-center">
-								{t(card.descriptionKey).slice(0, 150)} <span>...</span>
-							</p>
+						{/* Description Section - Flexible height */}
+						<p className="text-xs sm:text-sm md:text-base text-gray-600 flex-1 text-center leading-relaxed">
+							{t(card.descriptionKey).slice(0, 130)} <span>...</span>
+						</p>
 
 							{/* Card Link - Fixed position at bottom */}
 							<div className="mt-4">
