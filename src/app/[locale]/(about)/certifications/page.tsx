@@ -2,12 +2,12 @@ import React from "react";
 import Hero from "@/components/Hero";
 import { useTranslations } from "next-intl";
 import Section from "@/components/Section";
-import Certifications from "@/components/home/Certifications";
+import CertificationsTable from "@/components/about/CertificationsTable";
 
 export default function Page() {
-  const t = useTranslations("Certifications");
+	const t = useTranslations("Certifications");
 
-  return (
+	return (
 		<>
 			<Hero title={t("title")} image="/certifications-hero.webp" />
 			<Section>
@@ -21,59 +21,8 @@ export default function Page() {
 							{t("description")}
 						</p>
 					</div>
-				</div>
 
-				<div className="grid grid-cols-3 grid-rows-7 gap-0 text-black">
-					<div></div>
-					<div className="flex justify-between">
-						<span>الجهة المانحة</span>
-						<span>Issuing Authority</span>
-					</div>
-					<div className="flex justify-between">
-						<span>نبذة تعريفية</span>
-						<span>About the certificate</span>
-					</div>
-					<div className="col-start-3 row-start-2">5</div>
-					<div className="col-start-2 row-start-2">6</div>
-					<div className="col-start-1 row-start-2">7</div>
-					<div>8</div>
-					<div>9</div>
-					<div>10</div>
-					<div className="col-start-3 row-start-4">11</div>
-					<div className="col-start-1 row-start-4">12</div>
-					<div className="col-start-2 row-start-4">13</div>
-					<div className="col-start-2 row-start-5">14</div>
-					<div className="col-start-3 row-start-5">15</div>
-					<div className="col-start-3 row-start-6">16</div>
-					<div className="col-start-2 row-start-6">17</div>
-					<div className="col-start-1 row-start-6">18</div>
-					<div className="col-start-1 row-start-5">19</div>
-					<div>20</div>
-					<div>21</div>
-					<div>22</div>
-				</div>
-
-				<div className="grid grid-cols-3 grid-rows-7 gap-0 text-black">
-					<div>2</div>
-					<div>3</div>
-					<div className="col-start-3 row-start-2">5</div>
-					<div className="col-start-2 row-start-2">6</div>
-					<div className="col-start-1 row-start-2">7</div>
-					<div>8</div>
-					<div>9</div>
-					<div className="row-start-3">10</div>
-					<div className="col-start-3 row-start-4">11</div>
-					<div className="col-start-1 row-start-4">12</div>
-					<div className="col-start-2 row-start-4">13</div>
-					<div className="col-start-2 row-start-5">14</div>
-					<div className="col-start-3 row-start-5">15</div>
-					<div className="col-start-3 row-start-6">16</div>
-					<div className="col-start-2 row-start-6">17</div>
-					<div className="col-start-1 row-start-6">18</div>
-					<div className="col-start-1 row-start-5">19</div>
-					<div>20</div>
-					<div>21</div>
-					<div className="row-start-7">22</div>
+					<CertificationsTable />
 				</div>
 			</Section>
 			<Section className="text-white relative bg-[#f5f5f7]">
@@ -105,5 +54,5 @@ export default function Page() {
 				</div>
 			</Section>
 		</>
-  );
+	);
 }
