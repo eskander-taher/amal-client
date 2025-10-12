@@ -102,17 +102,17 @@ export default function NavBar() {
 					</div>
 				</div>
 
-				{/* Navigation Links */}
-				<div className="hidden h-full lg:flex items-center space-x-1 space-x-reverse">
+			{/* Navigation Links */}
+			<div className="hidden h-full lg:flex items-center space-x-2 space-x-reverse">
 					{navItems.map((item, index) => {
 						const isActive =
 							item.href === pathname ||
 							(item.submenu && item.submenu.some((sub) => sub.href === pathname));
 						return (
-							<div
-								key={index}
-								className="relative h-full flex justify-center items-center px-1.5"
-							>
+						<div
+							key={index}
+							className="relative h-full flex justify-center items-center px-3"
+						>
 								{item.submenu ? (
 									<div
 										className="relative h-full"
@@ -136,9 +136,7 @@ export default function NavBar() {
 										{submenuOpen === item.href && (
 											<>
 												<div
-													className={`absolute top-full min-w-full rounded-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out ${
-														locale === "ar" ? "right-0" : "left-0"
-													} bg-white/95 backdrop-blur-md border-white/20 animate-submenu-slide-down origin-top`}
+													className="absolute top-full left-1/2 -translate-x-1/2 min-w-full rounded-b-lg shadow-lg border py-2 z-50 transition-all duration-300 ease-out bg-white border-gray-200 animate-submenu-slide-down origin-top"
 													style={{
 														width: "max-content",
 														minWidth: "100%",
@@ -181,7 +179,7 @@ export default function NavBar() {
 									>
 										{item.label}
 										{isActive && (
-											<div className="absolute bottom-0 rounded-md w-full h-1 bg-yellow-500 z-50" />
+											<div className="absolute bottom-0 rounded-md w-1/2 h-1 bg-yellow-500 z-50" />
 										)}
 									</TransitionLink>
 								)}
@@ -190,24 +188,24 @@ export default function NavBar() {
 					})}
 				</div>
 
-				{/* Left Side: Search + Language */}
-				<div className="hidden md:flex items-center space-x-2 space-x-reverse">
-					<div className="relative text-gray-600 hidden md:flex">
-						<input
-							type="text"
-							placeholder={t("searchPlaceholder")}
-							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
-						/>
-						<span
-							className={`absolute inset-y-0 flex items-center pl-1 ${
-								locale === "en" ? "right-2" : "left-2"
-							}`}
-						>
-							<FaSearch className="text-gray-300 text-xs lg:text-sm"/>
-						</span>
-					</div>
-					<LanguageSwitcher />
+			{/* Left Side: Search + Language */}
+			<div className="flex items-center space-x-2 space-x-reverse">
+				<div className="relative text-gray-600 hidden xl:flex">
+					<input
+						type="text"
+						placeholder={t("searchPlaceholder")}
+						className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
+					/>
+					<span
+						className={`absolute inset-y-0 flex items-center pl-1 ${
+							locale === "en" ? "right-2" : "left-2"
+						}`}
+					>
+						<FaSearch className="text-gray-300 text-xs lg:text-sm"/>
+					</span>
 				</div>
+				<LanguageSwitcher />
+			</div>
 
 				{/* Hamburger for Mobile */}
 				{!menuOpen && (

@@ -1,10 +1,7 @@
 "use client";
-
 import Image from "next/image";
-
 interface Certification {
-	nameAr: string;
-	nameEn: string;
+	name: string;
 	logos: string[];
 	issuingAuthorityAr: string;
 	issuingAuthorityEn: string;
@@ -14,20 +11,18 @@ interface Certification {
 
 const certificationsData: Certification[] = [
 	{
-		nameAr: "ايزو 22000-2018",
-		nameEn: "ISO 22000:2018",
+		name: "ايزو 22000-2018  |  ISO 22000:2018",
 		logos: ["/images/IAF.svg", "/images/saudi_accreditation.svg", "/images/SMG_ISO.svg"],
-		issuingAuthorityAr: "S M G الكندية واعتماد مركز الاعتماد السعودي",
+		issuingAuthorityAr: "اس ام جي الكندية واعتماد مركز الاعتماد السعودي",
 		issuingAuthorityEn: "SMG Canada and Saudi Accreditation Center Accreditation",
 		aboutAr: "نظام سلامة الغذاء وفق المواصفة الصادرة عن هيئة التقييس الدولية",
 		aboutEn:
 			"Food safety system according to the standard issued by the International Organization for Standardization",
 	},
 	{
-		nameAr: "الهاسب",
-		nameEn: "HACCP",
+		name: "الهاسب  |  HACCP",
 		logos: ["/images/SMG_HACCP.svg"],
-		issuingAuthorityAr: "S M G الكندية واعتماد مركز الاعتماد السعودي",
+		issuingAuthorityAr: "اس ام جي الكندية واعتماد مركز الاعتماد السعودي",
 		issuingAuthorityEn: "SMG Canada and Saudi Accreditation Center Accreditation",
 		aboutAr:
 			"نظام تحليل مخاطر تلوث الغذاء والتحكم بها وفق الدستور الغذائي الكودكس الصادر عن منظمة الصحة العالمية ومنظمة الزراعة العالمية",
@@ -35,8 +30,7 @@ const certificationsData: Certification[] = [
 			"Food Hazard Analysis and Control System (FHAC) according to the Codex Alimentarius issued by the World Health Organization and the World Agriculture Organization",
 	},
 	{
-		nameAr: "الجاب السعودي",
-		nameEn: "Saudi G.A.P",
+		name: "الجاب السعودي  |  Saudi G.A.P",
 		logos: ["/images/saudi_GAP.svg"],
 		issuingAuthorityAr: "وزارة البيئة والمياه والزراعة السعودية",
 		issuingAuthorityEn: "Saudi Ministry of Environment, Water and Agriculture",
@@ -46,8 +40,7 @@ const certificationsData: Certification[] = [
 			"Compliance with good agricultural practice standards in preserving the environment and food safety throughout its production chain",
 	},
 	{
-		nameAr: "شهادة حلال",
-		nameEn: "Halal Certification",
+		name: "شهادة حلال  |  Halal Certification",
 		logos: ["/images/halal.svg"],
 		issuingAuthorityAr: "مركز حلال : في هيئة الغذاء والدواء السعودية",
 		issuingAuthorityEn: "Halal Center: Saudi Food and Drug Authority",
@@ -55,19 +48,8 @@ const certificationsData: Certification[] = [
 		aboutEn: "Compliance with GSO 2015-1-2055 Halal and Food Safety Standards",
 	},
 	{
-		nameAr: "شهادة صلاحية تصدير",
-		nameEn: "Export Validity Certificate",
-		logos: [],
-		issuingAuthorityAr: "هيئة الغذاء والدواء السعودية",
-		issuingAuthorityEn: "Saudi Food and Drug Authority",
-		aboutAr: "شهادة تثبت الالتزام بمعايير الأسواق المحلية والدولية للغذاء",
-		aboutEn:
-			"This is a certification that demonstrates compliance with local and international food market standards",
-	},
-	{
-		nameAr: "شهادة علامة حلال",
-		nameEn: "Halal Logo Certificate",
-		logos: [],
+		name: "شهادة علامة حلال  |  Halal Logo Certificate",
+		logos: ["/images/halal_sign.svg"],
 		issuingAuthorityAr: "مركز حلال : في هيئة الغذاء والدواء السعودية",
 		issuingAuthorityEn: "Halal Center: Saudi Food and Drug Authority",
 		aboutAr:
@@ -75,15 +57,27 @@ const certificationsData: Certification[] = [
 		aboutEn:
 			"A certificate granting the right to use the Halal mark to companies that comply with the Saudi Halal Specification standards",
 	},
+	{
+		name: "شهادة صلاحية تصدير  |  Export Validity Certificate",
+		logos: [],
+		issuingAuthorityAr: "هيئة الغذاء والدواء السعودية",
+		issuingAuthorityEn: "Saudi Food and Drug Authority",
+		aboutAr: "شهادة تثبت الالتزام بمعايير الأسواق المحلية والدولية للغذاء",
+		aboutEn:
+			"This is a certification that demonstrates compliance with local and international food market standards",
+	},
 ];
 
 export default function CertificationsTable() {
 	return (
-		<div className="w-full">
+		<div dir="rtl" className="w-full">
 			{/* Desktop Table Header - Hidden on Mobile */}
 			<div className="hidden lg:grid lg:grid-cols-[2fr_1.5fr_2fr] gap-12 mb-6 pb-4 border-b-2 border-gray-300">
-				<div className="font-bold text-gray-900">
-					<div className="flex justify-between items-center"></div>
+				<div className="font-bold ltr:pl-6 rtl:pr-6 text-gray-900">
+					<div className="flex justify-between items-center">
+						<span className="text-lg">الشهادة</span>
+						<span className="text-lg">Certificate</span>
+					</div>
 				</div>
 				<div className="font-bold text-gray-900">
 					<div className="flex justify-between items-center">
@@ -91,7 +85,7 @@ export default function CertificationsTable() {
 						<span className="text-lg">Issuing Authority</span>
 					</div>
 				</div>
-				<div className="font-bold pl-6 text-gray-900">
+				<div className="font-bold ltr:pr-6 rtl:pl-6 text-gray-900">
 					<div className="flex justify-between items-center">
 						<span className="text-lg">نبذة تعريفية</span>
 						<span className="text-lg">About</span>
@@ -104,18 +98,15 @@ export default function CertificationsTable() {
 				{certificationsData.map((cert, index) => (
 					<div
 						key={index}
-						className="bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg  border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 my-10"
+						className="bg-white rounded-tl-lg rounded-bl-lg rounded-br-lg  border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 my-15"
 					>
 						{/* Mobile/Tablet: Stacked Layout */}
 						<div className="lg:hidden p-6 space-y-6">
 							{/* Certificate Name & Logo */}
 							<div className="space-y-4">
-								<div className="flex justify-between items-start gap-4 pb-3 border-b border-gray-200">
-									<span className="text-base font-semibold text-gray-900">
-										{cert.nameAr}
-									</span>
-									<span className="text-base font-semibold text-gray-900 text-right">
-										{cert.nameEn}
+								<div className="flex justify-center items-center pb-3 border-b border-gray-200">
+									<span className="text-base font-semibold text-gray-900 text-center">
+										{cert.name}
 									</span>
 								</div>
 								<div className="flex justify-center items-center gap-4 py-4">
@@ -126,7 +117,7 @@ export default function CertificationsTable() {
 										>
 											<Image
 												src={logo}
-												alt={`${cert.nameEn} logo`}
+												alt={`${cert.name} logo`}
 												width={0}
 												height={0}
 												className="h-full w-auto object-contain"
@@ -154,7 +145,7 @@ export default function CertificationsTable() {
 								<div className="text-sm font-semibold text-gray-600 mb-2">
 									نبذة تعريفية / About
 								</div>
-								<div className="text-base text-gray-900 leading-relaxed">
+								<div className="text-base text-center text-gray-900 leading-relaxed">
 									{cert.aboutAr}
 								</div>
 								<div className="text-sm text-gray-700 leading-relaxed">
@@ -167,12 +158,9 @@ export default function CertificationsTable() {
 						<div className="hidden lg:grid lg:grid-cols-[2fr_1.5fr_2fr] ">
 							{/* Certificate Name & Logo Column */}
 							<div className="space-y-4 relative">
-								<div className="flex justify-between items-start w-full py-2 px-4 absolute top-0 transform -translate-y-2/3 z-20">
-									<span className="text-md font-semibold text-gray-900">
-										{cert.nameAr}
-									</span>
-									<span className="text-md font-semibold text-gray-900 text-right">
-										{cert.nameEn}
+								<div className="flex justify-center items-center w-full py-2 px-4 absolute top-0 transform -translate-y-2/3 z-20">
+									<span className="text-md font-semibold text-gray-900 text-center">
+										{cert.name}
 									</span>
 								</div>
 								<div className="flex justify-center items-center h-full gap-4 py-2">
@@ -184,7 +172,7 @@ export default function CertificationsTable() {
 											>
 												<Image
 													src={logo}
-													alt={`${cert.nameEn} logo`}
+													alt={`${cert.name} logo`}
 													width={0}
 													height={0}
 													className="h-full w-auto object-contain"
@@ -201,21 +189,21 @@ export default function CertificationsTable() {
 							</div>
 
 							{/* Issuing Authority Column */}
-							<div className="flex flex-col justify-start space-y-2 p-4 border-l border-r border-gray-200">
-								<div className="text-base font-medium text-gray-900">
+							<div className="flex flex-col justify-start space-y-2 p-4">
+								<div className="text-base text-center font-medium text-gray-900">
 									{cert.issuingAuthorityAr}
 								</div>
-								<div className="text-sm text-gray-700">
+								<div className="text-sm text-center text-gray-700">
 									{cert.issuingAuthorityEn}
 								</div>
 							</div>
 
 							{/* About Column */}
 							<div className="flex flex-col justify-start space-y-2 p-4">
-								<div className="text-base text-gray-900 leading-relaxed">
+								<div className="text-base text-center text-gray-900 leading-relaxed">
 									{cert.aboutAr}
 								</div>
-								<div className="text-sm text-gray-700 leading-relaxed">
+								<div className="text-sm text-center text-gray-700 leading-relaxed">
 									{cert.aboutEn}
 								</div>
 							</div>

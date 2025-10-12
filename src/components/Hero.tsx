@@ -7,7 +7,7 @@ import { TransitionLink } from "./TransitionLink";
 import Image from "next/image";
 import Section from "./Section";
 import { routing } from "@/i18n/routing";
-import Notch from "./Notch";
+
 
 interface HeroProps {
 	title: string;
@@ -131,21 +131,21 @@ export default function Hero({
 				<div className="absolute inset-0 bg-black/40" />
 			</div>
 
-			{/* Content */}
-			<div className="relative z-10 h-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] flex flex-col justify-between">
-				{/* Title and Subtitle */}
-				<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
-					<div className="max-w-4xl">
-						<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-							{title}
-						</h1>
-						{subtitle && (
-							<p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
-								{subtitle}
-							</p>
-						)}
-					</div>
+		{/* Content */}
+		<div className="relative z-10 h-full min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] flex flex-col justify-between">
+			{/* Title and Subtitle */}
+			<div className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex items-center pt-16 sm:pt-20">
+				<div className="max-w-4xl">
+					<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+						{title}
+					</h1>
+					{subtitle && (
+						<p className="text-lg sm:text-xl md:text-2xl text-white/90 leading-relaxed">
+							{subtitle}
+						</p>
+					)}
 				</div>
+			</div>
 
 				{/* Breadcrumb */}
 				{showBreadcrumb && (

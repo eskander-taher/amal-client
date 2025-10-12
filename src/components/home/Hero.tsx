@@ -167,7 +167,7 @@ const Hero: React.FC = () => {
 			>
 				<div
 					className="upward-tab flex items-center justify-center gap-3"
-					style={{ paddingInline: "30px" }}
+					style={{ paddingInline: "30px", "--tab-color": "#111827" } as React.CSSProperties}
 				>
 					{carouselSlides.map((_, index) => (
 						<motion.button

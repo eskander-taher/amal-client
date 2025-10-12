@@ -30,32 +30,23 @@ export default function LanguageSwitcher() {
 	const getLocaleName = (locale: "ar" | "en") => {
 		switch (locale) {
 			case "en":
-				return "العربية";
-			case "ar":
 				return "English";
+			case "ar":
+				return "عربي";
 			default:
 				return "Language";
-		}
-	};
-
-	const getFlagClass = (locale: "ar" | "en") => {
-		switch (locale) {
-			case "ar":
-				return "fi fi-sa"; // Saudi Arabia flag
-			case "en":
-				return "fi fi-gb"; // UK flag
-			default:
-				return "fi fi-un";
 		}
 	};
 
 	return (
 		<button
 			onClick={() => switchToLocale(getNextLocale())}
-			className="mx-2 flex items-center justify-center px-2 py-2 bg-white hover:bg-gray-50 border border-gray-200 transition-all duration-200 hover:shadow-md cursor-pointer rounded-full w-10 h-10 sm:w-12 sm:h-10"
+			className="mx-2 flex items-center justify-center px-4 py-2 bg-white hover:bg-gray-50 border border-gray-200 transition-all duration-200 hover:shadow-md cursor-pointer rounded-full"
 			title={`Switch to ${getLocaleName(getNextLocale() as "ar" | "en")}`}
 		>
-			<span className={`${getFlagClass(getNextLocale() as "ar" | "en")} text-2xl sm:text-3xl`}></span>
+			<span className="text-sm font-semibold text-gray-700">
+				{getLocaleName(getNextLocale() as "ar" | "en")}
+			</span>
 		</button>
 	);
 }

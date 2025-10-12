@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import Section from "./Section";
 import { useTranslations } from "next-intl";
 
@@ -32,15 +32,16 @@ export default function Newsletter() {
 					<div className="order-1 lg:order-2 w-full lg:w-2/3">
 						<form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto lg:mx-0 ">
 							<div className="relative w-full">
-								<div className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center">
-									<FaArrowLeftLong className="text-white text-sm" />
+								<div className="absolute rtl:left-4 ltr:right-4 top-1/2 transform -translate-y-1/2 bg-yellow-500 rounded-full w-8 h-8 flex items-center justify-center">
+									<FaArrowRightLong className="rtl:hidden ltr:flex text-white text-sm" />
+									<FaArrowLeftLong className="ltr:hidden rtl:flex text-white text-sm" />
 								</div>
 								<input
 									type="email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									placeholder={t("placeholder")}
-									className="w-full rounded-full border-2 border-white/30 bg-white/90 text-gray-900 placeholder-gray-600 focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-semibold text-sm sm:text-base md:text-lg h-14 pr-5"
+									className="w-full rounded-full border-2 border-white/30 bg-white/90 text-gray-900 placeholder-gray-600 focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-semibold text-sm sm:text-base md:text-lg h-14  ltr:pl-5 pr-5"
 									required
 								/>
 							</div>
@@ -48,7 +49,7 @@ export default function Newsletter() {
 					</div>
 				</div>
 			</div>
-			<div className="absolute bottom-0  w-[80%] left-1/2 -translate-x-1/2 translate-y-full">
+			<div className="absolute bottom-0 w-[80%] left-1/2 -translate-x-1/2 translate-y-full">
 				<div
 					className="downward-tab"
 					style={{ "--tab-color": "oklch(79.5% 0.184 86.047)" } as React.CSSProperties}
