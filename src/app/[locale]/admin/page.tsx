@@ -123,7 +123,7 @@ export default function AdminDashboard() {
       case 'product':
         return 'bg-purple-50 text-purple-600';
       case 'recipe':
-        return 'bg-orange-50 text-orange-600';
+        return "bg-yellow-50 text-yellow-600";
       case 'message':
         return 'bg-yellow-50 text-yellow-600';
       default:

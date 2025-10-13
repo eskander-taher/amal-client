@@ -224,7 +224,7 @@ export default function AdminRecipesPage() {
 					</div>
 					<button
 						onClick={() => setIsFormOpen(true)}
-						className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+						className="inline-flex items-center px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
 					>
 						<Plus className="w-4 h-4 mr-2" />
 						إضافة وصفة جديدة
@@ -242,7 +242,7 @@ export default function AdminRecipesPage() {
 								placeholder="البحث في الوصفات..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 							/>
 						</div>
 
@@ -250,7 +250,7 @@ export default function AdminRecipesPage() {
 						<select
 							value={selectedCategory}
 							onChange={(e) => setSelectedCategory(e.target.value)}
-							className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+							className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 						>
 							<option value="">جميع الفئات</option>
 							{categories.map((category) => (
@@ -264,7 +264,7 @@ export default function AdminRecipesPage() {
 						<select
 							value={selectedDifficulty}
 							onChange={(e) => setSelectedDifficulty(e.target.value)}
-							className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+							className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 						>
 							{difficultyOptions.map((option) => (
 								<option key={option.value} value={option.value}>
@@ -284,7 +284,7 @@ export default function AdminRecipesPage() {
 
 						{isLoading ? (
 							<div className="text-center py-8">
-								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600 mx-auto mb-2"></div>
+								<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-600 mx-auto mb-2"></div>
 								<p className="text-gray-600">جاري تحميل الوصفات...</p>
 							</div>
 						) : recipes.length === 0 ? (
@@ -347,7 +347,7 @@ export default function AdminRecipesPage() {
 																	recipe.difficulty || "easy"
 																)}
 															</span>
-															<span className="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs">
+															<span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">
 																{recipe.category}
 															</span>
 														</div>
@@ -413,7 +413,7 @@ export default function AdminRecipesPage() {
 														title: e.target.value,
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 												placeholder="أدخل عنوان الوصفة..."
 												required
 											/>
@@ -432,7 +432,7 @@ export default function AdminRecipesPage() {
 														category: e.target.value,
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 												placeholder="مثل: كيك، حلى، مقبلات..."
 												required
 											/>
@@ -453,7 +453,7 @@ export default function AdminRecipesPage() {
 												})
 											}
 											rows={3}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 											placeholder="أدخل وصف الوصفة..."
 											required
 										/>
@@ -475,7 +475,7 @@ export default function AdminRecipesPage() {
 														prepTime: parseInt(e.target.value) || 15,
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 												required
 											/>
 										</div>
@@ -494,7 +494,7 @@ export default function AdminRecipesPage() {
 														cookTime: parseInt(e.target.value) || 0,
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 											/>
 										</div>
 
@@ -512,7 +512,7 @@ export default function AdminRecipesPage() {
 														servings: parseInt(e.target.value) || 4,
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 											/>
 										</div>
 
@@ -531,7 +531,7 @@ export default function AdminRecipesPage() {
 															| "hard",
 													})
 												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 											>
 												<option value="easy">سهل</option>
 												<option value="medium">متوسط</option>
@@ -554,7 +554,7 @@ export default function AdminRecipesPage() {
 													imageFile: e.target.files?.[0] || null,
 												})
 											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 										/>
 										{editingRecipe?.image && (
 											<div className="mt-2">
@@ -576,7 +576,7 @@ export default function AdminRecipesPage() {
 											<button
 												type="button"
 												onClick={() => addArrayItem("ingredients")}
-												className="text-sm text-orange-600 hover:text-orange-800"
+												className="text-sm text-yellow-600 hover:text-yellow-800"
 											>
 												+ إضافة مكون
 											</button>
@@ -594,7 +594,7 @@ export default function AdminRecipesPage() {
 																e.target.value
 															)
 														}
-														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 														placeholder={`المكون ${index + 1}`}
 													/>
 													{formData.ingredients.length > 1 && (
@@ -625,7 +625,7 @@ export default function AdminRecipesPage() {
 											<button
 												type="button"
 												onClick={() => addArrayItem("instructions")}
-												className="text-sm text-orange-600 hover:text-orange-800"
+												className="text-sm text-yellow-600 hover:text-yellow-800"
 											>
 												+ إضافة خطوة
 											</button>
@@ -645,7 +645,7 @@ export default function AdminRecipesPage() {
 																e.target.value
 															)
 														}
-														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 														placeholder={`الخطوة ${index + 1}`}
 														rows={2}
 													/>
@@ -677,7 +677,7 @@ export default function AdminRecipesPage() {
 											<button
 												type="button"
 												onClick={() => addArrayItem("tips")}
-												className="text-sm text-orange-600 hover:text-orange-800"
+												className="text-sm text-yellow-600 hover:text-yellow-800"
 											>
 												+ إضافة نصيحة
 											</button>
@@ -695,7 +695,7 @@ export default function AdminRecipesPage() {
 																e.target.value
 															)
 														}
-														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 														placeholder={`نصيحة ${index + 1}`}
 													/>
 													<button
@@ -721,7 +721,7 @@ export default function AdminRecipesPage() {
 											<button
 												type="button"
 												onClick={() => addArrayItem("tags")}
-												className="text-sm text-orange-600 hover:text-orange-800"
+												className="text-sm text-yellow-600 hover:text-yellow-800"
 											>
 												+ إضافة علامة
 											</button>
@@ -739,7 +739,7 @@ export default function AdminRecipesPage() {
 																e.target.value
 															)
 														}
-														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+														className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 														placeholder={`علامة ${index + 1}`}
 													/>
 													<button
@@ -777,7 +777,7 @@ export default function AdminRecipesPage() {
 															},
 														})
 													}
-													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 													placeholder="السعرات"
 												/>
 											</div>
@@ -796,7 +796,7 @@ export default function AdminRecipesPage() {
 															},
 														})
 													}
-													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 													placeholder="البروتين (ج)"
 												/>
 											</div>
@@ -815,7 +815,7 @@ export default function AdminRecipesPage() {
 															},
 														})
 													}
-													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 													placeholder="الكربوهيدرات (ج)"
 												/>
 											</div>
@@ -833,7 +833,7 @@ export default function AdminRecipesPage() {
 															},
 														})
 													}
-													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+													className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 													placeholder="الدهون (ج)"
 												/>
 											</div>
@@ -855,7 +855,7 @@ export default function AdminRecipesPage() {
 												createRecipeMutation.isPending ||
 												updateRecipeMutation.isPending
 											}
-											className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors disabled:opacity-50"
+											className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors disabled:opacity-50"
 										>
 											{createRecipeMutation.isPending ||
 											updateRecipeMutation.isPending

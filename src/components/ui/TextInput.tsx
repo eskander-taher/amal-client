@@ -32,7 +32,7 @@ const TextInput: React.FC<TextInputProps> = ({
         required={required}
         value={value}
         onChange={onChange}
-        className="w-full h-12 border border-gray-300 rounded-full bg-white px-4 text-gray-900 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-colors"
+        className="w-full h-12 border border-gray-300 rounded-full bg-white px-4 text-gray-900 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 focus:outline-none transition-colors"
       />
     </div>
   );

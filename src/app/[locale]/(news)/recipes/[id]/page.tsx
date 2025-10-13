@@ -26,7 +26,7 @@ export default function RecipeDetailPage() {
 		return (
 			<Section className="min-h-screen flex items-center justify-center">
 				<div className="text-center">
-					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
 					<p className="text-gray-600">جاري تحميل الوصفة...</p>
 				</div>
 			</Section>
@@ -47,7 +47,7 @@ export default function RecipeDetailPage() {
 					</p>
 					<Link
 						href="/recipes"
-						className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
+						className="inline-flex items-center px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
 					>
 						العودة إلى الوصفات
 					</Link>
@@ -76,13 +76,12 @@ export default function RecipeDetailPage() {
 	};
 
 	// Get related recipes (exclude current recipe)
-	const relatedRecipes = allRecipesData?.recipes
-		?.filter((r) => r._id !== recipe._id)
-		.slice(0, 4) || [];
+	const relatedRecipes =
+		allRecipesData?.recipes?.filter((r) => r._id !== recipe._id).slice(0, 4) || [];
 
 	return (
 		<>
-			{/* Top orange banner */}
+			{/* Top yellow banner */}
 			<div className="w-full relative bg-[#F9AE42] overflow-visible -mb-16 md:-mb-24">
 				<Notch
 					className="absolute w-[80%] transform left-0 -translate-x-3/4 translate-y-1 bottom-0 z-10"

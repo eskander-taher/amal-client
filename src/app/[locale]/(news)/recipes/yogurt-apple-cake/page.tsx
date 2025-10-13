@@ -59,7 +59,7 @@ export default function Page() {
 
 	return (
 		<>
-			{/* Top orange banner */}
+			{/* Top yellow banner */}
 			<div className="w-full relative bg-[#F9AE42] relative overflow-visible -mb-16 md:-mb-24">
 				<Notch
 					className="absolute w-[80%] transform left-0 -translate-x-3/4 translate-y-1 bottom-0 z-10"

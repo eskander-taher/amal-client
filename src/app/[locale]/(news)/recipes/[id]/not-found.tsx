@@ -17,15 +17,15 @@ export default function RecipeNotFound() {
 
 				{/* Description */}
 				<p className="text-gray-600 mb-6 leading-relaxed">
-					عذراً، لم نتمكن من العثور على الوصفة التي تبحث عنها. قد تكون الوصفة قد تم
-					حذفها أو نقلها إلى موقع آخر.
+					عذراً، لم نتمكن من العثور على الوصفة التي تبحث عنها. قد تكون الوصفة قد تم حذفها
+					أو نقلها إلى موقع آخر.
 				</p>
 
 				{/* Actions */}
 				<div className="space-y-4">
 					<Link
 						href="/recipes"
-						className="inline-flex items-center px-6 py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition-colors"
+						className="inline-flex items-center px-6 py-3 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
 					>
 						<ArrowRight className="w-4 h-4 mr-2" />
 						تصفح جميع الوصفات
@@ -45,7 +45,7 @@ export default function RecipeNotFound() {
 				<div className="mt-8 p-4 bg-gray-50 rounded-lg">
 					<p className="text-sm text-gray-600">
 						إذا كنت تعتقد أن هذا خطأ، يرجى{" "}
-						<Link href="/contact" className="text-orange-600 hover:text-orange-800">
+						<Link href="/contact" className="text-yellow-600 hover:text-yellow-800">
 							التواصل معنا
 						</Link>{" "}
 						وسنكون سعداء لمساعدتك.

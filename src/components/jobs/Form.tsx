@@ -127,7 +127,7 @@ const JobForm: React.FC = () => {
       <div className="col-span-6 flex justify-center mt-6">
         <button
           type="submit"
-          className="flex items-center gap-2 px-10 py-3 bg-orange-500 text-white rounded-full text-lg font-bold hover:bg-orange-600 transition"
+          className="flex items-center gap-2 px-10 py-3 bg-yellow-500 text-white rounded-full text-lg font-bold hover:bg-yellow-600 transition"
         >
           انضم الآن
           <svg

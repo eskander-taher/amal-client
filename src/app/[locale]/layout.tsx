@@ -87,7 +87,7 @@ export default async function RootLayout({
 			dir={locale === "ar" ? "rtl" : "ltr"}
 			className={neoSansArabic.variable}
 		>
-			<body className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-sans">
+			<body className="min-h-screen font-sans">
 				<NextIntlClientProvider>
 					<Providers>
 						<div className="min-h-screen flex flex-col">

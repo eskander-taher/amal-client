@@ -20,13 +20,14 @@ body {
   left: 0;
   width: 0%;
   height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #1d4ed8, #2563eb, #3b82f6);
+  background: linear-gradient(90deg, #facc15, #eab308, #ca8a04, #facc15); /* yellow-400 → yellow-500 → yellow-600 */
   background-size: 200% 100%;
   z-index: 9999;
   transition: width 0.3s ease-out;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 5px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.5), 0 0 5px rgba(234, 179, 8, 0.3);
   animation: shimmer 1.5s infinite;
 }
+
 
 @keyframes shimmer {
   0% {

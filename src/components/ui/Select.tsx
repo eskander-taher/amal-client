@@ -29,7 +29,7 @@ const Select: React.FC<SelectProps> = ({
           required={required}
           value={value}
           onChange={onChange}
-          className="w-full h-12 border border-gray-300 rounded-full bg-white px-4 pr-10 text-gray-900 appearance-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 focus:outline-none transition-colors"
+          className="w-full h-12 border border-gray-300 rounded-full bg-white px-4 pr-10 text-gray-900 appearance-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 focus:outline-none transition-colors"
         >
           {options.map((opt, idx) => (
             <option key={idx} value={opt}>

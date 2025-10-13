@@ -70,7 +70,7 @@ export default function RecipesPage() {
 								placeholder="ابحث عن الوصفات..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
-								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 							/>
 						</div>
 
@@ -81,7 +81,7 @@ export default function RecipesPage() {
 								<select
 									value={selectedCategory}
 									onChange={(e) => setSelectedCategory(e.target.value)}
-									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 								>
 									<option value="">جميع الفئات</option>
 									{categories.map((category) => (
@@ -98,7 +98,7 @@ export default function RecipesPage() {
 								<select
 									value={selectedDifficulty}
 									onChange={(e) => setSelectedDifficulty(e.target.value)}
-									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
 								>
 									{difficultyOptions.map((option) => (
 										<option key={option.value} value={option.value}>
@@ -115,11 +115,11 @@ export default function RecipesPage() {
 					{(searchQuery || selectedCategory || selectedDifficulty) && (
 						<div className="mt-4 flex flex-wrap gap-2">
 							{searchQuery && (
-								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-800">
+								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-800">
 									البحث: "{searchQuery}"
 									<button
 										onClick={() => setSearchQuery("")}
-										className="mr-2 text-orange-600 hover:text-orange-800"
+										className="mr-2 text-yellow-600 hover:text-yellow-800"
 									>
 										×
 									</button>
@@ -159,7 +159,7 @@ export default function RecipesPage() {
 					{isLoading && (
 						<div className="flex justify-center items-center py-20">
 							<div className="text-center">
-								<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+								<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
 								<p className="text-gray-600">جاري تحميل الوصفات...</p>
 							</div>
 						</div>
@@ -200,7 +200,7 @@ export default function RecipesPage() {
 											setSelectedCategory("");
 											setSelectedDifficulty("");
 										}}
-										className="mt-4 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+										className="mt-4 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
 									>
 										مسح جميع المرشحات
 									</button>

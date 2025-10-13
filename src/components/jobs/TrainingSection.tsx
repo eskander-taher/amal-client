@@ -37,12 +37,9 @@ const TrainingSection: React.FC = () => {
 				{/* Training Cards using NewsCard structure */}
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{trainingCards.map((card, index) => (
-						<div
-							key={index}
-							className="bg-white p-3 rounded-lg overflow-hidden relative"
-						>
+						<div key={index} className="bg-white rounded-lg overflow-hidden relative">
 							{/* Card Image Container */}
-							<div className="relative rounded-lg overflow-hidden">
+							<div className="relative rounded-lg">
 								<Image
 									src={card.image}
 									alt={card.imageAlt}
@@ -51,36 +48,13 @@ const TrainingSection: React.FC = () => {
 									className="w-full h-48 object-cover rounded-lg"
 								/>
 
-								{/* bottom static curve */}
-								<div
-									className="
-										absolute bottom-0 right-0
-										h-4
-										border-lg
-										w-[60%]
-										flex items-center justify-center
-										overflow-visible
-										rounded-tl-xl
-									"
-									style={{
-										backgroundColor: "white",
-									}}
-								>
-									{/* Top pseudo-element equivalent */}
-									<div
-										className="absolute bottom-0 left-0 -translate-x-full w-2 h-2"
-										style={{
-											background: `radial-gradient(circle at top left, transparent 70%, white 0%)`,
-										}}
-									/>
-
-									{/* Right pseudo-element equivalent */}
-									<div
-										className="absolute top-0 right-0 -translate-y-full  w-2 h-2"
-										style={{
-											background: `radial-gradient(circle at top left, transparent 70%, white 0%)`,
-										}}
-									/>
+								{/* image bottom right notch */}
+								<div className="h-6 w-2/3 bg-white absolute bottom-0 right-0 rounded-tl-xl">
+									{/* rounded corners edges */}
+									<div className="w-full h-full relative shadow-[10_10px_0_white]">
+										<div className="w-6 h-6 rounded-full bg-transparent absolute transform top-0 right-0 -translate-y-full shadow-[10px_10px_0_white]"></div>
+										<div className="w-6 h-6 rounded-full bg-transparent absolute transform bottom-0 left-0  -translate-x-full shadow-[10px_10px_0_white]"></div>
+									</div>
 								</div>
 							</div>
 
