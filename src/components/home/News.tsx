@@ -9,6 +9,7 @@ import { getServerUrl } from "@/lib/apiBase";
 const News: React.FC = () => {
 	const t = useTranslations("News");
 	
+	
 	const { data: featuredNews = [], isLoading } = useFeaturedNews();
 	
 	// Show only the first 3 featured news items

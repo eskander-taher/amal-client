@@ -349,5 +349,8 @@
 		"employeePortal": "Employee Portal",
 		"description": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the poultry, feed, fish, and dates sectors. We believe that transparency and quality are the foundation of our success, and we work to build long-term partnerships that create sustainable value for our community and customers.",
 		"rights": "All rights reserved © Amal Al Khair 2025"
+	},
+	"MoreBTN": {
+		"more": "More"
 	}
 }

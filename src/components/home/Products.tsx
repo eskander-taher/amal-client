@@ -9,6 +9,7 @@ import { TransitionLink } from "../TransitionLink";
 
 const Products: React.FC = () => {
 	const t = useTranslations("Products");
+	const moreText = useTranslations("MoreBTN");
 	const { data: featuredProducts = [], isLoading } = useFeaturedProducts();
 
 	// Take first 4 featured products or show placeholders if loading

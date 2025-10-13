@@ -11,6 +11,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
 	const t = useTranslations("Products");
+	const moreText = useTranslations("MoreBTN");
 
 	// Get the title from translation key or fallback to direct title
 	const getTitle = () => {
@@ -75,7 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 								text-sm font-medium text-gray-700
 							"
 					>
-						المزيد
+						{moreText("more")}
 					</div>
 				</div>
 				<div className="w-6 h-6 bg-transparent absolute right-0 top-0 transform translate-x-full rounded-full shadow-[-10px_-10px_0px] shadow-[#f5f5f7]"></div>
