@@ -13,6 +13,9 @@ export default function Home() {
 			<About />
 			<Group />
 			<Certifications />
+			<div className="w-full bg-[#f5f5f7]">
+				<div className="max-w-7xl mx-auto bg-gray-300 h-[1px]"></div>
+			</div>
 			<Products />
 			<News />
 			<GroupStats />

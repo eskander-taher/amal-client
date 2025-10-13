@@ -32,9 +32,9 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	const plainDescription = getPlainText(description);
 
 	return (
-		<div className="bg-[#f5f5f7] group p-3 rounded-lg overflow-hidden relative">
+		<div className="bg-[#f5f5f7] group p-3 rounded-lg relative">
 			{/* Card Image Container */}
-			<div className="relative rounded-lg overflow-hidden group-hover:scale-105 transition-transform duration-300">
+			<div className="relative rounded-lg group-hover:scale-105 transition-transform duration-300">
 				<Image
 					src={image}
 					// src="new_placeholder.svg"
@@ -44,85 +44,38 @@ const NewsCard: React.FC<NewsCardProps> = ({
 					className="w-full h-48 object-cover rounded-lg"
 				/>
 
-				{/* Badge/Date Text */}
-				{badgeText && (
-					<div
-						className="
-							absolute -top-0.5 -left-0.5
-							h-5
-							border-lg
-							w-30
-							flex items-center justify-center
-							group
-							overflow-visible
-						"
-					style={{
-						borderBottomRightRadius: "10px",
-						backgroundColor: "#f5f5f7",
-					}}
-				>
-					<span className="text-xs sm:text-sm text-gray-600 font-semibold">
+				{/* image badge */}
+				<div className="h-6 w-1/3 bg-[#f5f5f7] absolute top-0 left-0 rounded-br-xl">
+					{/* rounded corners edges */}
+					<div className="w-full h-full relative shadow-[10_10px_0_#f5f5f7] flex items-center justify-center text-xs font-bold">
 						{badgeText}
-					</span>
-						{/* Top pseudo-element equivalent */}
-						<div
-							className="absolute bottom-0 left-0 translate-y-full w-5 h-5"
-							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, #f5f5f7 0%)`,
-							}}
-						/>
-
-						{/* Right pseudo-element equivalent */}
-						<div
-							className="absolute top-0 right-0 translate-x-full w-3 h-3"
-							style={{
-								background: `radial-gradient(circle at bottom right, transparent 70%, #f5f5f7 0%)`,
-							}}
-						/>
+						<div className="w-6 h-6 rounded-full bg-transparent absolute transform top-0 right-0 translate-x-full shadow-[-10px_-10px_0_#f5f5f7]"></div>
+						<div className="w-6 h-6 rounded-full bg-transparent absolute transform bottom-0 left-0  translate-y-full shadow-[-10px_-10px_0_#f5f5f7]"></div>
 					</div>
-				)}
+				</div>
 
-				{/* bottom static curve */}
-				<div
-					className="
-						absolute bottom-0 right-0
-						h-4
-						border-lg
-						w-[60%]
-						flex items-center justify-center
-						overflow-visible
-						rounded-tl-xl
-					"
-					style={{
-						backgroundColor: "#f5f5f7",
-					}}
-				>
-					{/* Top pseudo-element equivalent */}
-					<div
-						className="absolute bottom-0 left-0 -translate-x-full w-2 h-2"
-						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)`,
-						}}
-					/>
-
-					{/* Right pseudo-element equivalent */}
-					<div
-						className="absolute top-0 right-0 -translate-y-full  w-2 h-2"
-						style={{
-							background: `radial-gradient(circle at top left, transparent 70%, #f5f5f7 0%)`,
-						}}
-					/>
+				{/* image bottom right notch */}
+				<div className="h-6 w-2/3 bg-[#f5f5f7] absolute bottom-0 right-0 rounded-tl-xl">
+					{/* rounded corners edges */}
+					<div className="w-full h-full relative shadow-[10_10px_0_#f5f5f7]">
+						<div className="w-6 h-6 rounded-full bg-transparent absolute transform top-0 right-0 -translate-y-full shadow-[10px_10px_0_#f5f5f7]"></div>
+						<div className="w-6 h-6 rounded-full bg-transparent absolute transform bottom-0 left-0  -translate-x-full shadow-[10px_10px_0_#f5f5f7]"></div>
+					</div>
 				</div>
 			</div>
 
-		{/* Card Content */}
-		<div className="p-6 pb-16">
-			{/* Title */}
-			<h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight">{title}</h3>
+			{/* Card Content */}
+			<div className="p-6 pb-16">
+				{/* Title */}
+				<h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight">
+					{title}
+				</h3>
 
-			{/* Description */}
-			<p className="text-sm sm:text-base text-gray-600 line-clamp-3 leading-relaxed">{plainDescription}</p>
-		</div>
+				{/* Description */}
+				<p className="text-sm sm:text-base text-gray-600 line-clamp-3 leading-relaxed">
+					{plainDescription}
+				</p>
+			</div>
 
 			{/* Card Link - positioned absolutely at bottom */}
 			<CardLink href={href} backgroundColor="white" />

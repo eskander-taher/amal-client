@@ -22,25 +22,6 @@ export default function Certifications() {
 	const sectionRef = useRef<HTMLDivElement>(null);
 	const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
-	// const [curveX, setCurveX] = useState(0);
-	// const [curveWidth, setCurveWidth] = useState(20);
-
-	// useEffect(() => {
-	// 	if (hoveredIndex !== null && logoRefs.current[hoveredIndex]) {
-	// 		const section = sectionRef.current;
-	// 		const logo = logoRefs.current[hoveredIndex];
-	// 		if (section && logo) {
-	// 			const sectionRect = section.getBoundingClientRect();
-	// 			const logoRect = logo.getBoundingClientRect();
-
-	// 			const centerX = logoRect.left + logoRect.width / 2;
-	// 			const relativeX = centerX - sectionRect.left;
-
-	// 			setCurveX(relativeX);
-	// 			setCurveWidth(logoRect.width);
-	// 		}
-	// 	}
-	// }, [hoveredIndex]);
 
 	return (
 		<Section id="certifications" ref={sectionRef} className="bg-[#f5f5f7] relative">
@@ -94,24 +75,6 @@ export default function Certifications() {
 				</div>
 				<div className="h-[1px] w-full bg-black absolute -bottom-10 sm:-bottom-15 lg:-bottom-20 xl:-bottom-25 opacity-20"></div>
 			</div>
-
-			{/* tab (notch) */}
-			{/* {hoveredIndex !== null && (
-				<div
-					className="absolute animate-curve -bottom-5"
-					style={{
-						width: `${curveWidth}px`,
-						left: `${curveX - curveWidth / 2}px`,
-						bottom: "-7px",
-						height: "25px",
-					}}
-				>
-					<div
-						className="upward-tab"
-						style={{ "--tab-color": "#f5f5f7", borderTop: "1px solid black" } as React.CSSProperties}
-					/>
-				</div>
-			)} */}
 		</Section>
 	);
 }
