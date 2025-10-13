@@ -53,7 +53,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="group relative w-full h-[400px] rounded-lg bg-[#f5f5f7] p-3 flex flex-col transition-all duration-300 hover:scale-105"
+							className="group relative w-full h-[400px] rounded-lg bg-[#f5f5f7] flex flex-col transition-all duration-300 hover:scale-105"
 							initial={{ x: -300, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: index / 2, ease: "easeInOut" }}
@@ -85,7 +85,7 @@ const GroupSection: React.FC = () => {
 							</h3>
 
 							{/* Description Section - Flexible height */}
-							<p className="text-xs sm:text-sm md:text-base text-gray-600 flex-1 text-center leading-relaxed">
+							<p className="text-xs sm:text-sm md:text-base text-gray-600 flex-1 text-center leading-relaxed p-2">
 								{t(card.descriptionKey).slice(0, 130)} <span>...</span>
 							</p>
 
