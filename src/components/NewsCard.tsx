@@ -30,9 +30,9 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	const plainDescription = getPlainText(description);
 
 	return (
-		<div className="bg-[#f5f5f7] group p-3 rounded-lg relative overflow-hidden">
+		<div className="bg-[#f5f5f7] group hover:scale-105 rounded-lg relative overflow-hidden transition-transform duration-300">
 			{/* Card Image Container */}
-			<div className="relative rounded-lg group-hover:scale-105 transition-transform duration-300">
+			<div className="relative rounded-lg">
 				<Image
 					src={image}
 					// src="new_placeholder.svg"
