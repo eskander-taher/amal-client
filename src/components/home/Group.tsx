@@ -53,7 +53,7 @@ const GroupSection: React.FC = () => {
 					{cards.map((card, index) => (
 						<motion.div
 							key={index}
-							className="group relative w-full h-[400px] rounded-lg bg-[#f5f5f7] flex flex-col transition-all duration-300 hover:scale-105"
+							className="group relative w-full h-[400px] rounded-lg bg-[#f5f5f7] flex flex-col transition-all duration-300 hover:scale-105 overflow-hidden"
 							initial={{ x: -300, opacity: 0 }}
 							whileInView={{ x: 0, opacity: 1 }}
 							transition={{ delay: index / 2, ease: "easeInOut" }}
