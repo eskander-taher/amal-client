@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
 						</p>
 						<TransitionLink
 							href={currentSlideData.href}
-							className={`relative group bg-white flex justify-between items-center text-black rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg px-1.5 py-1 animate-fade-in-delay-2 transition-[width,background,shadow] duration-300 ease-in-out overflow-hidden w-[44px] h-[44px] hover:w-[110px] delay-150 hover:delay-0`}
+							className={`relative group bg-white flex justify-between items-center text-black rounded-full font-bold text-sm sm:text-base lg:text-lg shadow-lg px-1.5 py-1 animate-fade-in-delay-2 transition-[width,background,shadow] duration-300 ease-in-out overflow-hidden w-[44px] h-[44px] hover:w-[110px] delay-150`}
 						>
 							<p className="absolute right-4 whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[opacity,visibility] duration-200 group-hover:delay-150 ease-in-out">
 								{currentSlideData.buttonText}
@@ -167,7 +167,9 @@ const Hero: React.FC = () => {
 			>
 				<div
 					className="upward-tab flex items-center justify-center gap-3"
-					style={{ paddingInline: "30px", "--tab-color": "#111827" } as React.CSSProperties}
+					style={
+						{ paddingInline: "30px", "--tab-color": "#111827" } as React.CSSProperties
+					}
 				>
 					{carouselSlides.map((_, index) => (
 						<motion.button
