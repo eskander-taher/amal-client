@@ -3,7 +3,6 @@ import Section from "@/components/Section";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ProductCard from "@/components/ProdcutCard";
-import Notch from "@/components/Notch";
 import ImageSection from "@/components/ui/ImageSection";
 
 type ProductData = {

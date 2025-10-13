@@ -48,7 +48,7 @@ const TrainingSection: React.FC = () => {
 									className="w-full h-48 object-cover rounded-lg"
 								/>
 
-								{/* image bottom right notch */}
+								{/* image bottom right tab */}
 								<div className="h-6 w-2/3 bg-white absolute bottom-0 right-0 rounded-tl-xl">
 									{/* rounded corners edges */}
 									<div className="w-full h-full relative shadow-[10_10px_0_white]">

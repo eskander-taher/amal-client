@@ -331,24 +331,9 @@ body {
   filter: brightness(1.1) contrast(1.1);
 }
 
-/* Line clamp utilities for news cards */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 
 /* =========================== */
-/* tab (notch) styling */
+/* tab styling */
 /* =========================== */
 /* upward tab styling */
 .upward-tab, .downward-tab {

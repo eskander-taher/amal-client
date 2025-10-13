@@ -1,5 +1,4 @@
 import Image from "next/image";
-import CardLink from "./CardLink";
 import { useTranslations } from "next-intl";
 import { TransitionLink } from "./TransitionLink";
 import { FaArrowLeftLong } from "react-icons/fa6";

@@ -17,7 +17,7 @@ const News: React.FC = () => {
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
-			{/* Top static notch */}
+			{/* Top static tab */}
 			<div className="absolute w-[80%] top-0 left-1/2 -translate-x-1/2">
 				<div
 					className="downward-tab"

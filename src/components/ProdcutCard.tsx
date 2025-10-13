@@ -37,7 +37,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 					
 				/>
 
-				{/* image bottom right notch */}
+				{/* image bottom right tab */}
 				<div className="min-h-6 h-fit w-fit bg-[#f5f5f7] absolute bottom-0 right-0 rounded-tl-xl">
 					{/* rounded corners edges */}
 					<div className="w-full h-full flex justify-center items-center font-bold relative shadow-[10_10px_0] shadow-[#f5f5f7]">

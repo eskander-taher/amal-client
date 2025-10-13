@@ -10,7 +10,7 @@ export default function page() {
 		<div className="relative flex flex-col gap-0">
 			<Hero title="حول امل الخير" image="/about-hero.webp" />
 			<Aboutus />
-			<ImageSection src="/about.webp" topColor="white" bottomColor="white"/>
+			<ImageSection src="/about.webp" topColor="white" bottomColor="white" />
 			<CompanyOverview />
 			<DateCompanySection />
 		</div>

@@ -4,7 +4,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import Hero from '@/components/Hero';
+import Hero from "@/components/Hero";
 import Section from '@/components/Section';
 import ProductCard from '@/components/ProdcutCard';
 import { useProduct, useProducts } from '@/hooks/useProducts';

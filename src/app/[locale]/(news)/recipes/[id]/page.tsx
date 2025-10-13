@@ -14,9 +14,6 @@ import { getServerUrl } from "@/lib/apiBase";
 
 export default function RecipeDetailPage() {
 	const params = useParams();
-	const locale = useLocale();
-	const isArabic = locale === "ar";
-
 	const recipeId = params.id as string;
 	const { data: recipe, isLoading, error } = useRecipe(recipeId);
 	const { data: allRecipesData } = useRecipes({ limit: 4 });
