@@ -117,7 +117,7 @@ const GroupSection: React.FC = () => {
 							</div>
 
 							{/* Description Section - Flexible height */}
-							<p className="text-xs sm:text-sm md:text-base text-gray-600 flex-1 text-center leading-relaxed p-2">
+							<p className="text-xs sm:text-sm md:text-base text-gray-600 flex-1 text-center leading-relaxed p-4">
 								{t(card.descriptionKey).slice(0, 130)} <span>...</span>
 							</p>
 						</motion.div>

@@ -60,7 +60,7 @@ const News: React.FC = () => {
 			</div>
 
 			{/* Bottom static tab */}
-			<TransitionLink href="/about">
+			<TransitionLink href="/news">
 				<div className="absolute bottom-0.5 left-10 translate-y-full">
 					<div className="downward-tab text-gray-400">{t("moreNews")}</div>
 				</div>

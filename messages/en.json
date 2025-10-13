@@ -230,7 +230,7 @@
 	},
 	"Navigation": {
 		"home": "Home",
-		"about": "About",
+		"about": "About Us",
 		"about_amal": "About Amal Al Khair",
 		"group": "Group",
 		"products": "Products",
@@ -330,8 +330,8 @@
 	"Footer": {
 		"contactTitle": "Contact Information",
 		"address": "P.O. Box 8524, Riyadh 11492",
-		"phone": "Phone: +966 (11) 460 0005",
-		"whatsapp": "WhatsApp: +966545501010",
+		"phone": "Phone:",
+		"whatsapp": "WhatsApp:",
 		"followUs": "Follow Us",
 		"quickLinks": "Quick Links",
 		"faq": "FAQ",

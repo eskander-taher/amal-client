@@ -1,16 +1,15 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { TransitionLink } from "@/components/TransitionLink";
 import {
 	FaFacebook,
 	FaInstagram,
 	FaYoutube,
-	FaLinkedin,
 	FaTwitter,
 	FaWhatsapp,
 	FaMapMarkerAlt,
 	FaPhone,
+	FaLinkedin,
 } from "react-icons/fa";
 import Newsletter from "@/components/Newsletter";
 
@@ -38,13 +37,13 @@ export default function Footer() {
 								<div className="flex items-center gap-3">
 									<FaPhone className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
 									<span className="text-sm sm:text-base text-gray-700">
-										{t("phone")}
+										 <span dir="ltr">+966 54 992 2789</span>
 									</span>
 								</div>
 								<div className="flex items-center gap-3">
 									<FaWhatsapp className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
 									<span className="text-sm sm:text-base text-gray-700">
-										{t("whatsapp")}
+										 <span dir="ltr">+966 54 992 2789</span>
 									</span>
 								</div>
 							</div>
@@ -86,7 +85,7 @@ export default function Footer() {
 										<FaTwitter className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
 									</a>
 									<a
-										href="#"
+										href="https://api.whatsapp.com/send?phone=966549922789"
 										className="flex items-center justify-center duration-300 group"
 									>
 										<FaWhatsapp className="text-lg sm:text-xl text-gray-700 group-hover:scale-110 transition-transform duration-300" />
@@ -102,86 +101,81 @@ export default function Footer() {
 							</h3>
 							<div className="grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
 								<div className="space-y-2 sm:space-y-3">
-									<Link
+									<TransitionLink
 										href="#faq"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("faq")}
-									</Link>
-									<Link
+									</TransitionLink>
+									<TransitionLink
 										href="#sitemap"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("sitemap")}
-									</Link>
-									<Link
+									</TransitionLink>
+									<TransitionLink
 										href="#privacy"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("privacy")}
-									</Link>
-									<Link
+									</TransitionLink>
+									<TransitionLink
 										href="#terms"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("terms")}
-									</Link>
-									<Link
-										href="#contact"
+									</TransitionLink>
+									<TransitionLink
+										href="/contact"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("contact")}
-									</Link>
-									<Link
-										href="#location"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("location")}
-									</Link>
-								</div>
-								<div className="space-y-2 sm:space-y-3">
-									<Link
-										href="/"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("home")}
-									</Link>
-									<Link
-										href="/about"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("about")}
-									</Link>
-									<Link
-										href="/group"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("group")}
-									</Link>
-									<Link
-										href="/products"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("products")}
-									</Link>
-									<Link
-										href="/news"
-										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-									>
-										{t("news")}
-									</Link>
-									<Link
+									</TransitionLink>
+									<TransitionLink
 										href="/jobs"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("jobs")}
-									</Link>
-								<TransitionLink
-									href="/admin"
-									className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
-								>
-									{t("employeePortal")}
-								</TransitionLink>
+									</TransitionLink>
+								</div>
+								<div className="space-y-2 sm:space-y-3">
+									<TransitionLink
+										href="/"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("home")}
+									</TransitionLink>
+									<TransitionLink
+										href="/about"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("about")}
+									</TransitionLink>
+									<TransitionLink
+										href="/group"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("group")}
+									</TransitionLink>
+									<TransitionLink
+										href="/products"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("products")}
+									</TransitionLink>
+									<TransitionLink
+										href="/news"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("news")}
+									</TransitionLink>
+
+									<TransitionLink
+										href="/admin"
+										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
+									>
+										{t("employeePortal")}
+									</TransitionLink>
 								</div>
 							</div>
 						</div>
@@ -198,9 +192,9 @@ export default function Footer() {
 								/>
 							</div>
 
-						<p className="text-sm sm:text-base text-justify border-t border-gray-500 pt-4 sm:pt-6 w-full">
-							{t("description")}
-						</p>
+							<p className="text-sm sm:text-base text-justify border-t border-gray-500 pt-4 sm:pt-6 w-full">
+								{t("description")}
+							</p>
 						</div>
 					</div>
 				</div>

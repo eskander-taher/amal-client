@@ -69,11 +69,7 @@ export default function NavBar() {
 						{/* laptop */}
 						<TransitionLink className="relative hidden sm:block" href="/">
 							<Image
-								src={
-									locale == "ar"
-										? "/amal_big_logo_ar.webp"
-										: "/amal_big_logo_en.webp"
-								}
+								src="/AKG_hori_logo.svg"
 								alt="Amal Al-Khair logo"
 								width={260}
 								height={50}
@@ -85,10 +81,10 @@ export default function NavBar() {
 						{/* mobile */}
 						<TransitionLink className="relative block sm:hidden" href="/">
 							<Image
-								src="/AMAL_logo.webp"
+								src="/AKG_hori_logo.svg"
 								alt="Amal Al-Khair logo"
-								width={50}
-								height={50}
+								width={120}
+								height={40}
 								priority
 								className="logo-enhanced"
 							/>
@@ -102,17 +98,17 @@ export default function NavBar() {
 					</div>
 				</div>
 
-			{/* Navigation Links */}
-			<div className="hidden h-full lg:flex items-center space-x-2 space-x-reverse">
+				{/* Navigation Links */}
+				<div className="hidden h-full xl:flex items-center space-x-2 space-x-reverse">
 					{navItems.map((item, index) => {
 						const isActive =
 							item.href === pathname ||
 							(item.submenu && item.submenu.some((sub) => sub.href === pathname));
 						return (
-						<div
-							key={index}
-							className="relative h-full flex justify-center items-center px-3"
-						>
+							<div
+								key={index}
+								className="relative h-full flex justify-center items-center px-3"
+							>
 								{item.submenu ? (
 									<div
 										className="relative h-full"
@@ -188,29 +184,28 @@ export default function NavBar() {
 					})}
 				</div>
 
-			{/* Left Side: Search + Language */}
-			<div className="flex items-center space-x-2 space-x-reverse">
-				<div className="relative text-gray-600 hidden xl:flex">
-					<input
-						type="text"
-						placeholder={t("searchPlaceholder")}
-						className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
-					/>
-					<span
-						className={`absolute inset-y-0 flex items-center pl-1 ${
-							locale === "en" ? "right-2" : "left-2"
-						}`}
-					>
-						<FaSearch className="text-gray-300 text-xs lg:text-sm"/>
-					</span>
+				{/* Left Side: Search + Language */}
+				<div className="flex items-center space-x-2 space-x-reverse">
+					<div className="relative text-gray-600 hidden xl:flex">
+						<input
+							type="text"
+							placeholder={t("searchPlaceholder")}
+							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
+						/>
+						<span
+							className={`absolute inset-y-0 flex items-center pl-1 ${
+								locale === "en" ? "right-2" : "left-2"
+							}`}
+						>
+							<FaSearch className="text-gray-300 text-xs lg:text-sm" />
+						</span>
+					</div>
+					<LanguageSwitcher />
 				</div>
-				<LanguageSwitcher />
-			</div>
-
 				{/* Hamburger for Mobile */}
 				{!menuOpen && (
 					<button
-						className="md:hidden p-2 border border-gray-300 bg-white rounded-lg"
+						className="xl:hidden p-2 border border-gray-300 bg-white rounded-lg"
 						onClick={() => setMenuOpen((v) => !v)}
 						aria-label="Open menu"
 					>
@@ -233,7 +228,7 @@ export default function NavBar() {
 
 			{/* Mobile Menu */}
 			{menuOpen && (
-				<div className="md:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg">
+				<div className="xl:hidden fixed left-0 right-0 top-0 w-screen h-screen bg-white/95 backdrop-blur-md shadow-lg">
 					<div className="p-6 h-full overflow-y-auto">
 						{/* Close button */}
 						<div className="flex justify-end mb-6">

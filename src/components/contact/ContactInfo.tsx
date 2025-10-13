@@ -30,12 +30,12 @@ const ContactInfo = () => {
 
 						{/* Phone */}
 						<div className="flex items-center justify-center gap-3">
-							<span className="text-lg">هاتف: +956 (11) 460 0005</span>
+							<span className="text-lg" dir="ltr">هاتف: +956 (11) 460 0005</span>
 						</div>
 
 						{/* WhatsApp */}
 						<div className="flex items-center justify-center gap-3">
-							<span className="text-lg">واتساب: +965 455450101</span>
+							<span className="text-lg" dir="ltr">واتساب: +965 455450101</span>
 						</div>
 					</div>
 				</div>
