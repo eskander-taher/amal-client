@@ -18,8 +18,6 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	description,
 	href,
 	badgeText,
-
-	cardBackgroundColor,
 }) => {
 	// Strip HTML tags and convert to plain text using DOM
 	const getPlainText = (html: string) => {
