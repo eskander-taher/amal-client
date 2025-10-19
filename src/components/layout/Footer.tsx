@@ -179,7 +179,7 @@ export default function Footer() {
 								</div>
 							</div>
 						</div>
-
+ 
 						{/* Logo & Description */}
 						<div className="flex flex-col justify-start items-center lg:items-start lg:w-auto lg:max-w-md">
 							<div className="w-full max-w-xs sm:max-w-sm lg:max-w-md mb-4 sm:mb-6">
