@@ -1,22 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Edit2, Trash2, Clock, Users, ChefHat, Search, Filter } from "lucide-react";
+import { Plus, Minus, Clock, Users, ChefHat, X } from "lucide-react";
+import AdminPageHeader from "@/components/admin/AdminPageHeader";
+import AdminFilters, { FilterOption } from "@/components/admin/AdminFilters";
+import AdminTable, { Column, TableImageCell, TableBadge } from "@/components/admin/AdminTable";
+import AdminModal from "@/components/admin/AdminModal";
+import AdminFormActions from "@/components/admin/AdminFormActions";
 import {
 	useRecipes,
 	useCreateRecipe,
 	useUpdateRecipe,
 	useDeleteRecipe,
 	useRecipeCategories,
-} from "@/hooks/useRecipes";
+} from "../api";
 import { getServerUrl } from "@/lib/apiBase";
 import type { IRecipe } from "@/types/models";
-
-interface BreadcrumbItem {
-	label: string;
-	href?: string;
-	current?: boolean;
-}
 
 export default function AdminRecipesPage() {
 	const [isFormOpen, setIsFormOpen] = useState(false);
@@ -60,18 +59,6 @@ export default function AdminRecipesPage() {
 	const deleteRecipeMutation = useDeleteRecipe();
 
 	const recipes = recipesData?.recipes || [];
-
-	const breadcrumbs: BreadcrumbItem[] = [
-		{ label: "إدارة المحتوى", href: "/admin" },
-		{ label: "الوصفات", current: true },
-	];
-
-	const difficultyOptions = [
-		{ value: "", label: "جميع المستويات" },
-		{ value: "easy", label: "سهل" },
-		{ value: "medium", label: "متوسط" },
-		{ value: "hard", label: "صعب" },
-	];
 
 	const getDifficultyLabel = (difficulty: string) => {
 		switch (difficulty) {
@@ -233,649 +220,556 @@ export default function AdminRecipesPage() {
 		}));
 	};
 
+	// Define table columns
+	const columns: Column<IRecipe>[] = [
+		{
+			key: "image",
+			label: "الصورة",
+			render: (item) => (
+				<TableImageCell
+					src={
+						item.image
+							? getServerUrl(item.image) || "/square_placeholder.webp"
+							: "/square_placeholder.webp"
+					}
+					alt={item.title}
+				/>
+			),
+			className: "w-20",
+		},
+		{
+			key: "title",
+			label: "اسم الوصفة",
+			render: (item) => (
+				<div>
+					<div className="font-semibold text-gray-900">{item.title}</div>
+					<div className="text-xs text-gray-500 mt-1">{item.category}</div>
+				</div>
+			),
+		},
+		{
+			key: "difficulty",
+			label: "الصعوبة",
+			render: (item) => {
+				const difficultyColors = {
+					easy: "success" as const,
+					medium: "warning" as const,
+					hard: "error" as const,
+				};
+				return (
+					<TableBadge variant={difficultyColors[item.difficulty || "easy"]}>
+						{getDifficultyLabel(item.difficulty || "easy")}
+					</TableBadge>
+				);
+			},
+			className: "w-24",
+		},
+		{
+			key: "prepTime",
+			label: "الوقت",
+			render: (item) => (
+				<div className="text-sm text-gray-600">
+					<Clock className="w-3 h-3 inline mr-1" />
+					{item.prepTime + (item.cookTime || 0)} دقيقة
+				</div>
+			),
+			className: "w-32",
+		},
+		{
+			key: "servings",
+			label: "الحصص",
+			render: (item) => (
+				<div className="text-sm text-gray-600">
+					<Users className="w-3 h-3 inline mr-1" />
+					{item.servings || 4}
+				</div>
+			),
+			className: "w-24",
+		},
+	];
+
+	// Prepare filter options
+	const categoryFilterOptions: FilterOption[] = [
+		{ value: "", label: "جميع الفئات" },
+		...categories.map((cat) => ({ value: cat, label: cat })),
+	];
+
+	const difficultyFilterOptions: FilterOption[] = [
+		{ value: "", label: "جميع المستويات" },
+		{ value: "easy", label: "سهل" },
+		{ value: "medium", label: "متوسط" },
+		{ value: "hard", label: "صعب" },
+	];
+
 	return (
 		<div className="p-6 space-y-6">
-			{/* Header */}
-			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-				<div>
-					<h1 className="text-2xl font-bold text-gray-900">إدارة الوصفات</h1>
-					<p className="text-gray-600 mt-1">إدارة وصفات الطعام والحلويات</p>
-				</div>
-				<button
-					onClick={() => setIsFormOpen(true)}
-					className="inline-flex items-center px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
-				>
-					<Plus className="w-4 h-4 mr-2" />
-					إضافة وصفة جديدة
-				</button>
-			</div>
+			{/* Page Header */}
+			<AdminPageHeader
+				title="إدارة الوصفات"
+				description="إدارة وصفات الطعام والحلويات"
+				onAdd={() => setIsFormOpen(true)}
+				addButtonText="إضافة وصفة جديدة"
+			/>
 
-			{/* Search and Filters */}
-			<div className="bg-white p-6 rounded-lg shadow-sm border">
-				<div className="flex flex-col lg:flex-row gap-4">
-					{/* Search */}
-					<div className="relative flex-1">
-						<Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-						<input
-							type="text"
-							placeholder="البحث في الوصفات..."
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-							className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+			{/* Filters */}
+			<AdminFilters
+				searchValue={searchQuery}
+				onSearchChange={setSearchQuery}
+				searchPlaceholder="البحث في الوصفات..."
+				filters={[
+					{
+						label: "الفئة",
+						value: selectedCategory,
+						onChange: setSelectedCategory,
+						options: categoryFilterOptions,
+					},
+					{
+						label: "الصعوبة",
+						value: selectedDifficulty,
+						onChange: setSelectedDifficulty,
+						options: difficultyFilterOptions,
+					},
+				]}
+			/>
+
+			{/* Table */}
+			<AdminTable
+				columns={columns}
+				data={recipes}
+				isLoading={isLoading}
+				emptyMessage={
+					searchQuery || selectedCategory || selectedDifficulty
+						? "لم نعثر على وصفات تطابق معايير البحث."
+						: "لا توجد وصفات متاحة حالياً."
+				}
+				emptyIcon={<ChefHat className="w-12 h-12 text-gray-300" />}
+				onEdit={handleEdit}
+				onDelete={handleDelete}
+				getId={(item) => item._id!}
+			/>
+
+			{/* Recipe Form Modal */}
+			<AdminModal
+				isOpen={isFormOpen}
+				onClose={resetForm}
+				title={editingRecipe ? "تعديل الوصفة" : "إضافة وصفة جديدة"}
+				maxWidth="4xl"
+			>
+				<form onSubmit={handleSubmit} className="space-y-6">
+					{/* Basic Info */}
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								عنوان الوصفة *
+							</label>
+							<input
+								type="text"
+								value={formData.title}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										title: e.target.value,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								placeholder="أدخل عنوان الوصفة..."
+								required
+							/>
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								الفئة *
+							</label>
+							<input
+								type="text"
+								value={formData.category}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										category: e.target.value,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								placeholder="مثل: كيك، حلى، مقبلات..."
+								required
+							/>
+						</div>
+					</div>
+
+					{/* Description */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-1">
+							وصف الوصفة *
+						</label>
+						<textarea
+							value={formData.description}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									description: e.target.value,
+								})
+							}
+							rows={3}
+							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+							placeholder="أدخل وصف الوصفة..."
+							required
 						/>
 					</div>
 
-					{/* Category Filter */}
-					<select
-						value={selectedCategory}
-						onChange={(e) => setSelectedCategory(e.target.value)}
-						className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-					>
-						<option value="">جميع الفئات</option>
-						{categories.map((category) => (
-							<option key={category} value={category}>
-								{category}
-							</option>
-						))}
-					</select>
-
-					{/* Difficulty Filter */}
-					<select
-						value={selectedDifficulty}
-						onChange={(e) => setSelectedDifficulty(e.target.value)}
-						className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-					>
-						{difficultyOptions.map((option) => (
-							<option key={option.value} value={option.value}>
-								{option.label}
-							</option>
-						))}
-					</select>
-				</div>
-			</div>
-
-			{/* Recipes List */}
-			<div className="bg-white rounded-lg shadow-sm border">
-				<div className="p-6">
-					<h2 className="text-lg font-semibold text-gray-900 mb-4">
-						الوصفات ({recipes.length})
-					</h2>
-
-					{isLoading ? (
-						<div className="text-center py-8">
-							<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-600 mx-auto mb-2"></div>
-							<p className="text-gray-600">جاري تحميل الوصفات...</p>
+					{/* Times and Servings */}
+					<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								وقت التحضير (دقيقة) *
+							</label>
+							<input
+								type="number"
+								min="1"
+								value={formData.prepTime}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										prepTime: parseInt(e.target.value) || 15,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								required
+							/>
 						</div>
-					) : recipes.length === 0 ? (
-						<div className="text-center py-8 text-gray-500">
-							<ChefHat className="w-12 h-12 mx-auto mb-2 text-gray-300" />
-							<p>لا توجد وصفات</p>
+
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								وقت الطبخ (دقيقة)
+							</label>
+							<input
+								type="number"
+								min="0"
+								value={formData.cookTime}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										cookTime: parseInt(e.target.value) || 0,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+							/>
 						</div>
-					) : (
-						<div className="space-y-4">
-							{recipes.map((recipe) => (
-								<div
-									key={recipe._id}
-									className="border border-[#f5f5f7] rounded-lg p-4"
-								>
-									<div className="flex items-start gap-4">
-										{/* Recipe Image */}
-										<div className="w-20 h-20 bg-[#f5f5f7] rounded-lg overflow-hidden flex-shrink-0">
-											{recipe.image ? (
-												<img
-													src={getServerUrl(recipe.image)}
-													alt={recipe.title}
-													className="w-full h-full object-cover"
-												/>
-											) : (
-												<div className="w-full h-full flex items-center justify-center">
-													<ChefHat className="w-8 h-8 text-gray-400" />
-												</div>
-											)}
-										</div>
 
-										{/* Recipe Info */}
-										<div className="flex-1 min-w-0">
-											<div className="flex items-start justify-between">
-												<div className="flex-1">
-													<h3 className="text-lg font-semibold text-gray-900 truncate">
-														{recipe.title}
-													</h3>
-													<p className="text-sm text-gray-600 mt-1 line-clamp-2">
-														{recipe.description}
-													</p>
-													<div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-														<span className="flex items-center">
-															<Clock className="w-3 h-3 mr-1" />
-															{recipe.prepTime} دقيقة
-														</span>
-														{recipe.cookTime && (
-															<span className="flex items-center">
-																<ChefHat className="w-3 h-3 mr-1" />
-																طبخ {recipe.cookTime} دقيقة
-															</span>
-														)}
-														{recipe.servings && (
-															<span className="flex items-center">
-																<Users className="w-3 h-3 mr-1" />
-																{recipe.servings} أشخاص
-															</span>
-														)}
-														<span className="px-2 py-1 bg-gray-100 rounded text-xs">
-															{getDifficultyLabel(
-																recipe.difficulty || "easy"
-															)}
-														</span>
-														<span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs">
-															{recipe.category}
-														</span>
-													</div>
-												</div>
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								عدد الحصص
+							</label>
+							<input
+								type="number"
+								min="1"
+								value={formData.servings}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										servings: parseInt(e.target.value) || 4,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+							/>
+						</div>
 
-												{/* Actions */}
-												<div className="flex items-center gap-2 ml-4">
-													<button
-														onClick={() => handleEdit(recipe)}
-														className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-														title="تعديل"
-													>
-														<Edit2 className="w-4 h-4" />
-													</button>
-													<button
-														onClick={() => handleDelete(recipe)}
-														className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-														title="حذف"
-													>
-														<Trash2 className="w-4 h-4" />
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								مستوى الصعوبة
+							</label>
+							<select
+								value={formData.difficulty}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										difficulty: e.target.value as "easy" | "medium" | "hard",
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+							>
+								<option value="easy">سهل</option>
+								<option value="medium">متوسط</option>
+								<option value="hard">صعب</option>
+							</select>
+						</div>
+					</div>
+
+					{/* Image Upload */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-1">
+							صورة الوصفة
+						</label>
+						<input
+							type="file"
+							accept="image/*"
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									imageFile: e.target.files?.[0] || null,
+								})
+							}
+							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+						/>
+						{editingRecipe?.image && (
+							<div className="mt-2">
+								<img
+									src={getServerUrl(editingRecipe.image)}
+									alt="Current recipe"
+									className="w-20 h-20 object-cover rounded-lg"
+								/>
+							</div>
+						)}
+					</div>
+
+					{/* Ingredients */}
+					<div>
+						<div className="flex items-center justify-between mb-2">
+							<label className="block text-sm font-medium text-gray-700">
+								المكونات *
+							</label>
+							<button
+								type="button"
+								onClick={() => addArrayItem("ingredients")}
+								className="text-sm text-yellow-600 hover:text-yellow-800"
+							>
+								+ إضافة مكون
+							</button>
+						</div>
+						<div className="space-y-2">
+							{formData.ingredients.map((ingredient, index) => (
+								<div key={index} className="flex gap-2">
+									<input
+										type="text"
+										value={ingredient}
+										onChange={(e) =>
+											updateArrayItem("ingredients", index, e.target.value)
+										}
+										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+										placeholder={`المكون ${index + 1}`}
+									/>
+									{formData.ingredients.length > 1 && (
+										<button
+											type="button"
+											onClick={() => removeArrayItem("ingredients", index)}
+											className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+										>
+											×
+										</button>
+									)}
 								</div>
 							))}
 						</div>
-					)}
-				</div>
-			</div>
+					</div>
 
-			{/* Recipe Form Modal */}
-			{isFormOpen && (
-				<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-					<div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-						<div className="p-6">
-							<div className="flex items-center justify-between mb-6">
-								<h2 className="text-xl font-bold text-gray-900">
-									{editingRecipe ? "تعديل الوصفة" : "إضافة وصفة جديدة"}
-								</h2>
-								<button
-									onClick={resetForm}
-									className="text-gray-400 hover:text-gray-600"
-								>
-									×
-								</button>
-							</div>
-
-							<form onSubmit={handleSubmit} className="space-y-6">
-								{/* Basic Info */}
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											عنوان الوصفة *
-										</label>
-										<input
-											type="text"
-											value={formData.title}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													title: e.target.value,
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-											placeholder="أدخل عنوان الوصفة..."
-											required
-										/>
-									</div>
-
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											الفئة *
-										</label>
-										<input
-											type="text"
-											value={formData.category}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													category: e.target.value,
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-											placeholder="مثل: كيك، حلى، مقبلات..."
-											required
-										/>
-									</div>
-								</div>
-
-								{/* Description */}
-								<div>
-									<label className="block text-sm font-medium text-gray-700 mb-1">
-										وصف الوصفة *
-									</label>
+					{/* Instructions */}
+					<div>
+						<div className="flex items-center justify-between mb-2">
+							<label className="block text-sm font-medium text-gray-700">
+								خطوات التحضير *
+							</label>
+							<button
+								type="button"
+								onClick={() => addArrayItem("instructions")}
+								className="text-sm text-yellow-600 hover:text-yellow-800"
+							>
+								+ إضافة خطوة
+							</button>
+						</div>
+						<div className="space-y-2">
+							{formData.instructions.map((instruction, index) => (
+								<div key={index} className="flex gap-2">
+									<span className="flex-shrink-0 w-8 h-10 flex items-center justify-center text-sm text-gray-500 bg-gray-100 rounded">
+										{index + 1}
+									</span>
 									<textarea
-										value={formData.description}
+										value={instruction}
 										onChange={(e) =>
-											setFormData({
-												...formData,
-												description: e.target.value,
-											})
+											updateArrayItem("instructions", index, e.target.value)
 										}
-										rows={3}
-										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										placeholder="أدخل وصف الوصفة..."
-										required
+										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+										placeholder={`الخطوة ${index + 1}`}
+										rows={2}
 									/>
-								</div>
-
-								{/* Times and Servings */}
-								<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											وقت التحضير (دقيقة) *
-										</label>
-										<input
-											type="number"
-											min="1"
-											value={formData.prepTime}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													prepTime: parseInt(e.target.value) || 15,
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-											required
-										/>
-									</div>
-
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											وقت الطبخ (دقيقة)
-										</label>
-										<input
-											type="number"
-											min="0"
-											value={formData.cookTime}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													cookTime: parseInt(e.target.value) || 0,
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										/>
-									</div>
-
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											عدد الحصص
-										</label>
-										<input
-											type="number"
-											min="1"
-											value={formData.servings}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													servings: parseInt(e.target.value) || 4,
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										/>
-									</div>
-
-									<div>
-										<label className="block text-sm font-medium text-gray-700 mb-1">
-											مستوى الصعوبة
-										</label>
-										<select
-											value={formData.difficulty}
-											onChange={(e) =>
-												setFormData({
-													...formData,
-													difficulty: e.target.value as
-														| "easy"
-														| "medium"
-														| "hard",
-												})
-											}
-											className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									{formData.instructions.length > 1 && (
+										<button
+											type="button"
+											onClick={() => removeArrayItem("instructions", index)}
+											className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 										>
-											<option value="easy">سهل</option>
-											<option value="medium">متوسط</option>
-											<option value="hard">صعب</option>
-										</select>
-									</div>
-								</div>
-
-								{/* Image Upload */}
-								<div>
-									<label className="block text-sm font-medium text-gray-700 mb-1">
-										صورة الوصفة
-									</label>
-									<input
-										type="file"
-										accept="image/*"
-										onChange={(e) =>
-											setFormData({
-												...formData,
-												imageFile: e.target.files?.[0] || null,
-											})
-										}
-										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-									/>
-									{editingRecipe?.image && (
-										<div className="mt-2">
-											<img
-												src={getServerUrl(editingRecipe.image)}
-												alt="Current recipe"
-												className="w-20 h-20 object-cover rounded-lg"
-											/>
-										</div>
+											×
+										</button>
 									)}
 								</div>
-
-								{/* Ingredients */}
-								<div>
-									<div className="flex items-center justify-between mb-2">
-										<label className="block text-sm font-medium text-gray-700">
-											المكونات *
-										</label>
-										<button
-											type="button"
-											onClick={() => addArrayItem("ingredients")}
-											className="text-sm text-yellow-600 hover:text-yellow-800"
-										>
-											+ إضافة مكون
-										</button>
-									</div>
-									<div className="space-y-2">
-										{formData.ingredients.map((ingredient, index) => (
-											<div key={index} className="flex gap-2">
-												<input
-													type="text"
-													value={ingredient}
-													onChange={(e) =>
-														updateArrayItem(
-															"ingredients",
-															index,
-															e.target.value
-														)
-													}
-													className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-													placeholder={`المكون ${index + 1}`}
-												/>
-												{formData.ingredients.length > 1 && (
-													<button
-														type="button"
-														onClick={() =>
-															removeArrayItem("ingredients", index)
-														}
-														className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-													>
-														×
-													</button>
-												)}
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Instructions */}
-								<div>
-									<div className="flex items-center justify-between mb-2">
-										<label className="block text-sm font-medium text-gray-700">
-											خطوات التحضير *
-										</label>
-										<button
-											type="button"
-											onClick={() => addArrayItem("instructions")}
-											className="text-sm text-yellow-600 hover:text-yellow-800"
-										>
-											+ إضافة خطوة
-										</button>
-									</div>
-									<div className="space-y-2">
-										{formData.instructions.map((instruction, index) => (
-											<div key={index} className="flex gap-2">
-												<span className="flex-shrink-0 w-8 h-10 flex items-center justify-center text-sm text-gray-500 bg-gray-100 rounded">
-													{index + 1}
-												</span>
-												<textarea
-													value={instruction}
-													onChange={(e) =>
-														updateArrayItem(
-															"instructions",
-															index,
-															e.target.value
-														)
-													}
-													className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-													placeholder={`الخطوة ${index + 1}`}
-													rows={2}
-												/>
-												{formData.instructions.length > 1 && (
-													<button
-														type="button"
-														onClick={() =>
-															removeArrayItem("instructions", index)
-														}
-														className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-													>
-														×
-													</button>
-												)}
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Tips */}
-								<div>
-									<div className="flex items-center justify-between mb-2">
-										<label className="block text-sm font-medium text-gray-700">
-											نصائح مهمة
-										</label>
-										<button
-											type="button"
-											onClick={() => addArrayItem("tips")}
-											className="text-sm text-yellow-600 hover:text-yellow-800"
-										>
-											+ إضافة نصيحة
-										</button>
-									</div>
-									<div className="space-y-2">
-										{formData.tips.map((tip, index) => (
-											<div key={index} className="flex gap-2">
-												<input
-													type="text"
-													value={tip}
-													onChange={(e) =>
-														updateArrayItem(
-															"tips",
-															index,
-															e.target.value
-														)
-													}
-													className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-													placeholder={`نصيحة ${index + 1}`}
-												/>
-												<button
-													type="button"
-													onClick={() => removeArrayItem("tips", index)}
-													className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-												>
-													×
-												</button>
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Tags */}
-								<div>
-									<div className="flex items-center justify-between mb-2">
-										<label className="block text-sm font-medium text-gray-700">
-											العلامات
-										</label>
-										<button
-											type="button"
-											onClick={() => addArrayItem("tags")}
-											className="text-sm text-yellow-600 hover:text-yellow-800"
-										>
-											+ إضافة علامة
-										</button>
-									</div>
-									<div className="space-y-2">
-										{formData.tags.map((tag, index) => (
-											<div key={index} className="flex gap-2">
-												<input
-													type="text"
-													value={tag}
-													onChange={(e) =>
-														updateArrayItem(
-															"tags",
-															index,
-															e.target.value
-														)
-													}
-													className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-													placeholder={`علامة ${index + 1}`}
-												/>
-												<button
-													type="button"
-													onClick={() => removeArrayItem("tags", index)}
-													className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-												>
-													×
-												</button>
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Nutrition Info */}
-								<div>
-									<label className="block text-sm font-medium text-gray-700 mb-2">
-										القيم الغذائية (اختياري)
-									</label>
-									<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-										<div>
-											<input
-												type="number"
-												min="0"
-												value={formData.nutritionInfo.calories}
-												onChange={(e) =>
-													setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															calories: parseInt(e.target.value) || 0,
-														},
-													})
-												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-												placeholder="السعرات"
-											/>
-										</div>
-										<div>
-											<input
-												type="number"
-												min="0"
-												value={formData.nutritionInfo.protein}
-												onChange={(e) =>
-													setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															protein: parseInt(e.target.value) || 0,
-														},
-													})
-												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-												placeholder="البروتين (ج)"
-											/>
-										</div>
-										<div>
-											<input
-												type="number"
-												min="0"
-												value={formData.nutritionInfo.carbs}
-												onChange={(e) =>
-													setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															carbs: parseInt(e.target.value) || 0,
-														},
-													})
-												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-												placeholder="الكربوهيدرات (ج)"
-											/>
-										</div>
-										<div>
-											<input
-												type="number"
-												min="0"
-												value={formData.nutritionInfo.fat}
-												onChange={(e) =>
-													setFormData({
-														...formData,
-														nutritionInfo: {
-															...formData.nutritionInfo,
-															fat: parseInt(e.target.value) || 0,
-														},
-													})
-												}
-												className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-												placeholder="الدهون (ج)"
-											/>
-										</div>
-									</div>
-								</div>
-
-								{/* Form Actions */}
-								<div className="flex justify-end gap-3 pt-6 border-t">
-									<button
-										type="button"
-										onClick={resetForm}
-										className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-[#f5f5f7] transition-colors"
-									>
-										إلغاء
-									</button>
-									<button
-										type="submit"
-										disabled={
-											createRecipeMutation.isPending ||
-											updateRecipeMutation.isPending
-										}
-										className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors disabled:opacity-50"
-									>
-										{createRecipeMutation.isPending ||
-										updateRecipeMutation.isPending
-											? "جاري الحفظ..."
-											: editingRecipe
-											? "تحديث الوصفة"
-											: "إنشاء الوصفة"}
-									</button>
-								</div>
-							</form>
+							))}
 						</div>
 					</div>
-				</div>
-			)}
+
+					{/* Tips */}
+					<div>
+						<div className="flex items-center justify-between mb-2">
+							<label className="block text-sm font-medium text-gray-700">
+								نصائح مهمة
+							</label>
+							<button
+								type="button"
+								onClick={() => addArrayItem("tips")}
+								className="text-sm text-yellow-600 hover:text-yellow-800"
+							>
+								+ إضافة نصيحة
+							</button>
+						</div>
+						<div className="space-y-2">
+							{formData.tips.map((tip, index) => (
+								<div key={index} className="flex gap-2">
+									<input
+										type="text"
+										value={tip}
+										onChange={(e) =>
+											updateArrayItem("tips", index, e.target.value)
+										}
+										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+										placeholder={`نصيحة ${index + 1}`}
+									/>
+									<button
+										type="button"
+										onClick={() => removeArrayItem("tips", index)}
+										className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+									>
+										×
+									</button>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* Tags */}
+					<div>
+						<div className="flex items-center justify-between mb-2">
+							<label className="block text-sm font-medium text-gray-700">
+								العلامات
+							</label>
+							<button
+								type="button"
+								onClick={() => addArrayItem("tags")}
+								className="text-sm text-yellow-600 hover:text-yellow-800"
+							>
+								+ إضافة علامة
+							</button>
+						</div>
+						<div className="space-y-2">
+							{formData.tags.map((tag, index) => (
+								<div key={index} className="flex gap-2">
+									<input
+										type="text"
+										value={tag}
+										onChange={(e) =>
+											updateArrayItem("tags", index, e.target.value)
+										}
+										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+										placeholder={`علامة ${index + 1}`}
+									/>
+									<button
+										type="button"
+										onClick={() => removeArrayItem("tags", index)}
+										className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+									>
+										×
+									</button>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* Nutrition Info */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-2">
+							القيم الغذائية (اختياري)
+						</label>
+						<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+							<div>
+								<input
+									type="number"
+									min="0"
+									value={formData.nutritionInfo.calories}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											nutritionInfo: {
+												...formData.nutritionInfo,
+												calories: parseInt(e.target.value) || 0,
+											},
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									placeholder="السعرات"
+								/>
+							</div>
+							<div>
+								<input
+									type="number"
+									min="0"
+									value={formData.nutritionInfo.protein}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											nutritionInfo: {
+												...formData.nutritionInfo,
+												protein: parseInt(e.target.value) || 0,
+											},
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									placeholder="البروتين (ج)"
+								/>
+							</div>
+							<div>
+								<input
+									type="number"
+									min="0"
+									value={formData.nutritionInfo.carbs}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											nutritionInfo: {
+												...formData.nutritionInfo,
+												carbs: parseInt(e.target.value) || 0,
+											},
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									placeholder="الكربوهيدرات (ج)"
+								/>
+							</div>
+							<div>
+								<input
+									type="number"
+									min="0"
+									value={formData.nutritionInfo.fat}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											nutritionInfo: {
+												...formData.nutritionInfo,
+												fat: parseInt(e.target.value) || 0,
+											},
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									placeholder="الدهون (ج)"
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* Form Actions */}
+					<AdminFormActions
+						onCancel={resetForm}
+						isLoading={createRecipeMutation.isPending || updateRecipeMutation.isPending}
+						submitText={editingRecipe ? "تحديث الوصفة" : "إنشاء الوصفة"}
+					/>
+				</form>
+			</AdminModal>
 		</div>
 	);
 }

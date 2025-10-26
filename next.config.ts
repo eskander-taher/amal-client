@@ -12,27 +12,38 @@ const getImageRemotePatterns = () => {
 		},
 	];
 
-	// Development configuration
+	// Development configuration - Allow localhost backend
 	if (process.env.NODE_ENV === "development") {
-		patterns.push({
-			protocol: "http",
-			hostname: "localhost",
-			port: "5000",
-			pathname: "/uploads/**",
-		} as any);
+		patterns.push(
+			{
+				protocol: "http" as const,
+				hostname: "localhost",
+				port: "5000",
+				pathname: "/uploads/**",
+			},
+			{
+				protocol: "http" as const,
+				hostname: "127.0.0.1",
+				port: "5000",
+				pathname: "/uploads/**",
+			}
+		);
 	}
 
 	// Production configuration
 	if (process.env.NODE_ENV === "production") {
 		const productionApiUrl = process.env.NEXT_PUBLIC_API_URL || "https://your-api-domain.com";
-		const url = new URL(productionApiUrl);
-		
-		patterns.push({
-			protocol: url.protocol.slice(0, -1), // Remove the trailing ':'
-			hostname: url.hostname,
-			port: url.port || undefined,
-			pathname: "/uploads/**",
-		} as any);
+		try {
+			const url = new URL(productionApiUrl);
+			patterns.push({
+				protocol: url.protocol.replace(":", "") as "http" | "https",
+				hostname: url.hostname,
+				port: url.port || "",
+				pathname: "/uploads/**",
+			});
+		} catch (error) {
+			console.error("Invalid NEXT_PUBLIC_API_URL:", productionApiUrl);
+		}
 	}
 
 	return patterns;
@@ -41,6 +52,9 @@ const getImageRemotePatterns = () => {
 const config: NextConfig = {
 	images: {
 		remotePatterns: getImageRemotePatterns(),
+		// Disable image optimization in development for faster builds
+		// and to avoid issues with external URLs
+		unoptimized: process.env.NODE_ENV === "development",
 	},
 };
 
