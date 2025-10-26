@@ -1,8 +1,8 @@
-// const apiBase =
-// 	process.env.NODE_ENV === "production"
-// 		? "https://api.afaqrussia.com"  // Your VPS server
-// 		: "http://localhost:5000";
-const apiBase = "https://api.afaqrussia.com";
+const apiBase =
+	process.env.NODE_ENV === "production"
+		? "https://api.afaqrussia.com"  // Your VPS server
+		: "http://localhost:5000";
+// const apiBase = "https://api.afaqrussia.com";
 
 export default apiBase;
 
@@ -10,11 +10,11 @@ export default apiBase;
 export const getServerUrl = (filename: string = "") => {
 	if (!filename) return undefined;
 
-	// const baseUrl =
-	// 	process.env.NODE_ENV === "production"
-	// 		? "https://api.afaqrussia.com"
-	// 		: "http://localhost:5000";
-	const baseUrl = "https://api.afaqrussia.com";
+	const baseUrl =
+		process.env.NODE_ENV === "production"
+			? "https://api.afaqrussia.com"
+			: "http://localhost:5000";
+	// const baseUrl = "https://api.afaqrussia.com";
 
 	// If filename already contains /uploads/, return as is
 	if (filename.startsWith("/uploads/") || filename.startsWith("http")) {

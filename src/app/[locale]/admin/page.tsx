@@ -1,183 +1,175 @@
 'use client';
 
-import React from 'react';
-import AdminLayout from '@/components/admin/AdminLayout';
-import AdminMetrics from '@/components/admin/AdminMetrics';
-import { useDashboard } from '@/hooks/useDashboard';
-import { 
-  FileText, 
-  Package, 
-  Users, 
-  Eye, 
-  MessageSquare, 
-  TrendingUp,
-  Calendar,
-  Image,
-  Loader2
-} from 'lucide-react';
-import type { AdminMetric } from '@/types';
+import React from "react";
+import AdminMetrics from "@/components/admin/AdminMetrics";
+import { useDashboard } from "@/hooks/useDashboard";
+import {
+	FileText,
+	Package,
+	Users,
+	MessageSquare,
+	TrendingUp,
+	Calendar,
+	Image,
+	Loader2,
+} from "lucide-react";
+import type { AdminMetric } from "@/types";
 
 export default function AdminDashboard() {
-  const { stats, loading, error, refetch } = useDashboard();
+	const { stats, loading, error, refetch } = useDashboard();
+	// Convert real data to metrics format
+	const metrics: AdminMetric[] = [
+		{
+			id: "total-articles",
+			label: "Total Articles",
+			value: stats.totalNews.toString(),
+			change: {
+				value: 0, // We don't have historical data yet
+				type: "increase",
+				period: "current",
+			},
+			icon: FileText,
+			color: "blue",
+		},
+		{
+			id: "total-products",
+			label: "Total Products",
+			value: stats.totalProducts.toString(),
+			change: {
+				value: 0,
+				type: "increase",
+				period: "current",
+			},
+			icon: Package,
+			color: "green",
+		},
+		{
+			id: "total-recipes",
+			label: "Total Recipes",
+			value: stats.totalRecipes.toString(),
+			change: {
+				value: 0,
+				type: "increase",
+				period: "current",
+			},
+			icon: MessageSquare,
+			color: "purple",
+		},
+		{
+			id: "total-users",
+			label: "Total Users",
+			value: stats.totalUsers.toString(),
+			change: {
+				value: 0,
+				type: "increase",
+				period: "current",
+			},
+			icon: Users,
+			color: "yellow",
+		},
+	];
 
-  // Convert real data to metrics format
-  const metrics: AdminMetric[] = [
-    {
-      id: 'total-articles',
-      label: 'Total Articles',
-      value: stats.totalNews.toString(),
-      change: {
-        value: 0, // We don't have historical data yet
-        type: 'increase',
-        period: 'current'
-      },
-      icon: FileText,
-      color: 'blue'
-    },
-    {
-      id: 'total-products',
-      label: 'Total Products',
-      value: stats.totalProducts.toString(),
-      change: {
-        value: 0,
-        type: 'increase',
-        period: 'current'
-      },
-      icon: Package,
-      color: 'green'
-    },
-    {
-      id: 'total-recipes',
-      label: 'Total Recipes',
-      value: stats.totalRecipes.toString(),
-      change: {
-        value: 0,
-        type: 'increase',
-        period: 'current'
-      },
-      icon: MessageSquare,
-      color: 'purple'
-    },
-    {
-      id: 'total-users',
-      label: 'Total Users',
-      value: stats.totalUsers.toString(),
-      change: {
-        value: 0,
-        type: 'increase',
-        period: 'current'
-      },
-      icon: Users,
-      color: 'yellow'
-    }
-  ];
+	// Generate recent activity from real data
+	const recentActivity = [
+		...stats.recentNews.slice(0, 2).map((news, index) => ({
+			id: `news-${news._id}`,
+			type: "article" as const,
+			title: `Article: "${news.title}"`,
+			time: new Date(news.createdAt).toLocaleDateString(),
+			user: "Admin",
+		})),
+		...stats.recentProducts.slice(0, 2).map((product, index) => ({
+			id: `product-${product._id}`,
+			type: "product" as const,
+			title: `Product: "${product.title}"`,
+			time: new Date(product.createdAt).toLocaleDateString(),
+			user: "Admin",
+		})),
+		...stats.recentRecipes.slice(0, 1).map((recipe, index) => ({
+			id: `recipe-${recipe._id}`,
+			type: "recipe" as const,
+			title: `Recipe: "${recipe.title}"`,
+			time: new Date(recipe.createdAt).toLocaleDateString(),
+			user: "Admin",
+		})),
+	].slice(0, 5); // Limit to 5 items
 
-  // Generate recent activity from real data
-  const recentActivity = [
-    ...stats.recentNews.slice(0, 2).map((news, index) => ({
-      id: `news-${news._id}`,
-      type: 'article' as const,
-      title: `Article: "${news.title}"`,
-      time: new Date(news.createdAt).toLocaleDateString(),
-      user: 'Admin'
-    })),
-    ...stats.recentProducts.slice(0, 2).map((product, index) => ({
-      id: `product-${product._id}`,
-      type: 'product' as const,
-      title: `Product: "${product.title}"`,
-      time: new Date(product.createdAt).toLocaleDateString(),
-      user: 'Admin'
-    })),
-    ...stats.recentRecipes.slice(0, 1).map((recipe, index) => ({
-      id: `recipe-${recipe._id}`,
-      type: 'recipe' as const,
-      title: `Recipe: "${recipe.title}"`,
-      time: new Date(recipe.createdAt).toLocaleDateString(),
-      user: 'Admin'
-    }))
-  ].slice(0, 5); // Limit to 5 items
+	const getActivityIcon = (type: string) => {
+		switch (type) {
+			case "article":
+				return <FileText className="w-4 h-4" />;
+			case "user":
+				return <Users className="w-4 h-4" />;
+			case "product":
+				return <Package className="w-4 h-4" />;
+			case "recipe":
+				return <MessageSquare className="w-4 h-4" />;
+			case "message":
+				return <MessageSquare className="w-4 h-4" />;
+			default:
+				return <TrendingUp className="w-4 h-4" />;
+		}
+	};
 
-  const getActivityIcon = (type: string) => {
-    switch (type) {
-      case 'article':
-        return <FileText className="w-4 h-4" />;
-      case 'user':
-        return <Users className="w-4 h-4" />;
-      case 'product':
-        return <Package className="w-4 h-4" />;
-      case 'recipe':
-        return <MessageSquare className="w-4 h-4" />;
-      case 'message':
-        return <MessageSquare className="w-4 h-4" />;
-      default:
-        return <TrendingUp className="w-4 h-4" />;
-    }
-  };
+	const getActivityColor = (type: string) => {
+		switch (type) {
+			case "article":
+				return "bg-blue-50 text-blue-600";
+			case "user":
+				return "bg-green-50 text-green-600";
+			case "product":
+				return "bg-purple-50 text-purple-600";
+			case "recipe":
+				return "bg-yellow-50 text-yellow-600";
+			case "message":
+				return "bg-yellow-50 text-yellow-600";
+			default:
+				return "bg-gray-50 text-gray-600";
+		}
+	};
 
-  const getActivityColor = (type: string) => {
-    switch (type) {
-      case 'article':
-        return 'bg-blue-50 text-blue-600';
-      case 'user':
-        return 'bg-green-50 text-green-600';
-      case 'product':
-        return 'bg-purple-50 text-purple-600';
-      case 'recipe':
-        return "bg-yellow-50 text-yellow-600";
-      case 'message':
-        return 'bg-yellow-50 text-yellow-600';
-      default:
-        return 'bg-gray-50 text-gray-600';
-    }
-  };
+	// Handle loading state
+	if (loading) {
+		return (
+			<div className="flex items-center justify-center h-64">
+				<div className="flex items-center space-x-2">
+					<Loader2 className="w-6 h-6 animate-spin" />
+					<span className="text-gray-600">Loading dashboard data...</span>
+				</div>
+			</div>
+		);
+	}
 
-  // Handle loading state
-  if (loading) {
-    return (
-      <AdminLayout
-        title="Dashboard"
-        description="Loading dashboard data..."
-      >
-        <div className="flex items-center justify-center h-64">
-          <div className="flex items-center space-x-2">
-            <Loader2 className="w-6 h-6 animate-spin" />
-            <span className="text-gray-600">Loading dashboard data...</span>
-          </div>
-        </div>
-      </AdminLayout>
-    );
-  }
+	// Handle error state
+	if (error) {
+		return (
+			<div className="flex items-center justify-center h-64">
+				<div className="text-center">
+					<div className="text-red-600 mb-4">
+						<p className="text-lg font-semibold">Error loading dashboard</p>
+						<p className="text-sm">{error}</p>
+					</div>
+					<button
+						onClick={refetch}
+						className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+					>
+						Retry
+					</button>
+				</div>
+			</div>
+		);
+	}
 
-  // Handle error state
-  if (error) {
-    return (
-      <AdminLayout
-        title="Dashboard"
-        description="Error loading dashboard data"
-      >
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <div className="text-red-600 mb-4">
-              <p className="text-lg font-semibold">Error loading dashboard</p>
-              <p className="text-sm">{error}</p>
-            </div>
-            <button
-              onClick={refetch}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Retry
-            </button>
-          </div>
-        </div>
-      </AdminLayout>
-    );
-  }
+	return (
+		<div className="p-6 space-y-8">
+			{/* Page Header */}
+			<div>
+				<h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+				<p className="text-sm text-gray-600 mt-1">
+					Welcome back! Here's what's happening with your site today.
+				</p>
+			</div>
 
-  return (
-		<AdminLayout
-			title="Dashboard"
-			description="Welcome back! Here's what's happening with your site today."
-		>
 			<div className="space-y-8">
 				{/* Header with refresh button */}
 				<div className="flex justify-between items-center">
@@ -324,7 +316,7 @@ export default function AdminDashboard() {
 					</div>
 				</div>
 			</div>
-		</AdminLayout>
-  );
+		</div>
+	);
 }
 

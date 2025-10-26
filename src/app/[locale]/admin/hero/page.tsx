@@ -1,258 +1,257 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import AdminLayout from '@/components/admin/AdminLayout';
-import { Plus, Edit, Trash2, Eye, EyeOff, ArrowUp, ArrowDown, Loader2 } from 'lucide-react';
-import { getServerUrl } from '@/lib/apiBase';
-import apiBase from '@/lib/apiBase';
+import React, { useState, useEffect } from "react";
+import { Plus, Edit, Trash2, Eye, EyeOff, ArrowUp, ArrowDown, Loader2 } from "lucide-react";
+import { getServerUrl } from "@/lib/apiBase";
+import apiBase from "@/lib/apiBase";
 
 interface HeroSlide {
-  _id: string;
-  title: {
-    ar: string;
-    en: string;
-  };
-  description: {
-    ar: string;
-    en: string;
-  };
-  buttonText: {
-    ar: string;
-    en: string;
-  };
-  href: string;
-  image: string;
-  alt: {
-    ar: string;
-    en: string;
-  };
-  order: number;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+	_id: string;
+	title: {
+		ar: string;
+		en: string;
+	};
+	description: {
+		ar: string;
+		en: string;
+	};
+	buttonText: {
+		ar: string;
+		en: string;
+	};
+	href: string;
+	image: string;
+	alt: {
+		ar: string;
+		en: string;
+	};
+	order: number;
+	isActive: boolean;
+	createdAt: string;
+	updatedAt: string;
 }
 
 interface HeroFormData {
-  title: {
-    ar: string;
-    en: string;
-  };
-  description: {
-    ar: string;
-    en: string;
-  };
-  buttonText: {
-    ar: string;
-    en: string;
-  };
-  href: string;
-  alt: {
-    ar: string;
-    en: string;
-  };
-  order: number;
-  isActive: boolean;
+	title: {
+		ar: string;
+		en: string;
+	};
+	description: {
+		ar: string;
+		en: string;
+	};
+	buttonText: {
+		ar: string;
+		en: string;
+	};
+	href: string;
+	alt: {
+		ar: string;
+		en: string;
+	};
+	order: number;
+	isActive: boolean;
 }
 
 export default function AdminHeroPage() {
-  const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [editingSlide, setEditingSlide] = useState<HeroSlide | null>(null);
-  const [formData, setFormData] = useState<HeroFormData>({
-    title: { ar: '', en: '' },
-    description: { ar: '', en: '' },
-    buttonText: { ar: '', en: '' },
-    href: '',
-    alt: { ar: '', en: '' },
-    order: 0,
-    isActive: true,
-  });
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+	const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+	const [showForm, setShowForm] = useState(false);
+	const [editingSlide, setEditingSlide] = useState<HeroSlide | null>(null);
+	const [formData, setFormData] = useState<HeroFormData>({
+		title: { ar: "", en: "" },
+		description: { ar: "", en: "" },
+		buttonText: { ar: "", en: "" },
+		href: "",
+		alt: { ar: "", en: "" },
+		order: 0,
+		isActive: true,
+	});
+	const [imageFile, setImageFile] = useState<File | null>(null);
+	const [submitting, setSubmitting] = useState(false);
 
-  // Fetch hero slides
-  const fetchHeroSlides = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`${apiBase}/api/hero/admin`);
-      
-      if (!response.ok) {
-        throw new Error('فشل في تحميل شرائح العرض');
-      }
+	// Fetch hero slides
+	const fetchHeroSlides = async () => {
+		try {
+			setLoading(true);
+			const response = await fetch(`${apiBase}/api/hero/admin`);
 
-      const data = await response.json();
-      setHeroSlides(data.data || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ');
-    } finally {
-      setLoading(false);
-    }
-  };
+			if (!response.ok) {
+				throw new Error("فشل في تحميل شرائح العرض");
+			}
 
-  useEffect(() => {
-    fetchHeroSlides();
-  }, []);
+			const data = await response.json();
+			setHeroSlides(data.data || []);
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "حدث خطأ");
+		} finally {
+			setLoading(false);
+		}
+	};
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
+	useEffect(() => {
+		fetchHeroSlides();
+	}, []);
 
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('title', JSON.stringify(formData.title));
-      formDataToSend.append('description', JSON.stringify(formData.description));
-      formDataToSend.append('buttonText', JSON.stringify(formData.buttonText));
-      formDataToSend.append('href', formData.href);
-      formDataToSend.append('alt', JSON.stringify(formData.alt));
-      formDataToSend.append('order', formData.order.toString());
-      formDataToSend.append('isActive', formData.isActive.toString());
-      
-      if (imageFile) {
-        formDataToSend.append('image', imageFile);
-      }
+	// Handle form submission
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setSubmitting(true);
 
-      const url = editingSlide 
-        ? `${apiBase}/api/hero/${editingSlide._id}`
-        : `${apiBase}/api/hero`;
-      
-      const method = editingSlide ? 'PUT' : 'POST';
+		try {
+			const formDataToSend = new FormData();
+			formDataToSend.append("title", JSON.stringify(formData.title));
+			formDataToSend.append("description", JSON.stringify(formData.description));
+			formDataToSend.append("buttonText", JSON.stringify(formData.buttonText));
+			formDataToSend.append("href", formData.href);
+			formDataToSend.append("alt", JSON.stringify(formData.alt));
+			formDataToSend.append("order", formData.order.toString());
+			formDataToSend.append("isActive", formData.isActive.toString());
 
-      const response = await fetch(url, {
-        method,
-        body: formDataToSend,
-      });
+			if (imageFile) {
+				formDataToSend.append("image", imageFile);
+			}
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || 'فشل في حفظ شريحة العرض');
-      }
+			const url = editingSlide
+				? `${apiBase}/api/hero/${editingSlide._id}`
+				: `${apiBase}/api/hero`;
 
-      // Reset form and refresh data
-      setShowForm(false);
-      setEditingSlide(null);
-      setFormData({
-        title: { ar: '', en: '' },
-        description: { ar: '', en: '' },
-        buttonText: { ar: '', en: '' },
-        href: '',
-        alt: { ar: '', en: '' },
-        order: 0,
-        isActive: true,
-      });
-      setImageFile(null);
-      await fetchHeroSlides();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ');
-    } finally {
-      setSubmitting(false);
-    }
-  };
+			const method = editingSlide ? "PUT" : "POST";
 
-  // Handle edit
-  const handleEdit = (slide: HeroSlide) => {
-    setEditingSlide(slide);
-    setFormData({
-      title: slide.title,
-      description: slide.description,
-      buttonText: slide.buttonText,
-      href: slide.href,
-      alt: slide.alt,
-      order: slide.order,
-      isActive: slide.isActive,
-    });
-    setShowForm(true);
-  };
+			const response = await fetch(url, {
+				method,
+				body: formDataToSend,
+			});
 
-  // Handle delete
-  const handleDelete = async (id: string) => {
-    if (!confirm('هل أنت متأكد من حذف هذه الشريحة؟')) {
-      return;
-    }
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.error?.message || "فشل في حفظ شريحة العرض");
+			}
 
-    try {
-      const response = await fetch(`${apiBase}/api/hero/${id}`, {
-        method: 'DELETE',
-      });
+			// Reset form and refresh data
+			setShowForm(false);
+			setEditingSlide(null);
+			setFormData({
+				title: { ar: "", en: "" },
+				description: { ar: "", en: "" },
+				buttonText: { ar: "", en: "" },
+				href: "",
+				alt: { ar: "", en: "" },
+				order: 0,
+				isActive: true,
+			});
+			setImageFile(null);
+			await fetchHeroSlides();
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "حدث خطأ");
+		} finally {
+			setSubmitting(false);
+		}
+	};
 
-      if (!response.ok) {
-        throw new Error('فشل في حذف شريحة العرض');
-      }
+	// Handle edit
+	const handleEdit = (slide: HeroSlide) => {
+		setEditingSlide(slide);
+		setFormData({
+			title: slide.title,
+			description: slide.description,
+			buttonText: slide.buttonText,
+			href: slide.href,
+			alt: slide.alt,
+			order: slide.order,
+			isActive: slide.isActive,
+		});
+		setShowForm(true);
+	};
 
-      await fetchHeroSlides();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ');
-    }
-  };
+	// Handle delete
+	const handleDelete = async (id: string) => {
+		if (!confirm("هل أنت متأكد من حذف هذه الشريحة؟")) {
+			return;
+		}
 
-  // Handle toggle active status
-  const handleToggleActive = async (id: string, currentStatus: boolean) => {
-    try {
-      const response = await fetch(`${apiBase}/api/hero/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          isActive: !currentStatus,
-        }),
-      });
+		try {
+			const response = await fetch(`${apiBase}/api/hero/${id}`, {
+				method: "DELETE",
+			});
 
-      if (!response.ok) {
-        throw new Error('فشل في تحديث حالة شريحة العرض');
-      }
+			if (!response.ok) {
+				throw new Error("فشل في حذف شريحة العرض");
+			}
 
-      await fetchHeroSlides();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ');
-    }
-  };
+			await fetchHeroSlides();
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "حدث خطأ");
+		}
+	};
 
-  // Handle order change
-  const handleOrderChange = async (id: string, newOrder: number) => {
-    try {
-      const response = await fetch(`${apiBase}/api/hero/${id}/order`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ order: newOrder }),
-      });
+	// Handle toggle active status
+	const handleToggleActive = async (id: string, currentStatus: boolean) => {
+		try {
+			const response = await fetch(`${apiBase}/api/hero/${id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					isActive: !currentStatus,
+				}),
+			});
 
-      if (!response.ok) {
-        throw new Error('فشل في تحديث ترتيب شريحة العرض');
-      }
+			if (!response.ok) {
+				throw new Error("فشل في تحديث حالة شريحة العرض");
+			}
 
-      await fetchHeroSlides();
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'حدث خطأ');
-    }
-  };
+			await fetchHeroSlides();
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "حدث خطأ");
+		}
+	};
 
-  if (loading) {
-    return (
-      <AdminLayout
-        title="إدارة شريط العرض الرئيسي"
-        description="إدارة شرائح الكاروسيل في الصفحة الرئيسية"
-      >
-        <div className="flex items-center justify-center h-64">
-          <div className="flex items-center space-x-2">
-            <Loader2 className="w-6 h-6 animate-spin" />
-            <span className="text-gray-600">جاري تحميل شرائح العرض...</span>
-          </div>
-        </div>
-      </AdminLayout>
-    );
-  }
+	// Handle order change
+	const handleOrderChange = async (id: string, newOrder: number) => {
+		try {
+			const response = await fetch(`${apiBase}/api/hero/${id}/order`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ order: newOrder }),
+			});
 
-  return (
-		<AdminLayout
-			title="إدارة شريط العرض الرئيسي"
-			description="إدارة شرائح الكاروسيل في الصفحة الرئيسية"
-		>
-			<div className="space-y-6" dir="rtl">
+			if (!response.ok) {
+				throw new Error("فشل في تحديث ترتيب شريحة العرض");
+			}
+
+			await fetchHeroSlides();
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "حدث خطأ");
+		}
+	};
+
+	if (loading) {
+		return (
+			<div className="flex items-center justify-center h-64">
+				<div className="flex items-center space-x-2">
+					<Loader2 className="w-6 h-6 animate-spin" />
+					<span className="text-gray-600">جاري تحميل شرائح العرض...</span>
+				</div>
+			</div>
+		);
+	}
+
+	return (
+		<div className="p-6 space-y-6" dir="rtl">
+			{/* Page Header */}
+			<div>
+				<h1 className="text-2xl font-semibold text-gray-900">إدارة شريط العرض الرئيسي</h1>
+				<p className="text-sm text-gray-600 mt-1">
+					إدارة شرائح الكاروسيل في الصفحة الرئيسية
+				</p>
+			</div>
+
+			<div className="space-y-6">
 				{/* Error Message */}
 				{error && (
 					<div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -709,6 +708,6 @@ export default function AdminHeroPage() {
 					</div>
 				</div>
 			</div>
-		</AdminLayout>
-  );
+		</div>
+	);
 }

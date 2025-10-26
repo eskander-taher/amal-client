@@ -57,6 +57,12 @@ export const adminNavigation: AdminNavItem[] = [
 		],
 	},
 	{
+		id: "users",
+		label: "إدارة المستخدمين",
+		icon: Users,
+		href: "/admin/users",
+	},
+	{
 		id: "home",
 		label: "الصفحة الرئيسية",
 		icon: Home,

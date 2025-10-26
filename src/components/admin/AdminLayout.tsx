@@ -4,26 +4,26 @@ import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
-import AdminBreadcrumbs from './AdminBreadcrumbs';
-import ProtectedRoute from '@/components/auth/ProtectedRoute';
-import { adminNavigation } from '@/lib/admin-navigation';
-import type { AdminLayoutProps } from '@/types';
+import AdminBreadcrumbs from "./AdminBreadcrumbs";
+import { adminNavigation } from "@/lib/admin-navigation";
+import { AuthProvider } from "@/contexts/AuthContext";
+import type { AdminLayoutProps } from "@/types";
 
-export default function AdminLayout({ 
-  children, 
-  title = 'Admin Dashboard',
-  description,
-  breadcrumbs = []
+export default function AdminLayout({
+	children,
+	title = "Admin Dashboard",
+	description,
+	breadcrumbs = [],
 }: AdminLayoutProps) {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const pathname = usePathname();
+	const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+	const pathname = usePathname();
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
+	const toggleSidebar = () => {
+		setSidebarCollapsed(!sidebarCollapsed);
+	};
 
-  return (
-		<ProtectedRoute requireAdmin={true}>
+	return (
+		<AuthProvider>
 			<div className="min-h-screen bg-gray-50 flex">
 				{/* Sidebar */}
 				<AdminSidebar
@@ -60,7 +60,7 @@ export default function AdminLayout({
 					</main>
 				</div>
 			</div>
-		</ProtectedRoute>
-  );
+		</AuthProvider>
+	);
 }
 
