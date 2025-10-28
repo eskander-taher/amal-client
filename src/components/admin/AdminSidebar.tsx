@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { TransitionLink } from '@/components/TransitionLink';
 import type { AdminSidebarProps, AdminNavItem } from '@/types';

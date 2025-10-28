@@ -1,41 +1,34 @@
-'use client';
-
 import Hero from "@/components/Hero";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
-import { useNews } from "@/hooks/useNews";
+import { getNews } from "@/lib/serverApi";
 import { getServerUrl } from "@/lib/apiBase";
+import { stripHtml } from "@/lib/stripHtml";
 
-export default function NewsPage() {
-  const t = useTranslations("News");
-  const { data: news = [], isLoading, error } = useNews();
+// Force dynamic rendering to ensure fresh data on locale change
+export const dynamic = "force-dynamic";
 
-  return (
+interface NewsPageProps {
+	params: Promise<{
+		locale: string;
+	}>;
+}
+
+export default async function NewsPage({ params }: NewsPageProps) {
+	const t = await getTranslations("News");
+	const { locale } = await params;
+
+	// Fetch news server-side
+	const news = await getNews(locale);
+
+	return (
 		<>
 			<Hero title={t("title")} imageAlt="News hero image." image="/news-hero.webp" />
 
 			<Section>
 				<div className="container mx-auto px-4 py-10">
-					{isLoading && (
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-							{[1, 2, 3, 4, 5, 6].map((i) => (
-								<div key={i} className="animate-pulse">
-									<div className="bg-[#f5f5f7] h-48 rounded-lg mb-4"></div>
-									<div className="bg-[#f5f5f7] h-4 rounded mb-2"></div>
-									<div className="bg-[#f5f5f7] h-3 rounded w-3/4"></div>
-								</div>
-							))}
-						</div>
-					)}
-
-					{error && (
-						<div className="text-center py-12">
-							<p className="text-red-600">Error loading news: {error.message}</p>
-						</div>
-					)}
-
-					{!isLoading && !error && (
+					{news.length > 0 ? (
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 							{news.map((item) => (
 								<NewsCard
@@ -43,8 +36,8 @@ export default function NewsPage() {
 									image={getServerUrl(item.image) || "/placeholder.webp"}
 									imageAlt={item.title}
 									title={item.title}
-									description={item.description}
-									href={`/news/${item._id}`}
+									description={stripHtml(item.description)}
+									href={`/news/${item.slug}`}
 									badgeText={
 										item.createdAt
 											? new Date(item.createdAt).toLocaleDateString()
@@ -54,9 +47,7 @@ export default function NewsPage() {
 								/>
 							))}
 						</div>
-					)}
-
-					{!isLoading && !error && news.length === 0 && (
+					) : (
 						<div className="text-center py-12">
 							<p className="text-gray-600">No news articles found.</p>
 						</div>
@@ -64,5 +55,5 @@ export default function NewsPage() {
 				</div>
 			</Section>
 		</>
-  );
+	);
 }

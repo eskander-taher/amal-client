@@ -22,15 +22,6 @@ const NewsCard: React.FC<NewsCardProps> = ({
 	badgeText,
 }) => {
 	const moreText = useTranslations("MoreBTN");
-	// Strip HTML tags and convert to plain text using DOM
-	const getPlainText = (html: string) => {
-		if (typeof window === "undefined") return html; // SSR fallback
-		const div = document.createElement("div");
-		div.innerHTML = html;
-		return div.textContent || div.innerText || "";
-	};
-
-	const plainDescription = getPlainText(description);
 
 	return (
 		<div className="bg-[#f5f5f7] group hover:scale-105 rounded-lg relative overflow-hidden transition-transform duration-300">
@@ -72,7 +63,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 			<div className="p-6 pb-16">
 				{/* Description */}
 				<p className="text-sm sm:text-base text-gray-600 line-clamp-3 leading-relaxed">
-					{plainDescription}
+					{description}
 				</p>
 			</div>
 

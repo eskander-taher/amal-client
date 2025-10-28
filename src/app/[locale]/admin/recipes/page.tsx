@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, Minus, Clock, Users, ChefHat, X } from "lucide-react";
 import AdminPageHeader from "@/components/admin/AdminPageHeader";
 import AdminFilters, { FilterOption } from "@/components/admin/AdminFilters";
@@ -15,6 +15,7 @@ import {
 	useRecipeCategories,
 } from "../api";
 import { getServerUrl } from "@/lib/apiBase";
+import { slugify } from "@/lib/utils";
 import type { IRecipe } from "@/types/models";
 
 export default function AdminRecipesPage() {
@@ -26,8 +27,9 @@ export default function AdminRecipesPage() {
 
 	// Form state
 	const [formData, setFormData] = useState({
-		title: "",
-		description: "",
+		title: { ar: "", en: "" },
+		description: { ar: "", en: "" },
+		slug: "",
 		prepTime: 15,
 		cookTime: 0,
 		servings: 4,
@@ -36,15 +38,20 @@ export default function AdminRecipesPage() {
 		ingredients: [""],
 		instructions: [""],
 		tips: [""],
-		nutritionInfo: {
-			calories: 0,
-			protein: 0,
-			carbs: 0,
-			fat: 0,
-		},
 		tags: [""],
 		imageFile: null as File | null,
+		isPublished: true,
 	});
+
+	// Auto-generate slug from English title
+	useEffect(() => {
+		if (formData.title.en && !editingRecipe) {
+			setFormData((prev) => ({
+				...prev,
+				slug: slugify(prev.title.en),
+			}));
+		}
+	}, [formData.title.en, editingRecipe]);
 
 	// API hooks
 	const { data: recipesData, isLoading } = useRecipes({
@@ -75,8 +82,9 @@ export default function AdminRecipesPage() {
 
 	const resetForm = () => {
 		setFormData({
-			title: "",
-			description: "",
+			title: { ar: "", en: "" },
+			description: { ar: "", en: "" },
+			slug: "",
 			prepTime: 15,
 			cookTime: 0,
 			servings: 4,
@@ -85,14 +93,9 @@ export default function AdminRecipesPage() {
 			ingredients: [""],
 			instructions: [""],
 			tips: [""],
-			nutritionInfo: {
-				calories: 0,
-				protein: 0,
-				carbs: 0,
-				fat: 0,
-			},
 			tags: [""],
 			imageFile: null,
+			isPublished: true,
 		});
 		setEditingRecipe(null);
 		setIsFormOpen(false);
@@ -102,6 +105,7 @@ export default function AdminRecipesPage() {
 		setFormData({
 			title: recipe.title,
 			description: recipe.description,
+			slug: recipe.slug,
 			prepTime: recipe.prepTime,
 			cookTime: recipe.cookTime || 0,
 			servings: recipe.servings || 4,
@@ -110,14 +114,9 @@ export default function AdminRecipesPage() {
 			ingredients: recipe.ingredients.length > 0 ? recipe.ingredients : [""],
 			instructions: recipe.instructions.length > 0 ? recipe.instructions : [""],
 			tips: recipe.tips && recipe.tips.length > 0 ? recipe.tips : [""],
-			nutritionInfo: {
-				calories: recipe.nutritionInfo?.calories || 0,
-				protein: recipe.nutritionInfo?.protein || 0,
-				carbs: recipe.nutritionInfo?.carbs || 0,
-				fat: recipe.nutritionInfo?.fat || 0,
-			},
 			tags: recipe.tags && recipe.tags.length > 0 ? recipe.tags : [""],
 			imageFile: null,
+			isPublished: recipe.isPublished !== undefined ? recipe.isPublished : true,
 		});
 		setEditingRecipe(recipe);
 		setIsFormOpen(true);
@@ -126,8 +125,15 @@ export default function AdminRecipesPage() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		if (!formData.title.trim() || !formData.description.trim() || !formData.category.trim()) {
-			alert("يرجى ملء جميع الحقول المطلوبة");
+		if (
+			!formData.title.ar.trim() ||
+			!formData.title.en.trim() ||
+			!formData.description.ar.trim() ||
+			!formData.description.en.trim() ||
+			!formData.slug.trim() ||
+			!formData.category.trim()
+		) {
+			alert("يرجى ملء جميع الحقول المطلوبة (العربية والإنجليزية)");
 			return;
 		}
 
@@ -145,6 +151,7 @@ export default function AdminRecipesPage() {
 		const recipeData = {
 			title: formData.title,
 			description: formData.description,
+			slug: formData.slug,
 			prepTime: formData.prepTime,
 			cookTime: formData.cookTime || undefined,
 			servings: formData.servings || undefined,
@@ -153,15 +160,9 @@ export default function AdminRecipesPage() {
 			ingredients: cleanIngredients,
 			instructions: cleanInstructions,
 			tips: cleanTips.length > 0 ? cleanTips : undefined,
-			nutritionInfo:
-				formData.nutritionInfo.calories > 0 ||
-				formData.nutritionInfo.protein > 0 ||
-				formData.nutritionInfo.carbs > 0 ||
-				formData.nutritionInfo.fat > 0
-					? formData.nutritionInfo
-					: undefined,
 			tags: cleanTags.length > 0 ? cleanTags : undefined,
 			image: formData.imageFile || undefined,
+			isPublished: formData.isPublished,
 		};
 
 		try {
@@ -181,7 +182,7 @@ export default function AdminRecipesPage() {
 	};
 
 	const handleDelete = async (recipe: IRecipe) => {
-		if (!confirm(`هل أنت متأكد من حذف وصفة "${recipe.title}"؟`)) return;
+		if (!confirm(`هل أنت متأكد من حذف وصفة "${recipe.title.ar}"؟`)) return;
 
 		try {
 			await deleteRecipeMutation.mutateAsync(recipe._id!);
@@ -232,7 +233,7 @@ export default function AdminRecipesPage() {
 							? getServerUrl(item.image) || "/square_placeholder.webp"
 							: "/square_placeholder.webp"
 					}
-					alt={item.title}
+					alt={item.title.ar}
 				/>
 			),
 			className: "w-20",
@@ -242,7 +243,10 @@ export default function AdminRecipesPage() {
 			label: "اسم الوصفة",
 			render: (item) => (
 				<div>
-					<div className="font-semibold text-gray-900">{item.title}</div>
+					<div className="space-y-1">
+						<div className="font-semibold text-gray-900">{item.title.ar}</div>
+						<div className="text-xs text-gray-500">{item.title.en}</div>
+					</div>
 					<div className="text-xs text-gray-500 mt-1">{item.category}</div>
 				</div>
 			),
@@ -353,36 +357,123 @@ export default function AdminRecipesPage() {
 				isOpen={isFormOpen}
 				onClose={resetForm}
 				title={editingRecipe ? "تعديل الوصفة" : "إضافة وصفة جديدة"}
-				maxWidth="4xl"
+				maxWidth="6xl"
 			>
 				<form onSubmit={handleSubmit} className="space-y-6">
-					{/* Basic Info */}
+					{/* Bilingual Title */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							عنوان الوصفة *
+						</label>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">العربية</label>
+								<input
+									type="text"
+									required
+									value={formData.title.ar}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											title: { ...formData.title, ar: e.target.value },
+										})
+									}
+									placeholder="اسم الوصفة بالعربية"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+								/>
+							</div>
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">English</label>
+								<input
+									type="text"
+									required
+									value={formData.title.en}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											title: { ...formData.title, en: e.target.value },
+										})
+									}
+									placeholder="Recipe name in English"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* Bilingual Description */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							وصف الوصفة *
+						</label>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">العربية</label>
+								<textarea
+									required
+									rows={3}
+									value={formData.description.ar}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											description: {
+												...formData.description,
+												ar: e.target.value,
+											},
+										})
+									}
+									placeholder="وصف الوصفة بالعربية"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+								/>
+							</div>
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">English</label>
+								<textarea
+									required
+									rows={3}
+									value={formData.description.en}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											description: {
+												...formData.description,
+												en: e.target.value,
+											},
+										})
+									}
+									placeholder="Recipe description in English"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* Slug and Category */}
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
-								عنوان الوصفة *
+							<label className="block text-sm font-medium text-gray-700 mb-2">
+								Slug (URL) *
 							</label>
 							<input
 								type="text"
-								value={formData.title}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										title: e.target.value,
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-								placeholder="أدخل عنوان الوصفة..."
 								required
+								value={formData.slug}
+								onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+								placeholder="recipe-slug"
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 font-mono text-sm"
 							/>
+							<p className="text-xs text-gray-500 mt-1">
+								يتم إنشاؤه تلقائياً من العنوان الإنجليزي
+							</p>
 						</div>
 
 						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
+							<label className="block text-sm font-medium text-gray-700 mb-2">
 								الفئة *
 							</label>
 							<input
 								type="text"
+								required
 								value={formData.category}
 								onChange={(e) =>
 									setFormData({
@@ -390,31 +481,10 @@ export default function AdminRecipesPage() {
 										category: e.target.value,
 									})
 								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
 								placeholder="مثل: كيك، حلى، مقبلات..."
-								required
 							/>
 						</div>
-					</div>
-
-					{/* Description */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-1">
-							وصف الوصفة *
-						</label>
-						<textarea
-							value={formData.description}
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									description: e.target.value,
-								})
-							}
-							rows={3}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-							placeholder="أدخل وصف الوصفة..."
-							required
-						/>
 					</div>
 
 					{/* Times and Servings */}
@@ -681,85 +751,26 @@ export default function AdminRecipesPage() {
 						</div>
 					</div>
 
-					{/* Nutrition Info */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
-							القيم الغذائية (اختياري)
+					{/* Published checkbox */}
+					<div className="flex items-center">
+						<input
+							type="checkbox"
+							id="isPublished"
+							checked={formData.isPublished}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									isPublished: e.target.checked,
+								})
+							}
+							className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+						/>
+						<label
+							htmlFor="isPublished"
+							className="mr-2 text-sm font-medium text-gray-700"
+						>
+							نشر الوصفة (غير منشور = مسودة)
 						</label>
-						<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-							<div>
-								<input
-									type="number"
-									min="0"
-									value={formData.nutritionInfo.calories}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											nutritionInfo: {
-												...formData.nutritionInfo,
-												calories: parseInt(e.target.value) || 0,
-											},
-										})
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-									placeholder="السعرات"
-								/>
-							</div>
-							<div>
-								<input
-									type="number"
-									min="0"
-									value={formData.nutritionInfo.protein}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											nutritionInfo: {
-												...formData.nutritionInfo,
-												protein: parseInt(e.target.value) || 0,
-											},
-										})
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-									placeholder="البروتين (ج)"
-								/>
-							</div>
-							<div>
-								<input
-									type="number"
-									min="0"
-									value={formData.nutritionInfo.carbs}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											nutritionInfo: {
-												...formData.nutritionInfo,
-												carbs: parseInt(e.target.value) || 0,
-											},
-										})
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-									placeholder="الكربوهيدرات (ج)"
-								/>
-							</div>
-							<div>
-								<input
-									type="number"
-									min="0"
-									value={formData.nutritionInfo.fat}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											nutritionInfo: {
-												...formData.nutritionInfo,
-												fat: parseInt(e.target.value) || 0,
-											},
-										})
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-									placeholder="الدهون (ج)"
-								/>
-							</div>
-						</div>
 					</div>
 
 					{/* Form Actions */}

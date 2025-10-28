@@ -1,50 +1,73 @@
 import Hero from "@/components/Hero";
-import Section from "@/components/Section";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import ProductCard from "@/components/ProdcutCard";
-import ImageSection from "@/components/ui/ImageSection";
+import { getTranslations } from "next-intl/server";
+import CompanyOverview from "@/components/group/CompanyOverview";
+import CompanyImageGallery from "@/components/group/CompanyImageGallery";
+import CompanyVisionMission from "@/components/group/CompanyVisionMission";
+import CompanyQualitySafety from "@/components/group/CompanyQualitySafety";
 
-type ProductData = {
-	image: string;
-	title: string;
-	href: string;
-};
+// Force dynamic rendering to ensure fresh data on locale change
+export const dynamic = "force-dynamic";
 
-export default function Page() {
-	const t = useTranslations("Group.feedCompany");
+interface PoultryPageProps {
+	params: Promise<{
+		locale: string;
+	}>;
+}
 
-	const products: ProductData[] = Array(12).fill({
-		image: "/square_placeholder.webp",
-		title: "منتج الدواجن",
-		href: "/dummy-product",
-	});
+export default async function PoultryPage({ params }: PoultryPageProps) {
+	await params;
+	const t = await getTranslations("Group");
+	const tSections = await getTranslations("Group.sectionTitles");
+	const tLabels = await getTranslations("Group.valueLabels");
+	const tMore = await getTranslations("MoreBTN");
+
+	// Prepare values array
+	const values = [
+		{ label: tLabels("trust"), text: t("poultryCompany.values.trust") },
+		{ label: tLabels("quality"), text: t("poultryCompany.values.quality") },
+		{ label: tLabels("credibility"), text: t("poultryCompany.values.credibility") },
+		{ label: tLabels("responsibility"), text: t("poultryCompany.values.responsibility") },
+		{ label: tLabels("cooperation"), text: t("poultryCompany.values.cooperation") },
+		{ label: tLabels("commitment"), text: t("poultryCompany.values.commitment") },
+	];
+
 	return (
-		<div>
-			<Hero title={t("title")} image="/poultry-hero.webp" />
-			<Section>
-				<div className="flex justify-start gap-10 items-center">
-					<Image
-						src="/group/feeds_icon.svg"
-						alt="Poultry Company Logo"
-						width={500}
-						height={500}
-						className="invert object-contain"
-					/>
-					<div>
-						<h2 className="text-3xl font-bold text-gray-900 mb-4">{t("title")}</h2>
-						<p>{t("description")}</p>
-					</div>
-				</div>
-			</Section>
-			<ImageSection />
-			<Section className="bg-[#f5f5f7]">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{products.map((product, index) => (
-						<ProductCard key={index} product={product} />
-					))}
-				</div>
-			</Section>
+		<div className="bg-white">
+			<Hero title={t("poultryCompany.title")} image="/group/Poultry/01.png" />
+
+			{/* Overview Section */}
+			<CompanyOverview
+				logo="/group/AK_POULTRY_COMPANY_LOGO.svg"
+				logoAlt="Poultry Company Logo"
+				overviewTitle={tSections("overview")}
+				companyName={t("poultryCompany.title")}
+				overviewText={t("poultryCompany.overview")}
+			/>
+
+			{/* Image Gallery */}
+			<CompanyImageGallery
+				wideImage="/group/Poultry/01.png"
+				image1="/group/Poultry/02.png"
+				image2="/group/Poultry/03.png"
+				image3="/group/Poultry/04.png"
+			/>
+
+			{/* Vision, Mission, Values */}
+			<CompanyVisionMission
+				visionTitle={tSections("vision")}
+				visionText={t("poultryCompany.vision")}
+				missionTitle={tSections("mission")}
+				missionText={t("poultryCompany.mission")}
+				valuesTitle={tSections("values")}
+				values={values}
+			/>
+
+			{/* Quality and Safety Section */}
+			<CompanyQualitySafety
+				title={tSections("quality")}
+				content={t("poultryCompany.quality")}
+				moreButtonText={tMore("more")}
+			/>
 		</div>
 	);
 }

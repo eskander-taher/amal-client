@@ -1,19 +1,20 @@
-"use client";
 import Section from "../Section";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import NewsCard from "../NewsCard";
-import { useFeaturedNews } from "@/hooks/useNews";
 import { TransitionLink } from "../TransitionLink";
 import { getServerUrl } from "@/lib/apiBase";
+import { stripHtml } from "@/lib/stripHtml";
+import type { News as NewsType } from "@/types/news";
 
-const News: React.FC = () => {
-	const t = useTranslations("News");
-	
-	
-	const { data: featuredNews = [], isLoading } = useFeaturedNews();
-	
+interface NewsProps {
+	news: NewsType[];
+}
+
+const News = async ({ news }: NewsProps) => {
+	const t = await getTranslations("News");
+
 	// Show only the first 3 featured news items
-	const displayNews = featuredNews.slice(0, 3);
+	const displayNews = news.slice(0, 3);
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">
@@ -25,17 +26,13 @@ const News: React.FC = () => {
 				/>
 			</div>
 
-		<div className="w-full">
-			<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-900">{t("title")}</h2>
-			{isLoading ? (
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{[1, 2, 3].map((i) => (
-							<div key={i} className="animate-pulse">
-								<div className="bg-[#f5f5f7] h-48 rounded-lg mb-4"></div>
-								<div className="bg-[#f5f5f7] h-4 rounded mb-2"></div>
-								<div className="bg-[#f5f5f7] h-3 rounded w-3/4"></div>
-							</div>
-						))}
+			<div className="w-full">
+				<h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-900">
+					{t("title")}
+				</h2>
+				{displayNews.length === 0 ? (
+					<div className="text-center py-12">
+						<p className="text-gray-600">لا توجد أخبار متاحة</p>
 					</div>
 				) : (
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -45,8 +42,8 @@ const News: React.FC = () => {
 								image={getServerUrl(item.image) || "/placeholder.webp"}
 								imageAlt={item.title}
 								title={item.title}
-								description={item.description}
-								href={`/news/${item._id}`}
+								description={stripHtml(item.description)}
+								href={`/news/${item.slug}`}
 								badgeText={
 									item.createdAt
 										? new Date(item.createdAt).toLocaleDateString()

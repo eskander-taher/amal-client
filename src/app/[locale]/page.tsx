@@ -5,19 +5,44 @@ import Group from "@/components/home/Group";
 import GroupStats from "@/components/home/GroupStats";
 import News from "@/components/home/News";
 import Products from "@/components/home/Products";
+import { getHeroSlides, getFeaturedProducts, getFeaturedNews } from "@/lib/serverApi";
 
-export default function Home() {
+// Force dynamic rendering to ensure fresh data on locale change
+export const dynamic = "force-dynamic";
+
+interface HomeProps {
+	params: Promise<{
+		locale: string;
+	}>;
+}
+
+export default async function Home({ params }: HomeProps) {
+	const { locale } = await params;
+
+	// Fetch all data server-side in parallel
+	const [heroSlides, featuredProducts, featuredNews] = await Promise.all([
+		getHeroSlides(locale),
+		getFeaturedProducts(locale),
+		getFeaturedNews(locale),
+	]);
+
+	console.log(featuredProducts)
+
 	return (
 		<div className="relative">
-			<Hero />
+			<Hero slides={heroSlides} />
+			{/* <iframe
+				src="https://heyzine.com/flip-book/db4f31d2d4.html#page/1"
+				width="100%"
+				height="600"
+				frameborder="0"
+				allowfullscreen
+			></iframe> */}
 			<About />
 			<Group />
 			<Certifications />
-			<div className="w-full bg-[#f5f5f7]">
-				<div className="max-w-7xl mx-auto bg-gray-300 h-[1px]"></div>
-			</div>
-			<Products />
-			<News />
+			<Products products={featuredProducts} />
+			<News news={featuredNews} />
 			<GroupStats />
 		</div>
 	);

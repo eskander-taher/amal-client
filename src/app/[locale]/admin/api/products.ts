@@ -3,11 +3,12 @@ import type { IProduct } from "@/types/models";
 import { showToast } from "@/lib/toast";
 import adminAxios from "./adminAxios";
 
-// API functions
+// API functions - Admin endpoints return full nested data
 const fetchProducts = async (params?: {
 	search?: string;
 	category?: string;
 	featured?: boolean;
+	isPublished?: boolean;
 	page?: number;
 	limit?: number;
 }): Promise<{ products: IProduct[]; pagination: any }> => {
@@ -16,41 +17,42 @@ const fetchProducts = async (params?: {
 	if (params?.search) queryParams.append("search", params.search);
 	if (params?.category) queryParams.append("category", params.category);
 	if (params?.featured !== undefined) queryParams.append("featured", params.featured.toString());
+	if (params?.isPublished !== undefined)
+		queryParams.append("isPublished", params.isPublished.toString());
 	if (params?.page) queryParams.append("page", params.page.toString());
 	if (params?.limit) queryParams.append("limit", params.limit.toString());
 
-	const url = `/products${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+	const url = `/products/admin/all${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
 	const { data } = await adminAxios.get(url);
 	return data;
 };
 
 const createProduct = async (productData: {
-	title: string;
-	description: string;
+	title: { ar: string; en: string };
+	description: { ar: string; en: string };
+	slug: string;
 	category: string;
 	featured?: boolean;
+	isPublished?: boolean;
 	price?: string;
 	weight?: string;
 	brand?: string;
-	nutritionalInfo?: any;
-	specifications?: any;
 	image?: File;
 }): Promise<IProduct> => {
 	const formData = new FormData();
 
-	formData.append("title", productData.title);
-	formData.append("description", productData.description);
+	// Send nested objects as JSON strings
+	formData.append("title", JSON.stringify(productData.title));
+	formData.append("description", JSON.stringify(productData.description));
+	formData.append("slug", productData.slug);
 	formData.append("category", productData.category);
 	if (productData.featured !== undefined)
 		formData.append("featured", productData.featured.toString());
+	if (productData.isPublished !== undefined)
+		formData.append("isPublished", productData.isPublished.toString());
 	if (productData.price) formData.append("price", productData.price);
 	if (productData.weight) formData.append("weight", productData.weight);
 	if (productData.brand) formData.append("brand", productData.brand);
-
-	if (productData.nutritionalInfo)
-		formData.append("nutritionalInfo", JSON.stringify(productData.nutritionalInfo));
-	if (productData.specifications)
-		formData.append("specifications", JSON.stringify(productData.specifications));
 
 	if (productData.image) {
 		formData.append("image", productData.image);
@@ -68,33 +70,33 @@ const updateProduct = async ({
 }: {
 	id: string;
 	data: {
-		title?: string;
-		description?: string;
+		title?: { ar: string; en: string };
+		description?: { ar: string; en: string };
+		slug?: string;
 		category?: string;
 		featured?: boolean;
+		isPublished?: boolean;
 		price?: string;
 		weight?: string;
 		brand?: string;
-		nutritionalInfo?: any;
-		specifications?: any;
 		image?: File;
 	};
 }): Promise<IProduct> => {
 	const formData = new FormData();
 
-	if (productData.title) formData.append("title", productData.title);
-	if (productData.description) formData.append("description", productData.description);
+	// Send nested objects as JSON strings
+	if (productData.title) formData.append("title", JSON.stringify(productData.title));
+	if (productData.description)
+		formData.append("description", JSON.stringify(productData.description));
+	if (productData.slug) formData.append("slug", productData.slug);
 	if (productData.category) formData.append("category", productData.category);
 	if (productData.featured !== undefined)
 		formData.append("featured", productData.featured.toString());
+	if (productData.isPublished !== undefined)
+		formData.append("isPublished", productData.isPublished.toString());
 	if (productData.price) formData.append("price", productData.price);
 	if (productData.weight) formData.append("weight", productData.weight);
 	if (productData.brand) formData.append("brand", productData.brand);
-
-	if (productData.nutritionalInfo)
-		formData.append("nutritionalInfo", JSON.stringify(productData.nutritionalInfo));
-	if (productData.specifications)
-		formData.append("specifications", JSON.stringify(productData.specifications));
 
 	if (productData.image) {
 		formData.append("image", productData.image);
@@ -120,6 +122,7 @@ export const useProducts = (params?: {
 	search?: string;
 	category?: string;
 	featured?: boolean;
+	isPublished?: boolean;
 	page?: number;
 	limit?: number;
 }) => {

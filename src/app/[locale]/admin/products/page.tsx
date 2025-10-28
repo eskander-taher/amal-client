@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Package, Star } from "lucide-react";
 import AdminPageHeader from "@/components/admin/AdminPageHeader";
 import AdminFilters, { FilterOption } from "@/components/admin/AdminFilters";
@@ -14,7 +14,8 @@ import {
 	useDeleteProduct,
 } from "../api";
 import { getServerUrl } from "@/lib/apiBase";
-import type { IProduct, INutritionalInfo, ISpecifications } from "@/types/models";
+import { slugify } from "@/lib/utils";
+import type { IProduct } from "@/types/models";
 
 const CATEGORIES = [
 	{ value: "poultry", label: "دواجن" },
@@ -31,43 +32,27 @@ export default function AdminProductsPage() {
 
 	// Form state
 	const [formData, setFormData] = useState({
-		title: "",
-		description: "",
+		title: { ar: "", en: "" },
+		description: { ar: "", en: "" },
+		slug: "",
 		category: "poultry" as "poultry" | "feed" | "fish" | "dates",
 		featured: false,
+		isPublished: true,
 		price: "",
 		weight: "",
 		brand: "",
-		nutritionalInfo: {
-			servingSize: "",
-			calories: "",
-			fat: "",
-			saturatedFat: "",
-			transFat: "",
-			cholesterol: "",
-			sodium: "",
-			carbohydrates: "",
-			fiber: "",
-			sugars: "",
-			protein: "",
-			fatPercentage: "",
-			saturatedFatPercentage: "",
-			transFatPercentage: "",
-			cholesterolPercentage: "",
-			sodiumPercentage: "",
-			carbohydratesPercentage: "",
-			fiberPercentage: "",
-			sugarsPercentage: "",
-			proteinPercentage: "",
-		} as INutritionalInfo,
-		specifications: {
-			brand: "",
-			weight: "",
-			origin: "",
-			certification: "",
-		} as ISpecifications,
 		imageFile: null as File | null,
 	});
+
+	// Auto-generate slug from English title
+	useEffect(() => {
+		if (formData.title.en && !editingProduct) {
+			setFormData((prev) => ({
+				...prev,
+				slug: slugify(prev.title.en),
+			}));
+		}
+	}, [formData.title.en, editingProduct]);
 
 	// API hooks
 	const { data: productsData, isLoading } = useProducts({
@@ -83,36 +68,15 @@ export default function AdminProductsPage() {
 
 	const resetForm = () => {
 		setFormData({
-			title: "",
-			description: "",
+			title: { ar: "", en: "" },
+			description: { ar: "", en: "" },
+			slug: "",
 			category: "poultry",
 			featured: false,
+			isPublished: true,
 			price: "",
 			weight: "",
 			brand: "",
-			nutritionalInfo: {
-				servingSize: "",
-				calories: "",
-				fat: "",
-				saturatedFat: "",
-				transFat: "",
-				cholesterol: "",
-				sodium: "",
-				carbohydrates: "",
-				fiber: "",
-				sugars: "",
-				protein: "",
-				fatPercentage: "",
-				saturatedFatPercentage: "",
-				transFatPercentage: "",
-				cholesterolPercentage: "",
-				sodiumPercentage: "",
-				carbohydratesPercentage: "",
-				fiberPercentage: "",
-				sugarsPercentage: "",
-				proteinPercentage: "",
-			},
-			specifications: { brand: "", weight: "", origin: "", certification: "" },
 			imageFile: null,
 		});
 		setEditingProduct(null);
@@ -123,39 +87,13 @@ export default function AdminProductsPage() {
 		setFormData({
 			title: product.title,
 			description: product.description,
+			slug: product.slug,
 			category: product.category,
 			featured: product.featured || false,
+			isPublished: product.isPublished !== undefined ? product.isPublished : true,
 			price: product.price || "",
 			weight: product.weight || "",
 			brand: product.brand || "",
-			nutritionalInfo: product.nutritionalInfo || {
-				servingSize: "",
-				calories: "",
-				fat: "",
-				saturatedFat: "",
-				transFat: "",
-				cholesterol: "",
-				sodium: "",
-				carbohydrates: "",
-				fiber: "",
-				sugars: "",
-				protein: "",
-				fatPercentage: "",
-				saturatedFatPercentage: "",
-				transFatPercentage: "",
-				cholesterolPercentage: "",
-				sodiumPercentage: "",
-				carbohydratesPercentage: "",
-				fiberPercentage: "",
-				sugarsPercentage: "",
-				proteinPercentage: "",
-			},
-			specifications: product.specifications || {
-				brand: "",
-				weight: "",
-				origin: "",
-				certification: "",
-			},
 			imageFile: null,
 		});
 		setEditingProduct(product);
@@ -165,25 +103,27 @@ export default function AdminProductsPage() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 
-		if (!formData.title.trim() || !formData.description.trim()) {
-			alert("يرجى ملء جميع الحقول المطلوبة");
+		if (
+			!formData.title.ar.trim() ||
+			!formData.title.en.trim() ||
+			!formData.description.ar.trim() ||
+			!formData.description.en.trim() ||
+			!formData.slug.trim()
+		) {
+			alert("يرجى ملء جميع الحقول المطلوبة (العربية والإنجليزية)");
 			return;
 		}
 
 		const productData = {
 			title: formData.title,
 			description: formData.description,
+			slug: formData.slug,
 			category: formData.category,
 			featured: formData.featured,
+			isPublished: formData.isPublished,
 			price: formData.price || undefined,
 			weight: formData.weight || undefined,
 			brand: formData.brand || undefined,
-			nutritionalInfo: Object.values(formData.nutritionalInfo).some((v) => v.trim())
-				? formData.nutritionalInfo
-				: undefined,
-			specifications: Object.values(formData.specifications).some((v) => v.trim())
-				? formData.specifications
-				: undefined,
 			image: formData.imageFile || undefined,
 		};
 
@@ -204,7 +144,7 @@ export default function AdminProductsPage() {
 	};
 
 	const handleDelete = async (product: IProduct) => {
-		if (!confirm(`هل أنت متأكد من حذف منتج "${product.title}"؟`)) return;
+		if (!confirm(`هل أنت متأكد من حذف منتج "${product.title.ar}"؟`)) return;
 
 		try {
 			await deleteProductMutation.mutateAsync(product._id!);
@@ -226,7 +166,7 @@ export default function AdminProductsPage() {
 							? getServerUrl(item.image) || "/square_placeholder.webp"
 							: "/square_placeholder.webp"
 					}
-					alt={item.title}
+					alt={item.title.ar}
 				/>
 			),
 			className: "w-20",
@@ -234,7 +174,12 @@ export default function AdminProductsPage() {
 		{
 			key: "title",
 			label: "اسم المنتج",
-			render: (item) => <div className="font-semibold text-gray-900">{item.title}</div>,
+			render: (item) => (
+				<div className="space-y-1">
+					<div className="font-semibold text-gray-900">{item.title.ar}</div>
+					<div className="text-xs text-gray-500">{item.title.en}</div>
+				</div>
+			),
 		},
 		{
 			key: "category",
@@ -251,7 +196,7 @@ export default function AdminProductsPage() {
 			label: "الوصف",
 			render: (item) => (
 				<div className="text-sm text-gray-600 max-w-xs line-clamp-2">
-					{item.description}
+					{item.description.ar}
 				</div>
 			),
 		},
@@ -335,24 +280,116 @@ export default function AdminProductsPage() {
 				maxWidth="4xl"
 			>
 				<form onSubmit={handleSubmit} className="space-y-6">
-					{/* Basic Info */}
+					{/* Bilingual Title */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							عنوان المنتج *
+						</label>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">العربية</label>
+								<input
+									type="text"
+									required
+									value={formData.title.ar}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											title: { ...prev.title, ar: e.target.value },
+										}))
+									}
+									placeholder="اسم المنتج بالعربية"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								/>
+							</div>
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">English</label>
+								<input
+									type="text"
+									required
+									value={formData.title.en}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											title: { ...prev.title, en: e.target.value },
+										}))
+									}
+									placeholder="Product name in English"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* Bilingual Description */}
+					<div>
+						<label className="block text-sm font-medium text-gray-700 mb-3">
+							الوصف *
+						</label>
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">العربية</label>
+								<textarea
+									required
+									rows={4}
+									value={formData.description.ar}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											description: {
+												...prev.description,
+												ar: e.target.value,
+											},
+										}))
+									}
+									placeholder="وصف المنتج بالعربية"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								/>
+							</div>
+							<div>
+								<label className="block text-xs text-gray-500 mb-1">English</label>
+								<textarea
+									required
+									rows={4}
+									value={formData.description.en}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											description: {
+												...prev.description,
+												en: e.target.value,
+											},
+										}))
+									}
+									placeholder="Product description in English"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								/>
+							</div>
+						</div>
+					</div>
+
+					{/* Slug and Category */}
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div>
 							<label className="block text-sm font-medium text-gray-700 mb-2">
-								عنوان المنتج *
+								Slug (URL) *
 							</label>
 							<input
 								type="text"
 								required
-								value={formData.title}
+								value={formData.slug}
 								onChange={(e) =>
 									setFormData((prev) => ({
 										...prev,
-										title: e.target.value,
+										slug: e.target.value,
 									}))
 								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								placeholder="product-slug"
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"
 							/>
+							<p className="text-xs text-gray-500 mt-1">
+								يتم إنشاؤه تلقائياً من العنوان الإنجليزي
+							</p>
 						</div>
 
 						<div>
@@ -377,24 +414,6 @@ export default function AdminProductsPage() {
 								))}
 							</select>
 						</div>
-					</div>
-
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
-							الوصف *
-						</label>
-						<textarea
-							required
-							rows={4}
-							value={formData.description}
-							onChange={(e) =>
-								setFormData((prev) => ({
-									...prev,
-									description: e.target.value,
-								}))
-							}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-						/>
 					</div>
 
 					{/* Additional Info */}
@@ -449,229 +468,48 @@ export default function AdminProductsPage() {
 						</div>
 					</div>
 
-					{/* Featured checkbox */}
-					<div className="flex items-center">
-						<input
-							type="checkbox"
-							id="featured"
-							checked={formData.featured}
-							onChange={(e) =>
-								setFormData((prev) => ({
-									...prev,
-									featured: e.target.checked,
-								}))
-							}
-							className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-						/>
-						<label
-							htmlFor="featured"
-							className="mr-2 text-sm font-medium text-gray-700"
-						>
-							منتج مميز
-						</label>
-					</div>
-
-					{/* Specifications */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4">المواصفات</h3>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									العلامة التجارية
-								</label>
-								<input
-									type="text"
-									value={formData.specifications.brand}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											specifications: {
-												...prev.specifications,
-												brand: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									الوزن
-								</label>
-								<input
-									type="text"
-									value={formData.specifications.weight}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											specifications: {
-												...prev.specifications,
-												weight: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									المنشأ
-								</label>
-								<input
-									type="text"
-									value={formData.specifications.origin}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											specifications: {
-												...prev.specifications,
-												origin: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									الشهادة
-								</label>
-								<input
-									type="text"
-									value={formData.specifications.certification}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											specifications: {
-												...prev.specifications,
-												certification: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
+					{/* Featured and Published checkboxes */}
+					<div className="flex items-center gap-6">
+						<div className="flex items-center">
+							<input
+								type="checkbox"
+								id="featured"
+								checked={formData.featured}
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										featured: e.target.checked,
+									}))
+								}
+								className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+							/>
+							<label
+								htmlFor="featured"
+								className="mr-2 text-sm font-medium text-gray-700"
+							>
+								منتج مميز
+							</label>
 						</div>
-					</div>
 
-					{/* Nutritional Info */}
-					<div>
-						<h3 className="text-lg font-semibold mb-4">المعلومات الغذائية (اختياري)</h3>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									حجم الحصة
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.servingSize}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												servingSize: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									السعرات الحرارية
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.calories}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												calories: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									الدهون الكلية
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.fat}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												fat: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									البروتين
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.protein}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												protein: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									الكربوهيدرات
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.carbohydrates}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												carbohydrates: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700 mb-2">
-									الصوديوم
-								</label>
-								<input
-									type="text"
-									value={formData.nutritionalInfo.sodium}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											nutritionalInfo: {
-												...prev.nutritionalInfo,
-												sodium: e.target.value,
-											},
-										}))
-									}
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
+						<div className="flex items-center">
+							<input
+								type="checkbox"
+								id="isPublished"
+								checked={formData.isPublished}
+								onChange={(e) =>
+									setFormData((prev) => ({
+										...prev,
+										isPublished: e.target.checked,
+									}))
+								}
+								className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+							/>
+							<label
+								htmlFor="isPublished"
+								className="mr-2 text-sm font-medium text-gray-700"
+							>
+								نشر المنتج (غير منشور = مسودة)
+							</label>
 						</div>
 					</div>
 

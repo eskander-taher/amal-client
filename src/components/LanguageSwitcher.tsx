@@ -17,7 +17,10 @@ export default function LanguageSwitcher() {
 			segments[1] = locale;
 		}
 		const newPath = segments.join("/");
-		router.push(newPath);
+
+		// Use replace and refresh to ensure server components refetch with new locale
+		router.replace(newPath);
+		router.refresh();
 	};
 
 	const getNextLocale = () => {

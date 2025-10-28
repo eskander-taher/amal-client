@@ -6,21 +6,30 @@ import { motion } from "framer-motion";
 import Section from "../Section";
 import { useLocale } from "next-intl";
 import { TransitionLink } from "../TransitionLink";
-import { useHero } from "@/hooks/useHero";
 import { getServerUrl } from "@/lib/apiBase";
+import type { HeroSlide } from "@/lib/serverApi";
 
-const Hero: React.FC = () => {
+interface HeroProps {
+	slides: HeroSlide[];
+}
+
+const Hero: React.FC<HeroProps> = ({ slides }) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const { slides, loading, error } = useHero();
 	const local = useLocale();
 
-	// Fallback carousel slides if API fails or no data
+	// Fallback carousel slides if no data
 	const fallbackSlides = [
 		{
 			src: "/home_hero_1.webp",
 			alt: local === "ar" ? "مجموعة أمل الخير القابضة" : "Amal Al Khair Holding Group",
-			title: local === "ar" ? "مرحبًا بكم في مجموعة أمل الخير القابضة" : "Welcome to Amal Al Khair Holding Group",
-			description: local === "ar" ? "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك." : "Discover high-quality products designed to meet your needs.",
+			title:
+				local === "ar"
+					? "مرحبًا بكم في مجموعة أمل الخير القابضة"
+					: "Welcome to Amal Al Khair Holding Group",
+			description:
+				local === "ar"
+					? "اكتشف المنتجات عالية الجودة المصممة لتناسب احتياجاتك."
+					: "Discover high-quality products designed to meet your needs.",
 			buttonText: local === "ar" ? "المزيد" : "More",
 			href: "/about",
 		},
@@ -28,21 +37,31 @@ const Hero: React.FC = () => {
 			src: "/home_hero_2.webp",
 			alt: local === "ar" ? "صورة خلفية" : "Background image",
 			title: local === "ar" ? "اكتشف منتجاتنا" : "Discover Our Products",
-			description: local === "ar" ? "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك." : "Explore our wide range of high-quality products designed to meet your expectations.",
+			description:
+				local === "ar"
+					? "استكشف مجموعة واسعة من منتجاتنا عالية الجودة المصممة لتلبية توقعاتك."
+					: "Explore our wide range of high-quality products designed to meet your expectations.",
 			buttonText: local === "ar" ? "المزيد" : "More",
 			href: "/products",
 		},
 	];
 
 	// Use dynamic slides if available, otherwise use fallback
-	const carouselSlides = slides.length > 0 ? slides.map(slide => ({
-		src: getServerUrl(slide.image) || "/hero.webp",
-		alt: slide.alt[local as keyof typeof slide.alt] || slide.alt.ar,
-		title: slide.title[local as keyof typeof slide.title] || slide.title.ar,
-		description: slide.description[local as keyof typeof slide.description] || slide.description.ar,
-		buttonText: slide.buttonText[local as keyof typeof slide.buttonText] || slide.buttonText.ar,
-		href: slide.href,
-	})) : fallbackSlides;
+	const carouselSlides =
+		slides.length > 0
+			? slides.map((slide) => ({
+					src: getServerUrl(slide.image) || "/hero.webp",
+					alt: slide.alt[local as keyof typeof slide.alt] || slide.alt.ar,
+					title: slide.title[local as keyof typeof slide.title] || slide.title.ar,
+					description:
+						slide.description[local as keyof typeof slide.description] ||
+						slide.description.ar,
+					buttonText:
+						slide.buttonText[local as keyof typeof slide.buttonText] ||
+						slide.buttonText.ar,
+					href: slide.href,
+			  }))
+			: fallbackSlides;
 
 	// Auto-advance carousel
 	useEffect(() => {
@@ -67,25 +86,6 @@ const Hero: React.FC = () => {
 	};
 
 	const currentSlideData = carouselSlides[currentSlide];
-
-	// Show loading state
-	if (loading) {
-		return (
-			<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">
-				<div className="absolute inset-0 z-10 flex items-center justify-center">
-					<div className="text-white text-center">
-						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-						<p className="text-sm sm:text-base lg:text-lg">Loading...</p>
-					</div>
-				</div>
-			</Section>
-		);
-	}
-
-	// Show error state (but still show fallback slides)
-	if (error) {
-		console.error('Hero slides error:', error);
-	}
 
 	return (
 		<Section id="hero" className="relative w-full h-screen bg-black overflow-hidden">

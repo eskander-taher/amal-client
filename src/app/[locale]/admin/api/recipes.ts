@@ -3,11 +3,12 @@ import type { IRecipe } from "@/types/models";
 import { showToast } from "@/lib/toast";
 import adminAxios from "./adminAxios";
 
-// API functions
+// API functions - Admin endpoints return full nested data
 const fetchRecipes = async (params?: {
 	search?: string;
 	category?: string;
 	difficulty?: string;
+	isPublished?: boolean;
 	page?: number;
 	limit?: number;
 }): Promise<{ recipes: IRecipe[]; pagination: any }> => {
@@ -16,17 +17,20 @@ const fetchRecipes = async (params?: {
 	if (params?.search) queryParams.append("search", params.search);
 	if (params?.category) queryParams.append("category", params.category);
 	if (params?.difficulty) queryParams.append("difficulty", params.difficulty);
+	if (params?.isPublished !== undefined)
+		queryParams.append("isPublished", params.isPublished.toString());
 	if (params?.page) queryParams.append("page", params.page.toString());
 	if (params?.limit) queryParams.append("limit", params.limit.toString());
 
-	const url = `/recipes${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+	const url = `/recipes/admin/all${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
 	const { data } = await adminAxios.get(url);
 	return data;
 };
 
 const createRecipe = async (recipeData: {
-	title: string;
-	description: string;
+	title: { ar: string; en: string };
+	description: { ar: string; en: string };
+	slug: string;
 	prepTime: number;
 	cookTime?: number;
 	servings?: number;
@@ -35,25 +39,27 @@ const createRecipe = async (recipeData: {
 	ingredients: string[];
 	instructions: string[];
 	tips?: string[];
-	nutritionInfo?: any;
 	tags?: string[];
+	isPublished?: boolean;
 	image?: File;
 }): Promise<IRecipe> => {
 	const formData = new FormData();
 
-	formData.append("title", recipeData.title);
-	formData.append("description", recipeData.description);
+	// Send nested objects as JSON strings
+	formData.append("title", JSON.stringify(recipeData.title));
+	formData.append("description", JSON.stringify(recipeData.description));
+	formData.append("slug", recipeData.slug);
 	formData.append("prepTime", recipeData.prepTime.toString());
 	if (recipeData.cookTime) formData.append("cookTime", recipeData.cookTime.toString());
 	if (recipeData.servings) formData.append("servings", recipeData.servings.toString());
 	if (recipeData.difficulty) formData.append("difficulty", recipeData.difficulty);
 	formData.append("category", recipeData.category);
+	if (recipeData.isPublished !== undefined)
+		formData.append("isPublished", recipeData.isPublished.toString());
 
 	formData.append("ingredients", JSON.stringify(recipeData.ingredients));
 	formData.append("instructions", JSON.stringify(recipeData.instructions));
 	if (recipeData.tips) formData.append("tips", JSON.stringify(recipeData.tips));
-	if (recipeData.nutritionInfo)
-		formData.append("nutritionInfo", JSON.stringify(recipeData.nutritionInfo));
 	if (recipeData.tags) formData.append("tags", JSON.stringify(recipeData.tags));
 
 	if (recipeData.image) {
@@ -72,8 +78,9 @@ const updateRecipe = async ({
 }: {
 	id: string;
 	data: {
-		title?: string;
-		description?: string;
+		title?: { ar: string; en: string };
+		description?: { ar: string; en: string };
+		slug?: string;
 		prepTime?: number;
 		cookTime?: number;
 		servings?: number;
@@ -82,28 +89,31 @@ const updateRecipe = async ({
 		ingredients?: string[];
 		instructions?: string[];
 		tips?: string[];
-		nutritionInfo?: any;
 		tags?: string[];
+		isPublished?: boolean;
 		image?: File;
 	};
 }): Promise<IRecipe> => {
 	const formData = new FormData();
 
-	if (recipeData.title) formData.append("title", recipeData.title);
-	if (recipeData.description) formData.append("description", recipeData.description);
+	// Send nested objects as JSON strings
+	if (recipeData.title) formData.append("title", JSON.stringify(recipeData.title));
+	if (recipeData.description)
+		formData.append("description", JSON.stringify(recipeData.description));
+	if (recipeData.slug) formData.append("slug", recipeData.slug);
 	if (recipeData.prepTime) formData.append("prepTime", recipeData.prepTime.toString());
 	if (recipeData.cookTime) formData.append("cookTime", recipeData.cookTime.toString());
 	if (recipeData.servings) formData.append("servings", recipeData.servings.toString());
 	if (recipeData.difficulty) formData.append("difficulty", recipeData.difficulty);
 	if (recipeData.category) formData.append("category", recipeData.category);
+	if (recipeData.isPublished !== undefined)
+		formData.append("isPublished", recipeData.isPublished.toString());
 
 	if (recipeData.ingredients)
 		formData.append("ingredients", JSON.stringify(recipeData.ingredients));
 	if (recipeData.instructions)
 		formData.append("instructions", JSON.stringify(recipeData.instructions));
 	if (recipeData.tips) formData.append("tips", JSON.stringify(recipeData.tips));
-	if (recipeData.nutritionInfo)
-		formData.append("nutritionInfo", JSON.stringify(recipeData.nutritionInfo));
 	if (recipeData.tags) formData.append("tags", JSON.stringify(recipeData.tags));
 
 	if (recipeData.image) {
@@ -130,6 +140,7 @@ export const useRecipes = (params?: {
 	search?: string;
 	category?: string;
 	difficulty?: string;
+	isPublished?: boolean;
 	page?: number;
 	limit?: number;
 }) => {

@@ -1,50 +1,73 @@
 import Hero from "@/components/Hero";
-import Section from "@/components/Section";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import ProductCard from "@/components/ProdcutCard";
-import ImageSection from "@/components/ui/ImageSection";
+import { getTranslations } from "next-intl/server";
+import CompanyOverview from "@/components/group/CompanyOverview";
+import CompanyImageGallery from "@/components/group/CompanyImageGallery";
+import CompanyVisionMission from "@/components/group/CompanyVisionMission";
+import CompanyQualitySafety from "@/components/group/CompanyQualitySafety";
 
-type ProductData = {
-	image: string;
-	title: string;
-	href: string;
-};
+// Force dynamic rendering to ensure fresh data on locale change
+export const dynamic = "force-dynamic";
 
-export default function Page() {
-	const t = useTranslations("Group.feedCompany");
+interface FeedPageProps {
+	params: Promise<{
+		locale: string;
+	}>;
+}
 
-	const products: ProductData[] = Array(12).fill({
-		image: "/square_placeholder.webp",
-		title: "منتج الاعلاف",
-		href: "/dummy-product",
-	});
+export default async function FeedPage({ params }: FeedPageProps) {
+	await params;
+	const t = await getTranslations("Group");
+	const tSections = await getTranslations("Group.sectionTitles");
+	const tLabels = await getTranslations("Group.valueLabels");
+	const tMore = await getTranslations("MoreBTN");
+
+	// Prepare values array
+	const values = [
+		{ label: tLabels("quality"), text: t("feedCompany.values.quality") },
+		{ label: tLabels("innovation"), text: t("feedCompany.values.innovation") },
+		{ label: tLabels("reliability"), text: t("feedCompany.values.reliability") },
+		{ label: tLabels("safety"), text: t("feedCompany.values.safety") },
+		{ label: tLabels("responsibility"), text: t("feedCompany.values.responsibility") },
+		{ label: tLabels("teamwork"), text: t("feedCompany.values.teamwork") },
+	];
+
 	return (
-		<div>
-			<Hero title={t("title")} image="/placeholder.webp" />
-			<Section>
-				<div className="flex justify-start gap-10 items-center">
-					<Image
-						src="/group/feeds_icon.svg"
-						alt="Poultry Company Logo"
-						width={500}
-						height={500}
-						className="invert object-contain"
-					/>
-					<div>
-						<h2 className="text-3xl font-bold text-gray-900 mb-4">{t("title")}</h2>
-						<p>{t("description")}</p>
-					</div>
-				</div>
-			</Section>
-			<ImageSection />
-			<Section className="bg-[#f5f5f7]">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{products.map((product, index) => (
-						<ProductCard key={index} product={product} />
-					))}
-				</div>
-			</Section>
+		<div className="bg-white">
+			<Hero title={t("feedCompany.title")} image="/group/Feeds/01.png" />
+
+			{/* Overview Section */}
+			<CompanyOverview
+				logo="/group/AK_FEEDS_COMPANY_LOGO.svg"
+				logoAlt="Feed Company Logo"
+				overviewTitle={tSections("overview")}
+				companyName={t("feedCompany.title")}
+				overviewText={t("feedCompany.overview")}
+			/>
+
+			{/* Image Gallery */}
+			<CompanyImageGallery
+				wideImage="/group/Feeds/01.png"
+				image1="/group/Feeds/02.png"
+				image2="/group/Feeds/03.png"
+				image3="/group/Feeds/04.png"
+			/>
+
+			{/* Vision, Mission, Values */}
+			<CompanyVisionMission
+				visionTitle={tSections("vision")}
+				visionText={t("feedCompany.vision")}
+				missionTitle={tSections("mission")}
+				missionText={t("feedCompany.mission")}
+				valuesTitle={tSections("values")}
+				values={values}
+			/>
+
+			{/* Quality and Safety Section */}
+			<CompanyQualitySafety
+				title={tSections("quality")}
+				content={t("feedCompany.quality")}
+				moreButtonText={tMore("more")}
+			/>
 		</div>
 	);
 }

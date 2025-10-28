@@ -1,9 +1,8 @@
-"use client";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Section from "../Section";
 
-const About: React.FC = () => {
-	const t = useTranslations("HomePage");
+const About = async () => {
+	const t = await getTranslations("HomePage");
 
 	return (
 		<Section id="about" className="relative bg-gray-900">
@@ -14,7 +13,7 @@ const About: React.FC = () => {
 				<div className="h-[1px] w-full bg-white absolute sm:-bottom-20 -bottom-15 lg:-bottom-15 xl:-bottom-25 opacity-20"></div>
 			</div>
 		</Section>
-	);
+	); 
 };
 
 export default About;

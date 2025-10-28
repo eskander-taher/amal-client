@@ -51,19 +51,92 @@
 		"title": "Amal Al Khair Holding Group",
 		"poultryCompany": {
 			"title": "Amal Al Khair Poultry Company",
-			"description": "In the Saudi Arabian food sector landscape, Amal Al-Khair Poultry Company stands out as one of the leading models in fresh egg production. The company was founded in 2001 in the Al-Kharj region with the aim of contributing to food self-sufficiency and meeting the growing demand for local products. Since its launch, Amal Al-Khair Poultry has proven its strong presence in the market, and through its ambitious vision and steadfast principles, has established a prestigious position in the egg production sector."
+			"description": "Leading in the production of fresh poultry with world-class quality standards.",
+			"overview": "Amal Al Khair Poultry Company is one of the leading national Saudi companies specializing in table egg production. Founded in 2002, the company effectively contributes to enhancing local food production and supporting the national food security system by providing high-quality products with international health standards.",
+			"vision": "To contribute to enhancing food security and improving health standards through improving nutrition quality.",
+			"mission": "To provide fresh and healthy products that add exceptional nutritional value that elevates our customers and our community.",
+			"values": {
+				"trust": "We work to earn our customers' trust through transparency and commitment in all our dealings.",
+				"quality": "We ensure the application of the highest international quality standards in all stages of production.",
+				"credibility": "We base our dealings on credibility that reflects our values and noble goals.",
+				"responsibility": "We embody a model to be emulated in commitment to the company's goals, mission, and vision.",
+				"cooperation": "We believe in the spirit of one team and promote a culture of cooperation among group members.",
+				"commitment": "We consider commitment a fundamental pillar for the success and sustainability of our business."
+			},
+			"quality": "We commit in our farms to the highest international quality standards to provide consumers with 100% healthy and reliable food products. Confirming this quality, the company has obtained ISO 22000:2005 certification for food safety, HACCP certification, export license from the Food and Drug Authority, in addition to a set of local and international certificates, ensuring commitment to applying these specifications in all stages of production and export."
 		},
 		"feedCompany": {
 			"title": "Amal Al Khair Feed Company",
-			"description": "Amal Al-Khair Feed Company was established in 2005 in Al-Kharj city in accordance with the laws and regulations of the Kingdom of Saudi Arabia. The company began its actual operations in early 2008 with a production capacity of 15,000 tons per year. The company's management decided to quadruple the production capacity in early 2010, making it one of the most prominent industrial companies in the animal feed industry in Saudi Arabia. Starting from where others left off, using the latest technologies and modern scientific methods in this industry, the company was able to embody this vision on the ground in a short period with high and tremendous efforts."
+			"description": "Providing high-quality feed to support the livestock sector.",
+			"overview": "Amal Al Khair Feed Company was established in 2005 in Al-Kharj city, Kingdom of Saudi Arabia, and began its actual operations in 2008 with a production capacity of 15,000 tons annually. In 2010, the production capacity was increased fourfold to reach 60,000 tons annually, making it one of the most prominent industrial companies specialized in animal feed manufacturing in the Kingdom. The company is one of the companies of Jamal Ahmed Baghlaf Holding Group and is distinguished by its adoption of the latest technologies and modern scientific methods in manufacturing, making its products a symbol of quality and excellence.",
+			"vision": "To lead in producing high-quality animal feed and contribute to supporting national food security through comprehensive and sustainable nutrition solutions.",
+			"mission": "To provide innovative and healthy feed products that meet livestock needs with the highest quality standards, using advanced technologies and qualified human resources to ensure customer satisfaction and support the national economy.",
+			"values": {
+				"quality": "Full commitment to applying the best production and manufacturing standards.",
+				"innovation": "Adopting the latest technologies and scientific research in product development.",
+				"reliability": "Building a permanent relationship based on trust with customers and suppliers.",
+				"safety": "Implementing strict occupational and health safety systems to protect workers and products.",
+				"responsibility": "Commitment to environmental and social standards within a sustainable development approach.",
+				"teamwork": "Enhancing the spirit of cooperation to achieve the company's goals efficiently."
+			},
+			"quality": "We commit in our operations to the highest quality and safety standards through implementing a strict internal control system to monitor all operational stages and production batches accurately. Random samples are taken from raw materials and final products periodically and sent to approved laboratories for analysis and ensuring compliance with standard specifications. We also keep reference samples for at least six months after product expiration to ensure quality tracking when needed. Additionally, we apply precise personal hygiene procedures and require all employees to wear designated uniforms and occupational safety standards, to ensure a safe work environment and reliable product quality that meets our customers' aspirations and exceeds their expectations."
 		},
 		"fishCompany": {
 			"title": "Amal Al Khair Fish Company",
-			"description": "The company was established in 2021 to meet the growing needs of the local market, with a focus on providing innovative and sustainable solutions in the fish farming sector. The farm was designed on advanced scientific and technical foundations, in line with the latest international standards, to become a leading model in tilapia (SP Tilapia) farming using high-density farming technology."
+			"description": "Leading in aquaculture and fish farming with sustainable practices.",
+			"overview": "Amal Al Khair Fish Company is one of the leading national companies in the field of tilapia (Tilapia SP) production. It was established in 2021 in Al-Kharj Governorate, Riyadh region, within the Kingdom's vision to enhance food security and diversify local production sources. It operates according to the highest technical standards and international technologies in intensive fish farming systems using fresh water extracted from artesian wells. The company embodies an integrated model in agricultural and environmental sustainability, combining fish production and environmental water recycling to reduce waste and achieve maximum possible efficiency by reusing wastewater to irrigate date palm farms belonging to Amal Al Khair Group.",
+			"vision": "To be Amal Al Khair Fish a leader in producing high-quality fish, and a reliable source of healthy and sustainable nutrition that contributes to achieving food security for the Kingdom.",
+			"mission": "To provide fresh and healthy fish raised according to the latest international technologies in an environment subject to the highest quality and safety standards, with commitment to environmentally responsible practices that contribute to natural resource sustainability.",
+			"values": {
+				"quality": "Implementing advanced production systems that ensure product safety and quality.",
+				"sustainability": "Managing water and environmental resources efficiently and responsibly.",
+				"innovation": "Adopting the latest technologies in breeding and feeding systems.",
+				"reliability": "Commitment to integrity and transparency standards with customers and suppliers.",
+				"safety": "Ensuring a safe work environment for staff and a clean environment for fish.",
+				"professionalism": "Providing products with international standards that meet local market needs."
+			},
+			"quality": "We apply an advanced water quality monitoring system using measuring devices (PH – DO – NO₃ – NH₃) to ensure a healthy and safe environment for fish. We also adopt a balanced scientific nutrition program designed according to growth stages to ensure the best nutritional values and achieve optimal growth rates. Our safety and operational procedures include continuous monitoring of oxygen levels and temperatures, and use of immediate alarm and warning systems for any potential malfunction, with strict adherence to cleanliness standards in all stages of production and transportation. We also ensure the application of sustainable fish farming standards approved by the Ministry of Environment, Water and Agriculture in the Kingdom of Saudi Arabia, with maintaining accurate operational records and laboratory analyses to ensure tracking of each production batch and achieving the highest levels of quality and reliability."
 		},
 		"datesCompany": {
 			"title": "Amal Al Khair Dates Company",
-			"description": "Amal Al-Khair Dates Company specializes in manufacturing and exporting high-quality dates and is headquartered in Riyadh. Thanks to the experience accumulated by the group over ten years, it has established a distinguished system in terms of production, distribution, marketing, logistics, quality control, sales, and exports. The company strives to achieve consistency among all production processes and select the best quality dates in the Kingdom and the region. The group leases large farms that contribute to supplying the finest types of dates designated for production, marketing, and export, all under a strict quality control system."
+			"description": "Production and export of the finest Saudi dates to local and global markets.",
+			"overview": "Amal Al Khair Dates Company is one of the leading Saudi companies in manufacturing, packaging, and exporting high-quality dates. It was established in 2006 in Riyadh city. The company specializes in producing pressed dates, date paste, whole dates, and date plates with nuts and sesame, and has gained a distinguished reputation thanks to its commitment to quality and innovation standards. The factory is located south of Riyadh - New Al-Kharj Road, and includes modern facilities including advanced production lines, refrigerated warehouses with huge storage capacity, and worker housing close to the site. The company owns 11 showrooms distributed in various cities of the Kingdom, enhancing its commercial and marketing presence at the national and Gulf level.",
+			"vision": "To be Amal Al Khair Dates the leader in producing and exporting dates at the local and international levels, by adopting the highest modern technologies and applying comprehensive quality standards.",
+			"mission": "We produce dates with the highest international quality standards using the latest technologies and equipment, and present them in distinctive packaging and an effective distribution chain, to achieve customer satisfaction and enhance the position of the Saudi product globally.",
+			"values": {
+				"quality": "We commit to the highest standards in all stages of production and packaging.",
+				"innovation": "We continuously develop our products to meet diverse consumer tastes.",
+				"sustainability": "We use environmentally friendly technologies and ensure optimal resource use.",
+				"transparency": "We build trust with our customers through honesty and credibility.",
+				"excellence": "We believe that excellence is the secret of our continuity and leadership.",
+				"foodSafety": "We apply precise control systems that ensure the safety and quality of our products."
+			},
+			"quality": "Amal Al Khair Dates applies an integrated quality management and food safety system according to international standards, including Good Manufacturing Practices (GMP) and HACCP system to ensure the highest levels of safety. Raw dates are inspected before receipt and suppliers are evaluated periodically, with precise monitoring of production stages from sorting to final inspection under specialized technical supervision and statistical quality analysis. The facility provides a safe work environment equipped with ventilation systems and temperature and humidity control, and cooperates with approved companies such as Rentokil, Shourbeam, and Seder to ensure cleanliness, pest control, sterilization, and waste management. Alarm systems and camera monitoring are also used to follow operational processes and ensure product quality at every stage."
+		},
+		"sectionTitles": {
+			"overview": "Overview",
+			"visionMissionValues": "Vision, Mission and Values",
+			"vision": "Vision",
+			"mission": "Mission",
+			"values": "Values",
+			"quality": "Quality and Safety"
+		},
+		"valueLabels": {
+			"trust": "Trust",
+			"quality": "Quality",
+			"credibility": "Credibility",
+			"responsibility": "Responsibility",
+			"cooperation": "Cooperation",
+			"commitment": "Commitment",
+			"innovation": "Innovation",
+			"reliability": "Reliability",
+			"safety": "Safety",
+			"teamwork": "Teamwork",
+			"sustainability": "Sustainability",
+			"professionalism": "Professionalism",
+			"transparency": "Transparency",
+			"excellence": "Excellence",
+			"foodSafety": "Food Safety"
 		},
 		"more": "More ..."
 	},
