@@ -7,7 +7,8 @@ import BookCard from "@/components/BookCard";
 import { usePublicBooks } from "@/hooks/public";
 import { getServerUrl } from "@/lib/apiBase";
 import { useTranslations, useLocale } from "next-intl";
-import { Search, BookOpen } from "lucide-react";
+import { Search, BookOpen, Settings } from "lucide-react";
+import { TransitionLink } from "@/components/TransitionLink";
 
 export default function BooksPage() {
 	const t = useTranslations("Books");
@@ -55,6 +56,19 @@ export default function BooksPage() {
 				image="/books.jpg"
 				imageAlt={locale === "ar" ? "مكتبة أمل الخير" : "Amal Al Khair Library"}
 			/>
+
+			{/* Admin Button */}
+			<div className="bg-gray-50 py-4">
+				<div className="container mx-auto px-4 flex justify-end">
+					<TransitionLink
+						href="/admin"
+						className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 shadow-md hover:shadow-lg"
+					>
+						<Settings className="w-4 h-4" />
+						{locale === "ar" ? "لوحة الإدارة" : "Admin Panel"}
+					</TransitionLink>
+				</div>
+			</div>
 
 			<Section className="bg-white">
 				<div className="container mx-auto px-4 py-10">
@@ -183,8 +197,3 @@ export default function BooksPage() {
 		</div>
 	);
 }
-
-
-
-
-

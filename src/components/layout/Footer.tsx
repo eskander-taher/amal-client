@@ -37,13 +37,13 @@ export default function Footer() {
 								<div className="flex items-center gap-3">
 									<FaPhone className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
 									<span className="text-sm sm:text-base text-gray-700">
-										 <span dir="ltr">+966 54 992 2789</span>
+										<span dir="ltr">+966 54 992 2789</span>
 									</span>
 								</div>
 								<div className="flex items-center gap-3">
 									<FaWhatsapp className="text-lg sm:text-xl text-gray-600 flex-shrink-0" />
 									<span className="text-sm sm:text-base text-gray-700">
-										 <span dir="ltr">+966 54 992 2789</span>
+										<span dir="ltr">+966 54 992 2789</span>
 									</span>
 								</div>
 							</div>
@@ -171,7 +171,7 @@ export default function Footer() {
 									</TransitionLink>
 
 									<TransitionLink
-										href="/admin"
+										href="/books"
 										className="block text-sm sm:text-base text-gray-700 hover:text-black transition-colors duration-300"
 									>
 										{t("employeePortal")}
@@ -179,7 +179,7 @@ export default function Footer() {
 								</div>
 							</div>
 						</div>
- 
+
 						{/* Logo & Description */}
 						<div className="flex flex-col justify-start items-center lg:items-start lg:w-auto lg:max-w-md">
 							<div className="w-full max-w-xs sm:max-w-sm lg:max-w-md mb-4 sm:mb-6">
