@@ -67,7 +67,7 @@ const config: NextConfig = {
 		// and to avoid issues with external URLs
 		unoptimized: process.env.NODE_ENV === "development",
 	},
-};
+}; 
 
 export default withNextIntl(config);
  
