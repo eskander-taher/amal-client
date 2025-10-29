@@ -27,3 +27,5 @@ export function useResourcePermissions(resource: string) {
 		canCreate: hasPermission(resource, "write"),
 	};
 }
+
+

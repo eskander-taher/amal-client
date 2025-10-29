@@ -5,7 +5,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import { usePublicBookBySlug } from "@/hooks/public";
-import { getServerUrl } from "@/lib/apiBase";
+import apiBase, { getServerUrl } from "@/lib/apiBase";
 import { useLocale } from "next-intl";
 import { BookOpen, Calendar, FileText, Download, Tag } from "lucide-react";
 import { TransitionLink } from "@/components/TransitionLink";
@@ -27,7 +27,7 @@ export default function BookDetailPage({ params }: BookDetailPageProps) {
 
 		try {
 			// Track download
-			await fetch(`${process.env.NEXT_PUBLIC_API_URL}/books/${book._id}/download`, {
+			await fetch(`${apiBase}/api/books/${book._id}/download`, {
 				method: "POST",
 			});
 

@@ -5,7 +5,9 @@ import type { INewsFlat, IProductFlat, IRecipeFlat, IHeroFlat, IBookFlat } from 
 export type { INewsFlat, IProductFlat, IRecipeFlat, IHeroFlat, IBookFlat };
 export type HeroSlide = IHeroFlat;
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+import apiBase from "./apiBase";
+
+const API_BASE = `${apiBase}/api`;
 
 // Helper function to fetch from server API
 async function fetchFromAPI<T>(endpoint: string, locale: string): Promise<T> {
@@ -13,17 +15,35 @@ async function fetchFromAPI<T>(endpoint: string, locale: string): Promise<T> {
 	const separator = endpoint.includes("?") ? "&" : "?";
 	const url = `${API_BASE}${endpoint}${separator}locale=${locale}`;
 
-	const res = await fetch(url, {
-		// Disable caching to ensure fresh data on locale change
-		cache: "no-store",
-	});
+	try {
+		const res = await fetch(url, {
+			// Disable caching to ensure fresh data on locale change
+			cache: "no-store",
+			// Add timeout for production
+			next: { revalidate: 0 },
+		});
 
-	if (!res.ok) {
-		throw new Error(`Failed to fetch ${endpoint}: ${res.statusText}`);
+		if (!res.ok) {
+			console.error(`API Error: ${res.status} ${res.statusText} for ${url}`);
+			throw new Error(`Failed to fetch ${endpoint}: ${res.statusText}`);
+		}
+
+		const data = await res.json();
+		return data.data;
+	} catch (error) {
+		console.error(`Network Error fetching ${endpoint}:`, error);
+		// Return empty array/object as fallback instead of throwing
+		if (
+			endpoint.includes("/hero") ||
+			endpoint.includes("/news") ||
+			endpoint.includes("/products") ||
+			endpoint.includes("/recipes") ||
+			endpoint.includes("/books")
+		) {
+			return [] as T;
+		}
+		throw error;
 	}
-
-	const data = await res.json();
-	return data.data;
 }
 
 // Hero Slides

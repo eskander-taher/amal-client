@@ -71,3 +71,5 @@ export default function ResourceProtection({
 	// User has access, render children
 	return <>{children}</>;
 }
+
+
