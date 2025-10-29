@@ -52,7 +52,7 @@ export default function BooksPage() {
 			<Hero
 				title={t("title")}
 				subtitle={t("subtitle")}
-				image="/placeholder.webp"
+				image="/books.jpg"
 				imageAlt={locale === "ar" ? "مكتبة أمل الخير" : "Amal Al Khair Library"}
 			/>
 
