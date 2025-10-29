@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 
 	const description = article.description.replace(/<[^>]*>/g, "").substring(0, 160);
 
+	const imageUrl = article.image ? getServerUrl(article.image) : undefined;
+
 	return {
 		title: `${article.title} - أخبار الشركة`,
 		description,
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 			title: article.title,
 			description,
 			type: "article",
-			images: article.image ? [getServerUrl(article.image)] : [],
+			images: imageUrl ? [imageUrl] : undefined,
 			publishedTime: article.createdAt
 				? new Date(article.createdAt).toISOString()
 				: undefined,

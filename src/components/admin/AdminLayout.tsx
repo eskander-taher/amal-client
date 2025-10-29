@@ -40,12 +40,7 @@ export default function AdminLayout({
 					}`}
 				>
 					{/* Header */}
-					<AdminHeader
-						title={title}
-						description={description}
-						onMenuClick={toggleSidebar}
-						sidebarCollapsed={sidebarCollapsed}
-					/>
+					<AdminHeader onMenuClick={toggleSidebar} sidebarCollapsed={sidebarCollapsed} />
 
 					{/* Breadcrumbs */}
 					{breadcrumbs.length > 0 && (

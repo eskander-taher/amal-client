@@ -4,10 +4,20 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 
 // Dynamic configuration based on environment
-const getImageRemotePatterns = () => {
-	const patterns = [
+const getImageRemotePatterns = (): Array<{
+	protocol: "http" | "https";
+	hostname: string;
+	port?: string;
+	pathname?: string;
+}> => {
+	const patterns: Array<{
+		protocol: "http" | "https";
+		hostname: string;
+		port?: string;
+		pathname?: string;
+	}> = [
 		{
-			protocol: "https" as const,
+			protocol: "https",
 			hostname: "**",
 		},
 	];
@@ -16,13 +26,13 @@ const getImageRemotePatterns = () => {
 	if (process.env.NODE_ENV === "development") {
 		patterns.push(
 			{
-				protocol: "http" as const,
+				protocol: "http",
 				hostname: "localhost",
 				port: "5000",
 				pathname: "/uploads/**",
 			},
 			{
-				protocol: "http" as const,
+				protocol: "http",
 				hostname: "127.0.0.1",
 				port: "5000",
 				pathname: "/uploads/**",
@@ -35,8 +45,9 @@ const getImageRemotePatterns = () => {
 		const productionApiUrl = process.env.NEXT_PUBLIC_API_URL || "https://your-api-domain.com";
 		try {
 			const url = new URL(productionApiUrl);
+			const protocol = url.protocol.replace(":", "") as "http" | "https";
 			patterns.push({
-				protocol: url.protocol.replace(":", "") as "http" | "https",
+				protocol,
 				hostname: url.hostname,
 				port: url.port || "",
 				pathname: "/uploads/**",

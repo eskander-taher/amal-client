@@ -1,6 +1,10 @@
 import { getServerUrl } from "./apiBase";
 import type { INewsFlat, IProductFlat, IRecipeFlat, IHeroFlat, IBookFlat } from "@/types/models";
 
+// Re-export types for convenience
+export type { INewsFlat, IProductFlat, IRecipeFlat, IHeroFlat, IBookFlat };
+export type HeroSlide = IHeroFlat;
+
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
 // Helper function to fetch from server API

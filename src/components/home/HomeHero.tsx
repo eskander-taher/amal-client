@@ -47,18 +47,15 @@ const Hero: React.FC<HeroProps> = ({ slides }) => {
 	];
 
 	// Use dynamic slides if available, otherwise use fallback
+	// Note: slides are already flattened by locale from the server
 	const carouselSlides =
 		slides.length > 0
 			? slides.map((slide) => ({
 					src: getServerUrl(slide.image) || "/hero.webp",
-					alt: slide.alt[local as keyof typeof slide.alt] || slide.alt.ar,
-					title: slide.title[local as keyof typeof slide.title] || slide.title.ar,
-					description:
-						slide.description[local as keyof typeof slide.description] ||
-						slide.description.ar,
-					buttonText:
-						slide.buttonText[local as keyof typeof slide.buttonText] ||
-						slide.buttonText.ar,
+					alt: slide.alt,
+					title: slide.title,
+					description: slide.description,
+					buttonText: slide.buttonText,
 					href: slide.href,
 			  }))
 			: fallbackSlides;
