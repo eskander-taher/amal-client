@@ -53,10 +53,7 @@ export default async function RecipeDetailPage({ params }: RecipeDetailPageProps
 		<>
 			{/* Top yellow banner */}
 			<div className="w-full relative bg-[#F9AE42] overflow-visible -mb-16 md:-mb-24">
-				<Notch
-					className="absolute w-[80%] transform left-0 -translate-x-3/4 translate-y-1 bottom-0 z-10"
-					color="white"
-				/>
+				
 
 				<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
@@ -114,7 +111,7 @@ export default async function RecipeDetailPage({ params }: RecipeDetailPageProps
 										alt={recipe.title}
 										width={560}
 										height={360}
-										className="w-full h-auto shadow-lg"
+										className="w-full h-auto"
 										style={{
 											maskImage: "url(/recipe_details.webp)",
 											maskSize: "contain",
@@ -134,7 +131,7 @@ export default async function RecipeDetailPage({ params }: RecipeDetailPageProps
 									alt={recipe.title}
 									width={560}
 									height={360}
-									className="w-full max-w-md h-auto rounded-lg shadow-lg"
+									className="w-full max-w-md h-auto"
 									priority
 								/>
 							)}
@@ -223,4 +220,5 @@ export default async function RecipeDetailPage({ params }: RecipeDetailPageProps
 		</>
 	);
 }
+
 

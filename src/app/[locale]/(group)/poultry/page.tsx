@@ -68,6 +68,12 @@ export default async function PoultryPage({ params }: PoultryPageProps) {
 				content={t("poultryCompany.quality")}
 				moreButtonText={tMore("more")}
 			/>
+			<iframe
+				src="https://heyzine.com/flip-book/db4f31d2d4.html#page/1"
+				width="100%"
+				height="600"
+				allowFullScreen
+			></iframe>
 		</div>
 	);
 }

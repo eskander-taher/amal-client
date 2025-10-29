@@ -14,5 +14,6 @@
 export * from "./usePublicProducts";
 export * from "./usePublicNews";
 export * from "./usePublicRecipes";
+export * from "./usePublicBooks";
 
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import publicAxios from "@/lib/publicAxios";
 import { useLocale } from "@/lib/useLocale";
-import type { IRecipe } from "@/types/models";
+import type { IRecipeFlat } from "@/types/models";
 
 interface UsePublicRecipesParams {
 	search?: string;
@@ -13,7 +13,7 @@ interface UsePublicRecipesParams {
 
 export function usePublicRecipes(params?: UsePublicRecipesParams) {
 	const locale = useLocale();
-	const [data, setData] = useState<{ recipes: IRecipe[]; pagination: any } | null>(null);
+	const [data, setData] = useState<{ recipes: IRecipeFlat[]; pagination: any } | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ export function usePublicRecipes(params?: UsePublicRecipesParams) {
 
 export function usePublicRecipe(id: string) {
 	const locale = useLocale();
-	const [data, setData] = useState<IRecipe | null>(null);
+	const [data, setData] = useState<IRecipeFlat | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -99,5 +99,8 @@ export function usePublicRecipeCategories() {
 
 	return { data, loading, error };
 }
+
+
+
 
 

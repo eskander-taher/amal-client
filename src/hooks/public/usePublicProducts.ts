@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import publicAxios from "@/lib/publicAxios";
 import { useLocale } from "@/lib/useLocale";
-import type { IProduct } from "@/types/models";
+import type { IProductFlat } from "@/types/models";
 
 interface UsePublicProductsParams {
 	search?: string;
@@ -13,7 +13,7 @@ interface UsePublicProductsParams {
 
 export function usePublicProducts(params?: UsePublicProductsParams) {
 	const locale = useLocale();
-	const [data, setData] = useState<{ products: IProduct[]; pagination: any } | null>(null);
+	const [data, setData] = useState<{ products: IProductFlat[]; pagination: any } | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -51,7 +51,7 @@ export function usePublicProducts(params?: UsePublicProductsParams) {
 
 export function usePublicProduct(id: string) {
 	const locale = useLocale();
-	const [data, setData] = useState<IProduct | null>(null);
+	const [data, setData] = useState<IProductFlat | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -79,7 +79,7 @@ export function usePublicProduct(id: string) {
 
 export function usePublicFeaturedProducts() {
 	const locale = useLocale();
-	const [data, setData] = useState<IProduct[]>([]);
+	const [data, setData] = useState<IProductFlat[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -128,5 +128,8 @@ export function usePublicProductCategories() {
 
 	return { data, loading, error };
 }
+
+
+
 
 

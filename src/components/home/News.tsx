@@ -4,17 +4,17 @@ import NewsCard from "../NewsCard";
 import { TransitionLink } from "../TransitionLink";
 import { getServerUrl } from "@/lib/apiBase";
 import { stripHtml } from "@/lib/stripHtml";
-import type { News as NewsType } from "@/types/news";
+import type { NewsFlat } from "@/types/news";
 
 interface NewsProps {
-	news: NewsType[];
+	news?: NewsFlat[];
 }
 
 const News = async ({ news }: NewsProps) => {
 	const t = await getTranslations("News");
 
 	// Show only the first 3 featured news items
-	const displayNews = news.slice(0, 3);
+	const displayNews = (news || []).slice(0, 3);
 
 	return (
 		<Section id="news" className="relative bg-white rtl text-right">

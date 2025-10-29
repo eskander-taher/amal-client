@@ -32,3 +32,6 @@ export function truncateText(text: string, maxLength: number = 150): string {
 	return text.substring(0, maxLength).trim() + "...";
 }
 
+
+
+

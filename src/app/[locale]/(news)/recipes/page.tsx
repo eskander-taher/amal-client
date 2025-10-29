@@ -34,8 +34,6 @@ export default async function RecipesPage({ searchParams, params }: RecipesPageP
 		getRecipeCategories(locale),
 	]);
 
-	console.log(recipes)
-
 	return (
 		<>
 			<Hero title={t("title")} imageAlt="Recipes hero image." image="/recipes-hero.webp" />

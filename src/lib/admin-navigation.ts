@@ -15,6 +15,7 @@ import {
 	Palette,
 	Bell,
 	Key,
+	BookOpen,
 } from "lucide-react";
 import type { AdminNavItem } from "@/types";
 
@@ -53,6 +54,12 @@ export const adminNavigation: AdminNavItem[] = [
 				label: "المنتجات",
 				icon: Package,
 				href: "/admin/products",
+			},
+			{
+				id: "books",
+				label: "المكتبة",
+				icon: BookOpen,
+				href: "/admin/books",
 			},
 		],
 	},

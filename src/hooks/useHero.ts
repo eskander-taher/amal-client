@@ -1,36 +1,14 @@
 import { useState, useEffect } from "react";
 import publicAxios from "@/lib/publicAxios";
 import { useLocale } from "@/lib/useLocale";
+import type { IHeroFlat } from "@/types/models";
 
-export interface HeroSlide {
-	_id: string;
-	title: {
-		ar: string;
-		en: string;
-	};
-	description: {
-		ar: string;
-		en: string;
-	};
-	buttonText: {
-		ar: string;
-		en: string;
-	};
-	href: string;
-	image: string;
-	alt: {
-		ar: string;
-		en: string;
-	};
-	order: number;
-	isActive: boolean;
-	createdAt: string;
-	updatedAt: string;
-}
+// Re-export for backward compatibility
+export type HeroSlide = IHeroFlat;
 
 export function useHero() {
 	const locale = useLocale();
-	const [data, setData] = useState<HeroSlide[]>([]);
+	const [data, setData] = useState<IHeroFlat[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -45,8 +23,8 @@ export function useHero() {
 				if (response.data.success && response.data.data) {
 					// Sort slides by order and filter only active ones
 					const activeSlides = response.data.data
-						.filter((slide: HeroSlide) => slide.isActive)
-						.sort((a: HeroSlide, b: HeroSlide) => a.order - b.order);
+						.filter((slide: IHeroFlat) => slide.isActive)
+						.sort((a: IHeroFlat, b: IHeroFlat) => a.order - b.order);
 
 					setData(activeSlides);
 				} else {

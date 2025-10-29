@@ -3,17 +3,17 @@ import ProductCard from "../ProdcutCard";
 import { getTranslations } from "next-intl/server";
 import { getServerUrl } from "@/lib/apiBase";
 import { TransitionLink } from "../TransitionLink";
-import type { IProduct } from "@/types/models";
+import type { IProductFlat } from "@/types/models";
 
 interface ProductsProps {
-	products: IProduct[];
+	products?: IProductFlat[];
 }
 
 const Products = async ({ products }: ProductsProps) => {
 	const t = await getTranslations("Products");
 
 	// Take first 4 featured products
-	const displayProducts = products.slice(0, 4).map((product) => ({
+	const displayProducts = (products || []).slice(0, 4).map((product) => ({
 		image: product.image
 			? getServerUrl(product.image) || "/square_placeholder.webp"
 			: "/square_placeholder.webp",

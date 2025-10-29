@@ -65,6 +65,9 @@ export default function Hero({
 				case "news":
 					label = t("news");
 					break;
+				case "books":
+					label = t("books");
+					break;
 				case "jobs":
 					label = t("jobs");
 					break;

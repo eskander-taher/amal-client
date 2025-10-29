@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import publicAxios from "@/lib/publicAxios";
 import { useLocale } from "@/lib/useLocale";
-import type { News } from "@/types/news";
+import type { NewsFlat } from "@/types/news";
 
 export function usePublicNews() {
 	const locale = useLocale();
-	const [data, setData] = useState<News[]>([]);
+	const [data, setData] = useState<NewsFlat[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +31,7 @@ export function usePublicNews() {
 
 export function usePublicNewsById(id: string) {
 	const locale = useLocale();
-	const [data, setData] = useState<News | null>(null);
+	const [data, setData] = useState<NewsFlat | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -59,7 +59,7 @@ export function usePublicNewsById(id: string) {
 
 export function usePublicFeaturedNews() {
 	const locale = useLocale();
-	const [data, setData] = useState<News[]>([]);
+	const [data, setData] = useState<NewsFlat[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
@@ -82,5 +82,8 @@ export function usePublicFeaturedNews() {
 
 	return { data, loading, error };
 }
+
+
+
 
 

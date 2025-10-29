@@ -5,12 +5,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import ProductCard from "@/components/ProdcutCard";
 import { getServerUrl } from "@/lib/apiBase";
-import type { IProduct } from "@/types/models";
+import type { IProductFlat } from "@/types/models";
 
 type Category = "all" | "poultry" | "feed" | "fish" | "dates";
 
 interface ProductsClientFilterProps {
-	initialProducts: IProduct[];
+	initialProducts: IProductFlat[];
 	initialCategory?: string;
 }
 

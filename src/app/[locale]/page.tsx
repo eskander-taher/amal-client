@@ -31,13 +31,6 @@ export default async function Home({ params }: HomeProps) {
 	return (
 		<div className="relative">
 			<Hero slides={heroSlides} />
-			{/* <iframe
-				src="https://heyzine.com/flip-book/db4f31d2d4.html#page/1"
-				width="100%"
-				height="600"
-				frameborder="0"
-				allowfullscreen
-			></iframe> */}
 			<About />
 			<Group />
 			<Certifications />

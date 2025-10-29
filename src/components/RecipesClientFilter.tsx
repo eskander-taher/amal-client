@@ -6,10 +6,10 @@ import { useTranslations } from "next-intl";
 import RecipeCard from "@/components/RecipeCard";
 import { getServerUrl } from "@/lib/apiBase";
 import { Search, Filter, ChefHat } from "lucide-react";
-import type { IRecipe } from "@/types/models";
+import type { IRecipeFlat } from "@/types/models";
 
 interface RecipesClientFilterProps {
-	initialRecipes: IRecipe[];
+	initialRecipes: IRecipeFlat[];
 	categories: string[];
 }
 

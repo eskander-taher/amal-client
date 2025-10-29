@@ -1,271 +1,134 @@
-import apiBase from "@/lib/apiBase";
-import type { IProduct, IRecipe } from "@/types/models";
-import type { News } from "@/types/news";
+import { getServerUrl } from "./apiBase";
+import type { INewsFlat, IProductFlat, IRecipeFlat, IHeroFlat, IBookFlat } from "@/types/models";
 
-const BASE_URL = apiBase;
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
-// Helper function to build API URL with locale
-function buildUrl(path: string, locale: string, params?: Record<string, any>): string {
-	const url = new URL(`${BASE_URL}/api${path}`);
+// Helper function to fetch from server API
+async function fetchFromAPI<T>(endpoint: string, locale: string): Promise<T> {
+	// Add locale as query parameter
+	const separator = endpoint.includes("?") ? "&" : "?";
+	const url = `${API_BASE}${endpoint}${separator}locale=${locale}`;
 
-	// Add locale as query parameter (matching publicAxios behavior)
-	url.searchParams.append("locale", locale);
+	const res = await fetch(url, {
+		// Disable caching to ensure fresh data on locale change
+		cache: "no-store",
+	});
 
-	// Add other query parameters
-	if (params) {
-		Object.entries(params).forEach(([key, value]) => {
-			if (value !== undefined && value !== null && value !== "") {
-				url.searchParams.append(key, String(value));
-			}
-		});
+	if (!res.ok) {
+		throw new Error(`Failed to fetch ${endpoint}: ${res.statusText}`);
 	}
 
-	return url.toString();
+	const data = await res.json();
+	return data.data;
 }
 
-// Server-side fetch options
-function getFetchOptions(): RequestInit {
+// Hero Slides
+export async function getHeroSlides(locale: string): Promise<IHeroFlat[]> {
+	return fetchFromAPI<IHeroFlat[]>("/hero", locale);
+}
+
+// News
+export async function getNews(locale: string): Promise<INewsFlat[]> {
+	return fetchFromAPI<INewsFlat[]>("/news", locale);
+}
+
+export async function getFeaturedNews(locale: string): Promise<INewsFlat[]> {
+	return fetchFromAPI<INewsFlat[]>("/news/featured", locale);
+}
+
+export async function getNewsBySlug(locale: string, slug: string): Promise<INewsFlat> {
+	return fetchFromAPI<INewsFlat>(`/news/slug/${slug}`, locale);
+}
+
+// Products
+export async function getProducts(
+	locale: string,
+	options?: { category?: string; limit?: number }
+): Promise<{ products: IProductFlat[]; total: number }> {
+	const queryParams = new URLSearchParams();
+	if (options?.category) queryParams.append("category", options.category);
+	if (options?.limit) queryParams.append("limit", options.limit.toString());
+
+	const endpoint = `/products${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+	const products = await fetchFromAPI<IProductFlat[]>(endpoint, locale);
+
 	return {
-		headers: {
-			"Content-Type": "application/json",
-		},
-		// Disable caching - always fetch fresh data
-		cache: "no-store",
+		products: Array.isArray(products) ? products : [],
+		total: Array.isArray(products) ? products.length : 0,
 	};
 }
 
-// Products API
-export async function getProducts(
-	locale: string,
-	params?: {
-		search?: string;
-		category?: string;
-		featured?: boolean;
-		page?: number;
-		limit?: number;
-	}
-): Promise<{ products: IProduct[]; pagination: any }> {
-	try {
-		const url = buildUrl("/products", locale, params);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch products: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Error fetching products:", error);
-		return { products: [], pagination: null };
-	}
+export async function getFeaturedProducts(locale: string): Promise<IProductFlat[]> {
+	return fetchFromAPI<IProductFlat[]>("/products/featured", locale);
 }
 
-export async function getProductBySlug(locale: string, slug: string): Promise<IProduct | null> {
-	try {
-		const url = buildUrl(`/products/slug/${slug}`, locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			if (response.status === 404) {
-				return null;
-			}
-			throw new Error(`Failed to fetch product: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Error fetching product:", error);
-		return null;
-	}
+export async function getProductBySlug(locale: string, slug: string): Promise<IProductFlat> {
+	return fetchFromAPI<IProductFlat>(`/products/slug/${slug}`, locale);
 }
 
-export async function getFeaturedProducts(locale: string): Promise<IProduct[]> {
-	try {
-		const url = buildUrl("/products/featured", locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch featured products: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Error fetching featured products:", error);
-		return [];
-	}
-}
-
-// Recipes API
+// Recipes
 export async function getRecipes(
 	locale: string,
-	params?: {
-		search?: string;
-		category?: string;
-		difficulty?: string;
-		page?: number;
-		limit?: number;
-	}
-): Promise<{ recipes: IRecipe[]; pagination: any }> {
-	try {
-		const url = buildUrl("/recipes", locale, params);
-		const response = await fetch(url, getFetchOptions());
+	options?: { search?: string; category?: string; difficulty?: string; limit?: number }
+): Promise<{ recipes: IRecipeFlat[]; total: number }> {
+	const queryParams = new URLSearchParams();
+	if (options?.search) queryParams.append("search", options.search);
+	if (options?.category) queryParams.append("category", options.category);
+	if (options?.difficulty) queryParams.append("difficulty", options.difficulty);
+	if (options?.limit) queryParams.append("limit", options.limit.toString());
 
-		if (!response.ok) {
-			throw new Error(`Failed to fetch recipes: ${response.statusText}`);
-		}
+	const endpoint = `/recipes${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+	const recipes = await fetchFromAPI<IRecipeFlat[]>(endpoint, locale);
 
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Error fetching recipes:", error);
-		return { recipes: [], pagination: null };
-	}
-}
-
-export async function getRecipeBySlug(locale: string, slug: string): Promise<IRecipe | null> {
-	try {
-		const url = buildUrl(`/recipes/slug/${slug}`, locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			if (response.status === 404) {
-				return null;
-			}
-			throw new Error(`Failed to fetch recipe: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error("Error fetching recipe:", error);
-		return null;
-	}
+	return {
+		recipes: Array.isArray(recipes) ? recipes : [],
+		total: Array.isArray(recipes) ? recipes.length : 0,
+	};
 }
 
 export async function getRecipeCategories(locale: string): Promise<string[]> {
 	try {
-		const url = buildUrl("/recipes/categories", locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch recipe categories: ${response.statusText}`);
+		const recipes = await fetchFromAPI<IRecipeFlat[]>("/recipes", locale);
+		// Extract unique categories
+		if (!recipes || !Array.isArray(recipes)) {
+			return [];
 		}
-
-		const data = await response.json();
-		return data;
+		const categories = Array.from(
+			new Set(recipes.map((recipe) => recipe.category).filter(Boolean))
+		);
+		return categories as string[];
 	} catch (error) {
-		console.error("Error fetching recipe categories:", error);
+		console.error("Failed to fetch recipe categories:", error);
 		return [];
 	}
 }
 
-// News API
-export async function getNews(locale: string): Promise<News[]> {
-	try {
-		const url = buildUrl("/news", locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch news: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data.data || [];
-	} catch (error) {
-		console.error("Error fetching news:", error);
-		return [];
-	}
+export async function getRecipeBySlug(locale: string, slug: string): Promise<IRecipeFlat> {
+	return fetchFromAPI<IRecipeFlat>(`/recipes/slug/${slug}`, locale);
 }
 
-export async function getNewsBySlug(locale: string, slug: string): Promise<News | null> {
-	try {
-		const url = buildUrl(`/news/slug/${slug}`, locale);
-		const response = await fetch(url, getFetchOptions());
+// Books
+export async function getBooks(
+	locale: string,
+	options?: { category?: string; limit?: number }
+): Promise<{ books: IBookFlat[]; total: number }> {
+	const queryParams = new URLSearchParams();
+	if (options?.category) queryParams.append("category", options.category);
+	if (options?.limit) queryParams.append("limit", options.limit.toString());
 
-		if (!response.ok) {
-			if (response.status === 404) {
-				return null;
-			}
-			throw new Error(`Failed to fetch news: ${response.statusText}`);
-		}
+	const endpoint = `/books${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+	const books = await fetchFromAPI<IBookFlat[]>(endpoint, locale);
 
-		const data = await response.json();
-		return data.data || null;
-	} catch (error) {
-		console.error("Error fetching news:", error);
-		return null;
-	}
-}
-
-export async function getFeaturedNews(locale: string): Promise<News[]> {
-	try {
-		const url = buildUrl("/news/featured", locale);
-		const response = await fetch(url, getFetchOptions());
-
-		if (!response.ok) {
-			throw new Error(`Failed to fetch featured news: ${response.statusText}`);
-		}
-
-		const data = await response.json();
-		return data.data || [];
-	} catch (error) {
-		console.error("Error fetching featured news:", error);
-		return [];
-	}
-}
-
-// Hero API
-export interface HeroSlide {
-	_id: string;
-	title: {
-		ar: string;
-		en: string;
+	return {
+		books,
+		total: books.length,
 	};
-	description: {
-		ar: string;
-		en: string;
-	};
-	buttonText: {
-		ar: string;
-		en: string;
-	};
-	href: string;
-	image: string;
-	alt: {
-		ar: string;
-		en: string;
-	};
-	order: number;
-	isActive: boolean;
-	createdAt: string;
-	updatedAt: string;
 }
 
-export async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
-	try {
-		const url = buildUrl("/hero", locale);
-		const response = await fetch(url, getFetchOptions());
+export async function getFeaturedBooks(locale: string): Promise<IBookFlat[]> {
+	return fetchFromAPI<IBookFlat[]>("/books/featured", locale);
+}
 
-		if (!response.ok) {
-			throw new Error(`Failed to fetch hero slides: ${response.statusText}`);
-		}
-
-		const result = await response.json();
-
-		if (result.success && result.data) {
-			// Sort slides by order and filter only active ones
-			const activeSlides = result.data
-				.filter((slide: HeroSlide) => slide.isActive)
-				.sort((a: HeroSlide, b: HeroSlide) => a.order - b.order);
-			return activeSlides;
-		}
-
-		return [];
-	} catch (error) {
-		console.error("Error fetching hero slides:", error);
-		return [];
-	}
+export async function getBookBySlug(locale: string, slug: string): Promise<IBookFlat> {
+	return fetchFromAPI<IBookFlat>(`/books/slug/${slug}`, locale);
 }

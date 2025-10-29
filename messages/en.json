@@ -148,6 +148,7 @@
 		"learnMore": "Learn More",
 		"viewMore": "View More Products",
 		"featuredBadge": "Featured",
+		"noProducts": "No products available at the moment",
 		"filters": {
 			"all": "All Products"
 		},
@@ -224,6 +225,15 @@
 				"title": "Amal Al Khair Dates Store Opening",
 				"description": "Amal Al Khair launches its first online store featuring all its products and offers payment services via credit cards, Mada cards, or cash on delivery, as well as many other services..."
 			}
+		}
+	},
+	"Books": {
+		"title": "Amal Al Khair Library",
+		"subtitle": "Explore our collection of valuable books",
+		"notFound": {
+			"title": "Book Not Found",
+			"description": "Sorry, we couldn't find the requested book.",
+			"backButton": "Back to Library"
 		}
 	},
 	"Login": {
@@ -334,6 +344,7 @@
 		"group": "Amal Al Khair Holding Group",
 		"products": "Our Products",
 		"news": "News & blogs",
+		"books": "Amal Al Khair Library",
 		"jobs": "Jobs",
 		"contact": "Contact Us",
 		"poultry_products": "Poultry Products",

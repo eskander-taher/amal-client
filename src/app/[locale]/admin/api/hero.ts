@@ -2,32 +2,10 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import apiBase from "@/lib/apiBase";
 import { getStoredToken } from "@/hooks/useAuth";
 import { showToast } from "@/lib/toast";
+import type { IHero } from "@/types/models";
 
-export interface HeroSlide {
-	_id?: string;
-	title: {
-		ar: string;
-		en: string;
-	};
-	description: {
-		ar: string;
-		en: string;
-	};
-	buttonText: {
-		ar: string;
-		en: string;
-	};
-	href: string;
-	image?: string;
-	alt: {
-		ar: string;
-		en: string;
-	};
-	order: number;
-	isActive: boolean;
-	createdAt?: string;
-	updatedAt?: string;
-}
+// Admin uses nested types (IHero, not IHeroFlat)
+export type HeroSlide = IHero;
 
 // Get auth token from localStorage
 const getAuthToken = () => {
@@ -173,6 +151,9 @@ export function useDeleteHeroSlide() {
 		},
 	});
 }
+
+
+
 
 
 

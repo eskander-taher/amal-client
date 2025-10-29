@@ -1,4 +1,3 @@
-// app/contact/page.tsx
 import React from "react";
 import { ContactIntro, ContactForm, ContactInfo } from "@/components/contact";
 import Hero from "@/components/Hero";
