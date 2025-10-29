@@ -42,7 +42,7 @@ const getImageRemotePatterns = (): Array<{
 
 	// Production configuration
 	if (process.env.NODE_ENV === "production") {
-		const productionApiUrl = process.env.NEXT_PUBLIC_API_URL || "https://your-api-domain.com";
+		const productionApiUrl = "https://api.afaqrussia.com/api";
 		try {
 			const url = new URL(productionApiUrl);
 			const protocol = url.protocol.replace(":", "") as "http" | "https";
