@@ -5,13 +5,16 @@ import { LucideIcon } from 'lucide-react';
 
 // Navigation item types
 export interface AdminNavItem {
-  id: string;
-  label: string;
-  icon: LucideIcon;
-  href?: string;
-  badge?: string | number;
-  children?: AdminNavItem[];
-  permissions?: string[];
+	id: string;
+	label: string;
+	icon: LucideIcon;
+	href?: string;
+	badge?: string | number;
+	children?: AdminNavItem[];
+	permissions?: string[];
+	adminOnly?: boolean; // Only show to admin users
+	resource?: string; // Resource name for permission checking (news, recipes, products, hero, books)
+	requiredPermission?: "read" | "write"; // Minimum permission level required
 }
 
 // Admin layout types

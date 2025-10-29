@@ -7,6 +7,7 @@ import AdminFilters, { FilterOption } from "@/components/admin/AdminFilters";
 import AdminTable, { Column, TableImageCell, TableBadge } from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
 import AdminFormActions from "@/components/admin/AdminFormActions";
+import ResourceProtection from "@/components/admin/ResourceProtection";
 import {
 	useRecipes,
 	useCreateRecipe,
@@ -306,481 +307,510 @@ export default function AdminRecipesPage() {
 	];
 
 	return (
-		<div className="p-6 space-y-6">
-			{/* Page Header */}
-			<AdminPageHeader
-				title="إدارة الوصفات"
-				description="إدارة وصفات الطعام والحلويات"
-				onAdd={() => setIsFormOpen(true)}
-				addButtonText="إضافة وصفة جديدة"
-			/>
+		<ResourceProtection resource="recipes" requiredPermission="read">
+			<div className="p-6 space-y-6">
+				{/* Page Header */}
+				<AdminPageHeader
+					title="إدارة الوصفات"
+					description="إدارة وصفات الطعام والحلويات"
+					onAdd={() => setIsFormOpen(true)}
+					addButtonText="إضافة وصفة جديدة"
+				/>
 
-			{/* Filters */}
-			<AdminFilters
-				searchValue={searchQuery}
-				onSearchChange={setSearchQuery}
-				searchPlaceholder="البحث في الوصفات..."
-				filters={[
-					{
-						label: "الفئة",
-						value: selectedCategory,
-						onChange: setSelectedCategory,
-						options: categoryFilterOptions,
-					},
-					{
-						label: "الصعوبة",
-						value: selectedDifficulty,
-						onChange: setSelectedDifficulty,
-						options: difficultyFilterOptions,
-					},
-				]}
-			/>
+				{/* Filters */}
+				<AdminFilters
+					searchValue={searchQuery}
+					onSearchChange={setSearchQuery}
+					searchPlaceholder="البحث في الوصفات..."
+					filters={[
+						{
+							label: "الفئة",
+							value: selectedCategory,
+							onChange: setSelectedCategory,
+							options: categoryFilterOptions,
+						},
+						{
+							label: "الصعوبة",
+							value: selectedDifficulty,
+							onChange: setSelectedDifficulty,
+							options: difficultyFilterOptions,
+						},
+					]}
+				/>
 
-			{/* Table */}
-			<AdminTable
-				columns={columns}
-				data={recipes}
-				isLoading={isLoading}
-				emptyMessage={
-					searchQuery || selectedCategory || selectedDifficulty
-						? "لم نعثر على وصفات تطابق معايير البحث."
-						: "لا توجد وصفات متاحة حالياً."
-				}
-				emptyIcon={<ChefHat className="w-12 h-12 text-gray-300" />}
-				onEdit={handleEdit}
-				onDelete={handleDelete}
-				getId={(item) => item._id!}
-			/>
+				{/* Table */}
+				<AdminTable
+					columns={columns}
+					data={recipes}
+					isLoading={isLoading}
+					emptyMessage={
+						searchQuery || selectedCategory || selectedDifficulty
+							? "لم نعثر على وصفات تطابق معايير البحث."
+							: "لا توجد وصفات متاحة حالياً."
+					}
+					emptyIcon={<ChefHat className="w-12 h-12 text-gray-300" />}
+					onEdit={handleEdit}
+					onDelete={handleDelete}
+					getId={(item) => item._id!}
+				/>
 
-			{/* Recipe Form Modal */}
-			<AdminModal
-				isOpen={isFormOpen}
-				onClose={resetForm}
-				title={editingRecipe ? "تعديل الوصفة" : "إضافة وصفة جديدة"}
-				maxWidth="6xl"
-			>
-				<form onSubmit={handleSubmit} className="space-y-6">
-					{/* Bilingual Title */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-3">
-							عنوان الوصفة *
-						</label>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div>
-								<label className="block text-xs text-gray-500 mb-1">العربية</label>
-								<input
-									type="text"
-									required
-									value={formData.title.ar}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											title: { ...formData.title, ar: e.target.value },
-										})
-									}
-									placeholder="اسم الوصفة بالعربية"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-xs text-gray-500 mb-1">English</label>
-								<input
-									type="text"
-									required
-									value={formData.title.en}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											title: { ...formData.title, en: e.target.value },
-										})
-									}
-									placeholder="Recipe name in English"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
-								/>
-							</div>
-						</div>
-					</div>
-
-					{/* Bilingual Description */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-3">
-							وصف الوصفة *
-						</label>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div>
-								<label className="block text-xs text-gray-500 mb-1">العربية</label>
-								<textarea
-									required
-									rows={3}
-									value={formData.description.ar}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											description: {
-												...formData.description,
-												ar: e.target.value,
-											},
-										})
-									}
-									placeholder="وصف الوصفة بالعربية"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
-								/>
-							</div>
-							<div>
-								<label className="block text-xs text-gray-500 mb-1">English</label>
-								<textarea
-									required
-									rows={3}
-									value={formData.description.en}
-									onChange={(e) =>
-										setFormData({
-											...formData,
-											description: {
-												...formData.description,
-												en: e.target.value,
-											},
-										})
-									}
-									placeholder="Recipe description in English"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
-								/>
-							</div>
-						</div>
-					</div>
-
-					{/* Slug and Category */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{/* Recipe Form Modal */}
+				<AdminModal
+					isOpen={isFormOpen}
+					onClose={resetForm}
+					title={editingRecipe ? "تعديل الوصفة" : "إضافة وصفة جديدة"}
+					maxWidth="6xl"
+				>
+					<form onSubmit={handleSubmit} className="space-y-6">
+						{/* Bilingual Title */}
 						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								Slug (URL) *
+							<label className="block text-sm font-medium text-gray-700 mb-3">
+								عنوان الوصفة *
 							</label>
-							<input
-								type="text"
-								required
-								value={formData.slug}
-								onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-								placeholder="recipe-slug"
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 font-mono text-sm"
-							/>
-							<p className="text-xs text-gray-500 mt-1">
-								يتم إنشاؤه تلقائياً من العنوان الإنجليزي
-							</p>
-						</div>
-
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								الفئة *
-							</label>
-							<input
-								type="text"
-								required
-								value={formData.category}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										category: e.target.value,
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
-								placeholder="مثل: كيك، حلى، مقبلات..."
-							/>
-						</div>
-					</div>
-
-					{/* Times and Servings */}
-					<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
-								وقت التحضير (دقيقة) *
-							</label>
-							<input
-								type="number"
-								min="1"
-								value={formData.prepTime}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										prepTime: parseInt(e.target.value) || 15,
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-								required
-							/>
-						</div>
-
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
-								وقت الطبخ (دقيقة)
-							</label>
-							<input
-								type="number"
-								min="0"
-								value={formData.cookTime}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										cookTime: parseInt(e.target.value) || 0,
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-							/>
-						</div>
-
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
-								عدد الحصص
-							</label>
-							<input
-								type="number"
-								min="1"
-								value={formData.servings}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										servings: parseInt(e.target.value) || 4,
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-							/>
-						</div>
-
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-1">
-								مستوى الصعوبة
-							</label>
-							<select
-								value={formData.difficulty}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										difficulty: e.target.value as "easy" | "medium" | "hard",
-									})
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-							>
-								<option value="easy">سهل</option>
-								<option value="medium">متوسط</option>
-								<option value="hard">صعب</option>
-							</select>
-						</div>
-					</div>
-
-					{/* Image Upload */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-1">
-							صورة الوصفة
-						</label>
-						<input
-							type="file"
-							accept="image/*"
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									imageFile: e.target.files?.[0] || null,
-								})
-							}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-						/>
-						{editingRecipe?.image && (
-							<div className="mt-2">
-								<img
-									src={getServerUrl(editingRecipe.image)}
-									alt="Current recipe"
-									className="w-20 h-20 object-cover rounded-lg"
-								/>
-							</div>
-						)}
-					</div>
-
-					{/* Ingredients */}
-					<div>
-						<div className="flex items-center justify-between mb-2">
-							<label className="block text-sm font-medium text-gray-700">
-								المكونات *
-							</label>
-							<button
-								type="button"
-								onClick={() => addArrayItem("ingredients")}
-								className="text-sm text-yellow-600 hover:text-yellow-800"
-							>
-								+ إضافة مكون
-							</button>
-						</div>
-						<div className="space-y-2">
-							{formData.ingredients.map((ingredient, index) => (
-								<div key={index} className="flex gap-2">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										العربية
+									</label>
 									<input
 										type="text"
-										value={ingredient}
+										required
+										value={formData.title.ar}
 										onChange={(e) =>
-											updateArrayItem("ingredients", index, e.target.value)
+											setFormData({
+												...formData,
+												title: { ...formData.title, ar: e.target.value },
+											})
 										}
-										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										placeholder={`المكون ${index + 1}`}
+										placeholder="اسم الوصفة بالعربية"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
 									/>
-									{formData.ingredients.length > 1 && (
-										<button
-											type="button"
-											onClick={() => removeArrayItem("ingredients", index)}
-											className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-										>
-											×
-										</button>
-									)}
 								</div>
-							))}
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										English
+									</label>
+									<input
+										type="text"
+										required
+										value={formData.title.en}
+										onChange={(e) =>
+											setFormData({
+												...formData,
+												title: { ...formData.title, en: e.target.value },
+											})
+										}
+										placeholder="Recipe name in English"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+									/>
+								</div>
+							</div>
 						</div>
-					</div>
 
-					{/* Instructions */}
-					<div>
-						<div className="flex items-center justify-between mb-2">
-							<label className="block text-sm font-medium text-gray-700">
-								خطوات التحضير *
+						{/* Bilingual Description */}
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-3">
+								وصف الوصفة *
 							</label>
-							<button
-								type="button"
-								onClick={() => addArrayItem("instructions")}
-								className="text-sm text-yellow-600 hover:text-yellow-800"
-							>
-								+ إضافة خطوة
-							</button>
-						</div>
-						<div className="space-y-2">
-							{formData.instructions.map((instruction, index) => (
-								<div key={index} className="flex gap-2">
-									<span className="flex-shrink-0 w-8 h-10 flex items-center justify-center text-sm text-gray-500 bg-gray-100 rounded">
-										{index + 1}
-									</span>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										العربية
+									</label>
 									<textarea
-										value={instruction}
+										required
+										rows={3}
+										value={formData.description.ar}
 										onChange={(e) =>
-											updateArrayItem("instructions", index, e.target.value)
+											setFormData({
+												...formData,
+												description: {
+													...formData.description,
+													ar: e.target.value,
+												},
+											})
 										}
-										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										placeholder={`الخطوة ${index + 1}`}
-										rows={2}
+										placeholder="وصف الوصفة بالعربية"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
 									/>
-									{formData.instructions.length > 1 && (
+								</div>
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										English
+									</label>
+									<textarea
+										required
+										rows={3}
+										value={formData.description.en}
+										onChange={(e) =>
+											setFormData({
+												...formData,
+												description: {
+													...formData.description,
+													en: e.target.value,
+												},
+											})
+										}
+										placeholder="Recipe description in English"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+									/>
+								</div>
+							</div>
+						</div>
+
+						{/* Slug and Category */}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									Slug (URL) *
+								</label>
+								<input
+									type="text"
+									required
+									value={formData.slug}
+									onChange={(e) =>
+										setFormData({ ...formData, slug: e.target.value })
+									}
+									placeholder="recipe-slug"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 font-mono text-sm"
+								/>
+								<p className="text-xs text-gray-500 mt-1">
+									يتم إنشاؤه تلقائياً من العنوان الإنجليزي
+								</p>
+							</div>
+
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									الفئة *
+								</label>
+								<input
+									type="text"
+									required
+									value={formData.category}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											category: e.target.value,
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500"
+									placeholder="مثل: كيك، حلى، مقبلات..."
+								/>
+							</div>
+						</div>
+
+						{/* Times and Servings */}
+						<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-1">
+									وقت التحضير (دقيقة) *
+								</label>
+								<input
+									type="number"
+									min="1"
+									value={formData.prepTime}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											prepTime: parseInt(e.target.value) || 15,
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+									required
+								/>
+							</div>
+
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-1">
+									وقت الطبخ (دقيقة)
+								</label>
+								<input
+									type="number"
+									min="0"
+									value={formData.cookTime}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											cookTime: parseInt(e.target.value) || 0,
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								/>
+							</div>
+
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-1">
+									عدد الحصص
+								</label>
+								<input
+									type="number"
+									min="1"
+									value={formData.servings}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											servings: parseInt(e.target.value) || 4,
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								/>
+							</div>
+
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-1">
+									مستوى الصعوبة
+								</label>
+								<select
+									value={formData.difficulty}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											difficulty: e.target.value as
+												| "easy"
+												| "medium"
+												| "hard",
+										})
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+								>
+									<option value="easy">سهل</option>
+									<option value="medium">متوسط</option>
+									<option value="hard">صعب</option>
+								</select>
+							</div>
+						</div>
+
+						{/* Image Upload */}
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-1">
+								صورة الوصفة
+							</label>
+							<input
+								type="file"
+								accept="image/*"
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										imageFile: e.target.files?.[0] || null,
+									})
+								}
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+							/>
+							{editingRecipe?.image && (
+								<div className="mt-2">
+									<img
+										src={getServerUrl(editingRecipe.image)}
+										alt="Current recipe"
+										className="w-20 h-20 object-cover rounded-lg"
+									/>
+								</div>
+							)}
+						</div>
+
+						{/* Ingredients */}
+						<div>
+							<div className="flex items-center justify-between mb-2">
+								<label className="block text-sm font-medium text-gray-700">
+									المكونات *
+								</label>
+								<button
+									type="button"
+									onClick={() => addArrayItem("ingredients")}
+									className="text-sm text-yellow-600 hover:text-yellow-800"
+								>
+									+ إضافة مكون
+								</button>
+							</div>
+							<div className="space-y-2">
+								{formData.ingredients.map((ingredient, index) => (
+									<div key={index} className="flex gap-2">
+										<input
+											type="text"
+											value={ingredient}
+											onChange={(e) =>
+												updateArrayItem(
+													"ingredients",
+													index,
+													e.target.value
+												)
+											}
+											className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+											placeholder={`المكون ${index + 1}`}
+										/>
+										{formData.ingredients.length > 1 && (
+											<button
+												type="button"
+												onClick={() =>
+													removeArrayItem("ingredients", index)
+												}
+												className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+											>
+												×
+											</button>
+										)}
+									</div>
+								))}
+							</div>
+						</div>
+
+						{/* Instructions */}
+						<div>
+							<div className="flex items-center justify-between mb-2">
+								<label className="block text-sm font-medium text-gray-700">
+									خطوات التحضير *
+								</label>
+								<button
+									type="button"
+									onClick={() => addArrayItem("instructions")}
+									className="text-sm text-yellow-600 hover:text-yellow-800"
+								>
+									+ إضافة خطوة
+								</button>
+							</div>
+							<div className="space-y-2">
+								{formData.instructions.map((instruction, index) => (
+									<div key={index} className="flex gap-2">
+										<span className="flex-shrink-0 w-8 h-10 flex items-center justify-center text-sm text-gray-500 bg-gray-100 rounded">
+											{index + 1}
+										</span>
+										<textarea
+											value={instruction}
+											onChange={(e) =>
+												updateArrayItem(
+													"instructions",
+													index,
+													e.target.value
+												)
+											}
+											className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+											placeholder={`الخطوة ${index + 1}`}
+											rows={2}
+										/>
+										{formData.instructions.length > 1 && (
+											<button
+												type="button"
+												onClick={() =>
+													removeArrayItem("instructions", index)
+												}
+												className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+											>
+												×
+											</button>
+										)}
+									</div>
+								))}
+							</div>
+						</div>
+
+						{/* Tips */}
+						<div>
+							<div className="flex items-center justify-between mb-2">
+								<label className="block text-sm font-medium text-gray-700">
+									نصائح مهمة
+								</label>
+								<button
+									type="button"
+									onClick={() => addArrayItem("tips")}
+									className="text-sm text-yellow-600 hover:text-yellow-800"
+								>
+									+ إضافة نصيحة
+								</button>
+							</div>
+							<div className="space-y-2">
+								{formData.tips.map((tip, index) => (
+									<div key={index} className="flex gap-2">
+										<input
+											type="text"
+											value={tip}
+											onChange={(e) =>
+												updateArrayItem("tips", index, e.target.value)
+											}
+											className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+											placeholder={`نصيحة ${index + 1}`}
+										/>
 										<button
 											type="button"
-											onClick={() => removeArrayItem("instructions", index)}
+											onClick={() => removeArrayItem("tips", index)}
 											className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
 										>
 											×
 										</button>
-									)}
-								</div>
-							))}
+									</div>
+								))}
+							</div>
 						</div>
-					</div>
 
-					{/* Tips */}
-					<div>
-						<div className="flex items-center justify-between mb-2">
-							<label className="block text-sm font-medium text-gray-700">
-								نصائح مهمة
-							</label>
-							<button
-								type="button"
-								onClick={() => addArrayItem("tips")}
-								className="text-sm text-yellow-600 hover:text-yellow-800"
+						{/* Tags */}
+						<div>
+							<div className="flex items-center justify-between mb-2">
+								<label className="block text-sm font-medium text-gray-700">
+									العلامات
+								</label>
+								<button
+									type="button"
+									onClick={() => addArrayItem("tags")}
+									className="text-sm text-yellow-600 hover:text-yellow-800"
+								>
+									+ إضافة علامة
+								</button>
+							</div>
+							<div className="space-y-2">
+								{formData.tags.map((tag, index) => (
+									<div key={index} className="flex gap-2">
+										<input
+											type="text"
+											value={tag}
+											onChange={(e) =>
+												updateArrayItem("tags", index, e.target.value)
+											}
+											className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+											placeholder={`علامة ${index + 1}`}
+										/>
+										<button
+											type="button"
+											onClick={() => removeArrayItem("tags", index)}
+											className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+										>
+											×
+										</button>
+									</div>
+								))}
+							</div>
+						</div>
+
+						{/* Published checkbox */}
+						<div className="flex items-center">
+							<input
+								type="checkbox"
+								id="isPublished"
+								checked={formData.isPublished}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										isPublished: e.target.checked,
+									})
+								}
+								className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+							/>
+							<label
+								htmlFor="isPublished"
+								className="mr-2 text-sm font-medium text-gray-700"
 							>
-								+ إضافة نصيحة
-							</button>
-						</div>
-						<div className="space-y-2">
-							{formData.tips.map((tip, index) => (
-								<div key={index} className="flex gap-2">
-									<input
-										type="text"
-										value={tip}
-										onChange={(e) =>
-											updateArrayItem("tips", index, e.target.value)
-										}
-										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										placeholder={`نصيحة ${index + 1}`}
-									/>
-									<button
-										type="button"
-										onClick={() => removeArrayItem("tips", index)}
-										className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-									>
-										×
-									</button>
-								</div>
-							))}
-						</div>
-					</div>
-
-					{/* Tags */}
-					<div>
-						<div className="flex items-center justify-between mb-2">
-							<label className="block text-sm font-medium text-gray-700">
-								العلامات
+								نشر الوصفة (غير منشور = مسودة)
 							</label>
-							<button
-								type="button"
-								onClick={() => addArrayItem("tags")}
-								className="text-sm text-yellow-600 hover:text-yellow-800"
-							>
-								+ إضافة علامة
-							</button>
 						</div>
-						<div className="space-y-2">
-							{formData.tags.map((tag, index) => (
-								<div key={index} className="flex gap-2">
-									<input
-										type="text"
-										value={tag}
-										onChange={(e) =>
-											updateArrayItem("tags", index, e.target.value)
-										}
-										className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-										placeholder={`علامة ${index + 1}`}
-									/>
-									<button
-										type="button"
-										onClick={() => removeArrayItem("tags", index)}
-										className="px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
-									>
-										×
-									</button>
-								</div>
-							))}
-						</div>
-					</div>
 
-					{/* Published checkbox */}
-					<div className="flex items-center">
-						<input
-							type="checkbox"
-							id="isPublished"
-							checked={formData.isPublished}
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									isPublished: e.target.checked,
-								})
+						{/* Form Actions */}
+						<AdminFormActions
+							onCancel={resetForm}
+							isLoading={
+								createRecipeMutation.isPending || updateRecipeMutation.isPending
 							}
-							className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+							submitText={editingRecipe ? "تحديث الوصفة" : "إنشاء الوصفة"}
 						/>
-						<label
-							htmlFor="isPublished"
-							className="mr-2 text-sm font-medium text-gray-700"
-						>
-							نشر الوصفة (غير منشور = مسودة)
-						</label>
-					</div>
-
-					{/* Form Actions */}
-					<AdminFormActions
-						onCancel={resetForm}
-						isLoading={createRecipeMutation.isPending || updateRecipeMutation.isPending}
-						submitText={editingRecipe ? "تحديث الوصفة" : "إنشاء الوصفة"}
-					/>
-				</form>
-			</AdminModal>
-		</div>
+					</form>
+				</AdminModal>
+			</div>
+		</ResourceProtection>
 	);
 }

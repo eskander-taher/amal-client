@@ -6,6 +6,7 @@ import AdminFilters, { FilterOption } from "@/components/admin/AdminFilters";
 import AdminTable, { Column, TableImageCell, TableBadge } from "@/components/admin/AdminTable";
 import AdminModal from "@/components/admin/AdminModal";
 import AdminFormActions from "@/components/admin/AdminFormActions";
+import ResourceProtection from "@/components/admin/ResourceProtection";
 import {
 	useProducts,
 	useProductCategories,
@@ -232,318 +233,328 @@ export default function AdminProductsPage() {
 	];
 
 	return (
-		<div className="p-6 space-y-6">
-			{/* Page Header */}
-			<AdminPageHeader
-				title="إدارة المنتجات"
-				description="إدارة المنتجات والفئات"
-				onAdd={() => setIsFormOpen(true)}
-				addButtonText="إضافة منتج جديد"
-			/>
+		<ResourceProtection resource="products" requiredPermission="read">
+			<div className="p-6 space-y-6">
+				{/* Page Header */}
+				<AdminPageHeader
+					title="إدارة المنتجات"
+					description="إدارة المنتجات والفئات"
+					onAdd={() => setIsFormOpen(true)}
+					addButtonText="إضافة منتج جديد"
+				/>
 
-			{/* Filters */}
-			<AdminFilters
-				searchValue={searchQuery}
-				onSearchChange={setSearchQuery}
-				searchPlaceholder="البحث في المنتجات..."
-				filters={[
-					{
-						label: "الفئة",
-						value: selectedCategory,
-						onChange: setSelectedCategory,
-						options: categoryFilterOptions,
-					},
-				]}
-			/>
+				{/* Filters */}
+				<AdminFilters
+					searchValue={searchQuery}
+					onSearchChange={setSearchQuery}
+					searchPlaceholder="البحث في المنتجات..."
+					filters={[
+						{
+							label: "الفئة",
+							value: selectedCategory,
+							onChange: setSelectedCategory,
+							options: categoryFilterOptions,
+						},
+					]}
+				/>
 
-			{/* Table */}
-			<AdminTable
-				columns={columns}
-				data={products}
-				isLoading={isLoading}
-				emptyMessage={
-					searchQuery || selectedCategory
-						? "لم نعثر على منتجات تطابق معايير البحث."
-						: "لا توجد منتجات متاحة حالياً."
-				}
-				emptyIcon={<Package className="w-12 h-12 text-gray-300" />}
-				onEdit={handleEdit}
-				onDelete={handleDelete}
-				getId={(item) => item._id!}
-			/>
+				{/* Table */}
+				<AdminTable
+					columns={columns}
+					data={products}
+					isLoading={isLoading}
+					emptyMessage={
+						searchQuery || selectedCategory
+							? "لم نعثر على منتجات تطابق معايير البحث."
+							: "لا توجد منتجات متاحة حالياً."
+					}
+					emptyIcon={<Package className="w-12 h-12 text-gray-300" />}
+					onEdit={handleEdit}
+					onDelete={handleDelete}
+					getId={(item) => item._id!}
+				/>
 
-			{/* Form Modal */}
-			<AdminModal
-				isOpen={isFormOpen}
-				onClose={resetForm}
-				title={editingProduct ? "تعديل منتج" : "إضافة منتج جديد"}
-				maxWidth="4xl"
-			>
-				<form onSubmit={handleSubmit} className="space-y-6">
-					{/* Bilingual Title */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-3">
-							عنوان المنتج *
-						</label>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				{/* Form Modal */}
+				<AdminModal
+					isOpen={isFormOpen}
+					onClose={resetForm}
+					title={editingProduct ? "تعديل منتج" : "إضافة منتج جديد"}
+					maxWidth="4xl"
+				>
+					<form onSubmit={handleSubmit} className="space-y-6">
+						{/* Bilingual Title */}
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-3">
+								عنوان المنتج *
+							</label>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										العربية
+									</label>
+									<input
+										type="text"
+										required
+										value={formData.title.ar}
+										onChange={(e) =>
+											setFormData((prev) => ({
+												...prev,
+												title: { ...prev.title, ar: e.target.value },
+											}))
+										}
+										placeholder="اسم المنتج بالعربية"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										English
+									</label>
+									<input
+										type="text"
+										required
+										value={formData.title.en}
+										onChange={(e) =>
+											setFormData((prev) => ({
+												...prev,
+												title: { ...prev.title, en: e.target.value },
+											}))
+										}
+										placeholder="Product name in English"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+							</div>
+						</div>
+
+						{/* Bilingual Description */}
+						<div>
+							<label className="block text-sm font-medium text-gray-700 mb-3">
+								الوصف *
+							</label>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										العربية
+									</label>
+									<textarea
+										required
+										rows={4}
+										value={formData.description.ar}
+										onChange={(e) =>
+											setFormData((prev) => ({
+												...prev,
+												description: {
+													...prev.description,
+													ar: e.target.value,
+												},
+											}))
+										}
+										placeholder="وصف المنتج بالعربية"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+								<div>
+									<label className="block text-xs text-gray-500 mb-1">
+										English
+									</label>
+									<textarea
+										required
+										rows={4}
+										value={formData.description.en}
+										onChange={(e) =>
+											setFormData((prev) => ({
+												...prev,
+												description: {
+													...prev.description,
+													en: e.target.value,
+												},
+											}))
+										}
+										placeholder="Product description in English"
+										className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+							</div>
+						</div>
+
+						{/* Slug and Category */}
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 							<div>
-								<label className="block text-xs text-gray-500 mb-1">العربية</label>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									Slug (URL) *
+								</label>
 								<input
 									type="text"
 									required
-									value={formData.title.ar}
+									value={formData.slug}
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
-											title: { ...prev.title, ar: e.target.value },
+											slug: e.target.value,
 										}))
 									}
-									placeholder="اسم المنتج بالعربية"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+									placeholder="product-slug"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"
 								/>
+								<p className="text-xs text-gray-500 mt-1">
+									يتم إنشاؤه تلقائياً من العنوان الإنجليزي
+								</p>
 							</div>
+
 							<div>
-								<label className="block text-xs text-gray-500 mb-1">English</label>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									الفئة *
+								</label>
+								<select
+									required
+									value={formData.category}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											category: e.target.value as any,
+										}))
+									}
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								>
+									{CATEGORIES.map((cat) => (
+										<option key={cat.value} value={cat.value}>
+											{cat.label}
+										</option>
+									))}
+								</select>
+							</div>
+						</div>
+
+						{/* Additional Info */}
+						<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									السعر
+								</label>
 								<input
 									type="text"
-									required
-									value={formData.title.en}
+									value={formData.price}
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
-											title: { ...prev.title, en: e.target.value },
+											price: e.target.value,
 										}))
 									}
-									placeholder="Product name in English"
-									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-								/>
-							</div>
-						</div>
-					</div>
-
-					{/* Bilingual Description */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-3">
-							الوصف *
-						</label>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div>
-								<label className="block text-xs text-gray-500 mb-1">العربية</label>
-								<textarea
-									required
-									rows={4}
-									value={formData.description.ar}
-									onChange={(e) =>
-										setFormData((prev) => ({
-											...prev,
-											description: {
-												...prev.description,
-												ar: e.target.value,
-											},
-										}))
-									}
-									placeholder="وصف المنتج بالعربية"
 									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
 								/>
 							</div>
 							<div>
-								<label className="block text-xs text-gray-500 mb-1">English</label>
-								<textarea
-									required
-									rows={4}
-									value={formData.description.en}
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									الوزن
+								</label>
+								<input
+									type="text"
+									value={formData.weight}
 									onChange={(e) =>
 										setFormData((prev) => ({
 											...prev,
-											description: {
-												...prev.description,
-												en: e.target.value,
-											},
+											weight: e.target.value,
 										}))
 									}
-									placeholder="Product description in English"
+									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+								/>
+							</div>
+							<div>
+								<label className="block text-sm font-medium text-gray-700 mb-2">
+									العلامة التجارية
+								</label>
+								<input
+									type="text"
+									value={formData.brand}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											brand: e.target.value,
+										}))
+									}
 									className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
 								/>
 							</div>
 						</div>
-					</div>
 
-					{/* Slug and Category */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								Slug (URL) *
-							</label>
-							<input
-								type="text"
-								required
-								value={formData.slug}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										slug: e.target.value,
-									}))
-								}
-								placeholder="product-slug"
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-							/>
-							<p className="text-xs text-gray-500 mt-1">
-								يتم إنشاؤه تلقائياً من العنوان الإنجليزي
-							</p>
+						{/* Featured and Published checkboxes */}
+						<div className="flex items-center gap-6">
+							<div className="flex items-center">
+								<input
+									type="checkbox"
+									id="featured"
+									checked={formData.featured}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											featured: e.target.checked,
+										}))
+									}
+									className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+								/>
+								<label
+									htmlFor="featured"
+									className="mr-2 text-sm font-medium text-gray-700"
+								>
+									منتج مميز
+								</label>
+							</div>
+
+							<div className="flex items-center">
+								<input
+									type="checkbox"
+									id="isPublished"
+									checked={formData.isPublished}
+									onChange={(e) =>
+										setFormData((prev) => ({
+											...prev,
+											isPublished: e.target.checked,
+										}))
+									}
+									className="rounded border-gray-300 text-green-600 focus:ring-green-500"
+								/>
+								<label
+									htmlFor="isPublished"
+									className="mr-2 text-sm font-medium text-gray-700"
+								>
+									نشر المنتج (غير منشور = مسودة)
+								</label>
+							</div>
 						</div>
 
+						{/* Image Upload */}
 						<div>
 							<label className="block text-sm font-medium text-gray-700 mb-2">
-								الفئة *
-							</label>
-							<select
-								required
-								value={formData.category}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										category: e.target.value as any,
-									}))
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-							>
-								{CATEGORIES.map((cat) => (
-									<option key={cat.value} value={cat.value}>
-										{cat.label}
-									</option>
-								))}
-							</select>
-						</div>
-					</div>
-
-					{/* Additional Info */}
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								السعر
+								صورة المنتج
 							</label>
 							<input
-								type="text"
-								value={formData.price}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										price: e.target.value,
-									}))
-								}
+								type="file"
+								accept="image/*"
+								onChange={(e) => {
+									const file = e.target.files?.[0];
+									if (file) {
+										setFormData((prev) => ({
+											...prev,
+											imageFile: file,
+										}));
+									}
+								}}
 								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
 							/>
 						</div>
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								الوزن
-							</label>
-							<input
-								type="text"
-								value={formData.weight}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										weight: e.target.value,
-									}))
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-							/>
-						</div>
-						<div>
-							<label className="block text-sm font-medium text-gray-700 mb-2">
-								العلامة التجارية
-							</label>
-							<input
-								type="text"
-								value={formData.brand}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										brand: e.target.value,
-									}))
-								}
-								className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-							/>
-						</div>
-					</div>
 
-					{/* Featured and Published checkboxes */}
-					<div className="flex items-center gap-6">
-						<div className="flex items-center">
-							<input
-								type="checkbox"
-								id="featured"
-								checked={formData.featured}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										featured: e.target.checked,
-									}))
-								}
-								className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-							/>
-							<label
-								htmlFor="featured"
-								className="mr-2 text-sm font-medium text-gray-700"
-							>
-								منتج مميز
-							</label>
-						</div>
-
-						<div className="flex items-center">
-							<input
-								type="checkbox"
-								id="isPublished"
-								checked={formData.isPublished}
-								onChange={(e) =>
-									setFormData((prev) => ({
-										...prev,
-										isPublished: e.target.checked,
-									}))
-								}
-								className="rounded border-gray-300 text-green-600 focus:ring-green-500"
-							/>
-							<label
-								htmlFor="isPublished"
-								className="mr-2 text-sm font-medium text-gray-700"
-							>
-								نشر المنتج (غير منشور = مسودة)
-							</label>
-						</div>
-					</div>
-
-					{/* Image Upload */}
-					<div>
-						<label className="block text-sm font-medium text-gray-700 mb-2">
-							صورة المنتج
-						</label>
-						<input
-							type="file"
-							accept="image/*"
-							onChange={(e) => {
-								const file = e.target.files?.[0];
-								if (file) {
-									setFormData((prev) => ({
-										...prev,
-										imageFile: file,
-									}));
-								}
-							}}
-							className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+						{/* Submit Buttons */}
+						<AdminFormActions
+							onCancel={resetForm}
+							isLoading={
+								createProductMutation.isPending || updateProductMutation.isPending
+							}
+							submitText={editingProduct ? "تحديث المنتج" : "إنشاء المنتج"}
 						/>
-					</div>
-
-					{/* Submit Buttons */}
-					<AdminFormActions
-						onCancel={resetForm}
-						isLoading={
-							createProductMutation.isPending || updateProductMutation.isPending
-						}
-						submitText={editingProduct ? "تحديث المنتج" : "إنشاء المنتج"}
-					/>
-				</form>
-			</AdminModal>
-		</div>
+					</form>
+				</AdminModal>
+			</div>
+		</ResourceProtection>
 	);
 }

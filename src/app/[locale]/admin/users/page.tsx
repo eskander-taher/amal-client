@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Calendar, Shield, User as UserIcon, Mail, Key, X } from "lucide-react";
+import { Calendar, Shield, User as UserIcon, Mail, Key, X, ShieldAlert } from "lucide-react";
 import AdminPageHeader from "@/components/admin/AdminPageHeader";
 import AdminFilters from "@/components/admin/AdminFilters";
 import AdminTable, { Column, TableBadge } from "@/components/admin/AdminTable";
@@ -15,6 +15,7 @@ import {
 	useUpdateUserPermissions,
 } from "../api";
 import type { User, UserRole, PermissionLevel, UserPermissions } from "@/types/auth";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface UserFormData {
 	name: string;
@@ -34,6 +35,7 @@ const DEFAULT_PERMISSIONS: UserPermissions = {
 };
 
 export default function AdminUsersPage() {
+	const { isAdmin, user } = useAuth();
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const [editingUser, setEditingUser] = useState<User | null>(null);
 	const [searchQuery, setSearchQuery] = useState("");
@@ -55,6 +57,28 @@ export default function AdminUsersPage() {
 	const updateUserMutation = useUpdateUser();
 	const deleteUserMutation = useDeleteUser();
 	const updatePermissionsMutation = useUpdateUserPermissions();
+
+	// Check if user is admin - only admins can manage users
+	if (!isAdmin) {
+		return (
+			<div className="p-6">
+				<div className="max-w-md mx-auto mt-20">
+					<div className="bg-white rounded-lg shadow-lg p-8 text-center">
+						<ShieldAlert className="w-16 h-16 text-yellow-600 mx-auto mb-4" />
+						<h2 className="text-2xl font-bold text-gray-900 mb-2">Admin Access Only</h2>
+						<p className="text-gray-600 mb-4">
+							User management is restricted to administrators only. Moderators do not
+							have access to this feature.
+						</p>
+						<p className="text-sm text-gray-500">
+							Your role:{" "}
+							<span className="font-semibold">{user?.role || "unknown"}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		);
+	}
 
 	// Filter users based on search
 	const filteredUsers = users.filter(

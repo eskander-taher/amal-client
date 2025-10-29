@@ -55,4 +55,7 @@ export interface AuthContextType {
 	logout: () => void;
 	isAuthenticated: boolean;
 	isAdmin: boolean;
+	isModerator: boolean;
+	isAdminOrModerator: boolean;
+	hasPermission: (resource: string, requiredLevel: PermissionLevel) => boolean;
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiBase from "@/lib/apiBase";
-import { getStoredToken } from "@/hooks/useAuth";
+import { getStoredToken, clearAuthData } from "@/hooks/useAuth";
 
 /**
  * Centralized Axios instance for all admin API requests
@@ -9,6 +9,7 @@ import { getStoredToken } from "@/hooks/useAuth";
  * - Automatic authentication token injection
  * - Consistent error handling
  * - Base URL configuration
+ * - Automatic redirect on authentication errors
  */
 const adminAxios = axios.create({
 	baseURL: `${apiBase}/api`,
@@ -41,13 +42,39 @@ adminAxios.interceptors.response.use(
 		return response;
 	},
 	(error) => {
+		const status = error.response?.status;
+
+		// Handle 401 Unauthorized - redirect to login
+		if (status === 401) {
+			clearAuthData();
+
+			// Get current locale from pathname
+			const locale = window.location.pathname.split("/")[1] || "en";
+
+			// Only redirect if not already on login page
+			if (!window.location.pathname.includes("/login")) {
+				window.location.href = `/${locale}/login`;
+			}
+
+			return Promise.reject(new Error("Session expired. Please login again."));
+		}
+
+		// Handle 403 Forbidden - permission denied
+		if (status === 403) {
+			const message =
+				error.response?.data?.error?.message ||
+				"You do not have permission to perform this action";
+			return Promise.reject(new Error(message));
+		}
+
 		// Extract error message from response
 		const message =
 			error.response?.data?.error?.message ||
 			error.response?.data?.error ||
 			error.message ||
 			"Network error occurred";
-		throw new Error(message);
+
+		return Promise.reject(new Error(message));
 	}
 );
 
