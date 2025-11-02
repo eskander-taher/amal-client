@@ -92,32 +92,24 @@ export default function BooksPage() {
 							</div>
 						</div>
 
-						{/* Category Filters */}
+						{/* Category Filter Dropdown */}
 						{categories.length > 0 && (
-							<div className="flex flex-wrap gap-3 justify-center">
-								<button
-									onClick={() => setSelectedCategory("all")}
-									className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-										selectedCategory === "all"
-											? "bg-yellow-500 text-white shadow-lg scale-105"
-											: "bg-gray-100 text-gray-700 hover:bg-gray-200 shadow-md hover:shadow-lg"
-									}`}
+							<div className="max-w-xs mx-auto">
+								<select
+									value={selectedCategory}
+									onChange={(e) => setSelectedCategory(e.target.value)}
+									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white text-gray-700 font-medium cursor-pointer"
+									dir={locale === "ar" ? "rtl" : "ltr"}
 								>
-									{locale === "ar" ? "الكل" : "All"}
-								</button>
-								{categories.map((category) => (
-									<button
-										key={category}
-										onClick={() => setSelectedCategory(category)}
-										className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-											selectedCategory === category
-												? "bg-yellow-500 text-white shadow-lg scale-105"
-												: "bg-gray-100 text-gray-700 hover:bg-gray-200 shadow-md hover:shadow-lg"
-										}`}
-									>
-										{category}
-									</button>
-								))}
+									<option value="all">
+										{locale === "ar" ? "الكل" : "All"}
+									</option>
+									{categories.map((category) => (
+										<option key={category} value={category}>
+											{category}
+										</option>
+									))}
+								</select>
 							</div>
 						)}
 					</div>

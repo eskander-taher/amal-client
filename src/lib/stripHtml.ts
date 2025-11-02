@@ -39,3 +39,6 @@ export function truncateText(text: string, maxLength: number = 150): string {
 
 
 
+
+
+
