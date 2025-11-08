@@ -41,7 +41,7 @@ export default function Newsletter() {
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
 									placeholder={t("placeholder")}
-									className="w-full rounded-full border-2 border-white/30 bg-white/90 text-gray-900 placeholder-gray-600 focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-semibold text-sm sm:text-base md:text-lg h-14  ltr:pl-5 pr-5"
+									className="w-full rounded-full border-2 border-white/30 bg-white/90 text-gray-900 placeholder:text-gray-400 placeholder:font-normal focus:outline-none focus:border-white focus:bg-white transition-all duration-300 font-semibold text-sm sm:text-base md:text-lg h-14  ltr:pl-5 pr-5"
 									required
 								/>
 							</div>

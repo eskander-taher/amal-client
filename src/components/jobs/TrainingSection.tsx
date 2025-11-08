@@ -1,24 +1,28 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Section from "@/components/Section";
+import { useTranslations } from "next-intl";
 
 const TrainingSection: React.FC = () => {
+	const t = useTranslations("Jobs.trainingSection");
+
 	const trainingCards = [
 		{
 			image: "/jobs/training1.webp",
 			imageAlt: "Employee Training Assessment",
-			paragraph: "تقوم امل الخير بدراسة الاحتياجات التدريبية للموظفين بشكل دوري من أجل تطوير أدوارهم الوظيفية وتحسين أدائهم، إذ يعد التدريب أحد استراتيجيات المراعي للاستثمار في العنصر البشري."
+			paragraphKey: "cards.card1",
 		},
 		{
 			image: "/jobs/training2.webp",
 			imageAlt: "Specialized Training Institutes",
-			paragraph: "كما تُلحق مل الخير موظفيها حسب حاجة العمل بدورات تدريب فردية في معاهد متخصصة."
+			paragraphKey: "cards.card2",
 		},
 		{
 			image: "/jobs/training3.webp",
 			imageAlt: "On-the-Job Training Programs",
-			paragraph: "تعمل المراعي على تلبية الاحتياجات التدريبية للموظفين عبر حزمة من برامج التدريب على رأس العمل التي تزود الموظف بالمهارات التطبيقية والفنية اللازمة لتطوير عمله."
-		}
+			paragraphKey: "cards.card3",
+		},
 	];
 
 	return (
@@ -27,10 +31,10 @@ const TrainingSection: React.FC = () => {
 				{/* Section Heading */}
 				<div className="text-center mb-12">
 					<h2 className="text-3xl font-bold text-gray-900 mb-4">
-						برامج التدريب والتطوير
+						{t("title")}
 					</h2>
 					<p className="text-lg text-gray-600 max-w-3xl mx-auto">
-						نستثمر في تطوير موظفينا من خلال برامج تدريبية شاملة ومتخصصة
+						{t("subtitle")}
 					</p>
 				</div>
 
@@ -61,7 +65,7 @@ const TrainingSection: React.FC = () => {
 							{/* Card Content - only paragraph */}
 							<div className="p-6">
 								<p className="text-gray-600 leading-relaxed text-lg text-center">
-									{card.paragraph}
+									{t(card.paragraphKey)}
 								</p>
 							</div>
 						</div>

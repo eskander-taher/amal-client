@@ -257,6 +257,120 @@
 		}
 	},
 	"Jobs": {
+		"heroTitle": "Job Opportunities at Amal Al Khair - Enhancing and Developing Personal Skills",
+		"heroSubtitle": "Our employees are our most important asset. Attracting the right people, training them, and providing the resources they need to meet our requirements as a world-class food company is a top priority for Amal Al Khair.",
+		"joinFamilyCTA": "Join the Amal Al Khair Family",
+		"jobCards": {
+			"cooperativeTraining": {
+				"title": "Cooperative Training",
+				"description": "Develop your knowledge by applying what you learned academically in the workplace"
+			},
+			"nonGraduates": {
+				"title": "Non-Graduates",
+				"description": "Be one of the quality makers"
+			},
+			"recentGraduates": {
+				"title": "Recent Graduates",
+				"description": "Start here! We will help you develop your personal and professional skills"
+			},
+			"experienced": {
+				"title": "Experienced Professionals",
+				"description": "Do you want to achieve success in your career and reach leadership positions?"
+			}
+		},
+		"trainingSection": {
+			"title": "Training and Development Programs",
+			"subtitle": "We invest in developing our employees through comprehensive and specialized training programs",
+			"cards": {
+				"card1": "Amal Al Khair periodically studies the training needs of employees to develop their job roles and improve their performance, as training is one of Amal Al Khair's strategies for investing in human resources.",
+				"card2": "Amal Al Khair also enrolls its employees according to work needs in individual training courses at specialized institutes.",
+				"card3": "Amal Al Khair works to meet the training needs of employees through a package of on-the-job training programs that provide employees with the practical and technical skills necessary to develop their work."
+			}
+		},
+		"applyPage": {
+			"heroTitle": "Join Our Family",
+			"title": "Join the Amal Al Khair Family",
+			"description": "Welcome to our customer service page. Our team is available to answer your inquiries and provide the assistance you need, whether you have a question about our products, or you need help completing a procedure. We are happy to listen to you for immediate assistance or to contact us by phone. We are keen to serve our customers as they should, and you can also contact us via email or support committees. We strive to respond to all inquiries as quickly as possible. You are always our top priority.",
+			"form": {
+				"fullName": {
+					"label": "Full Name",
+					"placeholder": "Enter your name here"
+				},
+				"phone": {
+					"label": "Phone Number",
+					"placeholder": "Enter your mobile number here"
+				},
+				"email": {
+					"label": "Email",
+					"placeholder": "Email"
+				},
+				"nationality": {
+					"label": "Nationality",
+					"placeholder": "Nationality",
+					"options": {
+						"yemeni": "Yemeni",
+						"saudi": "Saudi",
+						"egyptian": "Egyptian",
+						"other": "Other"
+					}
+				},
+				"location": {
+					"label": "Current Location",
+					"placeholder": "Current Location"
+				},
+				"gender": {
+					"label": "Gender",
+					"placeholder": "Gender",
+					"options": {
+						"male": "Male",
+						"female": "Female"
+					}
+				},
+				"birthDate": {
+					"label": "Date of Birth"
+				},
+				"experience": {
+					"label": "Years of Experience",
+					"placeholder": "Years of Experience",
+					"options": {
+						"lessThanOne": "Less than 1 year",
+						"oneToThree": "1-3 years",
+						"threeToFive": "3-5 years",
+						"moreThanFive": "More than 5 years"
+					}
+				},
+				"job": {
+					"label": "Select Job",
+					"placeholder": "Select Job",
+					"options": {
+						"softwareDeveloper": "Software Developer",
+						"uiDesigner": "UI Designer",
+						"projectManager": "Project Manager",
+						"other": "Other"
+					}
+				},
+				"relocate": {
+					"label": "Willingness to Relocate",
+					"placeholder": "Willingness to Relocate",
+					"options": {
+						"yes": "Yes",
+						"no": "No"
+					}
+				},
+				"currentJob": {
+					"label": "Current Position / Job Title",
+					"placeholder": "Current Position / Job Title"
+				},
+				"resume": {
+					"label": "Upload Your Resume"
+				},
+				"linkedin": {
+					"label": "LinkedIn Profile Link",
+					"placeholder": "LinkedIn Profile Link"
+				},
+				"submitButton": "Join Now"
+			}
+		},
 		"hiringProcess": {
 			"title": "Hiring Process",
 			"steps": {
@@ -414,6 +528,50 @@
 		"closeChat": "Close chat",
 		"chatWithUs": "Chat with us",
 		"errorMessage": "Sorry, an error occurred. Please try again."
+	},
+	"Contact": {
+		"heroTitle": "Contact Us",
+		"intro": {
+			"title": "We are here for you",
+			"description": "Welcome to our customer service page. Our team is available to answer your inquiries and provide the assistance you need, whether you have a question about our products, or you need help completing a procedure. We are happy to listen to you for immediate assistance or to contact us by phone. We are keen to serve our customers as they should, and you can also contact us via email or support committees. We strive to respond to all inquiries as quickly as possible. You are always our top priority."
+		},
+		"form": {
+			"name": {
+				"label": "Name",
+				"placeholder": "Enter your name here"
+			},
+			"subject": {
+				"label": "Subject",
+				"options": {
+					"support": "Support",
+					"inquiry": "Inquiry",
+					"employment": "Employment"
+				}
+			},
+			"phone": {
+				"label": "Mobile Phone",
+				"placeholder": "Enter your mobile number here"
+			},
+			"email": {
+				"label": "Email",
+				"placeholder": "Enter your email here"
+			},
+			"country": {
+				"label": "Country",
+				"placeholder": "Enter your country here"
+			},
+			"message": {
+				"label": "Message",
+				"placeholder": "Write your message here"
+			},
+			"submitButton": "Send Now"
+		},
+		"info": {
+			"title": "Contact Information",
+			"address": "P.O. Box 8524, Riyadh 11492",
+			"phone": "Phone",
+			"whatsapp": "WhatsApp"
+		}
 	},
 	"Footer": {
 		"contactTitle": "Contact Information",

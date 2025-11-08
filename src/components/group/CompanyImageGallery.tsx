@@ -15,7 +15,7 @@ export default function CompanyImageGallery({
 	image3 = "/placeholder.webp",
 }: CompanyImageGalleryProps) {
 	return (
-		<Section className="bg-white py-8">
+		<Section className="bg-white -py-12 sm:-py-16 lg:-py-24">
 			<div className="space-y-6">
 				{/* Wide Image */}
 				<div className="w-full">

@@ -206,7 +206,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 					<div className="text-center mt-8">
 						<TransitionLink
 							href="/news"
-							className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+							className="inline-flex items-center px-6 py-3 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
 						>
 							{t("viewAllNews")}
 							{locale === "ar" ? (

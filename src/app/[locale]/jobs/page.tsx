@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "@/components/Hero";
+import { getTranslations } from "next-intl/server";
 
 import JobCardList from "@/components/jobs/JobCardList";
 import WorkWithUs from "@/components/jobs/WorkWithUs";
@@ -8,12 +9,14 @@ import WorkEnvironment from "@/components/jobs/WorkEnvironment";
 import JoinFamilyCTA from "@/components/jobs/JoinFamilyCTA";
 import TrainingSection from "@/components/jobs/TrainingSection";
 
-export default function page() {
+export default async function page() {
+	const t = await getTranslations("Jobs");
+
 	return (
 		<div>
 			<Hero
-				title="فرص العمل في امل الخير - تعزيز وتطوير المهارات الشخصية"
-				subtitle="موّظفونا هم أهم الأصول لدينا فاجتذاب الأشخاص المناسبين وتدريبهم وتوفير الموارد التي يحتاجونها لتلبية متطلباتنا كشركة أغذية عالمية المستوى يشكل أولوية رئيسية لامل الخير."
+				title={t("heroTitle")}
+				subtitle={t("heroSubtitle")}
 				image="/jobs-hero.webp"
 			/>
 			<JobCardList />

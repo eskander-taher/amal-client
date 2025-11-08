@@ -9,7 +9,7 @@ import {
 	FaWhatsapp,
 	FaMapMarkerAlt,
 	FaPhone,
-	FaLinkedin,
+	FaLinkedin, 
 } from "react-icons/fa";
 import Newsletter from "@/components/Newsletter";
 

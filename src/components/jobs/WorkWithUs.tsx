@@ -31,7 +31,7 @@ export default function WorkWithUs() {
 						className="w-full h-auto rounded-lg object-cover"
 					/>
 				</div>
-				<div className="text-right">
+				<div className="">
 					<h2 className="text-5xl md:text-4xl font-extrabold text-gray-900 mb-6">
 						{t("title")}
 					</h2>
