@@ -372,7 +372,16 @@
 					"label": "رابط ملفك الشخصي على لينكدإن",
 					"placeholder": "رابط ملفك الشخصي على لينكدإن"
 				},
-				"submitButton": "انضم الآن"
+				"submitButton": "انضم الآن",
+				"sending": "جاري الإرسال...",
+				"errorMessage": "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى لاحقاً."
+			},
+			"thankYou": {
+				"title": "شكراً لك!",
+				"message": "تم إرسال طلبك بنجاح.",
+				"subMessage": "نقدر اهتمامك بالانضمام إلى فريقنا. سيقوم قسم الموارد البشرية بمراجعة طلبك والتواصل معك قريباً.",
+				"backToHome": "العودة للرئيسية",
+				"backToJobs": "العودة للوظائف"
 			}
 		},
 		"workWithUs": {
@@ -431,6 +440,30 @@
 	"Recipes": {
 		"title": "وصفات امل الخير",
 		"moreRecipes": "المزيد من الوصفات",
+		"filters": {
+			"searchPlaceholder": "ابحث عن الوصفات...",
+			"allCategories": "جميع الفئات",
+			"allDifficulties": "جميع المستويات",
+			"difficulty": {
+				"easy": "سهل",
+				"medium": "متوسط",
+				"hard": "صعب"
+			},
+			"activeFilters": {
+				"search": "البحث",
+				"category": "الفئة",
+				"difficulty": "المستوى"
+			},
+			"clearFilters": "مسح جميع المرشحات",
+			"loadingRecipes": "جاري تحميل الوصفات...",
+			"noRecipesFound": "لا توجد وصفات",
+			"noRecipesDescription": "لم نعثر على وصفات تطابق معايير البحث.",
+			"noRecipesAvailable": "لا توجد وصفات متاحة حالياً.",
+			"showingResults": "عرض",
+			"recipe": "وصفة",
+			"recipes": "وصفات",
+			"minutes": "دقيقة"
+		},
 		"recipesItems": {
 			"datesRecipe": {
 				"title": "كيكة التمر التقليدية",
@@ -578,13 +611,23 @@
 				"label": "الرسالة",
 				"placeholder": "اكتب رسالتك هنا"
 			},
-			"submitButton": "أرسل الآن"
+			"submitButton": "أرسل الآن",
+			"sending": "جاري الإرسال...",
+			"successMessage": "تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.",
+			"errorMessage": "حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى لاحقاً."
 		},
 		"info": {
 			"title": "معلومات الاتصال",
 			"address": "صندوق بريد 8524، الرياض 11492",
 			"phone": "هاتف",
 			"whatsapp": "واتساب"
+		},
+		"thankYou": {
+			"title": "شكراً لك!",
+			"message": "تم إرسال رسالتك بنجاح.",
+			"subMessage": "نقدر تواصلك معنا. سيقوم فريقنا بالرد عليك في أقرب وقت ممكن.",
+			"backToHome": "العودة للرئيسية",
+			"backToContact": "العودة للتواصل"
 		}
 	},
 	"Footer": {

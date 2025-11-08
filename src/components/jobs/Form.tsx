@@ -1,17 +1,65 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import TextInput from "@/components/ui/TextInput";
 import Select from "@/components/ui/Select";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
+import publicAxios from "@/lib/publicAxios";
 
 const JobForm: React.FC = () => {
   const t = useTranslations("Jobs.applyPage.form");
   const locale = useLocale();
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      // Send as multipart/form-data to support file upload
+      const response = await publicAxios.post("/job-applications", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.data.success) {
+        // Redirect to thank you page
+        router.push(`/${locale}/jobs/apply/thank-you`);
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message:
+            response.data.error?.message ||
+            t("errorMessage") ||
+            "Failed to submit application. Please try again.",
+        });
+        setIsSubmitting(false);
+      }
+    } catch (error: any) {
+      console.error("Error submitting job application:", error);
+      setSubmitStatus({
+        type: "error",
+        message:
+          error.message ||
+          t("errorMessage") ||
+          "An error occurred. Please try again later.",
+      });
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <form className="grid grid-cols-6 gap-6 w-full max-w-6xl mx-auto">
+    <form onSubmit={handleSubmit} className="grid grid-cols-6 gap-6 w-full max-w-6xl mx-auto">
       {/* Row 1 */}
       <div className="col-span-3">
         <TextInput
@@ -88,16 +136,11 @@ const JobForm: React.FC = () => {
         />
       </div>
       <div className="col-span-3">
-        <Select
+        <TextInput
           label={t("job.label")}
           name="job"
-          options={[
-            t("job.placeholder"),
-            t("job.options.softwareDeveloper"),
-            t("job.options.uiDesigner"),
-            t("job.options.projectManager"),
-            t("job.options.other"),
-          ]}
+          placeholder={t("job.placeholder")}
+          required
         />
       </div>
 
@@ -127,6 +170,7 @@ const JobForm: React.FC = () => {
           label={t("resume.label")}
           name="resume"
           type="file"
+          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         />
       </div>
       <div className="col-span-3">
@@ -141,9 +185,10 @@ const JobForm: React.FC = () => {
       <div className="col-span-6 flex justify-center mt-6">
         <button
           type="submit"
-          className="flex items-center gap-2 px-10 py-3 bg-yellow-500 text-white rounded-full text-lg font-bold hover:bg-yellow-600 transition"
+          disabled={isSubmitting}
+          className="flex items-center gap-2 px-10 py-3 bg-yellow-500 text-white rounded-full text-lg font-bold hover:bg-yellow-600 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          {t("submitButton")}
+          {isSubmitting ? t("sending") || "Sending..." : t("submitButton")}
           {locale === "ar" ? (
             <FaArrowLeftLong className="h-5 w-5" />
           ) : (
@@ -151,6 +196,21 @@ const JobForm: React.FC = () => {
           )}
         </button>
       </div>
+
+      {/* Status Message */}
+      {submitStatus.type && (
+        <div className="col-span-6">
+          <div
+            className={`p-4 rounded-lg ${
+              submitStatus.type === "success"
+                ? "bg-green-100 text-green-800 border border-green-200"
+                : "bg-red-100 text-red-800 border border-red-200"
+            }`}
+          >
+            {submitStatus.message}
+          </div>
+        </div>
+      )}
     </form>
   );
 };

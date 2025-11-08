@@ -8,6 +8,7 @@ interface TextInputProps {
   required?: boolean;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  accept?: string;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -18,6 +19,7 @@ const TextInput: React.FC<TextInputProps> = ({
   required = false,
   value,
   onChange,
+  accept,
 }) => {
   return (
     <div className="flex flex-col w-full">
@@ -32,6 +34,7 @@ const TextInput: React.FC<TextInputProps> = ({
         required={required}
         value={value}
         onChange={onChange}
+        accept={accept}
         className="w-full h-12 border border-gray-300 rounded-full bg-white px-4 text-gray-900 placeholder:text-gray-400 placeholder:text-sm focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 focus:outline-none transition-colors"
       />
     </div>

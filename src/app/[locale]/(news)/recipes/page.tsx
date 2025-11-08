@@ -37,7 +37,7 @@ export default async function RecipesPage({ searchParams, params }: RecipesPageP
 	return (
 		<>
 			<Hero title={t("title")} imageAlt="Recipes hero image." image="/recipes-hero.webp" />
-			<Section className="p-0">
+			<Section>
 				<RecipesClientFilter initialRecipes={recipes} categories={categories} />
 			</Section>
 		</>

@@ -27,25 +27,25 @@ export default function RecipesClientFilter({
 	const selectedCategory = searchParams.get("category") || "";
 	const selectedDifficulty = searchParams.get("difficulty") || "";
 
-	// Difficulty options in Arabic
+	// Difficulty options
 	const difficultyOptions = [
-		{ value: "", label: "جميع المستويات" },
-		{ value: "easy", label: "سهل" },
-		{ value: "medium", label: "متوسط" },
-		{ value: "hard", label: "صعب" },
+		{ value: "", label: t("filters.allDifficulties") },
+		{ value: "easy", label: t("filters.difficulty.easy") },
+		{ value: "medium", label: t("filters.difficulty.medium") },
+		{ value: "hard", label: t("filters.difficulty.hard") },
 	];
 
-	// Get difficulty label in Arabic
+	// Get difficulty label
 	const getDifficultyLabel = (difficulty?: string) => {
 		switch (difficulty) {
 			case "easy":
-				return "سهل";
+				return t("filters.difficulty.easy");
 			case "medium":
-				return "متوسط";
+				return t("filters.difficulty.medium");
 			case "hard":
-				return "صعب";
+				return t("filters.difficulty.hard");
 			default:
-				return "سهل";
+				return t("filters.difficulty.easy");
 		}
 	};
 
@@ -93,14 +93,14 @@ export default function RecipesClientFilter({
 					<div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
 						{/* Search Bar */}
 						<div className="relative flex-1 max-w-md">
-							<Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+							<Search className="absolute  top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 rtl:left-3 ltr:right-3" />
 							<input
 								type="text"
-								placeholder="ابحث عن الوصفات..."
+								placeholder={t("filters.searchPlaceholder")}
 								value={searchQuery}
 								onChange={(e) => handleSearchChange(e.target.value)}
 								disabled={isPending}
-								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
+								className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
 							/>
 						</div>
 
@@ -112,16 +112,16 @@ export default function RecipesClientFilter({
 									value={selectedCategory}
 									onChange={(e) => handleCategoryChange(e.target.value)}
 									disabled={isPending}
-									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
+									className="appearance-none bg-white border border-gray-300 rounded-lg px-8 py-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
 								>
-									<option value="">جميع الفئات</option>
+									<option value="">{t("filters.allCategories")}</option>
 									{categories.map((category) => (
 										<option key={category} value={category}>
 											{category}
 										</option>
 									))}
 								</select>
-								<Filter className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+								<Filter className="absolute rtl:left-3 ltr:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
 							</div>
 
 							{/* Difficulty Filter */}
@@ -130,7 +130,7 @@ export default function RecipesClientFilter({
 									value={selectedDifficulty}
 									onChange={(e) => handleDifficultyChange(e.target.value)}
 									disabled={isPending}
-									className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
+									className="appearance-none bg-white border border-gray-300 rounded-lg px-8 py-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50 disabled:cursor-wait"
 								>
 									{difficultyOptions.map((option) => (
 										<option key={option.value} value={option.value}>
@@ -138,7 +138,7 @@ export default function RecipesClientFilter({
 										</option>
 									))}
 								</select>
-								<ChefHat className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+								<ChefHat className="absolute rtl:left-3 ltr:right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
 							</div>
 						</div>
 					</div>
@@ -148,7 +148,7 @@ export default function RecipesClientFilter({
 						<div className="mt-4 flex flex-wrap gap-2">
 							{searchQuery && (
 								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-yellow-100 text-yellow-800">
-									البحث: &quot;{searchQuery}&quot;
+									{t("filters.activeFilters.search")}: &quot;{searchQuery}&quot;
 									<button
 										onClick={() => handleSearchChange("")}
 										className="mr-2 text-yellow-600 hover:text-yellow-800"
@@ -159,7 +159,7 @@ export default function RecipesClientFilter({
 							)}
 							{selectedCategory && (
 								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
-									الفئة: {selectedCategory}
+									{t("filters.activeFilters.category")}: {selectedCategory}
 									<button
 										onClick={() => handleCategoryChange("")}
 										className="mr-2 text-blue-600 hover:text-blue-800"
@@ -170,7 +170,7 @@ export default function RecipesClientFilter({
 							)}
 							{selectedDifficulty && (
 								<span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-									المستوى: {getDifficultyLabel(selectedDifficulty)}
+									{t("filters.activeFilters.difficulty")}: {getDifficultyLabel(selectedDifficulty)}
 									<button
 										onClick={() => handleDifficultyChange("")}
 										className="mr-2 text-green-600 hover:text-green-800"
@@ -192,7 +192,7 @@ export default function RecipesClientFilter({
 						<div className="flex justify-center items-center py-20">
 							<div className="text-center">
 								<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mx-auto mb-4"></div>
-								<p className="text-gray-600">جاري تحميل الوصفات...</p>
+								<p className="text-gray-600">{t("filters.loadingRecipes")}</p>
 							</div>
 						</div>
 					)}
@@ -203,19 +203,19 @@ export default function RecipesClientFilter({
 							<div className="text-center">
 								<Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
 								<h3 className="text-xl font-semibold text-gray-900 mb-2">
-									لا توجد وصفات
+									{t("filters.noRecipesFound")}
 								</h3>
 								<p className="text-gray-600">
 									{searchQuery || selectedCategory || selectedDifficulty
-										? "لم نعثر على وصفات تطابق معايير البحث."
-										: "لا توجد وصفات متاحة حالياً."}
+										? t("filters.noRecipesDescription")
+										: t("filters.noRecipesAvailable")}
 								</p>
 								{(searchQuery || selectedCategory || selectedDifficulty) && (
 									<button
 										onClick={clearFilters}
 										className="mt-4 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
 									>
-										مسح جميع المرشحات
+										{t("filters.clearFilters")}
 									</button>
 								)}
 							</div>
@@ -228,8 +228,8 @@ export default function RecipesClientFilter({
 							{/* Results Count */}
 							<div className="mb-6 text-center text-gray-600">
 								<p>
-									عرض {initialRecipes.length}{" "}
-									{initialRecipes.length === 1 ? "وصفة" : "وصفات"}
+									{t("filters.showingResults")} {initialRecipes.length}{" "}
+									{initialRecipes.length === 1 ? t("filters.recipe") : t("filters.recipes")}
 								</p>
 							</div>
 
@@ -243,7 +243,7 @@ export default function RecipesClientFilter({
 										title={recipe.title}
 										description={recipe.description}
 										href={`/recipes/${recipe.slug}`}
-										badgeText={`${recipe.prepTime} دقيقة`}
+										badgeText={`${recipe.prepTime} ${t("filters.minutes")}`}
 									/>
 								))}
 							</div>

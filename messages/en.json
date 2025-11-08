@@ -368,7 +368,16 @@
 					"label": "LinkedIn Profile Link",
 					"placeholder": "LinkedIn Profile Link"
 				},
-				"submitButton": "Join Now"
+				"submitButton": "Join Now",
+				"sending": "Sending...",
+				"errorMessage": "An error occurred while submitting your application. Please try again later."
+			},
+			"thankYou": {
+				"title": "Thank You!",
+				"message": "Your application has been submitted successfully.",
+				"subMessage": "We appreciate your interest in joining our team. Our HR department will review your application and get back to you soon.",
+				"backToHome": "Back to Home",
+				"backToJobs": "Back to Jobs"
 			}
 		},
 		"hiringProcess": {
@@ -417,6 +426,30 @@
 	"Recipes": {
 		"title": "Amal Al Khair Recipes",
 		"moreRecipes": "More Recipes",
+		"filters": {
+			"searchPlaceholder": "Search for recipes...",
+			"allCategories": "All Categories",
+			"allDifficulties": "All Difficulties",
+			"difficulty": {
+				"easy": "Easy",
+				"medium": "Medium",
+				"hard": "Hard"
+			},
+			"activeFilters": {
+				"search": "Search",
+				"category": "Category",
+				"difficulty": "Difficulty"
+			},
+			"clearFilters": "Clear All Filters",
+			"loadingRecipes": "Loading recipes...",
+			"noRecipesFound": "No recipes found",
+			"noRecipesDescription": "We couldn't find any recipes matching your search criteria.",
+			"noRecipesAvailable": "No recipes available at the moment.",
+			"showingResults": "Showing",
+			"recipe": "recipe",
+			"recipes": "recipes",
+			"minutes": "minutes"
+		},
 		"recipesItems": {
 			"datesRecipe": {
 				"title": "Traditional Date Cake",
@@ -564,13 +597,23 @@
 				"label": "Message",
 				"placeholder": "Write your message here"
 			},
-			"submitButton": "Send Now"
+			"submitButton": "Send Now",
+			"sending": "Sending...",
+			"successMessage": "Your message has been sent successfully! We will get back to you soon.",
+			"errorMessage": "An error occurred while sending your message. Please try again later."
 		},
 		"info": {
 			"title": "Contact Information",
 			"address": "P.O. Box 8524, Riyadh 11492",
 			"phone": "Phone",
 			"whatsapp": "WhatsApp"
+		},
+		"thankYou": {
+			"title": "Thank You!",
+			"message": "Your message has been sent successfully.",
+			"subMessage": "We appreciate you contacting us. Our team will get back to you as soon as possible.",
+			"backToHome": "Back to Home",
+			"backToContact": "Back to Contact"
 		}
 	},
 	"Footer": {

@@ -53,7 +53,7 @@ export default function WorkEnvironment() {
 						{items.map((text, idx) => (
 							<li
 								key={idx}
-								className="bg-white flex items-start gap-5 rounded-lg p-4 text-right text-gray-700"
+								className="bg-white flex items-start gap-5 rounded-lg p-4 text-gray-700"
 							>
 								<span className="font-bold text-2xl">{`0${idx + 1} `}</span>
 								{text}
