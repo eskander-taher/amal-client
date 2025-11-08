@@ -26,8 +26,6 @@ export default async function Home({ params }: HomeProps) {
 		getFeaturedNews(locale),
 	]);
 
-	console.log(featuredProducts)
-
 	return (
 		<div className="relative">
 			<Hero slides={heroSlides} />

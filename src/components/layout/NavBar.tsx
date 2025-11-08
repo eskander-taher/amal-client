@@ -147,7 +147,7 @@ export default function NavBar() {
 																href={subItem.href}
 																className={`block px-4 py-2 text-xs lg:text-sm xl:text-base transition-all duration-200 hover:scale-105 submenu-item-hover animate-submenu-item whitespace-nowrap ${
 																	isSubActive
-																		? "bg-blue-50 text-blue-700 font-medium"
+																		? "bg-yellow-50 text-yellow-500 font-medium"
 																		: "text-gray-700 hover:bg-gray-50"
 																}`}
 																style={{
@@ -190,7 +190,7 @@ export default function NavBar() {
 						<input
 							type="text"
 							placeholder={t("searchPlaceholder")}
-							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-blue-400 text-xs lg:text-sm xl:text-base"
+							className="border border-gray-300 bg-white rounded-full py-1.5 px-4 pr-8 focus:outline-none focus:ring-1 focus:ring-yellow-500 text-xs lg:text-sm xl:text-base"
 						/>
 						<span
 							className={`absolute inset-y-0 flex items-center pl-1 ${
@@ -200,17 +200,19 @@ export default function NavBar() {
 							<FaSearch className="text-gray-300 text-xs lg:text-sm" />
 						</span>
 					</div>
-					<LanguageSwitcher />
+					<div className="hidden xl:flex">
+						<LanguageSwitcher />
+					</div>
 				</div>
 				{/* Hamburger for Mobile */}
 				{!menuOpen && (
 					<button
-						className="xl:hidden p-2 border border-gray-300 bg-white rounded-lg"
+						className="xl:hidden p-2 bg-white"
 						onClick={() => setMenuOpen((v) => !v)}
 						aria-label="Open menu"
 					>
 						<svg
-							className="w-6 h-6 text-blue-700"
+							className="w-6 h-6 text-yellow-500"
 							fill="none"
 							stroke="currentColor"
 							strokeWidth="2"
@@ -263,8 +265,8 @@ export default function NavBar() {
 											<button
 												className={`w-full text-left px-4 py-3 rounded-lg font-medium mb-1 flex items-center justify-between text-sm sm:text-base ${
 													isActive
-														? "bg-blue-600 text-white"
-														: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+														? "bg-yellow-500 text-white"
+														: "text-gray-600 hover:bg-yellow-50 hover:text-yellow-600"
 												}`}
 												onClick={() =>
 													setSubmenuOpen(
@@ -302,7 +304,7 @@ export default function NavBar() {
 																href={subItem.href}
 																className={`block px-4 py-2 rounded-lg text-xs sm:text-sm ${
 																	isSubActive
-																		? "bg-blue-100 text-blue-700 font-medium"
+																		? "bg-yellow-100 text-yellow-500 font-medium"
 																		: "text-gray-600 hover:bg-gray-50"
 																}`}
 																onClick={() => setMenuOpen(false)}
@@ -319,8 +321,8 @@ export default function NavBar() {
 											href={item.href}
 											className={`block px-4 py-3 rounded-lg font-medium mb-1 text-sm sm:text-base ${
 												isActive
-													? "bg-blue-600 text-white"
-													: "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+													? "bg-yellow-500 text-white"
+													: "text-gray-600 hover:bg-yellow-50 hover:text-yellow-500"
 											}`}
 											onClick={() => setMenuOpen(false)}
 										>

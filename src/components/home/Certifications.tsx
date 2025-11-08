@@ -73,7 +73,6 @@ export default function Certifications() {
 						</div>
 					))}
 				</div>
-				<div className="h-[1px] w-full bg-black absolute -bottom-10 sm:-bottom-15 lg:-bottom-20 xl:-bottom-25 opacity-20"></div>
 			</div>
 		</Section>
 	);

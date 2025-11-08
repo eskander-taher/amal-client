@@ -44,7 +44,7 @@
 		"investmentCompanyTitle": "Amal Al Khair Investment Company",
 		"investmentCompanyDesc": "Diverse investments supporting sustainable economic development.",
 		"moreButton": "More",
-		"moreAboutButton": "More About Amal Al Khair",
+		"moreAboutButton": "More",
 		"certificationsTitle": "Our Certifications!"
 	},
 	"Group": {
@@ -220,6 +220,10 @@
 	"News": {
 		"title": "Latest News!",
 		"moreNews": "More News",
+		"lastUpdate": "Last update:",
+		"backToAllNews": "Back to all news",
+		"relatedNews": "Other news that may interest you",
+		"viewAllNews": "View all news",
 		"newsItems": {
 			"storeOpening": {
 				"title": "Amal Al Khair Dates Store Opening",
@@ -430,7 +434,7 @@
 		"products": "Our Products",
 		"news": "News & blogs",
 		"jobs": "Jobs",
-		"employeePortal": "Employee Portal",
+		"employeePortal": "Knowledge Portal",
 		"description": "Amal Al Khair Holding Group is a leading Saudi group committed to excellence and innovation in the poultry, feed, fish, and dates sectors. We believe that transparency and quality are the foundation of our success, and we work to build long-term partnerships that create sustainable value for our community and customers.",
 		"rights": "All rights reserved © Amal Al Khair 2025"
 	},

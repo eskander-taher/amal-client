@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft, Calendar, Clock } from "lucide-react";
 import { TransitionLink } from "@/components/TransitionLink";
 import Section from "@/components/Section";
 import NewsCard from "@/components/NewsCard";
@@ -35,8 +35,9 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 
 	const imageUrl = article.image ? getServerUrl(article.image) : undefined;
 
+	const t = await getTranslations("News");
 	return {
-		title: `${article.title} - أخبار الشركة`,
+		title: `${article.title} - ${t("title")}`,
 		description,
 		openGraph: {
 			title: article.title,
@@ -119,7 +120,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 								<div className="flex items-center">
 									<Calendar className="w-4 h-4 mr-2" />
 									<span>
-										{new Date(article.createdAt).toLocaleDateString("ar-SA", {
+										{new Date(article.createdAt).toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
 											year: "numeric",
 											month: "long",
 											day: "numeric",
@@ -132,8 +133,8 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 								<div className="flex items-center">
 									<Clock className="w-4 h-4 mr-2" />
 									<span>
-										آخر تحديث:{" "}
-										{new Date(article.updatedAt).toLocaleDateString("ar-SA", {
+										{t("lastUpdate")}{" "}
+										{new Date(article.updatedAt).toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
 											year: "numeric",
 											month: "long",
 											day: "numeric",
@@ -160,10 +161,14 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 							{/* Back to News */}
 							<TransitionLink
 								href="/news"
-								className="inline-flex items-center px-4 py-2 text-blue-600 hover:text-blue-800 transition-colors"
+								className="inline-flex items-center px-4 py-2 text-yellow-500 hover:text-yellow-600 transition-colors"
 							>
-								<ArrowRight className="w-4 h-4 mr-2" />
-								العودة إلى جميع الأخبار
+								{locale === "ar" ? (
+									<ArrowLeft className="w-4 h-4 ml-2" />
+								) : (
+									<ArrowRight className="w-4 h-4 mr-2" />
+								)}
+								{t("backToAllNews")}
 							</TransitionLink>
 						</div>
 					</footer>
@@ -173,7 +178,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 			{/* Related News Section */}
 			<Section className="bg-gray-50 py-12">
 				<div className="max-w-4xl mx-auto">
-					<h2 className="text-2xl font-bold text-gray-900 mb-6">أخبار أخرى قد تهمك</h2>
+					<h2 className="text-2xl font-bold text-gray-900 mb-6">{t("relatedNews")}</h2>
 
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 						{allNews
@@ -189,7 +194,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 									href={`/news/${item.slug}`}
 									badgeText={
 										item.createdAt
-											? new Date(item.createdAt).toLocaleDateString("ar-SA")
+											? new Date(item.createdAt).toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US")
 											: ""
 									}
 									cardBackgroundColor="#F2F2EF"
@@ -203,8 +208,12 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
 							href="/news"
 							className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
 						>
-							عرض جميع الأخبار
-							<ArrowRight className="w-4 h-4 mr-2" />
+							{t("viewAllNews")}
+							{locale === "ar" ? (
+								<ArrowLeft className="w-4 h-4 ml-2" />
+							) : (
+								<ArrowRight className="w-4 h-4 mr-2" />
+							)}
 						</TransitionLink>
 					</div>
 				</div>

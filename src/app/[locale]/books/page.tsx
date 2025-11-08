@@ -60,22 +60,23 @@ export default function BooksPage() {
 			{/* Admin Button */}
 			<div className="bg-gray-50 py-4">
 				<div className="container mx-auto px-4 flex justify-end">
-					<TransitionLink
-						href="/admin"
-						className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300 shadow-md hover:shadow-lg"
-					>
-						<Settings className="w-4 h-4" />
-						{locale === "ar" ? "لوحة الإدارة" : "Admin Panel"}
-					</TransitionLink>
+				<TransitionLink
+					href="/admin"
+					className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors duration-300 shadow-md hover:shadow-lg"
+				>
+					<Settings className="w-4 h-4" />
+					{locale === "ar" ? "لوحة الإدارة" : "Admin Panel"}
+				</TransitionLink>
 				</div>
 			</div>
 
 			<Section className="bg-white">
 				<div className="container mx-auto px-4 py-10">
-					{/* Filters */}
-					<div className="mb-8 space-y-4">
+				{/* Filters */}
+				<div className="mb-8">
+					<div className="w-full flex flex-col sm:flex-row gap-4 items-center">
 						{/* Search Bar */}
-						<div className="max-w-2xl mx-auto">
+						<div className="flex-1 w-full">
 							<div className="relative">
 								<Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
 								<input
@@ -94,11 +95,16 @@ export default function BooksPage() {
 
 						{/* Category Filter Dropdown */}
 						{categories.length > 0 && (
-							<div className="max-w-xs mx-auto">
+							<div className="w-full sm:w-auto sm:min-w-[200px]">
 								<select
 									value={selectedCategory}
 									onChange={(e) => setSelectedCategory(e.target.value)}
-									className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white text-gray-700 font-medium cursor-pointer"
+									className="w-full px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white text-gray-700 font-medium cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27currentColor%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpolyline points=%276 9 12 15 18 9%27%3E%3C/polyline%3E%3C/svg%3E')] bg-no-repeat bg-right pr-10"
+									style={{
+										backgroundPosition: locale === "ar" ? "left 0.75rem center" : "right 0.75rem center",
+										paddingRight: locale === "ar" ? "2.5rem" : undefined,
+										paddingLeft: locale === "ar" ? undefined : "2.5rem",
+									}}
 									dir={locale === "ar" ? "rtl" : "ltr"}
 								>
 									<option value="all">
@@ -113,6 +119,7 @@ export default function BooksPage() {
 							</div>
 						)}
 					</div>
+				</div>
 
 					{/* Results Count */}
 					{!loading && filteredBooks.length > 0 && (
